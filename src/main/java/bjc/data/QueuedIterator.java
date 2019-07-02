@@ -196,7 +196,7 @@ public class QueuedIterator<E> implements Iterator<E> {
 	/**
 	 * Add a new set of values who we will iterate through last.
 	 * 
-	 * @param itr
+	 * @param vals
 	 *                The iterable to go through last.
 	 */
 	public void last(E... vals) {

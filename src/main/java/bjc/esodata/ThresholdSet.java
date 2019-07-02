@@ -16,7 +16,7 @@ import java.util.*;
  * The iterator that this type gives by default is an iterator over all of the values in the set,
  * not including any of those in the map.
  *
- * @param KeyType The value being counted.
+ * @param <KeyType> The value being counted.
  *
  * @author Ben Culkin
  */
@@ -71,7 +71,9 @@ public class ThresholdSet<KeyType> {
 		}
 	}
 
+	// Set of uniquely stored keys
 	private Set<KeyType> keySet;
+
 	// @TODO :CountMap Ben Culkin 6/19/2019
 	// Replace this with a CountSet or some equivalent concept, whenever that gets written
 	private Map<KeyType, Integer> keyMap;
@@ -189,7 +191,7 @@ public class ThresholdSet<KeyType> {
 	/**
 	 * Get the number of times the set contains a set of given keys.
 	 *
-	 * @param key
+	 * @param keys
 	 * 		The keys to look for.
 	 *
 	 * @return The containment counts for each key.
@@ -227,6 +229,8 @@ public class ThresholdSet<KeyType> {
 	public Set<KeyType> setView() {
 		return new SetView();
 	}
+
+	// Implementation methods for setView
 
 	int setSize() {
 		return keySet.size();
