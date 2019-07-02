@@ -1,4 +1,6 @@
-package io.github.bculkin2442.data;
+package bjc.data;
+
+import static bjc.TestUtils.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,8 +8,6 @@ import java.util.List;
 import org.junit.Test;
 
 import bjc.data.CircularIterator;
-
-import static io.github.bculkin2442.TestUtils.*;
 /**
  * Test for circular iterators.,
  * 

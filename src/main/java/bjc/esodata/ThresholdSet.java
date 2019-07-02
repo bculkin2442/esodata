@@ -28,6 +28,7 @@ public class ThresholdSet<KeyType> {
 		 * the set will contain key after it returns (as a matter of fact, attempting to add the
 		 * component might actually cause it to be removed from the collection).
 		 */
+		@Override
 		public boolean add(KeyType key) {
 			// Qualified-this; allows us to reference the 'this' of our enclosing type.
 			int ret = ThresholdSet.this.add(key);
@@ -38,6 +39,7 @@ public class ThresholdSet<KeyType> {
 			return true;
 		}
 		
+		@Override
 		public boolean remove(Object o) {
 			// Will throw a ClassCastException if you give us something bad.
 			KeyType k = (KeyType)o;
@@ -50,6 +52,7 @@ public class ThresholdSet<KeyType> {
 			return false;
 		}
 
+		@Override
 		public boolean contains(Object o) {
 			// Will throw a ClassCastException if you give us something bad.
 			KeyType k = (KeyType)o;
@@ -62,10 +65,12 @@ public class ThresholdSet<KeyType> {
 			return false;
 		}
 
+		@Override
 		public int size() {
 			return ThresholdSet.this.setSize();
 		}
 
+		@Override
 		public Iterator<KeyType> iterator() {
 			return ThresholdSet.this.setIterator();
 		}
@@ -93,7 +98,7 @@ public class ThresholdSet<KeyType> {
 	 * 		The keys to add.
 	 * @return An array containing the results of adding the keys.
 	 */
-	public int[] addAll(KeyType... keys) {
+	public int[] addKeys(KeyType... keys) {
 		int[] ret = new int[keys.length];
 
 		for (int i = 0; i < keys.length; i++) {
@@ -141,7 +146,7 @@ public class ThresholdSet<KeyType> {
 	 *
 	 * @return The results from removing the keys.
 	 */
-	public int[] removeAll(KeyType... keys) {
+	public int[] removeKeys(KeyType... keys) {
 		int[] ret = new int[keys.length];
 
 		for (int i = 0; i < keys.length; i++) {
@@ -162,7 +167,7 @@ public class ThresholdSet<KeyType> {
 	 */
 	public int remove(KeyType key) {
 		if (keySet.contains(key)) {
-			// No more occurances
+			// No more occurrences
 			keySet.remove(key);
 
 			return 0;
@@ -196,7 +201,7 @@ public class ThresholdSet<KeyType> {
 	 *
 	 * @return The containment counts for each key.
 	 */
-	public int[] containsAll(KeyType... keys) {
+	public int[] containsKeys(KeyType... keys) {
 		int[] ret = new int[keys.length];
 
 		for (int i = 0; i < keys.length; i++) {

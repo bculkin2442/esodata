@@ -1,4 +1,4 @@
-package io.github.bculkin2442.data;
+package bjc.data;
 
 import static java.util.Arrays.asList;
 
@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import bjc.data.QueuedIterator;
 
+import static bjc.TestUtils.*;
 import static bjc.data.QueuedIterator.queued;
-import static io.github.bculkin2442.TestUtils.*;
 
 /**
  * Test of QueuedIterator.

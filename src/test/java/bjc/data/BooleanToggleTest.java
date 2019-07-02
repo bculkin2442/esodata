@@ -1,4 +1,4 @@
-package io.github.bculkin2442.data;
+package bjc.data;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,14 +1,14 @@
-package io.github.bculkin2442.esodata;
+package bjc.esodata;
 
 import org.junit.Test;
 
+import bjc.TestUtils;
 import bjc.esodata.ThresholdSet;
-import io.github.bculkin2442.TestUtils;
 
 import java.util.Iterator;
 
+import static bjc.TestUtils.*;
 import static org.junit.Assert.*;
-import static io.github.bculkin2442.TestUtils.*;
 
 /**
  * Tests for ThresholdSet
@@ -20,7 +20,7 @@ public class ThresholdSetTest {
 	public void testAdd() {
 		ThresholdSet<String> thst = new ThresholdSet<>();
 
-		thst.addAll("a", "b");
+		thst.addKeys("a", "b");
 
 		assertIteratorEquals(false, thst.setView().iterator(), "a", "b");
 	}
@@ -29,7 +29,7 @@ public class ThresholdSetTest {
 	public void testAddMulti() {
 		ThresholdSet<String> thst = new ThresholdSet<>();
 
-		thst.addAll("a", "b", "a");
+		thst.addKeys("a", "b", "a");
 
 		assertIteratorEquals(false, thst.setView().iterator(), "b");
 	}
@@ -38,8 +38,8 @@ public class ThresholdSetTest {
 	public void testRemoveMulti() {
 		ThresholdSet<String> thst = new ThresholdSet<>();
 
-		thst.addAll("a", "a", "b");
-		thst.removeAll("a");
+		thst.addKeys("a", "a", "b");
+		thst.removeKeys("a");
 
 		assertIteratorEquals(false, thst.setView().iterator(), "a", "b");
 	}

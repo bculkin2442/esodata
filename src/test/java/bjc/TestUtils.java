@@ -1,4 +1,4 @@
-package io.github.bculkin2442;
+package bjc;
 
 import java.util.Iterator;
 import java.util.List;
