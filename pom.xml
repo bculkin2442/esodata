@@ -60,7 +60,6 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.1</version>
 				<configuration>
-					<trimStackTrace>false</trimStackTrace>
 					<!-- Sets the VM argument line used
 					when unit tests are run. -->
 					<argLine>${surefireArgLine}</argLine>

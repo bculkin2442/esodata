@@ -29,14 +29,14 @@ public class QueueStack<T> extends Stack<T> {
 
 	@Override
 	public T pop() {
-		if(backing.isEmpty()) throw new StackUnderflowException();
+		if(backing.isEmpty()) throw new StackUnderflow();
 
 		return backing.remove();
 	}
 
 	@Override
 	public T top() {
-		if(backing.isEmpty()) throw new StackUnderflowException();
+		if(backing.isEmpty()) throw new StackUnderflow();
 
 		return backing.peek();
 	}
@@ -47,7 +47,7 @@ public class QueueStack<T> extends Stack<T> {
 	}
 
 	@Override
-	public boolean empty() {
+	public boolean isEmpty() {
 		return backing.size() == 0;
 	}
 

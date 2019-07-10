@@ -1,10 +1,14 @@
 package bjc;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
+/**
+ * Utility methods for doing testing
+ * 
+ * @author Ben Culkin
+ */
 public class TestUtils {
 	/**
 	 * Assert an iterator provides a particular sequence of values.
@@ -16,8 +20,15 @@ public class TestUtils {
 	 */
 	@SafeVarargs
 	public static <T> void assertIteratorEquals(Iterator<T> src, T... vals) {
-		for (T val : vals) {
-			assertEquals(val, src.next());
+		for (int i = 0; i < vals.length; i++) {
+			if (src.hasNext()) {
+				assertEquals(vals[i], src.next());
+			} else {
+				String msg = String.format("not enough values: got %d, wanted %d",
+						i, vals.length);
+					
+				assertTrue(msg, false);
+			}
 		}
 	}
 
@@ -46,6 +57,68 @@ public class TestUtils {
 		assertEquals("iterator not exhausted", hasMore, src.hasNext());
 	}
 
+	/**
+	 * Assert an iterator provides a particular sequence of values.
+	 * 
+	 * @param src
+	 *                The iterator to pull values from.
+	 * @param vals
+	 *                The values to expect from the iterator.
+	 */
+	@SafeVarargs
+	public static <T> void assertIteratorSet(Iterator<T> src, T... vals) {
+		Set<T> s1 = new HashSet<>();
+		Set<T> s2 = new HashSet<>();
+		
+		for (int i = 0; i < vals.length; i++) {
+			if (src.hasNext()) {
+				s1.add(vals[i]);
+				s2.add(src.next());
+			} else {
+				String msg = String.format("not enough values: got %d, wanted %d",
+						i, vals.length);
+					
+				assertTrue(msg, false);
+			}
+		}
+		
+		assertEquals(s1, s2);
+	}
+
+	/**
+	 * Assert an iterator provides a particular sequence of values.
+	 * 
+	 * @param src
+	 *                The iterator to pull values from.
+	 * @param hasMore
+	 *                The expected value of hasNext for the iterator.
+	 * @param vals
+	 *                The values to expect from the iterator.
+	 */
+	@SafeVarargs
+	public static <T> void assertIteratorSet(boolean hasMore, Iterator<T> src, T... vals) {
+		/*
+		 * @NOTE
+		 * 
+		 * Even though it's awkward, the boolean has to come first.
+		 * Otherwise, there are cases where the compiler will get
+		 * confused as to what the right value for T is, and be unable
+		 * to pick an overload.
+		 */
+		assertIteratorSet(src, vals);
+
+		assertEquals("iterator not exhausted", hasMore, src.hasNext());
+	}
+	
+	/**
+	 * Assert that a list contains a certain set of values.
+	 * 
+	 * @param src
+	 * 	The list to read values from.
+	 * 
+	 * @param exps
+	 * 	The values to expect in the list.
+	 */
 	@SafeVarargs
 	public static <T> void assertListEquals(List<T> src, T... exps) {
 		assertEquals(exps.length, src.size());

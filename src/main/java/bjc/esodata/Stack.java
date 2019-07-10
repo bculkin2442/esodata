@@ -1,13 +1,14 @@
 package bjc.esodata;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Consumer;
+import java.util.*;
+
+import java.util.function.*;
 
 /*
  * @TODO 10/11/17 Ben Culkin :StackCombinators
  * 	Implement more combinators for the stack.
  */
+
 /**
  * A stack, with support for forth/factor style stack combinators.
  *
@@ -15,7 +16,7 @@ import java.util.function.Consumer;
  * <h2>Stack underflow</h2>
  * <p>
  * NOTE: In general, using any operation that attempts to remove more data from
- * the stack than exists will cause a {@link StackUnderflowException} to be
+ * the stack than exists will cause a {@link StackUnderflow} to be
  * thrown. Check the size of the stack if you want to avoid this.
  * <p>
  * </p>
@@ -32,7 +33,7 @@ public abstract class Stack<T> {
 	 *
 	 * @author EVE
 	 */
-	public static class StackUnderflowException extends RuntimeException {
+	public static class StackUnderflow extends RuntimeException {
 		/* The ID of the exception */
 		private static final long serialVersionUID = 1423867176204571539L;
 	}
@@ -44,6 +45,18 @@ public abstract class Stack<T> {
 	 *        The element to insert.
 	 */
 	public abstract void push(T elm);
+
+	/**
+	 * Push multiple elements onto the stack.
+	 *
+	 * @param elms
+	 * 	The elements to insert.
+	 */
+	public void pushAll(T... elms) {
+		for (T elm : elms) {
+			push(elm);
+		}
+	}
 
 	/**
 	 * Pop an element off of the stack.
@@ -72,7 +85,9 @@ public abstract class Stack<T> {
 	 *
 	 * @return Whether or not the stack is empty.
 	 */
-	public abstract boolean empty();
+	public boolean isEmpty() {
+		return size() == 0;
+	}
 
 	/**
 	 * Create a spaghetti stack branching off of this one.
@@ -136,10 +151,10 @@ public abstract class Stack<T> {
 		final List<T> lst = new ArrayList<>(n);
 
 		for(int i = n; i > 0; i--) {
-			lst.set(i - 1, pop());
+			lst.add(0, pop());
 		}
 
-		for(int i = 0; i < m; i++) {
+		for(int i = 0; i <= m; i++) {
 			for(final T elm : lst) {
 				push(elm);
 			}
@@ -153,7 +168,7 @@ public abstract class Stack<T> {
 	 *        The number of items to duplicate.
 	 */
 	public void dup(final int n) {
-		multidup(n, 2);
+		multidup(n, 1);
 	}
 
 	/** Duplicate the top item on the stack. */

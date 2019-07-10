@@ -27,14 +27,14 @@ public class SimpleStack<T> extends Stack<T> {
 
 	@Override
 	public T pop() {
-		if(backing.isEmpty()) throw new StackUnderflowException();
+		if(backing.isEmpty()) throw new StackUnderflow();
 
 		return backing.pop();
 	}
 
 	@Override
 	public T top() {
-		if(backing.isEmpty()) throw new StackUnderflowException();
+		if(backing.isEmpty()) throw new StackUnderflow();
 
 		return backing.peek();
 	}
@@ -45,7 +45,7 @@ public class SimpleStack<T> extends Stack<T> {
 	}
 
 	@Override
-	public boolean empty() {
+	public boolean isEmpty() {
 		return backing.size() == 0;
 	}
 

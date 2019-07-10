@@ -57,7 +57,7 @@ public class ThresholdSet<KeyType> {
 			// Will throw a ClassCastException if you give us something bad.
 			KeyType k = (KeyType)o;
 
-			int ret = ThresholdSet.this.remove(k);
+			int ret = ThresholdSet.this.contains(k);
 
 			// The object is set-visible
 			if (ret == 1) return true;
@@ -233,6 +233,32 @@ public class ThresholdSet<KeyType> {
 	 */
 	public Set<KeyType> setView() {
 		return new SetView();
+	}
+
+	/**
+	 * Static threshold set constructor.
+	 *
+	 * @param keys
+	 * 	The initial keys to add to the threshold set.
+	 */
+	public static <KType> ThresholdSet<KType> TS(KType... keys) {
+		ThresholdSet<KType> ts = new ThresholdSet<>();
+
+		ts.addKeys(keys);
+
+		return ts;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("Set: ");
+		sb.append(keySet);
+		sb.append("\nMap: ");
+		sb.append(keyMap);
+
+		return sb.toString();
 	}
 
 	// Implementation methods for setView

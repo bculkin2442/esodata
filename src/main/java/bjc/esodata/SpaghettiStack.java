@@ -37,14 +37,14 @@ class SpaghettiStack<T> extends Stack<T> {
 
 	@Override
 	public T pop() {
-		if(backing.empty()) return parent.pop();
+		if(backing.isEmpty()) return parent.pop();
 
 		return backing.pop();
 	}
 
 	@Override
 	public T top() {
-		if(backing.empty()) return parent.top();
+		if(backing.isEmpty()) return parent.top();
 
 		return backing.top();
 	}
@@ -55,8 +55,8 @@ class SpaghettiStack<T> extends Stack<T> {
 	}
 
 	@Override
-	public boolean empty() {
-		return backing.empty() && parent.empty();
+	public boolean isEmpty() {
+		return backing.isEmpty() && parent.isEmpty();
 	}
 
 	@SuppressWarnings("unchecked")
