@@ -47,18 +47,6 @@ public abstract class Stack<T> {
 	public abstract void push(T elm);
 
 	/**
-	 * Push multiple elements onto the stack.
-	 *
-	 * @param elms
-	 * 	The elements to insert.
-	 */
-	public void pushAll(T... elms) {
-		for (T elm : elms) {
-			push(elm);
-		}
-	}
-
-	/**
 	 * Pop an element off of the stack.
 	 *
 	 * @return The element on top of the stack.
@@ -96,6 +84,70 @@ public abstract class Stack<T> {
 	 */
 	public Stack<T> spaghettify() {
 		return new SpaghettiStack<>(this);
+	}
+
+	/*
+	 * Multi-item add/remove.
+	 */
+
+	/**
+	 * Push multiple elements onto the stack.
+	 *
+	 * @param elms
+	 * 	The elements to insert.
+	 */
+	public void pushAll(T... elms) {
+		for (T elm : elms) {
+			push(elm);
+		}
+	}
+
+	/**
+	 * Push multiple elements onto the stack.
+	 *
+	 * @param elms
+	 * 	The elements to insert.
+	 */
+	public void pushAll(List<T> elms) {
+		for (T elm : elms) {
+			push(elm);
+		}
+	}
+
+	/**
+	 * Pop n items off of the stack and return them.
+	 *
+	 * @param n
+	 * 	The number of items to pop off of the stack.
+	 *
+	 * @return A list of the popped items, in the order they were popped.
+	 */
+	public List<T> multipop(int n) {
+		List<T> lst = new LinkedList<>();
+
+		for (int i = 0; i < n; n++) {
+			lst.add(pop());
+		}
+
+		return lst;
+	}
+
+	/**
+	 * Pop n items off of the stack and return them.
+	 *
+	 * @param n
+	 * 	The number of items to pop off of the stack.
+	 *
+	 * @return A list of the popped items, in the reverse order they were popped.
+	 */
+	public List<T> multipoprev(int n) {
+		LinkedList<T> lst = new LinkedList<>();
+
+		for (int i = 0; i < n; i++) {
+			lst.addFirst(pop());
+		}
+
+		return lst;
 	}
 
 	/*
@@ -148,16 +200,10 @@ public abstract class Stack<T> {
 	 *        The number of times to duplicate items.
 	 */
 	public void multidup(final int n, final int m) {
-		final List<T> lst = new ArrayList<>(n);
-
-		for(int i = n; i > 0; i--) {
-			lst.add(0, pop());
-		}
+		List<T> lst = multipoprev(n);
 
 		for(int i = 0; i <= m; i++) {
-			for(final T elm : lst) {
-				push(elm);
-			}
+			pushAll(lst);
 		}
 	}
 
@@ -186,23 +232,18 @@ public abstract class Stack<T> {
 	 *        The number of times to duplicate items.
 	 */
 	public void multiover(final int n, final int m) {
-		final List<T> lst = new ArrayList<>(n);
+		T elm = pop();
 
-		final T elm = pop();
-
-		for(int i = n; i > 0; i--) {
-			lst.set(i - 1, pop());
-		}
+		List<T> lst = multipoprev(n);
 
 		for(final T nelm : lst) {
 			push(nelm);
 		}
+
 		push(elm);
 
-		for(int i = 1; i < m; i++) {
-			for(final T nelm : lst) {
-				push(nelm);
-			}
+		for(int i = 0; i < m; i++) {
+			pushAll(lst);
 		}
 	}
 
@@ -213,7 +254,7 @@ public abstract class Stack<T> {
 	 *        The number of items to duplicate.
 	 */
 	public void over(final int n) {
-		multiover(n, 2);
+		multiover(n, 1);
 	}
 
 	/** Duplicate the second item in the stack. */
@@ -233,13 +274,44 @@ public abstract class Stack<T> {
 		push(x);
 	}
 
+	/**
+	 * Rotate the n items m deep on the stack i positions.
+	 *
+	 * @param n
+	 * 	The number of items to rotate.
+	 * @param m
+	 * 	The number of positions the item is down in the stack.
+	 * @param i
+	 * 	The number of steps to rotate. Pass a negative number to rotate things in the opposite
+	 * 	direction.
+	 */
+	public void deepmultirot(int n, int m, int i) {
+		List<T> kep = multipoprev(m);
+
+		List<T> lst = multipoprev(n);
+
+		Collections.rotate(lst, i);
+
+		pushAll(lst);
+		pushAll(kep);
+	}
+
+	/**
+	 * Rotate the n items on top of the stack i positions.
+	 *
+	 * @param n
+	 * 	The number of items to rotate.
+	 * @param i
+	 * 	The number of steps to rotate. Pass a negative number to rotate things in the opposite
+	 * 	direction.
+	 */
+	public void multirot(int n, int i) {
+		deepmultirot(n, 0, i);
+	}
+
 	/** Swap the top two items on the stack. */
 	public void swap() {
-		final T y = pop();
-		final T x = pop();
-
-		push(y);
-		push(x);
+		multirot(2, 1);
 	}
 
 	/** Duplicate the second item below the first item. */
@@ -254,16 +326,12 @@ public abstract class Stack<T> {
 
 	/** Swap the second and third items in the stack. */
 	public void deepswap() {
-		final T z = pop();
-		final T y = pop();
-		final T x = pop();
-
-		push(y);
-		push(x);
-		push(z);
+		deepmultirot(2, 1, 1);
 	}
 
-	/** Rotate the top three items on the stack */
+	/** 
+	 * Rotate the top three items on the stack 
+	 */
 	public void rot() {
 		final T z = pop();
 		final T y = pop();
@@ -286,10 +354,6 @@ public abstract class Stack<T> {
 	}
 
 	/*
-	 * :StackCombinators Add a general rotate/roll operator.
-	 */
-
-	/*
 	 * Dataflow Combinators
 	 */
 
@@ -303,17 +367,11 @@ public abstract class Stack<T> {
 	 *        The action to hide the elements from
 	 */
 	public void dip(final int n, final Consumer<Stack<T>> action) {
-		final List<T> elms = new ArrayList<>(n);
-
-		for(int i = n; i > 0; i--) {
-			elms.set(i - 1, pop());
-		}
+		List<T> elms = multipoprev(n);
 
 		action.accept(this);
 
-		for(final T elm : elms) {
-			push(elm);
-		}
+		pushAll(elms);
 	}
 
 	/**
@@ -337,11 +395,20 @@ public abstract class Stack<T> {
 	 *        The action to execute.
 	 */
 	public void keep(final int n, final Consumer<Stack<T>> action) {
-		/*
-		 * @NOTE Is this correct?
-		 */
 		dup(n);
+
 		dip(n, action);
+	}
+
+	/**
+	 * Copy the first element on the stack, replacing them once an action
+	 * is done.
+	 *
+	 * @param action
+	 *        The action to execute.
+	 */
+	public void keep(final Consumer<Stack<T>> action) {
+		keep(1, action);
 	}
 
 	/**
@@ -354,16 +421,29 @@ public abstract class Stack<T> {
 	 *        The actions to execute.
 	 */
 	public void multicleave(final int n, final List<Consumer<Stack<T>>> actions) {
-		final List<T> elms = new ArrayList<>(n);
-
-		for(int i = n; i > 0; i--) {
-			elms.set(i - 1, pop());
-		}
+		List<T> elms = multipoprev(n);
 
 		for(final Consumer<Stack<T>> action : actions) {
-			for(final T elm : elms) {
-				push(elm);
-			}
+			pushAll(elms);
+
+			action.accept(this);
+		}
+	}
+
+	/**
+	 * Apply all the actions in a list to the top n elements of the stack.
+	 *
+	 * @param n
+	 *        The number of elements to give to cons.
+	 *
+	 * @param actions
+	 *        The actions to execute.
+	 */
+	public void multicleave(final int n, final Consumer<Stack<T>>... actions) {
+		List<T> elms = multipoprev(n);
+
+		for(final Consumer<Stack<T>> action : actions) {
+			pushAll(elms);
 
 			action.accept(this);
 		}
@@ -380,6 +460,16 @@ public abstract class Stack<T> {
 	}
 
 	/**
+	 * Apply all the actions in a list to the top element of the stack.
+	 *
+	 * @param actions
+	 *        The actions to execute.
+	 */
+	public void cleave(final Consumer<Stack<T>>... actions) {
+		multicleave(1, actions);
+	}
+
+	/**
 	 * Apply every action in a list of actions to n arguments.
 	 *
 	 * @param n
@@ -389,26 +479,45 @@ public abstract class Stack<T> {
 	 *        The actions to execute.
 	 */
 	public void multispread(final int n, final List<Consumer<Stack<T>>> actions) {
-		final List<List<T>> nelms = new ArrayList<>(actions.size());
+		List<List<T>> nelms = new LinkedList<>();
 
-		for(int i = actions.size(); i > 0; i--) {
-			final List<T> elms = new ArrayList<>(n);
+		for (int i = 0; i < actions.size(); i++) {
+			List<T> elms = multipoprev(n);
 
-			for(int j = n; j > 0; j--) {
-				elms.set(j, pop());
-			}
+			nelms.add(elms);
+		}
 
-			nelms.set(i, elms);
+		Iterator<Consumer<Stack<T>>> itr = actions.iterator();
+		for(final List<T> elms : nelms) {
+			pushAll(elms);
+
+			itr.next().accept(this);
+		}
+	}
+
+	/**
+	 * Apply every action in a list of actions to n arguments.
+	 *
+	 * @param n
+	 *        The number of parameters each action takes.
+	 *
+	 * @param actions
+	 *        The actions to execute.
+	 */
+	public void multispread(final int n, final Consumer<Stack<T>>... actions) {
+		List<List<T>> nelms = new LinkedList<>();
+
+		for (int i = 0; i < actions.length; i++) {
+			List<T> elms = multipoprev(n);
+
+			nelms.add(elms);
 		}
 
 		int i = 0;
 		for(final List<T> elms : nelms) {
-			for(final T elm : elms) {
-				push(elm);
-			}
+			pushAll(elms);
 
-			actions.get(i).accept(this);
-			i += 1;
+			actions[i++].accept(this);
 		}
 	}
 
@@ -420,6 +529,17 @@ public abstract class Stack<T> {
 	 *        The actions to execute.
 	 */
 	public void spread(final List<Consumer<Stack<T>>> conses) {
+		multispread(1, conses);
+	}
+
+	/**
+	 * Apply the actions in a list of actions to corresponding elements from
+	 * the stack.
+	 *
+	 * @param conses
+	 *        The actions to execute.
+	 */
+	public void spread(final Consumer<Stack<T>>... conses) {
 		multispread(1, conses);
 	}
 

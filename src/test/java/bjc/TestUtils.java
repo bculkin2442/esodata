@@ -130,4 +130,19 @@ public class TestUtils {
 			assertEquals(exp, act);
 		}
 	}
+
+	/**
+	 * Assert a stack has the given contents.
+	 *
+	 * @param <T>
+	 * 	The type of items in the stack.
+	 *
+	 * @param src
+	 * 	The stack to inspect.
+	 * @param exps
+	 * 	The values that are expected.
+	 */
+	public static <T> void assertStackEquals(bjc.esodata.Stack<T> src, T... exps) {
+		assertArrayEquals(exps, src.toArray());
+	}
 }
