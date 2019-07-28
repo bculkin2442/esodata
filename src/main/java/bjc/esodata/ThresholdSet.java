@@ -2,6 +2,8 @@ package bjc.esodata;
 
 import java.util.*;
 
+import bjc.data.*;
+
 /**
  * Represents a counted set, that overflows to a map.
  *
@@ -80,7 +82,8 @@ public class ThresholdSet<KeyType> {
 	private Set<KeyType> keySet;
 
 	// @TODO :CountMap Ben Culkin 6/19/2019
-	// Replace this with a CountSet or some equivalent concept, whenever that gets written
+	// Replace this with a CountSet or some equivalent concept, whenever that gets written, if that
+	// gets written
 	private Map<KeyType, Integer> keyMap;
 
 	/**
@@ -94,8 +97,9 @@ public class ThresholdSet<KeyType> {
 	/**
 	 * Add multiple keys at once to the map.
 	 *
-	 * @param keys
-	 * 		The keys to add.
+	 * @param key 
+	 * 	The keys to add.
+	 *
 	 * @return An array containing the results of adding the keys.
 	 */
 	public int[] addKeys(KeyType... keys) {
@@ -112,7 +116,8 @@ public class ThresholdSet<KeyType> {
 	 * Add a key to the collection.
 	 *
 	 * @param key
-	 * 		The key to add to the collection.
+	 * 	The key to add to the collection.
+	 *
 	 * @return The number of times that key now exists in the collection. Should always be &lt; 0.
 	 */
 	public int add(KeyType key) {
@@ -224,6 +229,20 @@ public class ThresholdSet<KeyType> {
 		if (!keyMap.containsKey(key)) return -1;
 
 		return keyMap.get(key);
+	}
+
+	/**
+	 * Get a set containing all of the values that are in this set at least once.
+	 *
+	 * @return A set containing every value that occurs at least once in this set.
+	 */
+	public Set<KeyType> values() {
+		Set<KeyType> retSet = new HashSet<>();
+
+		retSet.addAll(keySet);
+		retSet.addAll(keyMap.keySet());
+
+		return retSet;
 	}
 
 	/**
