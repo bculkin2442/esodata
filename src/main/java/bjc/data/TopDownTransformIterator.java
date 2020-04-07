@@ -36,7 +36,7 @@ public class TopDownTransformIterator<ContainedType> implements Iterator<ITree<C
 	 */
 	public interface TreeTransform<ContainedType>
 			extends BiFunction<ITree<ContainedType>, Consumer<Iterator<ITree<ContainedType>>>, ITree<ContainedType>> {
-
+		// Alias type; no body is needed
 	}
 
 	/*
