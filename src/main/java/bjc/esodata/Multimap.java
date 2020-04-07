@@ -2,8 +2,6 @@ package bjc.esodata;
 
 import java.util.*;
 
-import bjc.data.*;
-
 /**
  * A map that has support for multiple values for a given key.
  *
@@ -34,7 +32,7 @@ public class Multimap<KeyType, ValueType> {
 	 */
 	public void add(KeyType key, ValueType value) {
 		ThresholdSet<ValueType> container = backing.computeIfAbsent(key,
-				(k) -> new ThresholdSet());
+				(k) -> new ThresholdSet<>());
 
 		container.add(value);
 	}

@@ -2,10 +2,6 @@ package bjc.esodata;
 
 import org.junit.Test;
 
-import bjc.TestUtils;
-
-import java.util.*;
-
 import static bjc.TestUtils.*;
 
 import static org.junit.Assert.*;

@@ -9,7 +9,7 @@ import java.util.Iterator;
  * 
  * @author bjculkin
  *
- * @param <E>
+ * @param <E> The type of element this iterator iterates over
  */
 public class QueuedIterator<E> implements Iterator<E> {
 	private Iterator<E> cur;
@@ -108,7 +108,7 @@ public class QueuedIterator<E> implements Iterator<E> {
 	 */
 	@SafeVarargs
 	public QueuedIterator(E... vals) {
-		this(new ArrayIterator(vals));
+		this(new ArrayIterator<>(vals));
 	}
 
 	/**

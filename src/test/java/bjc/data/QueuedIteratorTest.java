@@ -4,8 +4,6 @@ import static java.util.Arrays.asList;
 
 import org.junit.Test;
 
-import bjc.data.QueuedIterator;
-
 import static bjc.TestUtils.*;
 import static bjc.data.QueuedIterator.queued;
 

@@ -125,7 +125,7 @@ public abstract class Stack<T> {
 	public List<T> multipop(int n) {
 		List<T> lst = new LinkedList<>();
 
-		for (int i = 0; i < n; n++) {
+		for (int i = 0; i < n; i++) {
 			lst.add(pop());
 		}
 

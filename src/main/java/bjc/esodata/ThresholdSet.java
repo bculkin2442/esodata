@@ -2,8 +2,6 @@ package bjc.esodata;
 
 import java.util.*;
 
-import bjc.data.*;
-
 /**
  * Represents a counted set, that overflows to a map.
  *
@@ -97,7 +95,7 @@ public class ThresholdSet<KeyType> {
 	/**
 	 * Add multiple keys at once to the map.
 	 *
-	 * @param key 
+	 * @param keys 
 	 * 	The keys to add.
 	 *
 	 * @return An array containing the results of adding the keys.
@@ -260,6 +258,7 @@ public class ThresholdSet<KeyType> {
 	 * @param keys
 	 * 	The initial keys to add to the threshold set.
 	 */
+	@SafeVarargs
 	public static <KType> ThresholdSet<KType> TS(KType... keys) {
 		ThresholdSet<KType> ts = new ThresholdSet<>();
 

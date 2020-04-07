@@ -3,7 +3,14 @@ package bjc.esodata;
 import java.util.*;
 
 /**
- * A revised version of {@link AbbrevMap}
+ * A map that allows you to reference strings by unambiguous abbreviations to them.
+ * 
+ * One example is that adding the string 'abc' would allow you to get it back with the following three keys
+ * <ul>
+ * 	<li>a</li>
+ * 	<li>ab</li>
+ * 	<li>abc</li>
+ * </ul>
  *
  * @author Ben Culkin
  */

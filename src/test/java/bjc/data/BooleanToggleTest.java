@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import bjc.data.BooleanToggle;
-
 /**
  * Test for boolean toggles.
  * @author bjculkin
