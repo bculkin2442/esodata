@@ -33,6 +33,7 @@ public class QueuedIterator<E> implements Iterator<E> {
 	 *
 	 * @return A queued iterator.
 	 */
+	@SafeVarargs
 	public static <E> QueuedIterator<E> queued(E... vals) {
 		return new QueuedIterator<>(new ArrayIterator<>(vals));
 	}
@@ -139,7 +140,7 @@ public class QueuedIterator<E> implements Iterator<E> {
 	 * @param vals
 	 * 		Values to iterate over first.
 	 */
-	public void before(E... vals) {
+	public void before(@SuppressWarnings("unchecked") E... vals) {
 		before(new ArrayIterator<>(vals));
 	}
 
@@ -169,7 +170,7 @@ public class QueuedIterator<E> implements Iterator<E> {
 	 * @param vals
 	 * 		The values to iterate over next.
 	 */
-	public void after(E... vals) {
+	public void after(@SuppressWarnings("unchecked") E... vals) {
 		after(new ArrayIterator<>(vals));
 	}
 	
@@ -197,9 +198,9 @@ public class QueuedIterator<E> implements Iterator<E> {
 	 * Add a new set of values who we will iterate through last.
 	 * 
 	 * @param vals
-	 *                The iterable to go through last.
+	 * 	The values we will iterate over.
 	 */
-	public void last(E... vals) {
+	public void last(@SuppressWarnings("unchecked") E... vals) {
 		last(new ArrayIterator<>(vals));
 	}
 

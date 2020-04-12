@@ -132,4 +132,20 @@ public interface Tape<T> {
 	default boolean atEnd() {
 		return position() == size();
 	}
+	
+	/**
+	 * Append an item to the tape.
+	 * 
+	 * By default, uses a fairly non-performant implementation. Should be overidden in subclasses to be more performant. 
+	 * @param itm The item to append.
+	 */
+	default void append(T itm) {
+		int pos = position();
+		
+		last();
+		
+		insertAfter(itm);
+		
+		seekTo(pos);
+	}
 }
