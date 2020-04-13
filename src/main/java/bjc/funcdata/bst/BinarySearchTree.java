@@ -14,7 +14,7 @@ import bjc.funcdata.IList;
  * @author ben
  *
  * @param <T>
- *        The data type stored in the node.
+ *            The data type stored in the node.
  */
 public class BinarySearchTree<T> {
 	/* The comparator for use in ordering items */
@@ -30,10 +30,11 @@ public class BinarySearchTree<T> {
 	 * Create a new tree using the specified way to compare elements.
 	 *
 	 * @param cmp
-	 *        The thing to use for comparing elements
+	 *            The thing to use for comparing elements
 	 */
 	public BinarySearchTree(final Comparator<T> cmp) {
-		if(cmp == null) throw new NullPointerException("Comparator must not be null");
+		if (cmp == null)
+			throw new NullPointerException("Comparator must not be null");
 
 		elementCount = 0;
 		comparator = cmp;
@@ -43,12 +44,12 @@ public class BinarySearchTree<T> {
 	 * Add a node to the binary search tree.
 	 *
 	 * @param element
-	 *        The data to add to the binary search tree.
+	 *                The data to add to the binary search tree.
 	 */
 	public void addNode(final T element) {
 		elementCount++;
 
-		if(root == null) {
+		if (root == null) {
 			root = new BinarySearchTreeNode<>(element, null, null);
 		} else {
 			root.add(element, comparator);
@@ -59,18 +60,20 @@ public class BinarySearchTree<T> {
 	 * Check if an adjusted pivot falls with the bounds of a list.
 	 *
 	 * @param elements
-	 *        The list to get bounds from.
+	 *                        The list to get bounds from.
 	 *
 	 * @param pivot
-	 *        The pivot.
+	 *                        The pivot.
 	 *
 	 * @param pivotAdjustment
-	 *        The distance from the pivot.
+	 *                        The distance from the pivot.
 	 *
 	 * @return Whether the adjusted pivot is with the list.
 	 */
-	private boolean adjustedPivotInBounds(final IList<T> elements, final int pivot, final int pivotAdjustment) {
-		return ((pivot - pivotAdjustment) >= 0) && ((pivot + pivotAdjustment) < elements.getSize());
+	private boolean adjustedPivotInBounds(final IList<T> elements, final int pivot,
+			final int pivotAdjustment) {
+		return ((pivot - pivotAdjustment) >= 0)
+				&& ((pivot + pivotAdjustment) < elements.getSize());
 	}
 
 	/**
@@ -92,14 +95,13 @@ public class BinarySearchTree<T> {
 		int pivotAdjustment = 0;
 
 		/* Add elements until there aren't any left. */
-		while(adjustedPivotInBounds(elements, pivot, pivotAdjustment)) {
-			if(root == null) {
+		while (adjustedPivotInBounds(elements, pivot, pivotAdjustment)) {
+			if (root == null) {
 				/* Create a new root element. */
 				root = new BinarySearchTreeNode<>(elements.getByIndex(pivot), null, null);
 			} else {
 				/*
-				 * Add the left and right elements in a balanced
-				 * manner.
+				 * Add the left and right elements in a balanced manner.
 				 */
 				root.add(elements.getByIndex(pivot + pivotAdjustment), comparator);
 				root.add(elements.getByIndex(pivot - pivotAdjustment), comparator);
@@ -110,9 +112,9 @@ public class BinarySearchTree<T> {
 		}
 
 		/* Add any trailing unbalanced elements. */
-		if(pivot - pivotAdjustment >= 0) {
+		if (pivot - pivotAdjustment >= 0) {
 			root.add(elements.getByIndex(pivot - pivotAdjustment), comparator);
-		} else if(pivot + pivotAdjustment < elements.getSize()) {
+		} else if (pivot + pivotAdjustment < elements.getSize()) {
 			root.add(elements.getByIndex(pivot + pivotAdjustment), comparator);
 		}
 	}
@@ -120,11 +122,11 @@ public class BinarySearchTree<T> {
 	/**
 	 * Soft-delete a node from the tree.
 	 *
-	 * Soft-deleted nodes stay in the tree until trim()/balance() is
-	 * invoked, and are not included in traversals/finds.
+	 * Soft-deleted nodes stay in the tree until trim()/balance() is invoked, and
+	 * are not included in traversals/finds.
 	 *
 	 * @param element
-	 *        The node to delete
+	 *                The node to delete
 	 */
 	public void deleteNode(final T element) {
 		elementCount--;
@@ -145,7 +147,7 @@ public class BinarySearchTree<T> {
 	 * Check if a node is in the tree.
 	 *
 	 * @param element
-	 *        The node to check the presence of for the tree..
+	 *                The node to check the presence of for the tree..
 	 *
 	 * @return Whether or not the node is in the tree.
 	 */
@@ -157,15 +159,16 @@ public class BinarySearchTree<T> {
 	 * Traverse the tree in a specified way until the function fails.
 	 *
 	 * @param linearizationMethod
-	 *        The way to linearize the tree for traversal.
+	 *                            The way to linearize the tree for traversal.
 	 *
 	 * @param traversalPredicate
-	 *        The function to use until it fails.
+	 *                            The function to use until it fails.
 	 */
-	public void traverse(final TreeLinearizationMethod linearizationMethod, final Predicate<T> traversalPredicate) {
-		if(linearizationMethod == null) {
+	public void traverse(final TreeLinearizationMethod linearizationMethod,
+			final Predicate<T> traversalPredicate) {
+		if (linearizationMethod == null) {
 			throw new NullPointerException("Linearization method must not be null");
-		} else if(traversalPredicate == null) {
+		} else if (traversalPredicate == null) {
 			throw new NullPointerException("Predicate must not be nulls");
 		}
 
@@ -177,8 +180,7 @@ public class BinarySearchTree<T> {
 		final List<T> nodes = new ArrayList<>(elementCount);
 
 		/*
-		 * Add all non-soft deleted nodes to the tree in insertion
-		 * order.
+		 * Add all non-soft deleted nodes to the tree in insertion order.
 		 */
 		traverse(TreeLinearizationMethod.PREORDER, node -> {
 			nodes.add(node);
@@ -194,7 +196,8 @@ public class BinarySearchTree<T> {
 
 	@Override
 	public String toString() {
-		return String.format("BinarySearchTree [elementCount=%s, root='%s']", elementCount, root);
+		return String.format("BinarySearchTree [elementCount=%s, root='%s']",
+				elementCount, root);
 	}
 
 	@Override
@@ -208,16 +211,22 @@ public class BinarySearchTree<T> {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if(this == obj) return true;
-		if(obj == null) return false;
-		if(!(obj instanceof BinarySearchTree<?>)) return false;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof BinarySearchTree<?>))
+			return false;
 
 		final BinarySearchTree<?> other = (BinarySearchTree<?>) obj;
 
-		if(elementCount != other.elementCount) return false;
-		if(root == null) {
-			if(other.root != null) return false;
-		} else if(!root.equals(other.root)) return false;
+		if (elementCount != other.elementCount)
+			return false;
+		if (root == null) {
+			if (other.root != null)
+				return false;
+		} else if (!root.equals(other.root))
+			return false;
 
 		return true;
 	}

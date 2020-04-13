@@ -3,7 +3,7 @@ package bjc.data;
 /**
  * A toggle that will only give the first value once, only yielding the second
  * value afterwards.
- * 
+ *
  * @author student
  *
  * @param <E>
@@ -17,11 +17,11 @@ public class OneWayToggle<E> implements Toggle<E> {
 
 	/**
 	 * Create a new one-way toggle
-	 * 
+	 *
 	 * @param first
-	 *            The value to offer first, and only once
+	 *               The value to offer first, and only once
 	 * @param second
-	 *            The value to offer second and repeatedly
+	 *               The value to offer second and repeatedly
 	 */
 	public OneWayToggle(E first, E second) {
 		this.first = first;

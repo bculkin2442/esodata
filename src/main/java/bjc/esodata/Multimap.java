@@ -5,9 +5,10 @@ import java.util.*;
 /**
  * A map that has support for multiple values for a given key.
  *
- * Whenever you give another value for a key, that is then returned for that key. About the only
- * somewhat complex thing, is that, if you add the same key-value pair multiple times, it will only
- * show up once. However, you will have to remove that pair as many times as you added it.
+ * Whenever you give another value for a key, that is then returned for that
+ * key. About the only somewhat complex thing, is that, if you add the same
+ * key-value pair multiple times, it will only show up once. However, you will
+ * have to remove that pair as many times as you added it.
  *
  * @author Ben Culkin
  */
@@ -25,14 +26,14 @@ public class Multimap<KeyType, ValueType> {
 	 * Add a key-value mapping to the map.
 	 *
 	 * @param key
-	 * 	The key to store the value under.
+	 *              The key to store the value under.
 	 *
 	 * @param value
-	 * 	The value to store.
+	 *              The value to store.
 	 */
 	public void add(KeyType key, ValueType value) {
-		ThresholdSet<ValueType> container = backing.computeIfAbsent(key,
-				(k) -> new ThresholdSet<>());
+		ThresholdSet<ValueType> container
+				= backing.computeIfAbsent(key, k -> new ThresholdSet<>());
 
 		container.add(value);
 	}
@@ -41,14 +42,15 @@ public class Multimap<KeyType, ValueType> {
 	 * Delete a particular key-value mapping from the map.
 	 *
 	 * @param key
-	 * 	The key of the mapping to remove.
+	 *              The key of the mapping to remove.
 	 *
 	 * @param value
-	 * 	The value of the mapping to remove.
+	 *              The value of the mapping to remove.
 	 */
 	public void remove(KeyType key, ValueType value) {
 		// We have no values for that key; bail.
-		if (!backing.containsKey(key)) return;
+		if (!backing.containsKey(key))
+			return;
 
 		backing.get(key).remove(value);
 	}
@@ -57,7 +59,7 @@ public class Multimap<KeyType, ValueType> {
 	 * Delete all of the values associated with a particular key.
 	 *
 	 * @param key
-	 * 	The key to remove values for.
+	 *            The key to remove values for.
 	 */
 	public void remove(KeyType key) {
 		backing.remove(key);
@@ -67,12 +69,13 @@ public class Multimap<KeyType, ValueType> {
 	 * Get a set containing all of the values that are recorded for that key.
 	 *
 	 * @param key
-	 * 	The key to look up values for.
+	 *            The key to look up values for.
 	 *
 	 * @return A set containing all of the values that have been mapped to that key.
 	 */
 	public Set<ValueType> get(KeyType key) {
-		if (!backing.containsKey(key)) return new HashSet<>();
+		if (!backing.containsKey(key))
+			return new HashSet<>();
 
 		return backing.get(key).values();
 	}
@@ -81,8 +84,8 @@ public class Multimap<KeyType, ValueType> {
 	 * Check if there is at least one value mapped to the given key.
 	 *
 	 * @param key
-	 * 	The key to check for mappings for.
-	 * 
+	 *            The key to check for mappings for.
+	 *
 	 * @return Whether or not there is at least one value mapped to the key.
 	 */
 	public boolean contains(KeyType key) {
@@ -93,15 +96,17 @@ public class Multimap<KeyType, ValueType> {
 	 * Check if there is at least one instance of a particular key-value mapping.
 	 *
 	 * @param key
-	 * 	The key to check for mappings for.
+	 *              The key to check for mappings for.
 	 *
 	 * @param value
-	 * 	The value to check for mappings for.
-	 * 
-	 * @return Whether or not there is at least one instance of the given key-value mapping.
+	 *              The value to check for mappings for.
+	 *
+	 * @return Whether or not there is at least one instance of the given key-value
+	 *         mapping.
 	 */
 	public boolean contains(KeyType key, ValueType value) {
-		if (!backing.containsKey(key)) return false;
+		if (!backing.containsKey(key))
+			return false;
 
 		return backing.get(key).contains(value) > 0;
 	}

@@ -8,7 +8,7 @@ package bjc.esodata;
  * unbounded to the right, but in practice bounded by available memory.
  *
  * @param <T>
- *                The element type of the tape.
+ *            The element type of the tape.
  *
  * @author bjculkin
  */
@@ -24,7 +24,7 @@ public interface Tape<T> {
 	 * Set the item the tape is currently on.
 	 *
 	 * @param itm
-	 *                The new value for the tape item.
+	 *            The new value for the tape item.
 	 */
 	void item(T itm);
 
@@ -46,7 +46,7 @@ public interface Tape<T> {
 	 * Insert an element before the current item.
 	 *
 	 * @param itm
-	 *                The item to add.
+	 *            The item to add.
 	 */
 	void insertBefore(T itm);
 
@@ -54,7 +54,7 @@ public interface Tape<T> {
 	 * Insert an element after the current item.
 	 *
 	 * @param itm
-	 *                The item to insert.
+	 *            The item to insert.
 	 */
 	void insertAfter(T itm);
 
@@ -86,11 +86,11 @@ public interface Tape<T> {
 	/**
 	 * Move the cursor the specified amount left.
 	 *
-	 * The cursor can't go past zero. Attempts to move the cursor by amounts
-	 * that would exceed zero don't move the cursor at all.
+	 * The cursor can't go past zero. Attempts to move the cursor by amounts that
+	 * would exceed zero don't move the cursor at all.
 	 *
 	 * @param amt
-	 *                The amount to attempt to move the cursor left.
+	 *            The amount to attempt to move the cursor left.
 	 *
 	 * @return True if the cursor was moved left.
 	 */
@@ -107,7 +107,7 @@ public interface Tape<T> {
 	 * Move the cursor the specified amount right.
 	 *
 	 * @param amt
-	 *                The amount to move the cursor right by.
+	 *            The amount to move the cursor right by.
 	 *
 	 * @return Whether the cursor was moved right.
 	 */
@@ -115,37 +115,40 @@ public interface Tape<T> {
 
 	/**
 	 * Seek to an absolute position on the tape.
-	 * 
+	 *
 	 * @param pos
-	 *                The position to seek to.
+	 *            The position to seek to.
 	 * @return Whether or not the tape successfully seeked to that position.
 	 */
 	boolean seekTo(int pos);
 
 	/**
 	 * Check if this tape is at its end.
-	 * 
+	 *
 	 * Equivalent to checking if position() == size().
-	 * 
+	 *
 	 * @return Whether or not the tape is at its end.
 	 */
 	default boolean atEnd() {
 		return position() == size();
 	}
-	
+
 	/**
 	 * Append an item to the tape.
+	 *
+	 * By default, uses a fairly non-performant implementation. Should be overidden
+	 * in subclasses to be more performant.
 	 * 
-	 * By default, uses a fairly non-performant implementation. Should be overidden in subclasses to be more performant. 
-	 * @param itm The item to append.
+	 * @param itm
+	 *            The item to append.
 	 */
 	default void append(T itm) {
 		int pos = position();
-		
+
 		last();
-		
+
 		insertAfter(itm);
-		
+
 		seekTo(pos);
 	}
 }

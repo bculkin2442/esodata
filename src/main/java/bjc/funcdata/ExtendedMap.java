@@ -11,10 +11,10 @@ import java.util.function.Function;
  * @author Ben Culkin
  *
  * @param <KeyType>
- *        The type of the keys of the map.
+ *                    The type of the keys of the map.
  *
  * @param <ValueType>
- *        The type of the values of the map.
+ *                    The type of the values of the map.
  */
 class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 	/* The map we delegate lookups to. */
@@ -26,12 +26,13 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 	 * Create a new extended map.
 	 *
 	 * @param delegate
-	 *        The map to lookup things in.
-	 * 
+	 *                 The map to lookup things in.
+	 *
 	 * @param store
-	 *        The map to store things in.
+	 *                 The map to store things in.
 	 */
-	public ExtendedMap(final IMap<KeyType, ValueType> delegate, final IMap<KeyType, ValueType> store) {
+	public ExtendedMap(final IMap<KeyType, ValueType> delegate,
+			final IMap<KeyType, ValueType> store) {
 		this.delegate = delegate;
 		this.store = store;
 	}
@@ -43,7 +44,8 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 
 	@Override
 	public boolean containsKey(final KeyType key) {
-		if(store.containsKey(key)) return true;
+		if (store.containsKey(key))
+			return true;
 
 		return delegate.containsKey(key);
 	}
@@ -76,7 +78,8 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 
 	@Override
 	public ValueType get(final KeyType key) {
-		if(store.containsKey(key)) return store.get(key);
+		if (store.containsKey(key))
+			return store.get(key);
 
 		return delegate.get(key);
 	}
@@ -97,7 +100,8 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 	}
 
 	@Override
-	public <MappedValue> IMap<KeyType, MappedValue> transform(final Function<ValueType, MappedValue> transformer) {
+	public <MappedValue> IMap<KeyType, MappedValue>
+			transform(final Function<ValueType, MappedValue> transformer) {
 		return new TransformedValueMap<>(this, transformer);
 	}
 
@@ -108,7 +112,8 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 
 	@Override
 	public ValueType remove(final KeyType key) {
-		if(!store.containsKey(key)) return delegate.remove(key);
+		if (!store.containsKey(key))
+			return delegate.remove(key);
 
 		return store.remove(key);
 	}
@@ -134,18 +139,25 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if(this == obj) return true;
-		if(obj == null) return false;
-		if(!(obj instanceof ExtendedMap)) return false;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof ExtendedMap))
+			return false;
 
 		final ExtendedMap<?, ?> other = (ExtendedMap<?, ?>) obj;
 
-		if(delegate == null) {
-			if(other.delegate != null) return false;
-		} else if(!delegate.equals(other.delegate)) return false;
-		if(store == null) {
-			if(other.store != null) return false;
-		} else if(!store.equals(other.store)) return false;
+		if (delegate == null) {
+			if (other.delegate != null)
+				return false;
+		} else if (!delegate.equals(other.delegate))
+			return false;
+		if (store == null) {
+			if (other.store != null)
+				return false;
+		} else if (!store.equals(other.store))
+			return false;
 
 		return true;
 	}

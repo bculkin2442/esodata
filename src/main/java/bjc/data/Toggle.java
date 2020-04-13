@@ -6,12 +6,12 @@ package bjc.data;
  * @author EVE
  *
  * @param <E>
- *        The value stored in the toggle.
+ *            The value stored in the toggle.
  */
 public interface Toggle<E> {
 	/**
-	 * Retrieve the currently-aligned value of this toggle, and swap the
-	 * value to the new one.
+	 * Retrieve the currently-aligned value of this toggle, and swap the value to
+	 * the new one.
 	 *
 	 * @return The previously-aligned value.
 	 */
@@ -28,7 +28,7 @@ public interface Toggle<E> {
 	 * Change the alignment of the toggle.
 	 *
 	 * @param isLeft
-	 *        Whether the toggle should be left-aligned or not.
+	 *               Whether the toggle should be left-aligned or not.
 	 */
 	void set(boolean isLeft);
 }

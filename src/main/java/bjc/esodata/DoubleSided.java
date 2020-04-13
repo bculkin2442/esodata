@@ -2,7 +2,7 @@ package bjc.esodata;
 
 /**
  * Interface for a double-sided object.
- * 
+ *
  * @author bjculkin
  *
  */
@@ -10,8 +10,7 @@ public interface DoubleSided {
 	/**
 	 * Flips the object.
 	 *
-	 * The active side becomes inactive, and the inactive side becomes
-	 * active.
+	 * The active side becomes inactive, and the inactive side becomes active.
 	 */
 	void flip();
 

@@ -15,7 +15,7 @@ import bjc.funcdata.IList;
  * @author ben
  *
  * @param <ContainedType>
- *        The type of the value being held.
+ *                        The type of the value being held.
  */
 public class Lazy<ContainedType> implements IHolder<ContainedType> {
 	/* The supplier of the type. */
@@ -32,7 +32,7 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 	 * Create a new lazy value from the specified seed value.
 	 *
 	 * @param value
-	 *        The seed value to use.
+	 *              The seed value to use.
 	 */
 	public Lazy(final ContainedType value) {
 		heldValue = value;
@@ -44,7 +44,7 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 	 * Create a new lazy value from the specified value source.
 	 *
 	 * @param supp
-	 *        The source of a value to use.
+	 *             The source of a value to use.
 	 */
 	public Lazy(final Supplier<ContainedType> supp) {
 		valueSupplier = new SingleSupplier<>(supp);
@@ -53,38 +53,39 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	/* Create a new value from a supplier and a list of actions. */
-	private Lazy(final Supplier<ContainedType> supp, final IList<UnaryOperator<ContainedType>> pendingActions) {
+	private Lazy(final Supplier<ContainedType> supp,
+			final IList<UnaryOperator<ContainedType>> pendingActions) {
 		valueSupplier = supp;
 
 		actions = pendingActions;
 	}
 
 	@Override
-	public <BoundType> IHolder<BoundType> bind(final Function<ContainedType, IHolder<BoundType>> binder) {
+	public <BoundType> IHolder<BoundType>
+			bind(final Function<ContainedType, IHolder<BoundType>> binder) {
 		final IList<UnaryOperator<ContainedType>> pendingActions = new FunctionalList<>();
 
 		actions.forEach(pendingActions::add);
 
 		final Supplier<ContainedType> supplier = () -> {
-			if(valueMaterialized) return heldValue;
+			if (valueMaterialized)
+				return heldValue;
 
 			return valueSupplier.get();
 		};
 
-		return new BoundLazy<>(() -> {
-			return new Lazy<>(supplier, pendingActions);
-		}, binder);
+		return new BoundLazy<>(() -> new Lazy<>(supplier, pendingActions), binder);
 	}
 
 	@Override
-	public <NewType> Function<ContainedType, IHolder<NewType>> lift(final Function<ContainedType, NewType> func) {
-		return val -> {
-			return new Lazy<>(func.apply(val));
-		};
+	public <NewType> Function<ContainedType, IHolder<NewType>>
+			lift(final Function<ContainedType, NewType> func) {
+		return val -> new Lazy<>(func.apply(val));
 	}
 
 	@Override
-	public <MappedType> IHolder<MappedType> map(final Function<ContainedType, MappedType> mapper) {
+	public <MappedType> IHolder<MappedType>
+			map(final Function<ContainedType, MappedType> mapper) {
 		final IList<UnaryOperator<ContainedType>> pendingActions = new FunctionalList<>();
 
 		actions.forEach(pendingActions::add);
@@ -92,7 +93,7 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 		return new Lazy<>(() -> {
 			ContainedType currVal = heldValue;
 
-			if(!valueMaterialized) {
+			if (!valueMaterialized) {
 				currVal = valueSupplier.get();
 			}
 
@@ -103,8 +104,8 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 
 	@Override
 	public String toString() {
-		if(valueMaterialized) {
-			if(actions.isEmpty()) {
+		if (valueMaterialized) {
+			if (actions.isEmpty()) {
 				return String.format("value[v='%s']", heldValue);
 			}
 
@@ -115,15 +116,17 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public IHolder<ContainedType> transform(final UnaryOperator<ContainedType> transformer) {
+	public IHolder<ContainedType>
+			transform(final UnaryOperator<ContainedType> transformer) {
 		actions.add(transformer);
 
 		return this;
 	}
 
 	@Override
-	public <UnwrappedType> UnwrappedType unwrap(final Function<ContainedType, UnwrappedType> unwrapper) {
-		if(!valueMaterialized) {
+	public <UnwrappedType> UnwrappedType
+			unwrap(final Function<ContainedType, UnwrappedType> unwrapper) {
+		if (!valueMaterialized) {
 			heldValue = valueSupplier.get();
 
 			valueMaterialized = true;
@@ -152,24 +155,32 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if(this == obj) return true;
-		if(obj == null) return false;
-		if(!(obj instanceof Lazy<?>)) return false;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Lazy<?>))
+			return false;
 
 		final Lazy<?> other = (Lazy<?>) obj;
 
-		if(valueMaterialized != other.valueMaterialized) return false;
+		if (valueMaterialized != other.valueMaterialized)
+			return false;
 
-		if(valueMaterialized) {
-			if(heldValue == null) {
-				if(other.heldValue != null) return false;
-			} else if(!heldValue.equals(other.heldValue)) return false;
+		if (valueMaterialized) {
+			if (heldValue == null) {
+				if (other.heldValue != null)
+					return false;
+			} else if (!heldValue.equals(other.heldValue))
+				return false;
 		} else
 			return false;
 
-		if(actions == null) {
-			if(other.actions != null) return false;
-		} else if(actions.getSize() > 0 || other.actions.getSize() > 0) return false;
+		if (actions == null) {
+			if (other.actions != null)
+				return false;
+		} else if (actions.getSize() > 0 || other.actions.getSize() > 0)
+			return false;
 
 		return true;
 	}
@@ -178,7 +189,7 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 	 * Create a new lazy container with an already present value.
 	 *
 	 * @param val
-	 *        The value for the lazy container.
+	 *            The value for the lazy container.
 	 *
 	 * @return A new lazy container holding that value.
 	 */
@@ -190,12 +201,12 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 	 * Create a new lazy container with a suspended value.
 	 *
 	 * @param supp
-	 *        The suspended value for the lazy container.
+	 *             The suspended value for the lazy container.
 	 *
-	 * @return A new lazy container that will un-suspend the value when
-	 *         necessary.
+	 * @return A new lazy container that will un-suspend the value when necessary.
 	 */
-	public static <ContainedType> Lazy<ContainedType> lazy(final Supplier<ContainedType> supp) {
+	public static <ContainedType> Lazy<ContainedType>
+			lazy(final Supplier<ContainedType> supp) {
 		return new Lazy<>(supp);
 	}
 }

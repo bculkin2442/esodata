@@ -9,17 +9,17 @@ import java.util.List;
  *
  * @author Ben Culkin
  * @param <ValueType>
- *                The type of the values contained in the list.
+ *                    The type of the values contained in the list.
  */
 public class DefaultList<ValueType> extends AbstractList<ValueType> {
 	/*
 	 * @NOTE 9/17/18
 	 *
-	 * A possible feature to add would be the ability to set a 'default
-	 * index', so that the default value is 'whatever is at that list index'
+	 * A possible feature to add would be the ability to set a 'default index', so
+	 * that the default value is 'whatever is at that list index'
 	 *
-	 * Of course, this would cause an exception if that index was out of
-	 * bounds, but what are you going to do?
+	 * Of course, this would cause an exception if that index was out of bounds, but
+	 * what are you going to do?
 	 */
 
 	private ValueType defVal;
@@ -35,9 +35,9 @@ public class DefaultList<ValueType> extends AbstractList<ValueType> {
 
 	/**
 	 * Create a new DefaultList, with a set default value.
-	 * 
+	 *
 	 * @param defVal
-	 *                The default value for the list.
+	 *               The default value for the list.
 	 */
 	public DefaultList(ValueType defVal) {
 		this(new ArrayList<>(), defVal);
@@ -45,10 +45,10 @@ public class DefaultList<ValueType> extends AbstractList<ValueType> {
 
 	/**
 	 * Create a new DefaultList, with a specific backing list.
-	 * 
+	 *
 	 * @param backer
-	 *                The backing list to use.
-	 * 
+	 *               The backing list to use.
+	 *
 	 */
 	public DefaultList(List<ValueType> backer) {
 		this(backer, null);
@@ -56,12 +56,12 @@ public class DefaultList<ValueType> extends AbstractList<ValueType> {
 
 	/**
 	 * Create a new DefaultList, with a set default value.
-	 * 
+	 *
 	 * @param backer
-	 *                The backing list to use.
-	 * 
+	 *               The backing list to use.
+	 *
 	 * @param defVal
-	 *                The default value for the list.
+	 *               The default value for the list.
 	 */
 	public DefaultList(List<ValueType> backer, ValueType defVal) {
 		this.defVal = defVal;
@@ -71,7 +71,7 @@ public class DefaultList<ValueType> extends AbstractList<ValueType> {
 
 	/**
 	 * Get the default value.
-	 * 
+	 *
 	 * @return The default value.
 	 */
 	public ValueType getDefault() {
@@ -80,8 +80,9 @@ public class DefaultList<ValueType> extends AbstractList<ValueType> {
 
 	/**
 	 * Set the default value.
-	 * 
-	 * @param defVal The default value.
+	 *
+	 * @param defVal
+	 *               The default value.
 	 */
 	public void setDefault(ValueType defVal) {
 		this.defVal = defVal;
@@ -89,7 +90,8 @@ public class DefaultList<ValueType> extends AbstractList<ValueType> {
 
 	@Override
 	public ValueType get(int idx) {
-		if (idx < 0 || idx >= backing.size()) return defVal;
+		if (idx < 0 || idx >= backing.size())
+			return defVal;
 
 		return backing.get(idx);
 	}

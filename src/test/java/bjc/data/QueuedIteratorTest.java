@@ -9,7 +9,7 @@ import static bjc.data.QueuedIterator.queued;
 
 /**
  * Test of QueuedIterator.
- * 
+ *
  * @author bjculkin
  *
  */
@@ -23,7 +23,8 @@ public class QueuedIteratorTest {
 		assertIteratorEquals(false, queued());
 
 		assertIteratorEquals(false, queued(1, 2, 3), 1, 2, 3);
-		assertIteratorEquals(false, queued(asList(1, 2, 3), asList(3, 2, 1)), 1, 2, 3, 3, 2, 1);
+		assertIteratorEquals(false, queued(asList(1, 2, 3), asList(3, 2, 1)), 1, 2, 3, 3,
+				2, 1);
 
 	}
 
@@ -54,7 +55,7 @@ public class QueuedIteratorTest {
 
 		assertIteratorEquals(false, itr, 3, 1, 2, 3);
 	}
-	
+
 	/**
 	 * Test of last() method.
 	 */

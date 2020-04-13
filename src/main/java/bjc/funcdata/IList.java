@@ -18,14 +18,14 @@ import bjc.functypes.ID;
  * @author ben
  *
  * @param <ContainedType>
- *                The type in this list
+ *                        The type in this list
  */
 public interface IList<ContainedType> extends Iterable<ContainedType> {
 	/**
 	 * Add an item to this list.
 	 *
 	 * @param item
-	 *                The item to add to this list.
+	 *             The item to add to this list.
 	 *
 	 * @return Whether the item was added to the list successfully..
 	 */
@@ -35,7 +35,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Add all of the elements in the provided list to this list.
 	 *
 	 * @param items
-	 *                The list of items to add.
+	 *              The list of items to add.
 	 *
 	 * @return True if every item was successfully added to the list, false
 	 *         otherwise.
@@ -48,7 +48,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Add all of the elements in the provided array to this list.
 	 *
 	 * @param items
-	 *                The array of items to add.
+	 *              The array of items to add.
 	 *
 	 * @return True if every item was successfully added to the list, false
 	 *         otherwise.
@@ -67,8 +67,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	}
 
 	/**
-	 * Check if all of the elements of this list match the specified
-	 * predicate.
+	 * Check if all of the elements of this list match the specified predicate.
 	 *
 	 * @param matcher
 	 *                The predicate to use for checking.
@@ -84,8 +83,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * @param matcher
 	 *                The predicate to use for checking.
 	 *
-	 * @return Whether any element in the list matches the provided
-	 *         predicate.
+	 * @return Whether any element in the list matches the provided predicate.
 	 */
 	boolean anyMatch(Predicate<ContainedType> matcher);
 
@@ -93,18 +91,18 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Reduce the contents of this list using a collector.
 	 *
 	 * @param <StateType>
-	 *                The intermediate accumulation type.
+	 *                      The intermediate accumulation type.
 	 *
 	 * @param <ReducedType>
-	 *                The final, reduced type.
+	 *                      The final, reduced type.
 	 *
 	 * @param collector
-	 *                The collector to use for reduction.
+	 *                      The collector to use for reduction.
 	 *
 	 * @return The reduced list.
 	 */
-	default <StateType, ReducedType> ReducedType collect(
-			final Collector<ContainedType, StateType, ReducedType> collector) {
+	default <StateType, ReducedType> ReducedType
+			collect(final Collector<ContainedType, StateType, ReducedType> collector) {
 		final BiConsumer<StateType, ContainedType> accumulator = collector.accumulator();
 
 		final StateType initial = collector.supplier().get();
@@ -116,26 +114,25 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	}
 
 	/**
-	 * Combine this list with another one into a new list and merge the
-	 * results.
+	 * Combine this list with another one into a new list and merge the results.
 	 *
-	 * Works sort of like a combined zip/map over resulting pairs. Does not
-	 * change the underlying list.
+	 * Works sort of like a combined zip/map over resulting pairs. Does not change
+	 * the underlying list.
 	 *
-	 * NOTE: The returned list will have the length of the shorter of this
-	 * list and the combined one.
+	 * NOTE: The returned list will have the length of the shorter of this list and
+	 * the combined one.
 	 *
 	 * @param <OtherType>
-	 *                The type of the second list.
+	 *                       The type of the second list.
 	 *
 	 * @param <CombinedType>
-	 *                The type of the combined list.
+	 *                       The type of the combined list.
 	 *
 	 * @param list
-	 *                The list to combine with.
+	 *                       The list to combine with.
 	 *
 	 * @param combiner
-	 *                The function to use for combining element pairs.
+	 *                       The function to use for combining element pairs.
 	 *
 	 * @return A new list containing the merged pairs of lists.
 	 */
@@ -146,7 +143,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Check if the list contains the specified item.
 	 *
 	 * @param item
-	 *                The item to see if it is contained.
+	 *             The item to see if it is contained.
 	 *
 	 * @return Whether or not the specified item is in the list.
 	 */
@@ -168,40 +165,40 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 
 	/**
 	 * Remove and return the first element from the list.
-	 * 
+	 *
 	 * @return The first element from the list.
 	 */
 	ContainedType popFirst();
 
 	/**
 	 * Remove and return the last element from the list.
-	 * 
+	 *
 	 * @return The last element from the list.
 	 */
 	ContainedType popLast();
 
 	/**
-	 * Apply a function to each member of the list, then flatten the
-	 * results.
+	 * Apply a function to each member of the list, then flatten the results.
 	 *
 	 * Does not change the underlying list.
 	 *
 	 * @param <MappedType>
-	 *                The type of the flattened list.
+	 *                     The type of the flattened list.
 	 *
 	 * @param expander
-	 *                The function to apply to each member of the list.
+	 *                     The function to apply to each member of the list.
 	 *
-	 * @return A new list containing the flattened results of applying the
-	 *         provided function.
+	 * @return A new list containing the flattened results of applying the provided
+	 *         function.
 	 */
-	<MappedType> IList<MappedType> flatMap(Function<ContainedType, IList<MappedType>> expander);
+	<MappedType> IList<MappedType>
+			flatMap(Function<ContainedType, IList<MappedType>> expander);
 
 	/**
 	 * Apply a given action for each member of the list.
 	 *
 	 * @param action
-	 *                The action to apply to each member of the list.
+	 *               The action to apply to each member of the list.
 	 */
 	@Override
 	void forEach(Consumer<? super ContainedType> action);
@@ -210,8 +207,8 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Apply a given function to each element in the list and its index.
 	 *
 	 * @param action
-	 *                The function to apply to each element in the list and
-	 *                its index.
+	 *               The function to apply to each element in the list and its
+	 *               index.
 	 */
 	void forEachIndexed(BiConsumer<Integer, ContainedType> action);
 
@@ -219,7 +216,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Retrieve a value in the list by its index.
 	 *
 	 * @param index
-	 *                The index to retrieve a value from.
+	 *              The index to retrieve a value from.
 	 *
 	 * @return The value at the specified index in the list.
 	 */
@@ -229,7 +226,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Retrieve a list containing all elements matching a predicate.
 	 *
 	 * @param predicate
-	 *                The predicate to match by.
+	 *                  The predicate to match by.
 	 *
 	 * @return A list containing all elements that match the predicate.
 	 */
@@ -250,16 +247,15 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	boolean isEmpty();
 
 	/**
-	 * Create a new list by applying the given function to each element in
-	 * the list.
+	 * Create a new list by applying the given function to each element in the list.
 	 *
 	 * Does not change the underlying list.
 	 *
 	 * @param <MappedType>
-	 *                The type of the transformed list.
+	 *                     The type of the transformed list.
 	 *
 	 * @param transformer
-	 *                The function to apply to each element in the list.
+	 *                     The function to apply to each element in the list.
 	 *
 	 * @return A new list containing the mapped elements of this list.
 	 */
@@ -269,13 +265,12 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Zip two lists into a list of pairs.
 	 *
 	 * @param <OtherType>
-	 *                The type of the second list.
+	 *                    The type of the second list.
 	 *
 	 * @param list
-	 *                The list to use as the left side of the pair.
+	 *                    The list to use as the left side of the pair.
 	 *
-	 * @return A list containing pairs of this element and the specified
-	 *         list.
+	 * @return A list containing pairs of this element and the specified list.
 	 */
 	<OtherType> IList<IPair<ContainedType, OtherType>> pairWith(IList<OtherType> list);
 
@@ -283,12 +278,12 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Partition this list into a list of sublists.
 	 *
 	 * @param partitionSize
-	 *                The size of elements to put into each one of the
-	 *                sublists.
-	 * 
-	 * @return A list partitioned into partitions of size partitionSize. The
-	 *         last partition may not be completely full if the size of the
-	 *         list is not a multiple of partitionSize.
+	 *                      The size of elements to put into each one of the
+	 *                      sublists.
+	 *
+	 * @return A list partitioned into partitions of size partitionSize. The last
+	 *         partition may not be completely full if the size of the list is not a
+	 *         multiple of partitionSize.
 	 */
 	IList<IList<ContainedType>> partition(int partitionSize);
 
@@ -296,7 +291,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Prepend an item to the list.
 	 *
 	 * @param item
-	 *                The item to prepend to the list.
+	 *             The item to prepend to the list.
 	 */
 	void prepend(ContainedType item);
 
@@ -304,7 +299,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Prepend an array of items to the list.
 	 *
 	 * @param items
-	 *                The items to prepend to the list.
+	 *              The items to prepend to the list.
 	 */
 	@SuppressWarnings("unchecked")
 	default void prependAll(final ContainedType... items) {
@@ -314,8 +309,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	}
 
 	/**
-	 * Select a random item from the list, using a default random number
-	 * generator.
+	 * Select a random item from the list, using a default random number generator.
 	 *
 	 * @return A random item from the list
 	 */
@@ -328,7 +322,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * generator.
 	 *
 	 * @param rnd
-	 *                The random number generator to use.
+	 *            The random number generator to use.
 	 *
 	 * @return A random element from this list.
 	 */
@@ -338,24 +332,24 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Reduce this list to a single value, using a accumulative approach.
 	 *
 	 * @param <StateType>
-	 *                The in-between type of the values
+	 *                      The in-between type of the values
 	 *
 	 * @param <ReducedType>
-	 *                The final value type
+	 *                      The final value type
 	 *
 	 * @param initial
-	 *                The initial value of the accumulative state.
+	 *                      The initial value of the accumulative state.
 	 *
 	 * @param accumulator
-	 *                The function to use to combine a list element with the
-	 *                accumulative state.
+	 *                      The function to use to combine a list element with the
+	 *                      accumulative state.
 	 *
 	 * @param transformer
-	 *                The function to use to convert the accumulative state
-	 *                into a final result.
+	 *                      The function to use to convert the accumulative state
+	 *                      into a final result.
 	 *
-	 * @return A single value condensed from this list and transformed into
-	 *         its final state.
+	 * @return A single value condensed from this list and transformed into its
+	 *         final state.
 	 */
 	<StateType, ReducedType> ReducedType reduceAux(StateType initial,
 			BiFunction<ContainedType, StateType, StateType> accumulator,
@@ -365,15 +359,15 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Reduce this list to a single value, using a accumulative approach.
 	 *
 	 * @param <StateType>
-	 *                The in-between type of the values.
+	 *                    The in-between type of the values.
 	 *
 	 * @param initial
-	 *                The initial value of the accumulative state.
-	 * 
+	 *                    The initial value of the accumulative state.
+	 *
 	 * @param accumulator
-	 *                The function to use to combine a list element with the
-	 *                accumulative state.
-	 * 
+	 *                    The function to use to combine a list element with the
+	 *                    accumulative state.
+	 *
 	 * @return A single value condensed from this list.
 	 */
 	default <StateType> StateType reduceAux(StateType initial,
@@ -385,7 +379,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Remove all elements that match a given predicate.
 	 *
 	 * @param predicate
-	 *                The predicate to use to determine elements to delete.
+	 *                  The predicate to use to determine elements to delete.
 	 *
 	 * @return Whether there was anything that satisfied the predicate.
 	 */
@@ -403,32 +397,30 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	void reverse();
 
 	/**
-	 * Perform a binary search for the specified key using the provided
-	 * means of comparing elements.
+	 * Perform a binary search for the specified key using the provided means of
+	 * comparing elements.
 	 *
-	 * Since this IS a binary search, the list must have been sorted before
-	 * hand.
+	 * Since this IS a binary search, the list must have been sorted before hand.
 	 *
 	 * @param key
-	 *                The key to search for.
+	 *                   The key to search for.
 	 *
 	 * @param comparator
-	 *                The way to compare elements for searching. Pass null
-	 *                to use the natural ordering for E.
+	 *                   The way to compare elements for searching. Pass null to use
+	 *                   the natural ordering for E.
 	 *
 	 * @return The element if it is in this list, or null if it is not.
 	 */
 	ContainedType search(ContainedType key, Comparator<ContainedType> comparator);
 
 	/**
-	 * Sort the elements of this list using the provided way of comparing
-	 * elements.
+	 * Sort the elements of this list using the provided way of comparing elements.
 	 *
 	 * Does change the underlying list.
 	 *
 	 * @param comparator
-	 *                The way to compare elements for sorting. Pass null to
-	 *                use E's natural ordering
+	 *                   The way to compare elements for sorting. Pass null to use
+	 *                   E's natural ordering
 	 */
 	void sort(Comparator<ContainedType> comparator);
 
@@ -443,7 +435,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * Convert this list into an array.
 	 *
 	 * @param type
-	 *                The type of array to return.
+	 *             The type of array to return.
 	 *
 	 * @return The list, as an array.
 	 */

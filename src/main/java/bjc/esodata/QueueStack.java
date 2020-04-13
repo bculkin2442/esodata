@@ -5,11 +5,11 @@ import java.util.LinkedList;
 
 /**
  * A FIFO implementation of a stack.
- * 
+ *
  * Basically, a stack that actually acts like a queue.
  *
  * @param <T>
- *        The datatype stored in the stack.
+ *            The datatype stored in the stack.
  *
  * @author Ben Culkin
  */
@@ -29,14 +29,16 @@ public class QueueStack<T> extends Stack<T> {
 
 	@Override
 	public T pop() {
-		if(backing.isEmpty()) throw new StackUnderflow();
+		if (backing.isEmpty())
+			throw new StackUnderflow();
 
 		return backing.remove();
 	}
 
 	@Override
 	public T top() {
-		if(backing.isEmpty()) throw new StackUnderflow();
+		if (backing.isEmpty())
+			throw new StackUnderflow();
 
 		return backing.peek();
 	}
@@ -74,15 +76,20 @@ public class QueueStack<T> extends Stack<T> {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if(this == obj) return true;
-		if(obj == null) return false;
-		if(!(obj instanceof QueueStack<?>)) return false;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof QueueStack<?>))
+			return false;
 
 		final QueueStack<?> other = (QueueStack<?>) obj;
 
-		if(backing == null) {
-			if(other.backing != null) return false;
-		} else if(!backing.equals(other.backing)) return false;
+		if (backing == null) {
+			if (other.backing != null)
+				return false;
+		} else if (!backing.equals(other.backing))
+			return false;
 
 		return true;
 	}

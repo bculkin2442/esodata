@@ -43,7 +43,9 @@ public class ThresholdSetTest {
 	public void testContains() {
 		ThresholdSet<String> thst = TS("1", "2", "2", "x", "z");
 
-		int[] exps = new int[] {1, 2, -1};
+		int[] exps = new int[] {
+				1, 2, -1
+		};
 		assertArrayEquals(exps, thst.containsKeys("1", "2", "y"));
 	}
 

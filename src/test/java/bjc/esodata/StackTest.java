@@ -131,7 +131,7 @@ public class StackTest {
 		assertStackEquals(st, "a", "a", "a", "a", "b", "a", "a");
 
 		st.drop(6);
-		
+
 		assertStackEquals(st, "a");
 
 		st.push("b");
@@ -173,7 +173,7 @@ public class StackTest {
 
 		assertStackEquals(stk, 4, 3, 2);
 
-		stk.dip((st) -> {
+		stk.dip(st -> {
 			int x = stk.pop();
 			int y = stk.pop();
 
@@ -182,13 +182,13 @@ public class StackTest {
 
 		assertStackEquals(stk, 4, 5);
 
-		stk.dip(2, (st) -> {
+		stk.dip(2, st -> {
 			stk.push(6);
 		});
 
 		assertStackEquals(stk, 4, 5, 6);
 
-		stk.keep((st) -> {
+		stk.keep(st -> {
 			int v = st.pop();
 
 			st.push(v + 1);
@@ -196,12 +196,12 @@ public class StackTest {
 
 		assertStackEquals(stk, 4, 5, 5, 6);
 
-		stk.multicleave(2, (st) -> {
+		stk.multicleave(2, st -> {
 			int x = st.pop();
 			int y = st.pop();
 
 			st.push(x + y);
-		}, (st) -> {
+		}, st -> {
 			int x = st.pop();
 			int y = st.pop();
 
@@ -210,12 +210,12 @@ public class StackTest {
 
 		assertStackEquals(stk, 1, 9, 5, 6);
 
-		stk.spread((st) -> {
+		stk.spread(st -> {
 			int x = st.pop();
 			int y = st.pop();
 
 			st.push(x + y);
-		}, (st) -> {
+		}, st -> {
 			int y = st.pop();
 
 			st.push(y + 1);
@@ -223,7 +223,7 @@ public class StackTest {
 
 		assertStackEquals(stk, 10, 6, 6);
 
-		stk.apply(2, (st) -> {
+		stk.apply(2, st -> {
 			int lhs = st.pop();
 			st.push(lhs - st.pop());
 		});

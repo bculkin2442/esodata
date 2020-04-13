@@ -1,22 +1,24 @@
 package bjc.data;
 
 import java.util.Iterator;
+
 /**
  * Represents an iterator over an array of values.
  *
- * @param <T> The type of values in the array.
- * 
+ * @param <T>
+ *            The type of values in the array.
+ *
  * @author Ben Culkin
  */
 public class ArrayIterator<T> implements Iterator<T> {
 	private Object[] arr;
-	private int      idx;
+	private int idx;
 
 	/**
 	 * Create a new array iterator.
 	 *
 	 * @param elms
-	 * 	The array that will be iterated over.
+	 *             The array that will be iterated over.
 	 */
 	@SafeVarargs
 	public ArrayIterator(T... elms) {
@@ -32,8 +34,9 @@ public class ArrayIterator<T> implements Iterator<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T next() {
-		if (idx >= arr.length) return null;
+		if (idx >= arr.length)
+			return null;
 
-		return (T)(arr[idx++]);
+		return (T) (arr[idx++]);
 	}
 }

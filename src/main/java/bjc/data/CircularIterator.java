@@ -8,7 +8,7 @@ import java.util.Iterator;
  * @author EVE
  *
  * @param <E>
- *                The type of the iterable.
+ *            The type of the iterable.
  */
 public class CircularIterator<E> implements Iterator<E> {
 	/* The iterable, and our current iterator into it. */
@@ -19,8 +19,7 @@ public class CircularIterator<E> implements Iterator<E> {
 	private E curElm;
 
 	/*
-	 * Should we actually get new iterators, or just repeat the last
-	 * element?
+	 * Should we actually get new iterators, or just repeat the last element?
 	 */
 	private boolean doCircle;
 
@@ -28,11 +27,11 @@ public class CircularIterator<E> implements Iterator<E> {
 	 * Create a new circular iterator.
 	 *
 	 * @param src
-	 *                The iterable to iterate from.
+	 *             The iterable to iterate from.
 	 *
 	 * @param circ
-	 *                Should we actually do circular iteration, or just
-	 *                repeat the terminal element?
+	 *             Should we actually do circular iteration, or just repeat the
+	 *             terminal element?
 	 */
 	public CircularIterator(final Iterable<E> src, final boolean circ) {
 		source = src;
@@ -45,7 +44,7 @@ public class CircularIterator<E> implements Iterator<E> {
 	 * Create a new circular iterator that does actual circular iteration.
 	 *
 	 * @param src
-	 *                The iterable to iterate from.
+	 *            The iterable to iterate from.
 	 */
 	public CircularIterator(final Iterable<E> src) {
 		this(src, true);
@@ -63,7 +62,7 @@ public class CircularIterator<E> implements Iterator<E> {
 			if (!doCircle) {
 				return curElm;
 			}
-			
+
 			curr = source.iterator();
 		}
 

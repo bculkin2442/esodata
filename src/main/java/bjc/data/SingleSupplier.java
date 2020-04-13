@@ -10,7 +10,7 @@ import java.util.function.Supplier;
  * @author ben
  *
  * @param <T>
- *        The supplied type
+ *            The supplied type
  */
 public class SingleSupplier<T> implements Supplier<T> {
 	/* The next supplier ID. */
@@ -26,8 +26,8 @@ public class SingleSupplier<T> implements Supplier<T> {
 	 * The place where the supplier was instantiated.
 	 *
 	 * @NOTE This is both slow to create, and generally bad practice to keep
-	 * exceptions around without throwing them. However, it is very useful
-	 * to find where the first instantiation was.
+	 * exceptions around without throwing them. However, it is very useful to find
+	 * where the first instantiation was.
 	 */
 	private Exception instSite;
 
@@ -35,7 +35,7 @@ public class SingleSupplier<T> implements Supplier<T> {
 	 * Create a new single supplier from an existing value.
 	 *
 	 * @param supp
-	 *        The supplier to give a single value from.
+	 *             The supplier to give a single value from.
 	 */
 	public SingleSupplier(final Supplier<T> supp) {
 		source = supp;
@@ -47,9 +47,10 @@ public class SingleSupplier<T> implements Supplier<T> {
 
 	@Override
 	public T get() {
-		if(gotten == true) {
+		if (gotten == true) {
 			final String msg = String.format(
-					"Attempted to retrieve value more than once from single supplier #%d", id);
+					"Attempted to retrieve value more than once from single supplier #%d",
+					id);
 
 			final IllegalStateException isex = new IllegalStateException(msg);
 
@@ -62,7 +63,7 @@ public class SingleSupplier<T> implements Supplier<T> {
 
 		try {
 			throw new IllegalStateException("Previous instantiation here.");
-		} catch(final IllegalStateException isex) {
+		} catch (final IllegalStateException isex) {
 			instSite = isex;
 		}
 
@@ -71,6 +72,7 @@ public class SingleSupplier<T> implements Supplier<T> {
 
 	@Override
 	public String toString() {
-		return String.format("SingleSupplier [source='%s', gotten=%s, id=%s]", source, gotten, id);
+		return String.format("SingleSupplier [source='%s', gotten=%s, id=%s]", source,
+				gotten, id);
 	}
 }

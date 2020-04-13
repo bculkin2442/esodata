@@ -4,7 +4,7 @@ import java.util.function.UnaryOperator;
 
 /**
  * Identity function.
- * 
+ *
  * @author bjculkin
  */
 public class ID {
@@ -14,6 +14,6 @@ public class ID {
 	 * @return A identity function.
 	 */
 	public static <A> UnaryOperator<A> id() {
-		return (x) -> x;
+		return x -> x;
 	}
 }

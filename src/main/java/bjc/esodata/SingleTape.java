@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * policy.
  *
  * @param <T>
- *        The element type of the tape.
+ *            The element type of the tape.
  *
  * @author bjculkin
  */
@@ -28,11 +28,10 @@ public class SingleTape<T> implements Tape<T> {
 	protected boolean autoExtend;
 
 	/**
-	 * Create a new tape with the specified contents that doesn't
-	 * autoextend.
-	 * 
+	 * Create a new tape with the specified contents that doesn't autoextend.
+	 *
 	 * @param vals
-	 *        The values to put on the tape.
+	 *             The values to put on the tape.
 	 */
 	@SafeVarargs
 	public SingleTape(T... vals) {
@@ -40,7 +39,7 @@ public class SingleTape<T> implements Tape<T> {
 
 		backing = new ArrayList<>(vals.length);
 
-		for(T val : vals) {
+		for (T val : vals) {
 			backing.add(val);
 		}
 	}
@@ -52,24 +51,24 @@ public class SingleTape<T> implements Tape<T> {
 
 	/**
 	 * Create a new tape with values taken from an iterable.
-	 * 
+	 *
 	 * @param itr
-	 *        The iterable to get values from.
+	 *            The iterable to get values from.
 	 */
 	public SingleTape(Iterable<T> itr) {
 		this(false);
 
-		for(T itm : itr) {
+		for (T itm : itr) {
 			backing.add(itm);
 		}
 	}
 
 	/**
-	 * Create a new empty tape that follows the specified auto-extension
-	 * policy.
+	 * Create a new empty tape that follows the specified auto-extension policy.
 	 *
 	 * @param autoExtnd
-	 *        Whether or not to auto-extend the tape to the right w/ nulls.
+	 *                  Whether or not to auto-extend the tape to the right w/
+	 *                  nulls.
 	 */
 	public SingleTape(final boolean autoExtnd) {
 		autoExtend = autoExtnd;
@@ -79,7 +78,8 @@ public class SingleTape<T> implements Tape<T> {
 
 	@Override
 	public T item() {
-		if (pos < 0 || pos >= backing.size()) return null;
+		if (pos < 0 || pos >= backing.size())
+			return null;
 
 		return backing.get(pos);
 	}
@@ -106,7 +106,7 @@ public class SingleTape<T> implements Tape<T> {
 
 	@Override
 	public void insertAfter(final T itm) {
-		if(pos == backing.size() - 1) {
+		if (pos == backing.size() - 1) {
 			backing.add(itm);
 		} else {
 			backing.add(pos + 1, itm);
@@ -116,7 +116,7 @@ public class SingleTape<T> implements Tape<T> {
 	@Override
 	public T remove() {
 		final T res = backing.remove(pos);
-		if(pos != 0) {
+		if (pos != 0) {
 			pos -= 1;
 		}
 		return res;
@@ -139,7 +139,8 @@ public class SingleTape<T> implements Tape<T> {
 
 	@Override
 	public boolean left(final int amt) {
-		if(pos - amt < 0) return false;
+		if (pos - amt < 0)
+			return false;
 
 		pos -= amt;
 		return true;
@@ -152,25 +153,27 @@ public class SingleTape<T> implements Tape<T> {
 
 	@Override
 	public boolean right(final int amt) {
-		if(pos + amt > backing.size()) {
-			if(autoExtend) {
-				while(pos + amt >= backing.size() - 1) {
+		if (pos + amt > backing.size()) {
+			if (autoExtend) {
+				while (pos + amt >= backing.size() - 1) {
 					backing.add(null);
 				}
-			} else return false;
+			} else
+				return false;
 		}
 
 		pos += amt;
 		return true;
 	}
 
+	@Override
 	public boolean seekTo(int tgtPos) {
-		if(tgtPos < 0)
+		if (tgtPos < 0)
 			return false;
 
-		if(tgtPos >= backing.size() - 1)
-			if(autoExtend)
-				while(tgtPos >= backing.size() - 1)
+		if (tgtPos >= backing.size() - 1)
+			if (autoExtend)
+				while (tgtPos >= backing.size() - 1)
 					backing.add(null);
 			else
 				return false;
@@ -184,7 +187,7 @@ public class SingleTape<T> implements Tape<T> {
 	public void append(T itm) {
 		backing.add(itm);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -197,21 +200,27 @@ public class SingleTape<T> implements Tape<T> {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if(this == obj) return true;
-		if(obj == null) return false;
-		if(!(obj instanceof SingleTape<?>)) return false;
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof SingleTape<?>))
+			return false;
 
 		final SingleTape<?> other = (SingleTape<?>) obj;
 
-		if(backing == null) {
-			if(other.backing != null) return false;
-		} else if(!backing.equals(other.backing)) return false;
+		if (backing == null) {
+			if (other.backing != null)
+				return false;
+		} else if (!backing.equals(other.backing))
+			return false;
 
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("SingleTape [backing=%s, pos=%s, autoExtend=%s]", backing, pos, autoExtend);
+		return String.format("SingleTape [backing=%s, pos=%s, autoExtend=%s]", backing,
+				pos, autoExtend);
 	}
 }
