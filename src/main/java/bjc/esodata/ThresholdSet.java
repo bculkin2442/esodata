@@ -46,6 +46,7 @@ public class ThresholdSet<KeyType> {
 		@Override
 		public boolean remove(Object o) {
 			// Will throw a ClassCastException if you give us something bad.
+			@SuppressWarnings("unchecked")
 			KeyType k = (KeyType) o;
 
 			int ret = ThresholdSet.this.remove(k);
@@ -60,6 +61,7 @@ public class ThresholdSet<KeyType> {
 		@Override
 		public boolean contains(Object o) {
 			// Will throw a ClassCastException if you give us something bad.
+			@SuppressWarnings("unchecked")
 			KeyType k = (KeyType) o;
 
 			int ret = ThresholdSet.this.contains(k);
@@ -107,7 +109,7 @@ public class ThresholdSet<KeyType> {
 	 *
 	 * @return An array containing the results of adding the keys.
 	 */
-	public int[] addKeys(KeyType... keys) {
+	public int[] addKeys(@SuppressWarnings("unchecked") KeyType... keys) {
 		int[] ret = new int[keys.length];
 
 		for (int i = 0; i < keys.length; i++) {
@@ -157,7 +159,7 @@ public class ThresholdSet<KeyType> {
 	 *
 	 * @return The results from removing the keys.
 	 */
-	public int[] removeKeys(KeyType... keys) {
+	public int[] removeKeys(@SuppressWarnings("unchecked") KeyType... keys) {
 		int[] ret = new int[keys.length];
 
 		for (int i = 0; i < keys.length; i++) {
@@ -212,7 +214,7 @@ public class ThresholdSet<KeyType> {
 	 *
 	 * @return The containment counts for each key.
 	 */
-	public int[] containsKeys(KeyType... keys) {
+	public int[] containsKeys(@SuppressWarnings("unchecked") KeyType... keys) {
 		int[] ret = new int[keys.length];
 
 		for (int i = 0; i < keys.length; i++) {
@@ -264,9 +266,11 @@ public class ThresholdSet<KeyType> {
 
 	/**
 	 * Static threshold set constructor.
+	 * @param <KType> The type of keys for the threshold set.
 	 *
 	 * @param keys
 	 *             The initial keys to add to the threshold set.
+	 * @return A threshold set with the given keys.
 	 */
 	@SafeVarargs
 	public static <KType> ThresholdSet<KType> TS(KType... keys) {

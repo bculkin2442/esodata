@@ -95,7 +95,7 @@ public abstract class Stack<T> {
 	 * @param elms
 	 *             The elements to insert.
 	 */
-	public void pushAll(T... elms) {
+	public void pushAll(@SuppressWarnings("unchecked") T... elms) {
 		for (T elm : elms) {
 			push(elm);
 		}
@@ -436,7 +436,7 @@ public abstract class Stack<T> {
 	 * @param actions
 	 *                The actions to execute.
 	 */
-	public void multicleave(final int n, final Consumer<Stack<T>>... actions) {
+	public void multicleave(final int n, @SuppressWarnings("unchecked") final Consumer<Stack<T>>... actions) {
 		List<T> elms = multipoprev(n);
 
 		for (final Consumer<Stack<T>> action : actions) {
@@ -462,7 +462,7 @@ public abstract class Stack<T> {
 	 * @param actions
 	 *                The actions to execute.
 	 */
-	public void cleave(final Consumer<Stack<T>>... actions) {
+	public void cleave(@SuppressWarnings("unchecked") final Consumer<Stack<T>>... actions) {
 		multicleave(1, actions);
 	}
 
@@ -501,7 +501,7 @@ public abstract class Stack<T> {
 	 * @param actions
 	 *                The actions to execute.
 	 */
-	public void multispread(final int n, final Consumer<Stack<T>>... actions) {
+	public void multispread(final int n, @SuppressWarnings("unchecked") final Consumer<Stack<T>>... actions) {
 		List<List<T>> nelms = new LinkedList<>();
 
 		for (int i = 0; i < actions.length; i++) {
@@ -536,7 +536,7 @@ public abstract class Stack<T> {
 	 * @param conses
 	 *               The actions to execute.
 	 */
-	public void spread(final Consumer<Stack<T>>... conses) {
+	public void spread(@SuppressWarnings("unchecked") final Consumer<Stack<T>>... conses) {
 		multispread(1, conses);
 	}
 

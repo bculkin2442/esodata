@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
  *
  * @author Ben Culkin
  */
+@SuppressWarnings("javadoc")
 public class StackTest {
 	@Test
 	public void testBasic() {
@@ -165,6 +166,7 @@ public class StackTest {
 		assertStackEquals(st, "a", "a", "c", "b", "a");
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testDataComb() {
 		Stack<Integer> stk = new SimpleStack<>();

@@ -142,6 +142,7 @@ public class TestUtils {
 	 * @param exps
 	 *             The values that are expected.
 	 */
+	@SafeVarargs
 	public static <T> void assertStackEquals(bjc.esodata.Stack<T> src, T... exps) {
 		assertArrayEquals(exps, src.toArray());
 	}

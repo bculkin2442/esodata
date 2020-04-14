@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
  *
  * @author Ben Culkin.
  */
+@SuppressWarnings("javadoc")
 public class ThresholdSetTest {
 	@Test
 	public void testAdd() {

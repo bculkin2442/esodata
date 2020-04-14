@@ -11,6 +11,8 @@ import java.util.*;
  * have to remove that pair as many times as you added it.
  *
  * @author Ben Culkin
+ * @param <KeyType> The type of keys in the map.
+ * @param <ValueType> The type of values in the map.
  */
 public class Multimap<KeyType, ValueType> {
 	private Map<KeyType, ThresholdSet<ValueType>> backing;
