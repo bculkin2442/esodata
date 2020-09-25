@@ -13,8 +13,11 @@ import bjc.funcdata.IList;
  * Implements a lazy holder that has been bound.
  *
  * @author Ben Culkin
+ * @param <OldType>
+ *                             The old type of the value.
+ * @param <BoundContainedType>
+ *                             The type of the new bound value.
  */
-@SuppressWarnings("javadoc")
 public class BoundLazy<OldType, BoundContainedType>
 		implements IHolder<BoundContainedType> {
 	/* The old value. */
@@ -57,7 +60,10 @@ public class BoundLazy<OldType, BoundContainedType>
 		/* Prepare a list of pending actions. */
 		final IList<UnaryOperator<BoundContainedType>> pendingActions
 				= new FunctionalList<>();
-		actions.forEach(pendingActions::add);
+		
+		for (UnaryOperator<BoundContainedType> pendAct : actions) {
+			pendingActions.add(pendAct);
+		}
 
 		/* Create the new supplier of a value. */
 		final Supplier<IHolder<BoundContainedType>> typeSupplier = () -> {
@@ -69,7 +75,8 @@ public class BoundLazy<OldType, BoundContainedType>
 			}
 
 			/* Apply all the pending actions. */
-			return pendingActions.reduceAux(oldHolder, (action, state) -> state.transform(action), value -> value);
+			return pendingActions.reduceAux(oldHolder,
+					(action, state) -> state.transform(action), value -> value);
 		};
 
 		return new BoundLazy<>(typeSupplier, bindr);
@@ -95,7 +102,10 @@ public class BoundLazy<OldType, BoundContainedType>
 		/* Prepare a list of pending actions. */
 		final IList<UnaryOperator<BoundContainedType>> pendingActions
 				= new FunctionalList<>();
-		actions.forEach(pendingActions::add);
+		
+		for (UnaryOperator<BoundContainedType> pendAct : actions) {
+			pendingActions.add(pendAct);
+		}
 
 		/* Prepare the new supplier. */
 		final Supplier<MappedType> typeSupplier = () -> {
@@ -107,7 +117,8 @@ public class BoundLazy<OldType, BoundContainedType>
 			}
 
 			/* Apply pending actions. */
-			return pendingActions.reduceAux(oldHolder.getValue(), (action, state) -> action.apply(state), value -> mapper.apply(value));
+			return pendingActions.reduceAux(oldHolder.getValue(),
+					(action, state) -> action.apply(state), value -> mapper.apply(value));
 		};
 
 		return new Lazy<>(typeSupplier);
