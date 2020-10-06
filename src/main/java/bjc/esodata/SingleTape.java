@@ -20,15 +20,21 @@ import java.util.ArrayList;
  * @author bjculkin
  */
 public class SingleTape<T> implements Tape<T> {
-	/* Our backing store. */
+	/**
+	 * Our backing store.
+	 */
 	protected ArrayList<T> backing;
-	/* Our position in the list. */
+	/**
+	 * Our position in the list.
+	 */
 	protected int pos;
-	/* Whether to auto-extend the list on the left with nulls. */
+	/**
+	 * Whether to auto-extend the list on the left with nulls.
+	 */
 	protected boolean autoExtend;
 
 	/**
-	 * Create a new tape with the specified contents that doesn't autoextend.
+	 * Create a new tape with the specified contents that doesn't auto-extend.
 	 *
 	 * @param vals
 	 *             The values to put on the tape.
@@ -44,7 +50,9 @@ public class SingleTape<T> implements Tape<T> {
 		}
 	}
 
-	/** Create a new empty tape that doesn't autoextend. */
+	/**
+	 * Create a new empty tape that doesn't auto-extend.
+	 */
 	public SingleTape() {
 		this(false);
 	}

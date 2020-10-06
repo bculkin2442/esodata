@@ -232,7 +232,7 @@ public class Tree<ContainedType> implements ITree<ContainedType> {
 	 * override it.
 	 */
 
-	protected <NewType> NewType internalCollapse(
+	private <NewType> NewType internalCollapse(
 			final Function<ContainedType, NewType> leafTransform,
 			final BiFunction<ContainedType, IList<NewType>, NewType> nodeCollapser) {
 		if (hasChildren) {
@@ -249,7 +249,7 @@ public class Tree<ContainedType> implements ITree<ContainedType> {
 		return leafTransform.apply(data);
 	}
 
-	protected void internalToString(final StringBuilder builder, final int indentLevel,
+	private void internalToString(final StringBuilder builder, final int indentLevel,
 			final boolean initial) {
 		if (!initial) {
 			for (int i = 0; i < indentLevel; i++) {
