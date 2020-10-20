@@ -33,5 +33,14 @@ public class BooleanToggleTest {
 
 		// Check set works
 		assertEquals(true, tog.peek());
+		
+		BooleanToggle tog2 = new BooleanToggle(true);
+		
+		// Test equals/hashcode
+		assertEquals(tog, tog2);
+		assertEquals(tog.hashCode(), tog2.hashCode());
+		
+		// Test toString
+		assertEquals("true", tog);
 	}
 }

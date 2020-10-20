@@ -76,6 +76,6 @@ public class BooleanToggle implements Toggle<Boolean> {
 
 	@Override
 	public String toString() {
-		return String.format("BooleanToggle [val=%s]", val);
+		return String.format("%s", val);
 	}
 }
