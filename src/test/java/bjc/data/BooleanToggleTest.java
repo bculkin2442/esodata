@@ -41,6 +41,6 @@ public class BooleanToggleTest {
 		assertEquals(tog.hashCode(), tog2.hashCode());
 		
 		// Test toString
-		assertEquals("true", tog);
+		assertEquals("true", tog.toString());
 	}
 }
