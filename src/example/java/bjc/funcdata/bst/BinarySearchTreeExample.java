@@ -127,6 +127,8 @@ public class BinarySearchTreeExample {
 			case 'b':
 				tree.balance();
 				break;
+			case 'e':
+				break;
 			default:
 				output.println("ERROR: Unrecognized command.");
 			}
