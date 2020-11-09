@@ -1,9 +1,7 @@
 package bjc.data;
 
 import static bjc.TestUtils.*;
-
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -44,5 +42,16 @@ public class CircularIteratorTest {
 
 		// Check we repeat correctly, and can still repeat
 		assertIteratorEquals(true, itr, "c", "c", "c");
+	}
+	
+	/**
+	 * Test that remove throws an exception.
+	 */
+	@Test(expected = UnsupportedOperationException.class)
+	public void testRemove() {
+		Iterator<String> arrayItr = new ArrayIterator<>("a", "b");
+		CircularIterator<String> itr = new CircularIterator<>(() -> arrayItr);
+		
+		itr.remove();
 	}
 }

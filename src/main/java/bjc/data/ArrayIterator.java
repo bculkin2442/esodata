@@ -34,8 +34,7 @@ public class ArrayIterator<T> implements Iterator<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T next() {
-		if (idx >= arr.length)
-			return null;
+		if (idx >= arr.length) return null;
 
 		return (T) (arr[idx++]);
 	}

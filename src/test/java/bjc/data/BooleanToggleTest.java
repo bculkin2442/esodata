@@ -1,6 +1,6 @@
 package bjc.data;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -39,6 +39,12 @@ public class BooleanToggleTest {
 		// Test equals/hashcode
 		assertEquals(tog, tog2);
 		assertEquals(tog.hashCode(), tog2.hashCode());
+		
+		// Swap toggle
+		tog2.get();
+		
+		assertNotEquals(tog.hashCode(), tog2.hashCode());
+		assertNotEquals(tog, tog2);
 		
 		// Test toString
 		assertEquals("true", tog.toString());
