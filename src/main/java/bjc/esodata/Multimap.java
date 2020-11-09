@@ -51,9 +51,8 @@ public class Multimap<KeyType, ValueType> {
 	 */
 	public void remove(KeyType key, ValueType value) {
 		// We have no values for that key; bail.
-		if (!backing.containsKey(key))
-			return;
-
+		if (!backing.containsKey(key)) return;
+		
 		backing.get(key).remove(value);
 	}
 
@@ -76,10 +75,8 @@ public class Multimap<KeyType, ValueType> {
 	 * @return A set containing all of the values that have been mapped to that key.
 	 */
 	public Set<ValueType> get(KeyType key) {
-		if (!backing.containsKey(key))
-			return new HashSet<>();
-
-		return backing.get(key).values();
+		if (!backing.containsKey(key)) return new HashSet<>();
+		else                           return backing.get(key).values();
 	}
 
 	/**
@@ -107,8 +104,7 @@ public class Multimap<KeyType, ValueType> {
 	 *         mapping.
 	 */
 	public boolean contains(KeyType key, ValueType value) {
-		if (!backing.containsKey(key))
-			return false;
+		if (!backing.containsKey(key)) return false;
 
 		return backing.get(key).contains(value) > 0;
 	}

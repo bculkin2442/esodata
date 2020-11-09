@@ -81,7 +81,8 @@ public interface IPair<LeftType, RightType> extends Bifunctor<LeftType, RightTyp
 	public default <OtherLeft, OtherRight>
 			IPair<IPair<LeftType, OtherLeft>, IPair<RightType, OtherRight>>
 			combine(final IPair<OtherLeft, OtherRight> otherPair) {
-		return combine(otherPair, Pair<LeftType, OtherLeft>::new,
+		return combine(otherPair,
+				Pair<LeftType, OtherLeft>::new,
 				Pair<RightType, OtherRight>::new);
 	}
 

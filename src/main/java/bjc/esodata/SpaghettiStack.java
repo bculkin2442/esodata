@@ -37,16 +37,14 @@ class SpaghettiStack<T> extends Stack<T> {
 
 	@Override
 	public T pop() {
-		if (backing.isEmpty())
-			return parent.pop();
+		if (backing.isEmpty()) return parent.pop();
 
 		return backing.pop();
 	}
 
 	@Override
 	public T top() {
-		if (backing.isEmpty())
-			return parent.top();
+		if (backing.isEmpty()) return parent.top();
 
 		return backing.top();
 	}
@@ -82,26 +80,23 @@ class SpaghettiStack<T> extends Stack<T> {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof SpaghettiStack<?>))
-			return false;
+		if (this == obj)                         return true;
+		if (obj == null)                         return false;
+		if (!(obj instanceof SpaghettiStack<?>)) return false;
 
 		final SpaghettiStack<?> other = (SpaghettiStack<?>) obj;
 
 		if (backing == null) {
-			if (other.backing != null)
-				return false;
-		} else if (!backing.equals(other.backing))
+			if (other.backing != null) return false;
+		} else if (!backing.equals(other.backing)) {
 			return false;
+		}
 
 		if (parent == null) {
-			if (other.parent != null)
-				return false;
-		} else if (!parent.equals(other.parent))
+			if (other.parent != null) return false;
+		} else if (!parent.equals(other.parent)) {
 			return false;
+		}
 
 		return true;
 	}

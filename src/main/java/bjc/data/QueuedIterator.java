@@ -82,9 +82,7 @@ public class QueuedIterator<E> implements Iterator<E> {
 	public QueuedIterator(Iterator<E>... inits) {
 		this();
 
-		for (Iterator<E> init : inits) {
-			pending.add(init);
-		}
+		for (Iterator<E> init : inits) pending.add(init);
 	}
 
 	/**
@@ -97,9 +95,7 @@ public class QueuedIterator<E> implements Iterator<E> {
 	public QueuedIterator(Iterable<E>... inits) {
 		this();
 
-		for (Iterable<E> init : inits) {
-			pending.add(init.iterator());
-		}
+		for (Iterable<E> init : inits) pending.add(init.iterator());
 	}
 
 	/**
@@ -208,8 +204,7 @@ public class QueuedIterator<E> implements Iterator<E> {
 	@Override
 	public boolean hasNext() {
 		while (cur == null || !cur.hasNext()) {
-			if (pending.isEmpty())
-				return false;
+			if (pending.isEmpty()) return false;
 
 			cur = pending.pop();
 		}
@@ -220,13 +215,11 @@ public class QueuedIterator<E> implements Iterator<E> {
 	@Override
 	public E next() {
 		while (cur == null || !cur.hasNext()) {
-			if (pending.isEmpty())
-				return null;
+			if (pending.isEmpty()) return null;
 
 			cur = pending.pop();
 		}
 
 		return cur.next();
 	}
-
 }

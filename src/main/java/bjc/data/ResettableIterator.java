@@ -56,11 +56,8 @@ public class ResettableIterator<T> implements Iterator<T> {
 
 	@Override
 	public boolean hasNext() {
-		if (isRepeating) {
-			return cacheIterator.hasNext() ? true : backing.hasNext();
-		} else {
-			return backing.hasNext();
-		}
+		if (isRepeating) return cacheIterator.hasNext() ? true : backing.hasNext();
+		else             return backing.hasNext();
 	}
 
 	@Override

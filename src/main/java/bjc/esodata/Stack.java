@@ -96,9 +96,7 @@ public abstract class Stack<T> {
 	 *             The elements to insert.
 	 */
 	public void pushAll(@SuppressWarnings("unchecked") T... elms) {
-		for (T elm : elms) {
-			push(elm);
-		}
+		for (T elm : elms) push(elm);
 	}
 
 	/**
@@ -108,9 +106,7 @@ public abstract class Stack<T> {
 	 *             The elements to insert.
 	 */
 	public void pushAll(List<T> elms) {
-		for (T elm : elms) {
-			push(elm);
-		}
+		for (T elm : elms) push(elm);
 	}
 
 	/**
@@ -124,9 +120,7 @@ public abstract class Stack<T> {
 	public List<T> multipop(int n) {
 		List<T> lst = new LinkedList<>();
 
-		for (int i = 0; i < n; i++) {
-			lst.add(pop());
-		}
+		for (int i = 0; i < n; i++) lst.add(pop());
 
 		return lst;
 	}
@@ -142,9 +136,7 @@ public abstract class Stack<T> {
 	public List<T> multipoprev(int n) {
 		LinkedList<T> lst = new LinkedList<>();
 
-		for (int i = 0; i < n; i++) {
-			lst.addFirst(pop());
-		}
+		for (int i = 0; i < n; i++) lst.addFirst(pop());
 
 		return lst;
 	}
@@ -160,9 +152,7 @@ public abstract class Stack<T> {
 	 *          The number of items to drop.
 	 */
 	public void drop(final int n) {
-		for (int i = 0; i < n; i++) {
-			pop();
-		}
+		for (int i = 0; i < n; i++) pop();
 	}
 
 	/** Drop one item from the stack. */
@@ -201,9 +191,7 @@ public abstract class Stack<T> {
 	public void multidup(final int n, final int m) {
 		List<T> lst = multipoprev(n);
 
-		for (int i = 0; i <= m; i++) {
-			pushAll(lst);
-		}
+		for (int i = 0; i <= m; i++) pushAll(lst);
 	}
 
 	/**
@@ -235,15 +223,11 @@ public abstract class Stack<T> {
 
 		List<T> lst = multipoprev(n);
 
-		for (final T nelm : lst) {
-			push(nelm);
-		}
+		for (final T nelm : lst) push(nelm);
 
 		push(elm);
 
-		for (int i = 0; i < m; i++) {
-			pushAll(lst);
-		}
+		for (int i = 0; i < m; i++) pushAll(lst);
 	}
 
 	/**
@@ -555,9 +539,7 @@ public abstract class Stack<T> {
 	public void multiapply(final int n, final int m, final Consumer<Stack<T>> action) {
 		final List<Consumer<Stack<T>>> actions = new ArrayList<>(m);
 
-		for (int i = 0; i < m; i++) {
-			actions.add(action);
-		}
+		for (int i = 0; i < m; i++) actions.add(action);
 
 		multispread(n, actions);
 	}

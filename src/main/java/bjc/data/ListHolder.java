@@ -93,20 +93,17 @@ public class ListHolder<ContainedType> implements IHolder<ContainedType> {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof ListHolder<?>))
-			return false;
+		if (this == obj)                     return true;
+		if (obj == null)                     return false;
+		if (!(obj instanceof ListHolder<?>)) return false;
 
 		final ListHolder<?> other = (ListHolder<?>) obj;
 
 		if (heldValues == null) {
-			if (other.heldValues != null)
-				return false;
-		} else if (!heldValues.equals(other.heldValues))
+			if (other.heldValues != null) return false;
+		} else if (!heldValues.equals(other.heldValues)) {
 			return false;
+		}
 
 		return true;
 	}

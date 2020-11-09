@@ -65,13 +65,14 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 			bind(final Function<ContainedType, IHolder<BoundType>> binder) {
 		final IList<UnaryOperator<ContainedType>> pendingActions = new FunctionalList<>();
 
-		actions.forEach(pendingActions::add);
+		for (UnaryOperator<ContainedType> action : actions) {
+			pendingActions.add(action);
+		}
+		
 
 		final Supplier<ContainedType> supplier = () -> {
-			if (valueMaterialized)
-				return heldValue;
-
-			return valueSupplier.get();
+			if (valueMaterialized) return heldValue;
+			else                   return valueSupplier.get();
 		};
 
 		return new BoundLazy<>(() -> new Lazy<>(supplier, pendingActions), binder);
@@ -87,8 +88,10 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 	public <MappedType> IHolder<MappedType>
 			map(final Function<ContainedType, MappedType> mapper) {
 		final IList<UnaryOperator<ContainedType>> pendingActions = new FunctionalList<>();
-
-		actions.forEach(pendingActions::add);
+		
+		for (UnaryOperator<ContainedType> action : actions) {
+			pendingActions.add(action);
+		}
 
 		return new Lazy<>(() -> {
 			ContainedType currVal = heldValue;
@@ -97,7 +100,8 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 				currVal = valueSupplier.get();
 			}
 
-			return pendingActions.reduceAux(currVal, UnaryOperator<ContainedType>::apply,
+			return pendingActions.reduceAux(currVal,
+					UnaryOperator<ContainedType>::apply,
 					value -> mapper.apply(value));
 		});
 	}
@@ -107,12 +111,18 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 		if (valueMaterialized) {
 			if (actions.isEmpty()) {
 				return String.format("value[v='%s']", heldValue);
+			} else {
+				return String.format("value[v='%s'] (has %d pending transforms)",
+						heldValue, actions.getSize());
 			}
-
-			return String.format("value[v='%s'] (has pending transforms)", heldValue);
 		}
 
-		return "(unmaterialized)";
+		if (actions.isEmpty()) {
+			return"(unmaterialized)";
+		} else {
+			return String.format("(unmaterialized; has %d pending transforms",
+					actions.getSize());
+		}
 	}
 
 	@Override
@@ -132,9 +142,9 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 			valueMaterialized = true;
 		}
 
-		actions.forEach(action -> {
-			heldValue = action.apply(heldValue);
-		});
+		for (UnaryOperator<ContainedType> action : actions) {
+			heldValue = action.apply(heldValue);	
+		}
 
 		actions = new FunctionalList<>();
 
@@ -155,12 +165,9 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Lazy<?>))
-			return false;
+		if (this == obj)               return true;
+		if (obj == null)               return false;
+		if (!(obj instanceof Lazy<?>)) return false;
 
 		final Lazy<?> other = (Lazy<?>) obj;
 
@@ -169,18 +176,19 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 
 		if (valueMaterialized) {
 			if (heldValue == null) {
-				if (other.heldValue != null)
-					return false;
-			} else if (!heldValue.equals(other.heldValue))
+				if (other.heldValue != null) return false;
+			} else if (!heldValue.equals(other.heldValue)) {
 				return false;
-		} else
+			}
+		} else {
 			return false;
+		}
 
 		if (actions == null) {
-			if (other.actions != null)
-				return false;
-		} else if (actions.getSize() > 0 || other.actions.getSize() > 0)
+			if (other.actions != null) return false;
+		} else if (actions.getSize() > 0 || other.actions.getSize() > 0) {
 			return false;
+		}
 
 		return true;
 	}

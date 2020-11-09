@@ -71,26 +71,23 @@ public class SimpleDirectory<K, V> implements Directory<K, V> {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof SimpleDirectory<?, ?>))
-			return false;
+		if (this == obj)                             return true;
+		if (obj == null)                             return false;
+		if (!(obj instanceof SimpleDirectory<?, ?>)) return false;
 
 		final SimpleDirectory<?, ?> other = (SimpleDirectory<?, ?>) obj;
 
 		if (children == null) {
-			if (other.children != null)
-				return false;
-		} else if (!children.equals(other.children))
+			if (other.children != null) return false;
+		} else if (!children.equals(other.children)) {
 			return false;
+		}
 
 		if (data == null) {
-			if (other.data != null)
-				return false;
-		} else if (!data.equals(other.data))
+			if (other.data != null) return false;
+		} else if (!data.equals(other.data)) {
 			return false;
+		}
 
 		return true;
 	}

@@ -112,9 +112,7 @@ public class DoubleTape<T> implements Tape<T>, DoubleSided {
 	public boolean left(final int amt) {
 		final boolean succ = front.left(amt);
 
-		if (succ) {
-			back.right(amt);
-		}
+		if (succ) back.right(amt);
 
 		return succ;
 	}
@@ -128,9 +126,7 @@ public class DoubleTape<T> implements Tape<T>, DoubleSided {
 	public boolean right(final int amt) {
 		final boolean succ = front.right(amt);
 
-		if (succ) {
-			back.left(amt);
-		}
+		if (succ) back.left(amt);
 
 		return succ;
 	}
@@ -167,26 +163,23 @@ public class DoubleTape<T> implements Tape<T>, DoubleSided {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof DoubleTape<?>))
-			return false;
+		if (this == obj)                     return true;
+		if (obj == null)                     return false;
+		if (!(obj instanceof DoubleTape<?>)) return false;
 
 		final DoubleTape<?> other = (DoubleTape<?>) obj;
 
 		if (back == null) {
-			if (other.back != null)
-				return false;
-		} else if (!back.equals(other.back))
+			if (other.back != null) return false;
+		} else if (!back.equals(other.back)) {
 			return false;
+		}
 
 		if (front == null) {
-			if (other.front != null)
-				return false;
-		} else if (!front.equals(other.front))
+			if (other.front != null) return false;
+		} else if (!front.equals(other.front)) {
 			return false;
+		}
 
 		return true;
 	}

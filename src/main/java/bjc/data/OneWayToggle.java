@@ -31,23 +31,21 @@ public class OneWayToggle<E> implements Toggle<E> {
 
 	@Override
 	public E get() {
-		if (gotFirst)
-			return second;
+		if (gotFirst) return second;
 
 		gotFirst = true;
+		
 		return first;
 	}
 
 	@Override
 	public E peek() {
-		if (gotFirst)
-			return second;
-		return first;
+		if (gotFirst) return second;
+		else          return first;
 	}
 
 	@Override
 	public void set(boolean gotFirst) {
 		this.gotFirst = gotFirst;
 	}
-
 }

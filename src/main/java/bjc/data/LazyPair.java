@@ -79,8 +79,7 @@ public class LazyPair<LeftType, RightType> implements IPair<LeftType, RightType>
 	public <BoundLeft> IPair<BoundLeft, RightType>
 			bindLeft(final Function<LeftType, IPair<BoundLeft, RightType>> leftBinder) {
 		final Supplier<LeftType> leftSupp = () -> {
-			if (leftMaterialized)
-				return leftValue;
+			if (leftMaterialized) return leftValue;
 
 			return leftSupplier.get();
 		};
@@ -92,8 +91,7 @@ public class LazyPair<LeftType, RightType> implements IPair<LeftType, RightType>
 	public <BoundRight> IPair<LeftType, BoundRight> bindRight(
 			final Function<RightType, IPair<LeftType, BoundRight>> rightBinder) {
 		final Supplier<RightType> rightSupp = () -> {
-			if (rightMaterialized)
-				return rightValue;
+			if (rightMaterialized) return rightValue;
 
 			return rightSupplier.get();
 		};
@@ -108,12 +106,14 @@ public class LazyPair<LeftType, RightType> implements IPair<LeftType, RightType>
 					final BiFunction<LeftType, OtherLeft, CombinedLeft> leftCombiner,
 					final BiFunction<RightType, OtherRight,
 							CombinedRight> rightCombiner) {
-		return otherPair.bind((otherLeft, otherRight) -> bind((leftVal, rightVal) -> {
-			final CombinedLeft left = leftCombiner.apply(leftVal, otherLeft);
-			final CombinedRight right = rightCombiner.apply(rightVal, otherRight);
+		return otherPair.bind((otherLeft, otherRight) -> {
+			return bind((leftVal, rightVal) -> {
+				final CombinedLeft left = leftCombiner.apply(leftVal, otherLeft);
+				final CombinedRight right = rightCombiner.apply(rightVal, otherRight);
 
-			return new LazyPair<>(left, right);
-		}));
+				return new LazyPair<>(left, right);
+			});
+		});
 	}
 
 	@Override
@@ -142,15 +142,13 @@ public class LazyPair<LeftType, RightType> implements IPair<LeftType, RightType>
 	public <NewLeft> IPair<NewLeft, RightType>
 			mapLeft(final Function<LeftType, NewLeft> mapper) {
 		final Supplier<NewLeft> leftSupp = () -> {
-			if (leftMaterialized)
-				return mapper.apply(leftValue);
+			if (leftMaterialized) return mapper.apply(leftValue);
 
 			return mapper.apply(leftSupplier.get());
 		};
 
 		final Supplier<RightType> rightSupp = () -> {
-			if (rightMaterialized)
-				return rightValue;
+			if (rightMaterialized) return rightValue;
 
 			return rightSupplier.get();
 		};
@@ -162,15 +160,13 @@ public class LazyPair<LeftType, RightType> implements IPair<LeftType, RightType>
 	public <NewRight> IPair<LeftType, NewRight>
 			mapRight(final Function<RightType, NewRight> mapper) {
 		final Supplier<LeftType> leftSupp = () -> {
-			if (leftMaterialized)
-				return leftValue;
+			if (leftMaterialized) return leftValue;
 
 			return leftSupplier.get();
 		};
 
 		final Supplier<NewRight> rightSupp = () -> {
-			if (rightMaterialized)
-				return mapper.apply(rightValue);
+			if (rightMaterialized) return mapper.apply(rightValue);
 
 			return mapper.apply(rightSupplier.get());
 		};
@@ -231,37 +227,35 @@ public class LazyPair<LeftType, RightType> implements IPair<LeftType, RightType>
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof LazyPair<?, ?>))
-			return false;
+		if (this == obj)                      return true;
+		if (obj == null)                      return false;
+		if (!(obj instanceof LazyPair<?, ?>)) return false;
 
 		final LazyPair<?, ?> other = (LazyPair<?, ?>) obj;
 
-		if (leftMaterialized != other.leftMaterialized)
-			return false;
+		if (leftMaterialized != other.leftMaterialized) return false;
 
 		if (leftMaterialized) {
 			if (leftValue == null) {
-				if (other.leftValue != null)
-					return false;
-			} else if (!leftValue.equals(other.leftValue))
+				if (other.leftValue != null) return false;
+			} else if (!leftValue.equals(other.leftValue)) {
 				return false;
-		} else
+			}
+		} else {
 			return false;
+		}
 
-		if (rightMaterialized != other.rightMaterialized)
-			return false;
+		if (rightMaterialized != other.rightMaterialized) return false;
+		
 		if (rightMaterialized) {
 			if (rightValue == null) {
-				if (other.rightValue != null)
-					return false;
-			} else if (!rightValue.equals(other.rightValue))
+				if (other.rightValue != null) return false;
+			} else if (!rightValue.equals(other.rightValue)) {
 				return false;
-		} else
+			}
+		} else {
 			return false;
+		}
 
 		return true;
 	}

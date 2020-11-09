@@ -270,8 +270,7 @@ public interface ITree<ContainedType> {
 		Toggle<Boolean> tog = new OneWayToggle<>(false, true);
 
 		traverse(TreeLinearizationMethod.POSTORDER, val -> {
-			if (pred.test(val))
-				tog.get();
+			if (pred.test(val)) tog.get();
 		});
 
 		return tog.get();
