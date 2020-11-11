@@ -28,8 +28,10 @@ public class Tree<ContainedType> implements ITree<ContainedType> {
 	/* Whether this node has children. */
 	/*
 	 * @NOTE Why have both this boolean and childCount? Why not just do a childCount
-	 * == 0 whenever you'd check hasChildren? - Because hasChildren is set once and
-	 * not reset, and really what it indicates is that children has been allocated.
+	 * == 0 whenever you'd check hasChildren? 
+	 * 
+	 * - Because hasChildren is set once and not reset, and really what it
+	 *   indicates is that children has been allocated.
 	 */
 	private boolean hasChildren;
 	/* The number of children this node has. */
