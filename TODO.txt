@@ -1,0 +1,5 @@
+@TODO, Oct 17th, 2020 - Ben Culkin - :ExceptionOverview
+	Go over all of the code and make sure that the exceptions we are throwing
+	are of the right type, and have a useful message. In some contexts, this may
+	mean creating some wrapper exception types, just to make it clear what
+	exactly has gone wrong

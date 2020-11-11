@@ -227,9 +227,6 @@ public class Tree<ContainedType> implements ITree<ContainedType> {
 
 	/*
 	 * Do a collapse of this tree.
-	 *
-	 * @NOTE Why is this protected? I can't see any good reason someone'd want to
-	 * override it.
 	 */
 
 	private <NewType> NewType internalCollapse(
@@ -378,6 +375,16 @@ public class Tree<ContainedType> implements ITree<ContainedType> {
 		final ITree<ContainedType> selectedKid = children.getByIndex(childNo);
 
 		return transformer.apply(selectedKid);
+	}
+
+	@Override
+	public ITree<ContainedType> getChild(final int childNo) {
+		if (childNo < 0 || childNo > childCount - 1) {
+			final String msg = String.format("Child index #%d is invalid", childNo);
+
+			throw new IllegalArgumentException(msg);
+		}
+		return children.getByIndex(childNo);
 	}
 
 	@Override
