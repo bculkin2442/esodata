@@ -48,20 +48,17 @@ public class Identity<ContainedType> implements IHolder<ContainedType> {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Identity))
-			return false;
+		if (this == obj)                return true;
+		if (obj == null)                return false;
+		if (!(obj instanceof Identity)) return false;
 
 		final Identity<?> other = (Identity<?>) obj;
 
 		if (heldValue == null) {
-			if (other.heldValue != null)
-				return false;
-		} else if (!heldValue.equals(other.heldValue))
+			if (other.heldValue != null) return false;
+		} else if (!heldValue.equals(other.heldValue)) {
 			return false;
+		}
 
 		return true;
 	}

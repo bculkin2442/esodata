@@ -113,9 +113,7 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 	public ValueType remove(final KeyType key) {
 		final Stack<ValueType> stk = backing.get(key);
 
-		if (stk.size() > 1) {
-			return stk.pop();
-		}
+		if (stk.size() > 1) return stk.pop();
 
 		return backing.remove(key).top();
 	}
@@ -137,20 +135,17 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof PushdownMap<?, ?>))
-			return false;
+		if (this == obj)                         return true;
+		if (obj == null)                         return false;
+		if (!(obj instanceof PushdownMap<?, ?>)) return false;
 
 		final PushdownMap<?, ?> other = (PushdownMap<?, ?>) obj;
 
 		if (backing == null) {
-			if (other.backing != null)
-				return false;
-		} else if (!backing.equals(other.backing))
+			if (other.backing != null) return false;
+		} else if (!backing.equals(other.backing)) {
 			return false;
+		}
 
 		return true;
 	}

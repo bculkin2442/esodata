@@ -28,8 +28,10 @@ public class Tree<ContainedType> implements ITree<ContainedType> {
 	/* Whether this node has children. */
 	/*
 	 * @NOTE Why have both this boolean and childCount? Why not just do a childCount
-	 * == 0 whenever you'd check hasChildren? - Because hasChildren is set once and
-	 * not reset, and really what it indicates is that children has been allocated.
+	 * == 0 whenever you'd check hasChildren? 
+	 * 
+	 * - Because hasChildren is set once and not reset, and really what it
+	 *   indicates is that children has been allocated.
 	 */
 	private boolean hasChildren;
 	/* The number of children this node has. */
@@ -139,9 +141,7 @@ public class Tree<ContainedType> implements ITree<ContainedType> {
 
 	@Override
 	public void doForChildren(final Consumer<ITree<ContainedType>> action) {
-		if (childCount > 0) {
-			children.forEach(action);
-		}
+		if (childCount > 0) children.forEach(action);
 	}
 
 	@Override
@@ -151,13 +151,10 @@ public class Tree<ContainedType> implements ITree<ContainedType> {
 
 	@Override
 	public int revFind(final Predicate<ITree<ContainedType>> childPred) {
-		if (childCount == 0) {
-			return -1;
-		}
+		if (childCount == 0) return -1;
 
 		for (int i = childCount - 1; i >= 0; i--) {
-			if (childPred.test(getChild(i)))
-				return i;
+			if (childPred.test(getChild(i))) return i;
 		}
 
 		return -1;
@@ -249,9 +246,7 @@ public class Tree<ContainedType> implements ITree<ContainedType> {
 	private void internalToString(final StringBuilder builder, final int indentLevel,
 			final boolean initial) {
 		if (!initial) {
-			for (int i = 0; i < indentLevel; i++) {
-				builder.append(">\t");
-			}
+			for (int i = 0; i < indentLevel; i++) builder.append(">\t");
 		}
 
 		builder.append("Node #");
@@ -284,7 +279,9 @@ public class Tree<ContainedType> implements ITree<ContainedType> {
 			final Function<ContainedType, MappedType> leafTransformer,
 			final Function<ContainedType, MappedType> operatorTransformer) {
 		if (hasChildren) {
-			final IList<ITree<MappedType>> mappedChildren = children.map(child -> child.rebuildTree(leafTransformer, operatorTransformer));
+			final IList<ITree<MappedType>> mappedChildren =
+					children.map(child -> 
+						child.rebuildTree(leafTransformer, operatorTransformer));
 
 			final MappedType mapData = operatorTransformer.apply(data);
 			return new Tree<>(mapData, mappedChildren);
@@ -424,29 +421,25 @@ public class Tree<ContainedType> implements ITree<ContainedType> {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Tree<?>))
-			return false;
+		if (this == obj)               return true;
+		if (obj == null)               return false;
+		if (!(obj instanceof Tree<?>)) return false;
 
 		final Tree<?> other = (Tree<?>) obj;
 
 		if (data == null) {
-			if (other.data != null)
-				return false;
-		} else if (!data.equals(other.data))
+			if (other.data != null) return false;
+		} else if (!data.equals(other.data)) {
 			return false;
+		}
 
-		if (childCount != other.childCount)
-			return false;
+		if (childCount != other.childCount) return false;
 
 		if (children == null) {
-			if (other.children != null)
-				return false;
-		} else if (!children.equals(other.children))
+			if (other.children != null) return false;
+		} else if (!children.equals(other.children)) {
 			return false;
+		}
 
 		return true;
 	}

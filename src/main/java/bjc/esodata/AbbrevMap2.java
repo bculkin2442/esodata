@@ -36,9 +36,7 @@ public class AbbrevMap2 {
 	 */
 	public void add(String... words) {
 		for (String word : words) {
-			for (String substr : genAbbrevs(word)) {
-				backing.add(substr, word);
-			}
+			for (String substr : genAbbrevs(word)) backing.add(substr, word);
 		}
 	}
 
@@ -65,9 +63,7 @@ public class AbbrevMap2 {
 	 */
 	public void removeWords(String... words) {
 		for (String word : words) {
-			for (String substr : genAbbrevs(word)) {
-				backing.remove(substr, word);
-			}
+			for (String substr : genAbbrevs(word)) backing.remove(substr, word);
 		}
 	}
 
@@ -95,10 +91,7 @@ public class AbbrevMap2 {
 	public String deabbrev(String word) {
 		Set<String> st = backing.get(word);
 
-		if (st.size() == 1) {
-			return st.iterator().next();
-		} else {
-			return null;
-		}
+		if (st.size() == 1) return st.iterator().next();
+		else                return null;
 	}
 }

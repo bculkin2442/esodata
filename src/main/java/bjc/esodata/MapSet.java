@@ -116,8 +116,7 @@ public class MapSet<KeyType, ValueType> extends AbstractMap<KeyType, ValueType> 
 	 * @return False if there is no map attached to the key, true otherwise.
 	 */
 	public boolean setMap(String key) {
-		if (!backing.containsKey(key))
-			return false;
+		if (!backing.containsKey(key)) return false;
 
 		currentMap = backing.get(key);
 
@@ -165,16 +164,14 @@ public class MapSet<KeyType, ValueType> extends AbstractMap<KeyType, ValueType> 
 
 	@Override
 	public Set<Map.Entry<KeyType, ValueType>> entrySet() {
-		if (currentMap == null)
-			throw new NullPointerException("Current map is not set");
+		if (currentMap == null) throw new NullPointerException("Current map is not set");
 
 		return currentMap.entrySet();
 	}
 
 	@Override
 	public ValueType put(KeyType key, ValueType value) {
-		if (currentMap == null)
-			throw new NullPointerException("Current map is not set");
+		if (currentMap == null) throw new NullPointerException("Current map is not set");
 
 		return currentMap.put(key, value);
 	}

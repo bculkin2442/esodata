@@ -97,9 +97,7 @@ public class TopDownTransformIterator<ContainedType>
 	 *            The nodes to yield.
 	 */
 	public void addYield(final Iterator<ITree<ContainedType>> src) {
-		if (currYield != null) {
-			toYield.push(currYield);
-		}
+		if (currYield != null) toYield.push(currYield);
 
 		currYield = src;
 	}
@@ -128,9 +126,7 @@ public class TopDownTransformIterator<ContainedType>
 			 */
 			toYield.add(new SingleIterator<>(val));
 
-			if (currYield.hasNext()) {
-				return currYield.next();
-			}
+			if (currYield.hasNext()) return currYield.next();
 
 			while (toYield.size() != 0 && !currYield.hasNext()) {
 				currYield = toYield.pop();
@@ -149,8 +145,7 @@ public class TopDownTransformIterator<ContainedType>
 
 	@Override
 	public ITree<ContainedType> next() {
-		if (done)
-			throw new NoSuchElementException();
+		if (done) throw new NoSuchElementException();
 
 		/*
 		 * Flush any values that need to be yielded.
@@ -158,8 +153,7 @@ public class TopDownTransformIterator<ContainedType>
 		if (currYield != null) {
 			ITree<ContainedType> yeld = flushYields(null);
 
-			if (yeld != null)
-				return yeld;
+			if (yeld != null) return yeld;
 		}
 
 		if (initial) {
@@ -226,9 +220,7 @@ public class TopDownTransformIterator<ContainedType>
 				throw new IllegalArgumentException("Unknown result type " + res);
 			}
 
-			if (res != RTRANSFORM) {
-				initial = false;
-			}
+			if (res != RTRANSFORM) initial = false;
 		}
 
 		if (curChild == null || !curChild.hasNext()) {

@@ -37,8 +37,7 @@ public class ThresholdSet<KeyType> {
 			int ret = ThresholdSet.this.add(key);
 
 			// No change to set contents
-			if (ret > 2)
-				return false;
+			if (ret > 2) return false;
 
 			return true;
 		}
@@ -52,8 +51,7 @@ public class ThresholdSet<KeyType> {
 			int ret = ThresholdSet.this.remove(k);
 
 			// We removed the element.
-			if (ret == 0)
-				return true;
+			if (ret == 0) return true;
 
 			return false;
 		}
@@ -67,8 +65,7 @@ public class ThresholdSet<KeyType> {
 			int ret = ThresholdSet.this.contains(k);
 
 			// The object is set-visible
-			if (ret == 1)
-				return true;
+			if (ret == 1) return true;
 
 			return false;
 		}
@@ -112,9 +109,7 @@ public class ThresholdSet<KeyType> {
 	public int[] addKeys(@SuppressWarnings("unchecked") KeyType... keys) {
 		int[] ret = new int[keys.length];
 
-		for (int i = 0; i < keys.length; i++) {
-			ret[i] = add(keys[i]);
-		}
+		for (int i = 0; i < keys.length; i++) ret[i] = add(keys[i]);
 
 		return ret;
 	}
@@ -162,9 +157,7 @@ public class ThresholdSet<KeyType> {
 	public int[] removeKeys(@SuppressWarnings("unchecked") KeyType... keys) {
 		int[] ret = new int[keys.length];
 
-		for (int i = 0; i < keys.length; i++) {
-			ret[i] = remove(keys[i]);
-		}
+		for (int i = 0; i < keys.length; i++) ret[i] = remove(keys[i]);
 
 		return ret;
 	}
@@ -217,9 +210,7 @@ public class ThresholdSet<KeyType> {
 	public int[] containsKeys(@SuppressWarnings("unchecked") KeyType... keys) {
 		int[] ret = new int[keys.length];
 
-		for (int i = 0; i < keys.length; i++) {
-			ret[i] = contains(keys[i]);
-		}
+		for (int i = 0; i < keys.length; i++) ret[i] = contains(keys[i]);
 
 		return ret;
 	}
@@ -233,12 +224,9 @@ public class ThresholdSet<KeyType> {
 	 * @return The number of times the key occurs; -1 if it doesn't occur.
 	 */
 	public int contains(KeyType key) {
-		if (keySet.contains(key))
-			return 1;
-		if (!keyMap.containsKey(key))
-			return -1;
-
-		return keyMap.get(key);
+		if (keySet.contains(key))     return 1;
+		if (!keyMap.containsKey(key)) return -1;
+		else                          return keyMap.get(key);
 	}
 
 	/**

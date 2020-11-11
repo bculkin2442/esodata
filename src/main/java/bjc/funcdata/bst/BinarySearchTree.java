@@ -33,8 +33,7 @@ public class BinarySearchTree<T> {
 	 *            The thing to use for comparing elements
 	 */
 	public BinarySearchTree(final Comparator<T> cmp) {
-		if (cmp == null)
-			throw new NullPointerException("Comparator must not be null");
+		if (cmp == null) throw new NullPointerException("Comparator must not be null");
 
 		elementCount = 0;
 		comparator = cmp;
@@ -49,11 +48,8 @@ public class BinarySearchTree<T> {
 	public void addNode(final T element) {
 		elementCount++;
 
-		if (root == null) {
-			root = new BinarySearchTreeNode<>(element, null, null);
-		} else {
-			root.add(element, comparator);
-		}
+		if (root == null) root = new BinarySearchTreeNode<>(element, null, null);
+		else              root.add(element, comparator);
 	}
 
 	/**
@@ -184,6 +180,7 @@ public class BinarySearchTree<T> {
 		 */
 		traverse(TreeLinearizationMethod.PREORDER, node -> {
 			nodes.add(node);
+			
 			return true;
 		});
 

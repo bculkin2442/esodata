@@ -45,9 +45,7 @@ public class SingleTape<T> implements Tape<T> {
 
 		backing = new ArrayList<>(vals.length);
 
-		for (T val : vals) {
-			backing.add(val);
-		}
+		for (T val : vals) backing.add(val);
 	}
 
 	/**
@@ -66,9 +64,7 @@ public class SingleTape<T> implements Tape<T> {
 	public SingleTape(Iterable<T> itr) {
 		this(false);
 
-		for (T itm : itr) {
-			backing.add(itm);
-		}
+		for (T itm : itr) backing.add(itm);
 	}
 
 	/**
@@ -86,8 +82,7 @@ public class SingleTape<T> implements Tape<T> {
 
 	@Override
 	public T item() {
-		if (pos < 0 || pos >= backing.size())
-			return null;
+		if (pos < 0 || pos >= backing.size()) return null;
 
 		return backing.get(pos);
 	}
@@ -114,19 +109,16 @@ public class SingleTape<T> implements Tape<T> {
 
 	@Override
 	public void insertAfter(final T itm) {
-		if (pos == backing.size() - 1) {
-			backing.add(itm);
-		} else {
-			backing.add(pos + 1, itm);
-		}
+		if (pos == backing.size() - 1) backing.add(itm);
+		else                           backing.add(pos + 1, itm);
 	}
 
 	@Override
 	public T remove() {
 		final T res = backing.remove(pos);
-		if (pos != 0) {
-			pos -= 1;
-		}
+
+		if (pos != 0) pos -= 1;
+		
 		return res;
 	}
 
@@ -147,8 +139,7 @@ public class SingleTape<T> implements Tape<T> {
 
 	@Override
 	public boolean left(final int amt) {
-		if (pos - amt < 0)
-			return false;
+		if (pos - amt < 0) return false;
 
 		pos -= amt;
 		return true;
@@ -163,11 +154,10 @@ public class SingleTape<T> implements Tape<T> {
 	public boolean right(final int amt) {
 		if (pos + amt > backing.size()) {
 			if (autoExtend) {
-				while (pos + amt >= backing.size() - 1) {
-					backing.add(null);
-				}
-			} else
+				while (pos + amt >= backing.size() - 1) backing.add(null);
+			} else {
 				return false;
+			}
 		}
 
 		pos += amt;
@@ -176,15 +166,15 @@ public class SingleTape<T> implements Tape<T> {
 
 	@Override
 	public boolean seekTo(int tgtPos) {
-		if (tgtPos < 0)
-			return false;
+		if (tgtPos < 0) return false;
 
-		if (tgtPos >= backing.size() - 1)
-			if (autoExtend)
-				while (tgtPos >= backing.size() - 1)
-					backing.add(null);
-			else
+		if (tgtPos >= backing.size() - 1) {
+			if (autoExtend) {
+				while (tgtPos >= backing.size() - 1) backing.add(null);
+			} else {
 				return false;
+			}
+		}
 
 		pos = tgtPos;
 
@@ -208,20 +198,17 @@ public class SingleTape<T> implements Tape<T> {
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof SingleTape<?>))
-			return false;
+		if (this == obj)                     return true;
+		if (obj == null)                     return false;
+		if (!(obj instanceof SingleTape<?>)) return false;
 
 		final SingleTape<?> other = (SingleTape<?>) obj;
 
 		if (backing == null) {
-			if (other.backing != null)
-				return false;
-		} else if (!backing.equals(other.backing))
+			if (other.backing != null) return false;
+		} else if (!backing.equals(other.backing)) {
 			return false;
+		}
 
 		return true;
 	}

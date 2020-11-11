@@ -59,8 +59,7 @@ public interface Directory<K, V> {
 	 * @return The new sub-directory, or null if one by that name already exists.
 	 */
 	default Directory<K, V> newSubdirectory(final K key) {
-		if (hasSubdirectory(key))
-			return null;
+		if (hasSubdirectory(key)) return null;
 
 		final Directory<K, V> dir = new SimpleDirectory<>();
 
