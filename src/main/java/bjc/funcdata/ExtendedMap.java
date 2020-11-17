@@ -1,8 +1,7 @@
 package bjc.funcdata;
 
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.*;
+import java.util.function.*;
 
 /**
  * An extended version of a map, that stores values into a map, but can look
@@ -22,6 +21,9 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 	/* The map we store things in. */
 	private final IMap<KeyType, ValueType> store;
 
+	private boolean isFrozen     = false;
+	private boolean thawEnabled  = true;
+	
 	/**
 	 * Create a new extended map.
 	 *
@@ -39,20 +41,15 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 
 	@Override
 	public void clear() {
+		if (isFrozen) return;
+		
 		store.clear();
 	}
 
 	@Override
 	public boolean containsKey(final KeyType key) {
-		if (store.containsKey(key))
-			return true;
-
-		return delegate.containsKey(key);
-	}
-
-	@Override
-	public IMap<KeyType, ValueType> extend() {
-		return new ExtendedMap<>(this, new FunctionalMap<>());
+		if (store.containsKey(key)) return true;
+		else                        return delegate.containsKey(key);
 	}
 
 	@Override
@@ -78,10 +75,8 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 
 	@Override
 	public ValueType get(final KeyType key) {
-		if (store.containsKey(key))
-			return store.get(key);
-
-		return delegate.get(key);
+		if (store.containsKey(key)) return store.get(key);
+		else                        return delegate.get(key);
 	}
 
 	@Override
@@ -100,22 +95,20 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 	}
 
 	@Override
-	public <MappedValue> IMap<KeyType, MappedValue>
-			transform(final Function<ValueType, MappedValue> transformer) {
-		return new TransformedValueMap<>(this, transformer);
-	}
-
-	@Override
 	public ValueType put(final KeyType key, final ValueType val) {
+		if (isFrozen)
+			throw new ObjectFrozen("Can't insert key " + key + " into frozen map");
+		
 		return store.put(key, val);
 	}
 
 	@Override
 	public ValueType remove(final KeyType key) {
-		if (!store.containsKey(key))
-			return delegate.remove(key);
-
-		return store.remove(key);
+		if (isFrozen)
+			throw new ObjectFrozen("Can't remove key " + key + " from frozen map");
+		
+		if (!store.containsKey(key)) return delegate.remove(key);
+		else                         return store.remove(key);
 	}
 
 	@Override
@@ -127,43 +120,69 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 
 		return ilst;
 	}
-
+	
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (delegate == null ? 0 : delegate.hashCode());
-		result = prime * result + (store == null ? 0 : store.hashCode());
-		return result;
-	}
+  public int hashCode() {
+		// isFrozen isn't counted
+    return Objects.hash(delegate, store);
+  }
 
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof ExtendedMap))
-			return false;
+	/* Misc. object support. */
+  @Override
+  public boolean equals(Object obj) {
+  	if (this == obj)                  return true;
+    if (obj == null)                  return false;
+    if (getClass() != obj.getClass()) return false;
 
-		final ExtendedMap<?, ?> other = (ExtendedMap<?, ?>) obj;
+    ExtendedMap<?, ?> other = (ExtendedMap<?, ?>) obj;
 
-		if (delegate == null) {
-			if (other.delegate != null)
-				return false;
-		} else if (!delegate.equals(other.delegate))
-			return false;
-		if (store == null) {
-			if (other.store != null)
-				return false;
-		} else if (!store.equals(other.store))
-			return false;
+		// isFrozen isn't counted
+    return Objects.equals(delegate, other.delegate) && Objects.equals(store, other.store);
+  }
 
-		return true;
-	}
-
-	@Override
+  @Override
 	public String toString() {
 		return String.format("ExtendedMap [delegate=%s, store=%s]", delegate, store);
+	}
+
+  /* IFreezable support */
+  
+	@Override
+	public boolean freeze() {
+			isFrozen = true;
+			
+			return true;
+	}
+
+	@Override
+	public boolean deepFreeze() {
+  	thawEnabled  = false;
+
+  	return freeze();
+	}
+	
+	@Override
+	public boolean thaw() {
+		if (thawEnabled) {
+			isFrozen = false;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean isFrozen() {
+		return isFrozen;
+	}
+	
+	@Override
+	public boolean canFreeze() {
+		return true;
+	}
+	
+	@Override
+	public boolean canThaw() {
+		return thawEnabled;
 	}
 }

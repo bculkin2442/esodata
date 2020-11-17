@@ -1,12 +1,9 @@
 package bjc.funcdata;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.*;
+import java.util.function.*;
 
-import bjc.data.IPair;
+import bjc.data.*;
 
 /**
  * Basic implementation of {@link IMap}
@@ -23,6 +20,9 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 	/* Our backing store. */
 	private Map<KeyType, ValueType> wrappedMap;
 
+	private boolean isFrozen    = false;
+	private boolean thawEnabled = true;
+	
 	/** Create a new blank functional map */
 	public FunctionalMap() {
 		wrappedMap = new HashMap<>();
@@ -39,9 +39,7 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 		this();
 
 		for (final IPair<KeyType, ValueType> entry : entries) {
-			entry.doWith((key, val) -> {
-				wrappedMap.put(key, val);
-			});
+			entry.doWith(wrappedMap::put);
 		}
 	}
 
@@ -52,25 +50,21 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 	 *             The map to wrap.
 	 */
 	public FunctionalMap(final Map<KeyType, ValueType> wrap) {
-		if (wrap == null)
-			throw new NullPointerException("Map to wrap must not be null");
+		if (wrap == null) throw new NullPointerException("Map to wrap must not be null");
 
 		wrappedMap = wrap;
 	}
 
 	@Override
 	public void clear() {
+		if (isFrozen) throw new ObjectFrozen("Can't clear frozen map");
+		
 		wrappedMap.clear();
 	}
 
 	@Override
 	public boolean containsKey(final KeyType key) {
 		return wrappedMap.containsKey(key);
-	}
-
-	@Override
-	public IMap<KeyType, ValueType> extend() {
-		return new ExtendedMap<>(this, new FunctionalMap<>());
 	}
 
 	@Override
@@ -90,8 +84,7 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 
 	@Override
 	public ValueType get(final KeyType key) {
-		if (key == null)
-			throw new NullPointerException("Key must not be null");
+		if (key == null) throw new NullPointerException("Key must not be null");
 
 		if (!wrappedMap.containsKey(key)) {
 			final String msg = String.format("Key %s is not present in the map", key);
@@ -111,32 +104,23 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 	public IList<KeyType> keyList() {
 		final FunctionalList<KeyType> keys = new FunctionalList<>();
 
-		wrappedMap.keySet().forEach(key -> {
-			keys.add(key);
-		});
+		wrappedMap.keySet().forEach(keys::add);
 
 		return keys;
 	}
 
 	@Override
-	public <MappedValue> IMap<KeyType, MappedValue>
-			transform(final Function<ValueType, MappedValue> transformer) {
-		if (transformer == null)
-			throw new NullPointerException("Transformer must not be null");
-
-		return new TransformedValueMap<>(this, transformer);
-	}
-
-	@Override
 	public ValueType put(final KeyType key, final ValueType val) {
-		if (key == null)
-			throw new NullPointerException("Key must not be null");
+		if (isFrozen)    throw new ObjectFrozen("Can't put key " + key + " into frozen map");
+		if (key == null) throw new NullPointerException("Key must not be null");
 
 		return wrappedMap.put(key, val);
 	}
 
 	@Override
 	public ValueType remove(final KeyType key) {
+		if (isFrozen) throw new ObjectFrozen("Can't remove key " + key + " from frozen map");
+		
 		return wrappedMap.remove(key);
 	}
 
@@ -149,9 +133,7 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 	public IList<ValueType> valueList() {
 		final FunctionalList<ValueType> values = new FunctionalList<>();
 
-		wrappedMap.values().forEach(value -> {
-			values.add(value);
-		});
+		wrappedMap.values().forEach(values::add);
 
 		return values;
 	}
@@ -166,20 +148,58 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof FunctionalMap))
-			return false;
+		if (this == obj)                     return true;
+		if (obj == null)                     return false;
+		if (!(obj instanceof FunctionalMap)) return false;
 
 		final FunctionalMap<?, ?> other = (FunctionalMap<?, ?>) obj;
 
 		if (wrappedMap == null) {
-			if (other.wrappedMap != null)
-				return false;
-		} else if (!wrappedMap.equals(other.wrappedMap))
-			return false;
+			if (other.wrappedMap != null) return false;
+		} else if (!wrappedMap.equals(other.wrappedMap)) {
+      return false;
+    }
+		
 		return true;
+	}
+
+	// IFreezable support
+	@Override
+	public boolean freeze() {
+		isFrozen = true;
+		
+		return true;
+	}
+
+	@Override
+	public boolean thaw() {
+		if (thawEnabled) {
+			isFrozen = false;
+			return true;			
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean deepFreeze() {
+		thawEnabled = false;
+		
+		return freeze();
+	}
+	
+	@Override
+	public boolean canFreeze() {
+		return true;
+	}
+	
+	@Override
+	public boolean canThaw() {
+		return thawEnabled;
+	}
+	
+	@Override
+	public boolean isFrozen() {
+		return isFrozen;
 	}
 }

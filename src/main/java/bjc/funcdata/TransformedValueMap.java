@@ -1,8 +1,6 @@
 package bjc.funcdata;
 
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.function.*;
 
 /**
  * A map that transforms values from one type to another
@@ -26,6 +24,9 @@ final class TransformedValueMap<OldKey, OldValue, NewValue>
 	/* Our transforming function. */
 	private final Function<OldValue, NewValue> transformer;
 
+	private boolean isFrozen    = false;
+	private boolean thawEnabled = true;
+	
 	/**
 	 * Create a new transformed-value loop.
 	 *
@@ -43,17 +44,14 @@ final class TransformedValueMap<OldKey, OldValue, NewValue>
 
 	@Override
 	public void clear() {
+		if (isFrozen) throw new ObjectFrozen("Can't clear frozen map");
+		
 		backing.clear();
 	}
 
 	@Override
 	public boolean containsKey(final OldKey key) {
 		return backing.containsKey(key);
-	}
-
-	@Override
-	public IMap<OldKey, NewValue> extend() {
-		return new ExtendedMap<>(this, new FunctionalMap<>());
 	}
 
 	@Override
@@ -91,18 +89,14 @@ final class TransformedValueMap<OldKey, OldValue, NewValue>
 	}
 
 	@Override
-	public <MappedValue> IMap<OldKey, MappedValue>
-			transform(final Function<NewValue, MappedValue> transform) {
-		return new TransformedValueMap<>(this, transform);
-	}
-
-	@Override
 	public NewValue put(final OldKey key, final NewValue value) {
 		throw new UnsupportedOperationException("Can't add items to transformed map");
 	}
 
 	@Override
 	public NewValue remove(final OldKey key) {
+		if (isFrozen) throw new ObjectFrozen("Can't remove key " + key + " from frozen map");
+		
 		return transformer.apply(backing.remove(key));
 	}
 
@@ -114,5 +108,44 @@ final class TransformedValueMap<OldKey, OldValue, NewValue>
 	@Override
 	public IList<NewValue> valueList() {
 		return backing.valueList().map(transformer);
+	}
+
+	@Override
+	public boolean freeze() {
+		isFrozen = true;
+		
+		return true;
+	}
+
+	@Override
+	public boolean thaw() {
+		if (thawEnabled) {
+			isFrozen = false;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean deepFreeze() {
+		thawEnabled = false;
+		
+		return freeze();
+	}
+	
+	@Override
+	public boolean canFreeze() {
+		return true;
+	}
+	
+	@Override
+	public boolean canThaw() {
+		return thawEnabled;
+	}
+	
+	@Override
+	public boolean isFrozen() {
+		return isFrozen;
 	}
 }

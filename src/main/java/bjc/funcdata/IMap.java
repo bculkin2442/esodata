@@ -1,8 +1,6 @@
 package bjc.funcdata;
 
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.function.*;
 
 /**
  * Functional wrapper over map providing some useful things.
@@ -15,7 +13,7 @@ import java.util.function.Function;
  * @param <ValueType>
  *                    The type of this map's values.
  */
-public interface IMap<KeyType, ValueType> {
+public interface IMap<KeyType, ValueType> extends IFreezable {
 	/**
 	 * Execute an action for each entry in the map.
 	 *
@@ -109,7 +107,7 @@ public interface IMap<KeyType, ValueType> {
 
 	/** Delete all the values in the map. */
 	default void clear() {
-		keyList().forEach(key -> remove(key));
+		keyList().forEach(IMap.this::remove);
 	}
 
 	/**
@@ -151,7 +149,21 @@ public interface IMap<KeyType, ValueType> {
 	 *
 	 * @return An extended map.
 	 */
-	IMap<KeyType, ValueType> extend();
+	default IMap<KeyType, ValueType> extend() {
+	   return extend(new FunctionalMap<>());
+	};
+
+	/**
+   * Extends this map, creating a new map that will delegate queries to this map,
+   * but store any added values in the provided map.
+   *
+   * @param backer The map to store added values in.
+   * 
+   * @return An extended map.
+   */
+	default IMap<KeyType, ValueType> extend(IMap<KeyType, ValueType> backer) {
+    return new ExtendedMap<>(this, backer);
+ };
 
 	/**
 	 * Remove the value bound to the key.

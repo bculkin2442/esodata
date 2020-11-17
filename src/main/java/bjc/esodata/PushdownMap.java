@@ -1,12 +1,8 @@
 package bjc.esodata;
 
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.function.*;
 
-import bjc.funcdata.FunctionalMap;
-import bjc.funcdata.IList;
-import bjc.funcdata.IMap;
+import bjc.funcdata.*;
 
 /**
  * A variant of a map where inserting a duplicate key shadows the existing value
@@ -26,18 +22,18 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 	/* Our backing storage. */
 	private final IMap<KeyType, Stack<ValueType>> backing;
 
+	private boolean isFrozen    = false;
+	private boolean thawEnabled = true;
+	
 	/** Create a new empty stack-based map. */
 	public PushdownMap() {
 		backing = new FunctionalMap<>();
 	}
 
-	/** Create a new empty stack-based map using the specified backing. */
-	private PushdownMap(final IMap<KeyType, Stack<ValueType>> back) {
-		backing = back;
-	}
-
 	@Override
 	public void clear() {
+		if (isFrozen) throw new ObjectFrozen("Can't clear frozen map");
+		
 		backing.clear();
 	}
 
@@ -45,12 +41,7 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 	public boolean containsKey(final KeyType key) {
 		return backing.containsKey(key);
 	}
-
-	@Override
-	public IMap<KeyType, ValueType> extend() {
-		return new PushdownMap<>(backing.extend());
-	}
-
+	
 	@Override
 	public void forEach(final BiConsumer<KeyType, ValueType> action) {
 		backing.forEach((key, stk) -> action.accept(key, stk.top()));
@@ -82,16 +73,9 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 	}
 
 	@Override
-	public <V2> IMap<KeyType, V2> transform(final Function<ValueType, V2> transformer) {
-		/*
-		 * @NOTE Can and should we support this? More to the point, maybe this should be
-		 * a map sub-type that does what it needs to?
-		 */
-		throw new UnsupportedOperationException("Cannot transform pushdown maps.");
-	}
-
-	@Override
 	public ValueType put(final KeyType key, final ValueType val) {
+		if (isFrozen) throw new ObjectFrozen("Can't insert key " + key + " into frozen map");
+		
 		if (backing.containsKey(key)) {
 			final Stack<ValueType> stk = backing.get(key);
 
@@ -111,6 +95,8 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 
 	@Override
 	public ValueType remove(final KeyType key) {
+		if (isFrozen) throw new ObjectFrozen("Can't remove key " + key + " from frozen map");
+	
 		final Stack<ValueType> stk = backing.get(key);
 
 		if (stk.size() > 1) return stk.pop();
@@ -153,5 +139,44 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 	@Override
 	public String toString() {
 		return String.format("PushdownMap [backing=%s]", backing);
+	}
+
+	@Override
+	public boolean freeze() {
+		isFrozen = true;
+		
+		return true;
+	}
+
+	@Override
+	public boolean thaw() {
+		if (thawEnabled) {
+			isFrozen = false;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean deepFreeze() {
+		thawEnabled = true;
+		
+		return freeze();
+	}
+	
+	@Override
+	public boolean canFreeze() {
+		return true;
+	}
+	
+	@Override
+	public boolean canThaw() {
+		return thawEnabled;
+	}
+	
+	@Override
+	public boolean isFrozen() {
+		return isFrozen;
 	}
 }
