@@ -60,20 +60,6 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 	}
 
 	@Override
-	public void forEachKey(final Consumer<KeyType> action) {
-		store.forEachKey(action);
-
-		delegate.forEachKey(action);
-	}
-
-	@Override
-	public void forEachValue(final Consumer<ValueType> action) {
-		store.forEachValue(action);
-
-		delegate.forEachValue(action);
-	}
-
-	@Override
 	public ValueType get(final KeyType key) {
 		if (store.containsKey(key)) return store.get(key);
 		else                        return delegate.get(key);
@@ -111,16 +97,6 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 		else                         return store.remove(key);
 	}
 
-	@Override
-	public IList<ValueType> valueList() {
-		IList<ValueType> ilst = new FunctionalList<>();
-
-		ilst.addAll(store.valueList());
-		ilst.addAll(delegate.valueList());
-
-		return ilst;
-	}
-	
 	@Override
   public int hashCode() {
 		// isFrozen isn't counted

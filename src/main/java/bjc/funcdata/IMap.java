@@ -107,6 +107,8 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 
 	/** Delete all the values in the map. */
 	default void clear() {
+		if (isFrozen()) throw new ObjectFrozen("Can't clear a frozen map");
+		
 		keyList().forEach(IMap.this::remove);
 	}
 

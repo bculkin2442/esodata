@@ -62,18 +62,6 @@ final class TransformedValueMap<OldKey, OldValue, NewValue>
 	}
 
 	@Override
-	public void forEachKey(final Consumer<OldKey> action) {
-		backing.forEachKey(action);
-	}
-
-	@Override
-	public void forEachValue(final Consumer<NewValue> action) {
-		backing.forEachValue(value -> {
-			action.accept(transformer.apply(value));
-		});
-	}
-
-	@Override
 	public NewValue get(final OldKey key) {
 		return transformer.apply(backing.get(key));
 	}
@@ -104,12 +92,7 @@ final class TransformedValueMap<OldKey, OldValue, NewValue>
 	public String toString() {
 		return backing.toString();
 	}
-
-	@Override
-	public IList<NewValue> valueList() {
-		return backing.valueList().map(transformer);
-	}
-
+	
 	@Override
 	public boolean freeze() {
 		isFrozen = true;

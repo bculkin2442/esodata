@@ -48,16 +48,6 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 	}
 
 	@Override
-	public void forEachKey(final Consumer<KeyType> action) {
-		backing.forEachKey(action);
-	}
-
-	@Override
-	public void forEachValue(final Consumer<ValueType> action) {
-		backing.forEachValue(stk -> action.accept(stk.top()));
-	}
-
-	@Override
 	public ValueType get(final KeyType key) {
 		return backing.get(key).top();
 	}
@@ -102,11 +92,6 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 		if (stk.size() > 1) return stk.pop();
 
 		return backing.remove(key).top();
-	}
-
-	@Override
-	public IList<ValueType> valueList() {
-		return backing.valueList().map(Stack::top);
 	}
 
 	@Override

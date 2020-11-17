@@ -73,16 +73,6 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 	}
 
 	@Override
-	public void forEachKey(final Consumer<KeyType> action) {
-		wrappedMap.keySet().forEach(action);
-	}
-
-	@Override
-	public void forEachValue(final Consumer<ValueType> action) {
-		wrappedMap.values().forEach(action);
-	}
-
-	@Override
 	public ValueType get(final KeyType key) {
 		if (key == null) throw new NullPointerException("Key must not be null");
 
@@ -128,16 +118,7 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 	public String toString() {
 		return wrappedMap.toString();
 	}
-
-	@Override
-	public IList<ValueType> valueList() {
-		final FunctionalList<ValueType> values = new FunctionalList<>();
-
-		wrappedMap.values().forEach(values::add);
-
-		return values;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
