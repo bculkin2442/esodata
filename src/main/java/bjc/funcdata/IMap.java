@@ -201,4 +201,37 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 
 		return returns;
 	}
+	
+	/**
+	 * Static method to create a basic instance of IMap.
+	 * 
+	 * @param <KeyType2> The key type of the map.
+	 * @param <ValueType2> The value type of the map.
+	 * 
+	 * @param args A series of key-value pairs. You will get an error if you don't
+	 *             provide the correct number of arguments (a number divisible by 2);
+	 *             however, if you pass arguments of the wrong type, you will not
+	 *             get a compile error, and usually won't get a runtime error in
+	 *             construction. However, you will get a ClassCastException as soon
+	 *             as you do something that attempts to iterate over the keys or values
+	 *             of the map.
+	 * 
+	 * @return A map, constructed from the provided values.
+	 * 
+	 * @throws IllegalArgumentException If you provide an incomplete pair of arguments.
+	 */
+	@SuppressWarnings("unchecked")
+	static <KeyType2, ValueType2> IMap<KeyType2, ValueType2> of(Object... args) {
+		if (args.length % 2 != 0) throw new IllegalArgumentException("Args must be in the form of key-value pairs");
+		
+		IMap<KeyType2, ValueType2> map = new FunctionalMap<>();
+		for (int index = 0; index < args.length; index += 2) {
+			KeyType2   key   = (KeyType2)   args[index];
+			ValueType2 value = (ValueType2) args[index + 1];
+			
+			map.put(key, value);
+		}
+		
+		return map;
+	}
 }
