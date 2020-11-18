@@ -58,4 +58,17 @@ public class GeneratingIterator<E> implements Iterator<E> {
 
 		return state;
 	}
+	
+	/**
+	 * Sets the state of this iterator.
+	 * 
+	 * @param newState The new state value.
+	 * 
+	 * @return The old state value.
+	 */
+	public E setState(E newState) {
+		E oldState = this.state;
+		this.state = newState;
+		return oldState;
+	}
 }
