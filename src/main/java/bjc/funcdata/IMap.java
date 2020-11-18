@@ -121,11 +121,47 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 		return keyList().getSize();
 	}
 
+	/**
+	 * Remove the value bound to the key.
+	 *
+	 * @param key
+	 *            The key to remove from the map.
+	 *
+	 * @return The previous value for the key in the map, or null if the key wasn't
+	 *         in the class. NOTE: Just because you received null, doesn't mean the
+	 *         map wasn't changed. It may mean that someone put a null value for
+	 *         that key into the map.
+	 */
+	ValueType remove(KeyType key);
+
+	/**
+	 * Get a list of all the keys in this map.
+	 *
+	 * @return A list of all the keys in this map.
+	 */
+	IList<KeyType> keyList();
+
+	/**
+	 * Get a list of the values in this map.
+	 *
+	 * @return A list of values in this map.
+	 */
+	default IList<ValueType> valueList() {
+		final IList<ValueType> returns = new FunctionalList<>();
+
+		for (final KeyType key : keyList()) {
+			returns.add(get(key));
+		}
+
+		return returns;
+	}
+	
 	/*
 	 * @NOTE Do we want this to be the semantics for transform, or do we want to go
 	 * to semantics using something like Isomorphism, or doing a one-time bulk
 	 * conversion of the values?
 	 */
+	
 	/**
 	 * Transform the values returned by this map.
 	 *
@@ -166,41 +202,6 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 	default IMap<KeyType, ValueType> extend(IMap<KeyType, ValueType> backer) {
     return new ExtendedMap<>(this, backer);
  };
-
-	/**
-	 * Remove the value bound to the key.
-	 *
-	 * @param key
-	 *            The key to remove from the map.
-	 *
-	 * @return The previous value for the key in the map, or null if the key wasn't
-	 *         in the class. NOTE: Just because you received null, doesn't mean the
-	 *         map wasn't changed. It may mean that someone put a null value for
-	 *         that key into the map.
-	 */
-	ValueType remove(KeyType key);
-
-	/**
-	 * Get a list of all the keys in this map.
-	 *
-	 * @return A list of all the keys in this map.
-	 */
-	IList<KeyType> keyList();
-
-	/**
-	 * Get a list of the values in this map.
-	 *
-	 * @return A list of values in this map.
-	 */
-	default IList<ValueType> valueList() {
-		final IList<ValueType> returns = new FunctionalList<>();
-
-		for (final KeyType key : keyList()) {
-			returns.add(get(key));
-		}
-
-		return returns;
-	}
 	
 	/**
 	 * Static method to create a basic instance of IMap.
