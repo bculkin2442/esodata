@@ -33,6 +33,6 @@ public class TestMapCreation {
 		IMap<String, String> map = IMap.of("a", "A", "b", "B");
 		
 		assertTrue("Constructed map contains key 'a'", map.containsKey("a"));
-		assertEquals("Constructed map has key 'a' mapped to value 'A'", "A", map.get("A"));
+		assertEquals("Constructed map has key 'a' mapped to value 'A'", "A", map.get("a"));
 	}
 }
