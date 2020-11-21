@@ -161,4 +161,17 @@ public interface IHolder<ContainedType> extends Functor<ContainedType> {
 	 */
 	public <UnwrappedType> UnwrappedType
 			unwrap(Function<ContainedType, UnwrappedType> unwrapper);
+	
+	/**
+	 * Create an instace of IHolder containing a single value.
+	 * 
+	 * @param <ElementType> The type of the value contained.
+	 * 
+	 * @param contained The value to contain.
+	 * 
+	 * @return An instance of IHolder containing that value.
+	 */
+	static <ElementType> IHolder<ElementType> of(ElementType contained) {
+		return new Identity<>(contained);
+	}
 }
