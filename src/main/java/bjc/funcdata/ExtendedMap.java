@@ -60,7 +60,7 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 	}
 
 	@Override
-	public ValueType get(final KeyType key) {
+	public Optional<ValueType> get(final KeyType key) {
 		if (store.containsKey(key)) return store.get(key);
 		else                        return delegate.get(key);
 	}

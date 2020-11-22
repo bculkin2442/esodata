@@ -30,7 +30,7 @@ public class UnifiedDirectory<K, V> implements Directory<K, V> {
 
 	@Override
 	public Directory<K, V> getSubdirectory(final K key) {
-		return children.get(key);
+		return children.get(key).orElse(null);
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class UnifiedDirectory<K, V> implements Directory<K, V> {
 
 	@Override
 	public V getKey(final K key) {
-		return data.get(key);
+		return data.get(key).orElse(null);
 	}
 
 	@Override

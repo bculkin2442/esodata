@@ -1,5 +1,6 @@
 package bjc.funcdata;
 
+import java.util.*;
 import java.util.function.*;
 
 /**
@@ -62,8 +63,8 @@ final class TransformedValueMap<OldKey, OldValue, NewValue>
 	}
 
 	@Override
-	public NewValue get(final OldKey key) {
-		return transformer.apply(backing.get(key));
+	public Optional<NewValue> get(final OldKey key) {
+		return backing.get(key).map(transformer);
 	}
 
 	@Override

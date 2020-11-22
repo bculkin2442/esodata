@@ -46,11 +46,6 @@ public class TestMapOperations {
 	}
 	
 	@Test
-	public void getOrDefaultOfNonExistingKeyYieldsDefault() {
-		assertEquals("Constructed map getOrDefault for a non-existing key yields the default", "C", map.getOrDefault("c", "C"));
-	}
-	
-	@Test
 	public void putOfNonExistingKeyAddsValue() {
 		map.put("c", "C");
 		

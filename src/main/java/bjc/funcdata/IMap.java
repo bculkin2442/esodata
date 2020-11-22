@@ -1,5 +1,6 @@
 package bjc.funcdata;
 
+import java.util.*;
 import java.util.function.*;
 
 /**
@@ -60,31 +61,7 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 	 *
 	 * @return The value of the key.
 	 */
-	ValueType get(KeyType key);
-
-	/**
-	 * Get a value from the map, and return a default value if the key doesn't
-	 * exist.
-	 *
-	 * @param key
-	 *                     The key to attempt to retrieve.
-	 *
-	 * @param defaultValue
-	 *                     The value to return if the key doesn't exist.
-	 *
-	 * @return The value associated with the key, or the default value if the key
-	 *         doesn't exist.
-	 */
-	default ValueType getOrDefault(final KeyType key, final ValueType defaultValue) {
-		try {
-			return get(key);
-		} catch (final IllegalArgumentException iaex) {
-			/*
-			 * We don't care about this, because it indicates a key is missing.
-			 */
-			return defaultValue;
-		}
-	}
+	Optional<ValueType> get(KeyType key);
 
 	/**
 	 * Add an entry to the map.
@@ -150,7 +127,7 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 		final IList<ValueType> returns = new FunctionalList<>();
 
 		for (final KeyType key : keyList()) {
-			returns.add(get(key));
+			returns.add(get(key).orElse(null));
 		}
 
 		return returns;
@@ -191,17 +168,18 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 	   return extend(new FunctionalMap<>());
 	};
 
+	
 	/**
-   * Extends this map, creating a new map that will delegate queries to this map,
-   * but store any added values in the provided map.
-   *
-   * @param backer The map to store added values in.
-   * 
-   * @return An extended map.
-   */
+	 * Extend this map, creating a new map that will delegate queries to 
+	 * the current map but store any added values in the provided map.
+	 * 
+	 * @param backer The map to store values in.
+	 * 
+	 * @return An extended map, with the specified backing map.
+	 */
 	default IMap<KeyType, ValueType> extend(IMap<KeyType, ValueType> backer) {
-    return new ExtendedMap<>(this, backer);
- };
+		return new ExtendedMap<>(this, backer);
+	};
 	
 	/**
 	 * Static method to create a basic instance of IMap.

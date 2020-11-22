@@ -73,16 +73,14 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 	}
 
 	@Override
-	public ValueType get(final KeyType key) {
+	public Optional<ValueType> get(final KeyType key) {
 		if (key == null) throw new NullPointerException("Key must not be null");
 
-		if (!wrappedMap.containsKey(key)) {
-			final String msg = String.format("Key %s is not present in the map", key);
-
-			throw new IllegalArgumentException(msg);
+		if (wrappedMap.containsKey(key)) {
+			return Optional.of(wrappedMap.get(key));
+		} else {
+			return Optional.empty();
 		}
-
-		return wrappedMap.get(key);
 	}
 
 	@Override
@@ -138,8 +136,8 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 		if (wrappedMap == null) {
 			if (other.wrappedMap != null) return false;
 		} else if (!wrappedMap.equals(other.wrappedMap)) {
-      return false;
-    }
+			return false;
+		}
 		
 		return true;
 	}

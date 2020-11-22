@@ -1,7 +1,9 @@
 package bjc.esodata;
 
+import java.util.*;
 import java.util.function.*;
 
+import bjc.data.*;
 import bjc.funcdata.*;
 
 /**
@@ -48,8 +50,8 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 	}
 
 	@Override
-	public ValueType get(final KeyType key) {
-		return backing.get(key).top();
+	public Optional<ValueType> get(final KeyType key) {
+		return backing.get(key).map((stack) -> stack.top());
 	}
 
 	@Override
@@ -67,7 +69,7 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 		if (isFrozen) throw new ObjectFrozen("Can't insert key " + key + " into frozen map");
 		
 		if (backing.containsKey(key)) {
-			final Stack<ValueType> stk = backing.get(key);
+			final Stack<ValueType> stk = backing.get(key).get();
 
 			final ValueType vl = stk.top();
 
@@ -86,12 +88,18 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 	@Override
 	public ValueType remove(final KeyType key) {
 		if (isFrozen) throw new ObjectFrozen("Can't remove key " + key + " from frozen map");
-	
-		final Stack<ValueType> stk = backing.get(key);
 
-		if (stk.size() > 1) return stk.pop();
+		IHolder<ValueType> result = IHolder.of(null);
+		
+		backing.get(key).ifPresent((stk) -> {
+			if (stk.size() > 1) {
+				result.replace(stk.pop());
+			} else {
+				result.replace(backing.remove(key).top());
+			}
+		});
 
-		return backing.remove(key).top();
+		return result.getValue();
 	}
 
 	@Override
