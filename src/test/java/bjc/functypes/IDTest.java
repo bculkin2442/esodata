@@ -6,12 +6,7 @@ import java.util.function.*;
 
 import org.junit.*;
 
-/**
- * Test for ID.
- * 
- * @author Ben Culkin
- *
- */
+@SuppressWarnings("javadoc")
 public class IDTest {
 
 	@Test

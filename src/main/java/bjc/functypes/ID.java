@@ -10,6 +10,8 @@ import java.util.function.UnaryOperator;
 public class ID {
 	/**
 	 * Create an identity function.
+	 * 
+	 * @param <A> The type of the function.
 	 *
 	 * @return A identity function.
 	 */

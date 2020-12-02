@@ -11,7 +11,8 @@ import java.util.function.*;
  * @param <ReturnType> The output to the function.
  * @param <ExType> The type of exception thrown.
  */
-public interface ThrowFunction<InputType, ReturnType, ExType extends Throwable> {
+public interface ThrowFunction<InputType, ReturnType, ExType extends Throwable>
+{
 	/**
 	 * Does the possibly throwing computation embodied by this function.
 	 * 
@@ -38,15 +39,20 @@ public interface ThrowFunction<InputType, ReturnType, ExType extends Throwable> 
 	 */
 	@SuppressWarnings("unchecked")
 	default Function<InputType, ReturnType> swallow(
-			Class<ExType> clasz, Function<ExType, ReturnType> handler) {
-		return (inp) -> {
-			try {
+			Class<ExType> clasz, Function<ExType, ReturnType> handler)
+	{
+		return (inp) ->
+		{
+			try 
+			{
 				return this.apply(inp);
 			} catch (Throwable ex) {
-				if (clasz.isInstance(ex)) {
+				if (clasz.isInstance(ex)) 
+				{
 					// Swallow this
 					return handler.apply((ExType) ex);
-				} else {
+				} else
+				{
 					String msg = "Exception of incorrect type to be handled, only "
 											 + clasz.getName()
 											 + " are handled";
@@ -68,14 +74,19 @@ public interface ThrowFunction<InputType, ReturnType, ExType extends Throwable> 
 	@SuppressWarnings("unchecked")
 	default Function<InputType, ReturnType> recover(
 			Class<ExType> clasz, BiFunction<InputType, ExType, InputType> rescue) {
-		return Fixpoints.fix((arg, self) -> {
-			try {
+		return Fixpoints.fix((arg, self) -> 
+		{
+			try 
+			{
 				return this.apply(arg);
-			} catch (Throwable ex) {
-				if (clasz.isInstance(ex)) {
+			} catch (Throwable ex) 
+			{
+				if (clasz.isInstance(ex)) 
+				{
 					// Swallow this
 					return self.apply(rescue.apply(arg, (ExType) ex));
-				} else {
+				} else 
+				{
 					String msg = "Exception of incorrect type to be handled, only "
 											 + clasz.getName()
 											 + " are handled";
@@ -84,5 +95,57 @@ public interface ThrowFunction<InputType, ReturnType, ExType extends Throwable> 
 				}
 			}
 		});
+	}
+	
+	/**
+	 * Create a {@link Thrower} which will yield the result of calling this
+	 * function with the given argument.
+	 * 
+	 * @param arg The argument to use.
+	 * 
+	 * @return A thrower which will call this function with the given value.
+	 */
+	default Thrower<ReturnType, ExType> suspend(InputType arg) 
+	{
+		return () -> this.apply(arg);
+	}
+	
+	/**
+	 * Compose two throwing functions together.
+	 * 
+	 * @param <NewOutput> The newly output type.
+	 * 
+	 * @param func The throwing function to compose this with.
+	 * 
+	 * @return A throwing function that composes the two.
+	 */
+	default <NewOutput> ThrowFunction<InputType, NewOutput, ExType>
+	compose(
+			ThrowFunction<ReturnType, NewOutput, ExType> func) {
+		return (arg) -> func.apply(this.apply(arg));
+	}
+	
+	/**
+	 * ThrowFunctions and functions which return a {@link Thrower} are isomorphic.
+	 * 
+	 * @param <InpType> The function input type.
+	 * @param <OutType> The function output type.
+	 * @param <ExType> The exception type.
+	 * 
+	 * @return The isomorphism between them.
+	 */
+	static <InpType, OutType, ExType extends Throwable>
+	Isomorphism<ThrowFunction<InpType, OutType, ExType>, Function<InpType, Thrower<OutType, ExType>>>
+	getIso() 
+	{
+		// @FIXME Nov 23, 2020 Ben Culkin :EquivISO
+		// Fix this to strip wrappers when appropriate, so that going
+		// backwards and forwards leaves you where you started, not under
+		// two levels of indirection.
+		return Isomorphism.from((throwFun) -> {
+			return (arg) -> throwFun.suspend(arg);
+		}, (thrower) -> {
+			return (arg) -> thrower.apply(arg).extract();
+		}); 
 	}
 }

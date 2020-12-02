@@ -2,17 +2,38 @@ package bjc.data;
 
 import java.util.*;
 
+/**
+ * Utility methods for dealing with contexts.
+ * 
+ * @author Ben Culkin
+ *
+ */
 public class Contexts {
+	/**
+	 * The null context, which always throws an exception.
+	 */
 	public static final IContext NULL = new NullContextImpl();
 
 	private Contexts() {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Create a new context with no parent.
+	 * 
+	 * @return A context with no parent.
+	 */
 	public static IContext create() {
 		return new ContextImpl(NULL);
 	}
 
+	/**
+	 * Create a context with the specified parent.
+	 * 
+	 * @param parent The parent of this context.
+	 * 
+	 * @return A context with the given context as its parent.
+	 */
 	public static IContext create(IContext parent) {
 		return new ContextImpl(parent);
 	}
@@ -47,7 +68,7 @@ public class Contexts {
 
 		public ContextImpl(IContext parent) {
 			this.parent = parent;
-			this.objects = new HashMap<String, Object>();
+			this.objects = new HashMap<>();
 		}
 
 		@Override
