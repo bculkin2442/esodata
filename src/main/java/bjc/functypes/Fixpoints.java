@@ -24,7 +24,7 @@ public interface Fixpoints {
 	 */
 	static <InputType, ReturnType> Function<InputType, ReturnType> fix(
 			BiFunction<InputType, Function<InputType, ReturnType>, ReturnType> func) {
-		IHolder<Function<InputType, ReturnType>> inner = IHolder.of(null);
+		Holder<Function<InputType, ReturnType>> inner = Holder.of(null);
 		inner.replace((arg) -> {
 			return func.apply(arg, inner.getValue());
 		});
@@ -45,7 +45,7 @@ public interface Fixpoints {
 			BiFunction<InputType, Function<InputType, ReturnType>, ReturnType> func) {
 		Map<InputType, ReturnType> memoMap = new HashMap<>();
 		
-		IHolder<Function<InputType, ReturnType>> inner = IHolder.of(null);
+		Holder<Function<InputType, ReturnType>> inner = Holder.of(null);
 		inner.replace((arg) ->
 			memoMap.computeIfAbsent(
 					arg,

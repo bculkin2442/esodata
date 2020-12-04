@@ -9,7 +9,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collector;
 
-import bjc.data.IPair;
+import bjc.data.Pair;
 import bjc.functypes.ID;
 
 /**
@@ -20,7 +20,7 @@ import bjc.functypes.ID;
  * @param <ContainedType>
  *                        The type in this list
  */
-public interface IList<ContainedType> extends Iterable<ContainedType> {
+public interface ListEx<ContainedType> extends Iterable<ContainedType> {
 	/**
 	 * Add an item to this list.
 	 *
@@ -40,7 +40,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * @return True if every item was successfully added to the list, false
 	 *         otherwise.
 	 */
-	default boolean addAll(final IList<ContainedType> items) {
+	default boolean addAll(final ListEx<ContainedType> items) {
 		return items.map(this::add).anyMatch(bl -> bl == false);
 	}
 
@@ -136,7 +136,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 *
 	 * @return A new list containing the merged pairs of lists.
 	 */
-	<OtherType, CombinedType> IList<CombinedType> combineWith(IList<OtherType> list,
+	<OtherType, CombinedType> ListEx<CombinedType> combineWith(ListEx<OtherType> list,
 			BiFunction<ContainedType, OtherType, CombinedType> combiner);
 
 	/**
@@ -191,8 +191,8 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 * @return A new list containing the flattened results of applying the provided
 	 *         function.
 	 */
-	<MappedType> IList<MappedType>
-			flatMap(Function<ContainedType, IList<MappedType>> expander);
+	<MappedType> ListEx<MappedType>
+			flatMap(Function<ContainedType, ListEx<MappedType>> expander);
 
 	/**
 	 * Apply a given action for each member of the list.
@@ -230,7 +230,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 *
 	 * @return A list containing all elements that match the predicate.
 	 */
-	IList<ContainedType> getMatching(Predicate<ContainedType> predicate);
+	ListEx<ContainedType> getMatching(Predicate<ContainedType> predicate);
 
 	/**
 	 * Retrieve the size of the wrapped list.
@@ -259,7 +259,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 *
 	 * @return A new list containing the mapped elements of this list.
 	 */
-	<MappedType> IList<MappedType> map(Function<ContainedType, MappedType> transformer);
+	<MappedType> ListEx<MappedType> map(Function<ContainedType, MappedType> transformer);
 
 	/**
 	 * Zip two lists into a list of pairs.
@@ -272,7 +272,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 *
 	 * @return A list containing pairs of this element and the specified list.
 	 */
-	<OtherType> IList<IPair<ContainedType, OtherType>> pairWith(IList<OtherType> list);
+	<OtherType> ListEx<Pair<ContainedType, OtherType>> pairWith(ListEx<OtherType> list);
 
 	/**
 	 * Partition this list into a list of sublists.
@@ -285,7 +285,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 *         partition may not be completely full if the size of the list is not a
 	 *         multiple of partitionSize.
 	 */
-	IList<IList<ContainedType>> partition(int partitionSize);
+	ListEx<ListEx<ContainedType>> partition(int partitionSize);
 
 	/**
 	 * Prepend an item to the list.
@@ -429,7 +429,7 @@ public interface IList<ContainedType> extends Iterable<ContainedType> {
 	 *
 	 * @return The list without the first element.
 	 */
-	IList<ContainedType> tail();
+	ListEx<ContainedType> tail();
 
 	/**
 	 * Convert this list into an array.

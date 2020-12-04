@@ -193,10 +193,10 @@ public class Combinators {
 	 *         functions.
 	 */
 	public static
-	<Input, Output1, Output2> Function<Input, IPair<Output1, Output2>>
+	<Input, Output1, Output2> Function<Input, Pair<Output1, Output2>>
 	concat(Function<Input, Output1> funcA, Function<Input, Output2> funcB)
 	{
-		return (arg) -> IPair.pair(funcA.apply(arg), funcB.apply(arg));
+		return (arg) -> Pair.pair(funcA.apply(arg), funcB.apply(arg));
 	}
 	
 	/**

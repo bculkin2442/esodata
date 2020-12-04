@@ -14,7 +14,7 @@ import java.util.function.*;
  * @param <ValueType>
  *                    The type of this map's values.
  */
-public interface IMap<KeyType, ValueType> extends IFreezable {
+public interface MapEx<KeyType, ValueType> extends Freezable {
 	/**
 	 * Execute an action for each entry in the map.
 	 *
@@ -86,7 +86,7 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 	default void clear() {
 		if (isFrozen()) throw new ObjectFrozen("Can't clear a frozen map");
 		
-		keyList().forEach(IMap.this::remove);
+		keyList().forEach(MapEx.this::remove);
 	}
 
 	/**
@@ -116,15 +116,15 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 	 *
 	 * @return A list of all the keys in this map.
 	 */
-	IList<KeyType> keyList();
+	ListEx<KeyType> keyList();
 
 	/**
 	 * Get a list of the values in this map.
 	 *
 	 * @return A list of values in this map.
 	 */
-	default IList<ValueType> valueList() {
-		final IList<ValueType> returns = new FunctionalList<>();
+	default ListEx<ValueType> valueList() {
+		final ListEx<ValueType> returns = new FunctionalList<>();
 
 		for (final KeyType key : keyList()) {
 			returns.add(get(key).orElse(null));
@@ -154,7 +154,7 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 	 *
 	 * @return The map where each value will be transformed after lookup.
 	 */
-	default <V2> IMap<KeyType, V2> transform(final Function<ValueType, V2> transformer) {
+	default <V2> MapEx<KeyType, V2> transform(final Function<ValueType, V2> transformer) {
 		return new TransformedValueMap<>(this, transformer);
 	}
 
@@ -164,7 +164,7 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 	 *
 	 * @return An extended map.
 	 */
-	default IMap<KeyType, ValueType> extend() {
+	default MapEx<KeyType, ValueType> extend() {
 	   return extend(new FunctionalMap<>());
 	};
 
@@ -177,7 +177,7 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 	 * 
 	 * @return An extended map, with the specified backing map.
 	 */
-	default IMap<KeyType, ValueType> extend(IMap<KeyType, ValueType> backer) {
+	default MapEx<KeyType, ValueType> extend(MapEx<KeyType, ValueType> backer) {
 		return new ExtendedMap<>(this, backer);
 	};
 	
@@ -200,10 +200,10 @@ public interface IMap<KeyType, ValueType> extends IFreezable {
 	 * @throws IllegalArgumentException If you provide an incomplete pair of arguments.
 	 */
 	@SuppressWarnings("unchecked")
-	static <KeyType2, ValueType2> IMap<KeyType2, ValueType2> of(Object... args) {
+	static <KeyType2, ValueType2> MapEx<KeyType2, ValueType2> of(Object... args) {
 		if (args.length % 2 != 0) throw new IllegalArgumentException("Args must be in the form of key-value pairs");
 		
-		IMap<KeyType2, ValueType2> map = new FunctionalMap<>();
+		MapEx<KeyType2, ValueType2> map = new FunctionalMap<>();
 		for (int index = 0; index < args.length; index += 2) {
 			KeyType2   key   = (KeyType2)   args[index];
 			ValueType2 value = (ValueType2) args[index + 1];

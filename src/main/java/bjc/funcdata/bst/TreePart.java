@@ -13,7 +13,7 @@ import java.util.function.Predicate;
  * @param <T>
  *            The data contained in this part of the tree.
  */
-public interface ITreePart<T> {
+public interface TreePart<T> {
 	/**
 	 * Add a element below this tree part somewhere.
 	 *

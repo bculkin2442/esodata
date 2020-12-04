@@ -11,7 +11,7 @@ import java.util.function.UnaryOperator;
  * @param <ContainedType>
  *                        The type contained in the holder.
  */
-public class Identity<ContainedType> implements IHolder<ContainedType> {
+public class Identity<ContainedType> implements Holder<ContainedType> {
 	/* The held value. */
 	private ContainedType heldValue;
 
@@ -31,8 +31,8 @@ public class Identity<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public <BoundType> IHolder<BoundType>
-			bind(final Function<ContainedType, IHolder<BoundType>> binder) {
+	public <BoundType> Holder<BoundType>
+			bind(final Function<ContainedType, Holder<BoundType>> binder) {
 		return binder.apply(heldValue);
 	}
 
@@ -64,7 +64,7 @@ public class Identity<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public <NewType> Function<ContainedType, IHolder<NewType>>
+	public <NewType> Function<ContainedType, Holder<NewType>>
 			lift(final Function<ContainedType, NewType> func) {
 		return val -> {
 			return new Identity<>(func.apply(val));
@@ -72,7 +72,7 @@ public class Identity<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public <MappedType> IHolder<MappedType>
+	public <MappedType> Holder<MappedType>
 			map(final Function<ContainedType, MappedType> mapper) {
 		return new Identity<>(mapper.apply(heldValue));
 	}
@@ -83,7 +83,7 @@ public class Identity<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public IHolder<ContainedType>
+	public Holder<ContainedType>
 			transform(final UnaryOperator<ContainedType> transformer) {
 		heldValue = transformer.apply(heldValue);
 

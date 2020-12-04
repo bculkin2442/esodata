@@ -3,7 +3,7 @@ package bjc.data.internals;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
-import bjc.data.IHolder;
+import bjc.data.Holder;
 import bjc.data.Option;
 
 /**
@@ -13,9 +13,9 @@ import bjc.data.Option;
  * @param <ContainedType>
  *                        The wrapped type.
  */
-public class WrappedOption<ContainedType> implements IHolder<ContainedType> {
+public class WrappedOption<ContainedType> implements Holder<ContainedType> {
 	/* The held value. */
-	private final IHolder<IHolder<ContainedType>> held;
+	private final Holder<Holder<ContainedType>> held;
 
 	/**
 	 * Create a new wrapped option.
@@ -23,7 +23,7 @@ public class WrappedOption<ContainedType> implements IHolder<ContainedType> {
 	 * @param seedValue
 	 *                  The value to wrap.
 	 */
-	public WrappedOption(final IHolder<ContainedType> seedValue) {
+	public WrappedOption(final Holder<ContainedType> seedValue) {
 		held = new Option<>(seedValue);
 	}
 
@@ -31,15 +31,15 @@ public class WrappedOption<ContainedType> implements IHolder<ContainedType> {
 	 * The dummy parameter is to ensure the compiler can pick the right method,
 	 * because without this method erases to the same type as the public one.
 	 */
-	private WrappedOption(final IHolder<IHolder<ContainedType>> toHold,
+	private WrappedOption(final Holder<Holder<ContainedType>> toHold,
 			@SuppressWarnings("unused") final boolean dummy) {
 		held = toHold;
 	}
 
 	@Override
-	public <BoundType> IHolder<BoundType>
-			bind(final Function<ContainedType, IHolder<BoundType>> binder) {
-		final IHolder<IHolder<BoundType>> newHolder = held.map(containedHolder -> {
+	public <BoundType> Holder<BoundType>
+			bind(final Function<ContainedType, Holder<BoundType>> binder) {
+		final Holder<Holder<BoundType>> newHolder = held.map(containedHolder -> {
 			return containedHolder.bind((containedValue) -> {
 				if (containedValue == null)
 					return new Option<>(null);
@@ -52,7 +52,7 @@ public class WrappedOption<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public <NewType> Function<ContainedType, IHolder<NewType>>
+	public <NewType> Function<ContainedType, Holder<NewType>>
 			lift(final Function<ContainedType, NewType> func) {
 		return val -> {
 			return new Option<>(func.apply(val));
@@ -60,9 +60,9 @@ public class WrappedOption<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public <MappedType> IHolder<MappedType>
+	public <MappedType> Holder<MappedType>
 			map(final Function<ContainedType, MappedType> mapper) {
-		final IHolder<IHolder<MappedType>> newHolder = held.map(containedHolder -> {
+		final Holder<Holder<MappedType>> newHolder = held.map(containedHolder -> {
 			return containedHolder.map((containedValue) -> {
 				if (containedValue == null)
 					return null;
@@ -75,7 +75,7 @@ public class WrappedOption<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public IHolder<ContainedType>
+	public Holder<ContainedType>
 			transform(final UnaryOperator<ContainedType> transformer) {
 		held.transform(containedHolder -> {
 			return containedHolder.transform((containedValue) -> {

@@ -15,7 +15,7 @@ import java.util.function.Function;
  *                    The type that could be on the right.
  *
  */
-public class Either<LeftType, RightType> implements IPair<LeftType, RightType> {
+public class Either<LeftType, RightType> implements Pair<LeftType, RightType> {
 	/**
 	 * Create a new either with the left value occupied.
 	 *
@@ -73,16 +73,16 @@ public class Either<LeftType, RightType> implements IPair<LeftType, RightType> {
 	}
 
 	@Override
-	public <BoundLeft, BoundRight> IPair<BoundLeft, BoundRight> bind(
-			final BiFunction<LeftType, RightType, IPair<BoundLeft, BoundRight>> binder) {
+	public <BoundLeft, BoundRight> Pair<BoundLeft, BoundRight> bind(
+			final BiFunction<LeftType, RightType, Pair<BoundLeft, BoundRight>> binder) {
 		if (binder == null) throw new NullPointerException("Binder must not be null");
 
 		return binder.apply(leftVal, rightVal);
 	}
 
 	@Override
-	public <BoundLeft> IPair<BoundLeft, RightType>
-			bindLeft(final Function<LeftType, IPair<BoundLeft, RightType>> leftBinder) {
+	public <BoundLeft> Pair<BoundLeft, RightType>
+			bindLeft(final Function<LeftType, Pair<BoundLeft, RightType>> leftBinder) {
 		if (leftBinder == null) throw new NullPointerException("Left binder must not be null");
 
 		if (isLeft) return leftBinder.apply(leftVal);
@@ -90,8 +90,8 @@ public class Either<LeftType, RightType> implements IPair<LeftType, RightType> {
 	}
 
 	@Override
-	public <BoundRight> IPair<LeftType, BoundRight> bindRight(
-			final Function<RightType, IPair<LeftType, BoundRight>> rightBinder) {
+	public <BoundRight> Pair<LeftType, BoundRight> bindRight(
+			final Function<RightType, Pair<LeftType, BoundRight>> rightBinder) {
 		if (rightBinder == null) throw new NullPointerException("Right binder must not be null");
 
 		if (isLeft) return new Either<>(leftVal, null);
@@ -100,8 +100,8 @@ public class Either<LeftType, RightType> implements IPair<LeftType, RightType> {
 
 	@Override
 	public <OtherLeft, OtherRight, CombinedLeft, CombinedRight>
-			IPair<CombinedLeft, CombinedRight>
-			combine(final IPair<OtherLeft, OtherRight> otherPair,
+			Pair<CombinedLeft, CombinedRight>
+			combine(final Pair<OtherLeft, OtherRight> otherPair,
 					final BiFunction<LeftType, OtherLeft, CombinedLeft> leftCombiner,
 					final BiFunction<RightType, OtherRight,
 							CombinedRight> rightCombiner) {
@@ -129,7 +129,7 @@ public class Either<LeftType, RightType> implements IPair<LeftType, RightType> {
 	}
 
 	@Override
-	public <NewLeft> IPair<NewLeft, RightType>
+	public <NewLeft> Pair<NewLeft, RightType>
 			mapLeft(final Function<LeftType, NewLeft> mapper) {
 		if (mapper == null) throw new NullPointerException("Mapper must not be null");
 
@@ -138,7 +138,7 @@ public class Either<LeftType, RightType> implements IPair<LeftType, RightType> {
 	}
 
 	@Override
-	public <NewRight> IPair<LeftType, NewRight>
+	public <NewRight> Pair<LeftType, NewRight>
 			mapRight(final Function<RightType, NewRight> mapper) {
 		if (mapper == null) throw new NullPointerException("Mapper must not be null");
 

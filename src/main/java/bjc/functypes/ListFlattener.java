@@ -2,7 +2,7 @@ package bjc.functypes;
 
 import java.util.function.Function;
 
-import bjc.funcdata.IList;
+import bjc.funcdata.ListEx;
 
 /**
  * A function that flattens a list.
@@ -12,7 +12,7 @@ import bjc.funcdata.IList;
  * @param <S>
  *            The type of value in the list.
  */
-public interface ListFlattener<S> extends Function<IList<S>, S> {
+public interface ListFlattener<S> extends Function<ListEx<S>, S> {
 	/*
 	 * Alias
 	 */

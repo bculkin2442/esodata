@@ -13,7 +13,7 @@ import java.util.function.Predicate;
  * @param <T>
  *            The data stored in the tree.
  */
-public class BinarySearchTreeLeaf<T> implements ITreePart<T> {
+public class BinarySearchTreeLeaf<T> implements TreePart<T> {
 	/** The data held in this tree leaf */
 	protected T data;
 

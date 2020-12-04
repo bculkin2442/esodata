@@ -3,9 +3,9 @@ package bjc.data.internals;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
-import bjc.data.IHolder;
+import bjc.data.Holder;
 import bjc.data.ListHolder;
-import bjc.funcdata.IList;
+import bjc.funcdata.ListEx;
 
 /**
  * Holds a list, converted into a holder.
@@ -13,9 +13,9 @@ import bjc.funcdata.IList;
  * @author Ben Culkin
  */
 @SuppressWarnings("javadoc")
-public class BoundListHolder<ContainedType> implements IHolder<ContainedType> {
+public class BoundListHolder<ContainedType> implements Holder<ContainedType> {
 	/* The list of contained holders. */
-	private final IList<IHolder<ContainedType>> heldHolders;
+	private final ListEx<Holder<ContainedType>> heldHolders;
 
 	/**
 	 * Create a new list of holders.
@@ -23,17 +23,17 @@ public class BoundListHolder<ContainedType> implements IHolder<ContainedType> {
 	 * @param toHold
 	 *               The list of holders to, well, hold.
 	 */
-	public BoundListHolder(final IList<IHolder<ContainedType>> toHold) {
+	public BoundListHolder(final ListEx<Holder<ContainedType>> toHold) {
 		heldHolders = toHold;
 	}
 
 	@Override
-	public <BoundType> IHolder<BoundType>
-			bind(final Function<ContainedType, IHolder<BoundType>> binder) {
+	public <BoundType> Holder<BoundType>
+			bind(final Function<ContainedType, Holder<BoundType>> binder) {
 		if (binder == null)
 			throw new NullPointerException("Binder must not be null");
 
-		final IList<IHolder<BoundType>> boundHolders
+		final ListEx<Holder<BoundType>> boundHolders
 				= heldHolders.map(containedHolder -> {
 					return containedHolder.bind(binder);
 				});
@@ -42,7 +42,7 @@ public class BoundListHolder<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public <NewType> Function<ContainedType, IHolder<NewType>>
+	public <NewType> Function<ContainedType, Holder<NewType>>
 			lift(final Function<ContainedType, NewType> func) {
 		if (func == null)
 			throw new NullPointerException("Function to lift must not be null");
@@ -53,12 +53,12 @@ public class BoundListHolder<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public <MappedType> IHolder<MappedType>
+	public <MappedType> Holder<MappedType>
 			map(final Function<ContainedType, MappedType> mapper) {
 		if (mapper == null)
 			throw new NullPointerException("Mapper must not be null");
 
-		final IList<IHolder<MappedType>> mappedHolders
+		final ListEx<Holder<MappedType>> mappedHolders
 				= heldHolders.map(containedHolder -> {
 					return containedHolder.map(mapper);
 				});
@@ -67,7 +67,7 @@ public class BoundListHolder<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public IHolder<ContainedType>
+	public Holder<ContainedType>
 			transform(final UnaryOperator<ContainedType> transformer) {
 		if (transformer == null)
 			throw new NullPointerException("Transformer must not be null");

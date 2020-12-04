@@ -5,7 +5,7 @@ package bjc.data;
  * @author Ben Culkin
  *
  */
-public interface IContext {
+public interface Context {
 	/**
 	 * Register an object with this context.
 	 * 
@@ -19,7 +19,7 @@ public interface IContext {
 	 * 
 	 * @return The parent of this context.
 	 */
-	IContext getParent();
+	Context getParent();
 
 	/**
 	 * Get an object from this context.

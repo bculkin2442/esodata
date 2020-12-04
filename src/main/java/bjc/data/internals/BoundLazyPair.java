@@ -4,8 +4,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import bjc.data.IHolder;
-import bjc.data.IPair;
+import bjc.data.Holder;
+import bjc.data.Pair;
 import bjc.data.Identity;
 import bjc.data.LazyPair;
 
@@ -16,17 +16,17 @@ import bjc.data.LazyPair;
  */
 @SuppressWarnings("javadoc")
 public class BoundLazyPair<OldLeft, OldRight, NewLeft, NewRight>
-		implements IPair<NewLeft, NewRight> {
+		implements Pair<NewLeft, NewRight> {
 	/* The supplier of the left value. */
 	private final Supplier<OldLeft> leftSupplier;
 	/* The supplier of the right value. */
 	private final Supplier<OldRight> rightSupplier;
 
 	/* The binder to transform values. */
-	private final BiFunction<OldLeft, OldRight, IPair<NewLeft, NewRight>> binder;
+	private final BiFunction<OldLeft, OldRight, Pair<NewLeft, NewRight>> binder;
 
 	/* The bound pair. */
-	private IPair<NewLeft, NewRight> boundPair;
+	private Pair<NewLeft, NewRight> boundPair;
 
 	/* Whether the pair has been bound yet. */
 	private boolean pairBound;
@@ -46,20 +46,20 @@ public class BoundLazyPair<OldLeft, OldRight, NewLeft, NewRight>
 	 */
 	public BoundLazyPair(final Supplier<OldLeft> leftSupp,
 			final Supplier<OldRight> rightSupp,
-			final BiFunction<OldLeft, OldRight, IPair<NewLeft, NewRight>> bindr) {
+			final BiFunction<OldLeft, OldRight, Pair<NewLeft, NewRight>> bindr) {
 		leftSupplier = leftSupp;
 		rightSupplier = rightSupp;
 		binder = bindr;
 	}
 
 	@Override
-	public <BoundLeft, BoundRight> IPair<BoundLeft, BoundRight> bind(
-			final BiFunction<NewLeft, NewRight, IPair<BoundLeft, BoundRight>> bindr) {
+	public <BoundLeft, BoundRight> Pair<BoundLeft, BoundRight> bind(
+			final BiFunction<NewLeft, NewRight, Pair<BoundLeft, BoundRight>> bindr) {
 		if (bindr == null)
 			throw new NullPointerException("Binder must not be null");
 
-		final IHolder<IPair<NewLeft, NewRight>> newPair = new Identity<>(boundPair);
-		final IHolder<Boolean> newPairMade = new Identity<>(pairBound);
+		final Holder<Pair<NewLeft, NewRight>> newPair = new Identity<>(boundPair);
+		final Holder<Boolean> newPairMade = new Identity<>(pairBound);
 
 		final Supplier<NewLeft> leftSupp = () -> {
 			if (!newPairMade.getValue()) {
@@ -91,13 +91,13 @@ public class BoundLazyPair<OldLeft, OldRight, NewLeft, NewRight>
 	}
 
 	@Override
-	public <BoundLeft> IPair<BoundLeft, NewRight>
-			bindLeft(final Function<NewLeft, IPair<BoundLeft, NewRight>> leftBinder) {
+	public <BoundLeft> Pair<BoundLeft, NewRight>
+			bindLeft(final Function<NewLeft, Pair<BoundLeft, NewRight>> leftBinder) {
 		if (leftBinder == null)
 			throw new NullPointerException("Left binder must not be null");
 
 		final Supplier<NewLeft> leftSupp = () -> {
-			IPair<NewLeft, NewRight> newPair = boundPair;
+			Pair<NewLeft, NewRight> newPair = boundPair;
 
 			if (!pairBound) {
 				/*
@@ -113,13 +113,13 @@ public class BoundLazyPair<OldLeft, OldRight, NewLeft, NewRight>
 	}
 
 	@Override
-	public <BoundRight> IPair<NewLeft, BoundRight>
-			bindRight(final Function<NewRight, IPair<NewLeft, BoundRight>> rightBinder) {
+	public <BoundRight> Pair<NewLeft, BoundRight>
+			bindRight(final Function<NewRight, Pair<NewLeft, BoundRight>> rightBinder) {
 		if (rightBinder == null)
 			throw new NullPointerException("Right binder must not be null");
 
 		final Supplier<NewRight> rightSupp = () -> {
-			IPair<NewLeft, NewRight> newPair = boundPair;
+			Pair<NewLeft, NewRight> newPair = boundPair;
 
 			if (!pairBound) {
 				/*
@@ -136,8 +136,8 @@ public class BoundLazyPair<OldLeft, OldRight, NewLeft, NewRight>
 
 	@Override
 	public <OtherLeft, OtherRight, CombinedLeft, CombinedRight>
-			IPair<CombinedLeft, CombinedRight>
-			combine(final IPair<OtherLeft, OtherRight> otherPair,
+			Pair<CombinedLeft, CombinedRight>
+			combine(final Pair<OtherLeft, OtherRight> otherPair,
 					final BiFunction<NewLeft, OtherLeft, CombinedLeft> leftCombiner,
 					final BiFunction<NewRight, OtherRight, CombinedRight> rightCombiner) {
 		if (otherPair == null) {
@@ -157,7 +157,7 @@ public class BoundLazyPair<OldLeft, OldRight, NewLeft, NewRight>
 	}
 
 	@Override
-	public <NewLeftType> IPair<NewLeftType, NewRight>
+	public <NewLeftType> Pair<NewLeftType, NewRight>
 			mapLeft(final Function<NewLeft, NewLeftType> mapper) {
 		if (mapper == null)
 			throw new NullPointerException("Mapper must not be null");
@@ -184,7 +184,7 @@ public class BoundLazyPair<OldLeft, OldRight, NewLeft, NewRight>
 	}
 
 	@Override
-	public <NewRightType> IPair<NewLeft, NewRightType>
+	public <NewRightType> Pair<NewLeft, NewRightType>
 			mapRight(final Function<NewRight, NewRightType> mapper) {
 		if (mapper == null)
 			throw new NullPointerException("Mapper must not be null");

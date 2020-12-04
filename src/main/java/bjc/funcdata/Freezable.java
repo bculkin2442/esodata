@@ -12,7 +12,7 @@ package bjc.funcdata;
  * 
  * @author Ben Culkin
  */
-public interface IFreezable {
+public interface Freezable {
 	/**
 	 * Freezes the internal state of this object, making it immutable.
 	 * 

@@ -1,7 +1,7 @@
 package bjc.funcdata;
 
 /**
- * Exception that implementations of {@link IFreezable} can throw if you attempt
+ * Exception that implementations of {@link Freezable} can throw if you attempt
  * to modify a frozen object.
  * 
  * @author Ben Culkin

@@ -20,10 +20,10 @@ import java.util.function.Predicate;
  */
 public class BinarySearchTreeNode<T> extends BinarySearchTreeLeaf<T> {
 	/* The left child of this node */
-	private ITreePart<T> left;
+	private TreePart<T> left;
 
 	/* The right child of this node */
-	private ITreePart<T> right;
+	private TreePart<T> right;
 
 	/**
 	 * Create a new node with the specified data and children.
@@ -37,8 +37,8 @@ public class BinarySearchTreeNode<T> extends BinarySearchTreeLeaf<T> {
 	 * @param rght
 	 *                The right child of this node.
 	 */
-	public BinarySearchTreeNode(final T element, final ITreePart<T> lft,
-			final ITreePart<T> rght) {
+	public BinarySearchTreeNode(final T element, final TreePart<T> lft,
+			final TreePart<T> rght) {
 		super(element);
 		this.left = lft;
 		this.right = rght;

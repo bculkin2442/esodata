@@ -12,7 +12,7 @@ public class Contexts {
 	/**
 	 * The null context, which always throws an exception.
 	 */
-	public static final IContext NULL = new NullContextImpl();
+	public static final Context NULL = new NullContextImpl();
 
 	private Contexts() {
 		throw new UnsupportedOperationException();
@@ -23,7 +23,7 @@ public class Contexts {
 	 * 
 	 * @return A context with no parent.
 	 */
-	public static IContext create() {
+	public static Context create() {
 		return new ContextImpl(NULL);
 	}
 
@@ -34,13 +34,13 @@ public class Contexts {
 	 * 
 	 * @return A context with the given context as its parent.
 	 */
-	public static IContext create(IContext parent) {
+	public static Context create(Context parent) {
 		return new ContextImpl(parent);
 	}
 
-	private static class NullContextImpl implements IContext {
+	private static class NullContextImpl implements Context {
 		@Override
-		public IContext getParent() {
+		public Context getParent() {
 			return this;
 		}
 
@@ -60,13 +60,13 @@ public class Contexts {
 		}
 	}
 
-	private static class ContextImpl implements IContext {
+	private static class ContextImpl implements Context {
 
-		private final IContext parent;
+		private final Context parent;
 
 		private final Map<String, Object> objects;
 
-		public ContextImpl(IContext parent) {
+		public ContextImpl(Context parent) {
 			this.parent = parent;
 			this.objects = new HashMap<>();
 		}
@@ -96,7 +96,7 @@ public class Contexts {
 		}
 
 		@Override
-		public IContext getParent() {
+		public Context getParent() {
 			return parent;
 		}
 	}

@@ -8,11 +8,11 @@ import org.junit.*;
 
 @SuppressWarnings("javadoc")
 public class TestMapOperations {
-	private IMap<String, String> map;
+	private MapEx<String, String> map;
 
 	@Before
 	public void setUp() throws Exception {
-		map = IMap.of("a", "A", "b", "B");
+		map = MapEx.of("a", "A", "b", "B");
 	}
 
 	@Test

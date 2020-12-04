@@ -1,154 +1,250 @@
 package bjc.data;
 
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import bjc.funcdata.theory.Bifunctor;
+
 /**
- * A pair of values, with nothing special about them.
+ * Represents a pair of values.
  *
  * @author ben
  *
  * @param <LeftType>
- *                    The type of the left value.
+ *                    The type of the left side of the pair.
  *
  * @param <RightType>
- *                    The type of the right value.
+ *                    The type of the right side of the pair.
+ *
  */
-public class Pair<LeftType, RightType> implements IPair<LeftType, RightType> {
-	/* The left value. */
-	private LeftType leftValue;
-	/* The right value. */
-	private RightType rightValue;
+public interface Pair<LeftType, RightType> extends Bifunctor<LeftType, RightType> {
+	/**
+	 * Bind a function across the values in this pair.
+	 *
+	 * @param <BoundLeft>
+	 *                     The type of the bound left.
+	 *
+	 * @param <BoundRight>
+	 *                     The type of the bound right.
+	 *
+	 * @param binder
+	 *                     The function to bind with.
+	 *
+	 * @return The bound pair.
+	 */
+	public <BoundLeft, BoundRight> Pair<BoundLeft, BoundRight>
+			bind(BiFunction<LeftType, RightType, Pair<BoundLeft, BoundRight>> binder);
 
-	/** Create a new pair with both sides set to null. */
-	public Pair() {
-		// Do nothing :)
+	/**
+	 * Bind a function to the left value in this pair.
+	 *
+	 * @param <BoundLeft>
+	 *                    The type of the bound value.
+	 *
+	 * @param leftBinder
+	 *                    The function to use to bind.
+	 *
+	 * @return A pair with the left type bound.
+	 */
+	public <BoundLeft> Pair<BoundLeft, RightType>
+			bindLeft(Function<LeftType, Pair<BoundLeft, RightType>> leftBinder);
+
+	/**
+	 * Bind a function to the right value in this pair.
+	 *
+	 * @param <BoundRight>
+	 *                     The type of the bound value.
+	 *
+	 * @param rightBinder
+	 *                     The function to use to bind.
+	 *
+	 * @return A pair with the right type bound.
+	 */
+	public <BoundRight> Pair<LeftType, BoundRight>
+			bindRight(Function<RightType, Pair<LeftType, BoundRight>> rightBinder);
+
+	/**
+	 * Pairwise combine two pairs together.
+	 *
+	 * @param <OtherLeft>
+	 *                     The left type of the other pair.
+	 *
+	 * @param <OtherRight>
+	 *                     The right type of the other pair.
+	 *
+	 * @param otherPair
+	 *                     The pair to combine with.
+	 *
+	 * @return The pairs, pairwise combined together.
+	 */
+	public default <OtherLeft, OtherRight>
+			Pair<Pair<LeftType, OtherLeft>, Pair<RightType, OtherRight>>
+			combine(final Pair<OtherLeft, OtherRight> otherPair) {
+		return combine(otherPair,
+				SimplePair<LeftType, OtherLeft>::new,
+				SimplePair<RightType, OtherRight>::new);
 	}
 
 	/**
-	 * Create a new pair with both sides set to the specified values.
+	 * Combine the contents of two pairs together.
 	 *
-	 * @param left
-	 *              The value of the left side.
+	 * @param <OtherLeft>
+	 *                        The type of the left value of the other pair.
 	 *
-	 * @param right
-	 *              The value of the right side.
+	 * @param <OtherRight>
+	 *                        The type of the right value of the other pair.
+	 *
+	 * @param <CombinedLeft>
+	 *                        The type of the left value of the combined pair.
+	 *
+	 * @param <CombinedRight>
+	 *                        The type of the right value of the combined pair.
+	 *
+	 * @param otherPair
+	 *                        The other pair to combine with.
+	 *
+	 * @param leftCombiner
+	 *                        The function to combine the left values with.
+	 *
+	 * @param rightCombiner
+	 *                        The function to combine the right values with.
+	 *
+	 * @return A pair with its values combined.
 	 */
-	public Pair(final LeftType left, final RightType right) {
-		leftValue = left;
-		rightValue = right;
-	}
-
-	@Override
-	public <BoundLeft, BoundRight> IPair<BoundLeft, BoundRight> bind(
-			final BiFunction<LeftType, RightType, IPair<BoundLeft, BoundRight>> binder) {
-		if (binder == null) throw new NullPointerException("Binder must not be null.");
-
-		return binder.apply(leftValue, rightValue);
-	}
-
-	@Override
-	public <BoundLeft> IPair<BoundLeft, RightType>
-			bindLeft(final Function<LeftType, IPair<BoundLeft, RightType>> leftBinder) {
-		if (leftBinder == null) throw new NullPointerException("Binder must not be null");
-
-		return leftBinder.apply(leftValue);
-	}
-
-	@Override
-	public <BoundRight> IPair<LeftType, BoundRight> bindRight(
-			final Function<RightType, IPair<LeftType, BoundRight>> rightBinder) {
-		if (rightBinder == null) throw new NullPointerException("Binder must not be null");
-
-		return rightBinder.apply(rightValue);
-	}
-
-	@Override
 	public <OtherLeft, OtherRight, CombinedLeft, CombinedRight>
-			IPair<CombinedLeft, CombinedRight>
-			combine(final IPair<OtherLeft, OtherRight> otherPair,
-					final BiFunction<LeftType, OtherLeft, CombinedLeft> leftCombiner,
-					final BiFunction<RightType, OtherRight,
-							CombinedRight> rightCombiner) {
-		return otherPair.bind((otherLeft, otherRight) -> {
-			final CombinedLeft left = leftCombiner.apply(leftValue, otherLeft);
-			final CombinedRight right = rightCombiner.apply(rightValue, otherRight);
+			Pair<CombinedLeft, CombinedRight>
+			combine(Pair<OtherLeft, OtherRight> otherPair,
+					BiFunction<LeftType, OtherLeft, CombinedLeft> leftCombiner,
+					BiFunction<RightType, OtherRight, CombinedRight> rightCombiner);
 
-			return new Pair<>(left, right);
+	/**
+	 * Immediately perfom the specified action with the contents of this pair.
+	 *
+	 * @param consumer
+	 *                 The action to perform on the pair.
+	 */
+	public default void doWith(final BiConsumer<LeftType, RightType> consumer) {
+		merge((leftValue, rightValue) -> {
+			consumer.accept(leftValue, rightValue);
+
+			return null;
 		});
 	}
 
 	@Override
-	public <NewLeft> IPair<NewLeft, RightType>
-			mapLeft(final Function<LeftType, NewLeft> mapper) {
-		if (mapper == null) throw new NullPointerException("Mapper must not be null");
+	default <OldLeft, OldRight, NewLeft> LeftBifunctorMap<OldLeft, OldRight, NewLeft>
+			fmapLeft(final Function<OldLeft, NewLeft> func) {
+		return argumentPair -> {
+			if (!(argumentPair instanceof Pair<?, ?>)) {
+				final String msg
+						= "This function can only be applied to instances of IPair";
 
-		return new Pair<>(mapper.apply(leftValue), rightValue);
+				throw new IllegalArgumentException(msg);
+			}
+
+			final Pair<OldLeft, OldRight> argPair
+					= (Pair<OldLeft, OldRight>) argumentPair;
+
+			return argPair.mapLeft(func);
+		};
 	}
 
 	@Override
-	public <NewRight> IPair<LeftType, NewRight>
-			mapRight(final Function<RightType, NewRight> mapper) {
-		if (mapper == null) throw new NullPointerException("Mapper must not be null");
+	default <OldLeft, OldRight, NewRight> RightBifunctorMap<OldLeft, OldRight, NewRight>
+			fmapRight(final Function<OldRight, NewRight> func) {
+		return argumentPair -> {
+			if (!(argumentPair instanceof Pair<?, ?>)) {
+				final String msg
+						= "This function can only be applied to instances of IPair";
 
-		return new Pair<>(leftValue, mapper.apply(rightValue));
+				throw new IllegalArgumentException(msg);
+			}
+
+			final Pair<OldLeft, OldRight> argPair
+					= (Pair<OldLeft, OldRight>) argumentPair;
+
+			return argPair.mapRight(func);
+		};
 	}
 
+	/**
+	 * Get the value on the left side of the pair.
+	 *
+	 * @return The value on the left side of the pair.
+	 */
 	@Override
+	public default LeftType getLeft() {
+		return merge((leftValue, rightValue) -> leftValue);
+	}
+
+	/**
+	 * Get the value on the right side of the pair.
+	 *
+	 * @return The value on the right side of the pair.
+	 */
+	@Override
+	public default RightType getRight() {
+		return merge((leftValue, rightValue) -> rightValue);
+	}
+
+	/**
+	 * Transform the value on the left side of the pair.
+	 *
+	 * Doesn't modify the pair.
+	 *
+	 * @param <NewLeft>
+	 *                  The new type of the left part of the pair.
+	 *
+	 * @param mapper
+	 *                  The function to use to transform the left part of the pair.
+	 *
+	 * @return The pair, with its left part transformed.
+	 */
+	public <NewLeft> Pair<NewLeft, RightType>
+			mapLeft(Function<LeftType, NewLeft> mapper);
+
+	/**
+	 * Transform the value on the right side of the pair.
+	 *
+	 * Doesn't modify the pair.
+	 *
+	 * @param <NewRight>
+	 *                   The new type of the right part of the pair.
+	 *
+	 * @param mapper
+	 *                   The function to use to transform the right part of the
+	 *                   pair.
+	 *
+	 * @return The pair, with its right part transformed.
+	 */
+	public <NewRight> Pair<LeftType, NewRight>
+			mapRight(Function<RightType, NewRight> mapper);
+
+	/**
+	 * Merge the two values in this pair into a single value.
+	 *
+	 * @param <MergedType>
+	 *                     The type of the single value.
+	 *
+	 * @param merger
+	 *                     The function to use for merging.
+	 *
+	 * @return The pair, merged into a single value.
+	 */
 	public <MergedType> MergedType
-			merge(final BiFunction<LeftType, RightType, MergedType> merger) {
-		if (merger == null) throw new NullPointerException("Merger must not be null");
+			merge(BiFunction<LeftType, RightType, MergedType> merger);
 
-		return merger.apply(leftValue, rightValue);
-	}
-
-	@Override
-	public String toString() {
-		return String.format("Pair [leftValue='%s', rightValue='%s']", leftValue,
-				rightValue);
-	}
-
-	@Override
-	public LeftType getLeft() {
-		return leftValue;
-	}
-
-	@Override
-	public RightType getRight() {
-		return rightValue;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-
-		result = prime * result + (leftValue == null ? 0 : leftValue.hashCode());
-		result = prime * result + (rightValue == null ? 0 : rightValue.hashCode());
-
-		return result;
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj)                  return true;
-		if (obj == null)                  return false;
-		if (!(obj instanceof Pair<?, ?>)) return false;
-
-		final Pair<?, ?> other = (Pair<?, ?>) obj;
-
-		if (leftValue == null) {
-			if (other.leftValue != null) return false;
-		} else if (!leftValue.equals(other.leftValue)) {
-			return false;
-		}
-
-		if (rightValue == null) {
-			if (other.rightValue != null) return false;
-		} else if (!rightValue.equals(other.rightValue)) {
-			return false;
-		}
-
-		return true;
+	/**
+	 * Static pair constructor.
+	 *
+	 * @param left
+	 *              The left side of the pair.
+	 * @param right
+	 *              The right side of the pair.
+	 * @return A pair, with the specified left/right side.
+	 */
+	public static <T1, T2> Pair<T1, T2> pair(T1 left, T2 right) {
+		return new SimplePair<>(left, right);
 	}
 }

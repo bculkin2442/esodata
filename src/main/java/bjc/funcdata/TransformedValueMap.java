@@ -19,9 +19,9 @@ import java.util.function.*;
  *
  */
 final class TransformedValueMap<OldKey, OldValue, NewValue>
-		implements IMap<OldKey, NewValue> {
+		implements MapEx<OldKey, NewValue> {
 	/* Our backing map. */
-	private final IMap<OldKey, OldValue> backing;
+	private final MapEx<OldKey, OldValue> backing;
 	/* Our transforming function. */
 	private final Function<OldValue, NewValue> transformer;
 
@@ -37,7 +37,7 @@ final class TransformedValueMap<OldKey, OldValue, NewValue>
 	 * @param transform
 	 *                   The function to use for the transform.
 	 */
-	public TransformedValueMap(final IMap<OldKey, OldValue> backingMap,
+	public TransformedValueMap(final MapEx<OldKey, OldValue> backingMap,
 			final Function<OldValue, NewValue> transform) {
 		backing = backingMap;
 		transformer = transform;
@@ -73,7 +73,7 @@ final class TransformedValueMap<OldKey, OldValue, NewValue>
 	}
 
 	@Override
-	public IList<OldKey> keyList() {
+	public ListEx<OldKey> keyList() {
 		return backing.keyList();
 	}
 

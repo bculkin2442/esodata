@@ -6,441 +6,281 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
-import bjc.funcdata.FunctionalList;
-import bjc.funcdata.IList;
+import bjc.funcdata.ListEx;
 import bjc.funcdata.bst.TreeLinearizationMethod;
 
 /**
- * A node in a homogeneous tree.
+ * A node in a homogeneous tree with a unlimited amount of children.
  *
  * @author ben
  *
  * @param <ContainedType>
- *                        The type contained in the tree.
+ *                        The type of data contained in the tree nodes.
+ *
  */
-public class Tree<ContainedType> implements ITree<ContainedType> {
-	/* The data/label for this node. */
-	private ContainedType data;
-
-	/* The children of this node. */
-	private IList<ITree<ContainedType>> children;
-
-	/* Whether this node has children. */
-	/*
-	 * @NOTE Why have both this boolean and childCount? Why not just do a childCount
-	 * == 0 whenever you'd check hasChildren? 
-	 * 
-	 * - Because hasChildren is set once and not reset, and really what it
-	 *   indicates is that children has been allocated.
+public interface Tree<ContainedType> {
+	/**
+	 * Append a child to this node.
+	 *
+	 * @param child
+	 *              The child to append to this node.
 	 */
-	private boolean hasChildren;
-	/* The number of children this node has. */
-	private int childCount = 0;
-
-	/* The ID of this node. */
-	private int ID;
-	/* The next ID to assign to a node. */
-	private static int nextID = 0;
+	void addChild(Tree<ContainedType> child);
 
 	/**
-	 * Create a new leaf node in a tree.
+	 * Append a child to this node.
+	 *
+	 * @param child
+	 *              The child to append to this node.
 	 */
-	public Tree() {
-		this(null);
-	}
+	void addChild(ContainedType child);
 
 	/**
-	 * Create a new leaf node in a tree.
+	 * Prepend a child to this node.
 	 *
-	 * @param leaf
-	 *             The data to store as a leaf node.
+	 * @param child
+	 *              The child to prepend to this node.
 	 */
-	public Tree(final ContainedType leaf) {
-		data = leaf;
-
-		hasChildren = false;
-
-		ID = nextID++;
-	}
+	void prependChild(Tree<ContainedType> child);
 
 	/**
-	 * Create a new tree node with the specified children.
+	 * Collapse a tree into a single version.
 	 *
-	 * @param leaf
-	 *                The data to hold in this node.
+	 * @param <NewType>
+	 *                          The intermediate type being folded.
 	 *
-	 * @param childrn
-	 *                A list of children for this node.
+	 * @param <ReturnedType>
+	 *                          The type that is the end result.
+	 *
+	 * @param leafTransform
+	 *                          The function to use to convert leaf values.
+	 *
+	 * @param nodeCollapser
+	 *                          The function to use to convert internal nodes and
+	 *                          their children.
+	 *
+	 * @param resultTransformer
+	 *                          The function to use to convert a state to the
+	 *                          returned version.
+	 *
+	 * @return The final transformed state.
 	 */
-	public Tree(final ContainedType leaf, final IList<ITree<ContainedType>> childrn) {
-		this(leaf);
-
-		hasChildren = true;
-
-		childCount = childrn.getSize();
-
-		children = childrn;
-	}
+	<NewType, ReturnedType> ReturnedType collapse(
+			Function<ContainedType, NewType> leafTransform,
+			BiFunction<ContainedType, ListEx<NewType>, NewType> nodeCollapser,
+			Function<NewType, ReturnedType> resultTransformer);
 
 	/**
-	 * Create a new tree node with the specified children.
+	 * Execute a given action for each of this tree's children.
 	 *
-	 * @param leaf
-	 *                The data to hold in this node.
+	 * @param action
+	 *               The action to execute for each child.
+	 */
+	void doForChildren(Consumer<Tree<ContainedType>> action);
+
+	/**
+	 * Expand the nodes of a tree into trees, and then merge the contents of those
+	 * trees into a single tree.
 	 *
-	 * @param childrn
-	 *                A list of children for this node.
+	 * @param mapper
+	 *               The function to use to map values into trees.
+	 *
+	 * @return A tree, with some nodes expanded into trees.
 	 */
-	@SafeVarargs
-	public Tree(final ContainedType leaf, final ITree<ContainedType>... childrn) {
-		this(leaf);
+	default Tree<ContainedType>
+			flatMapTree(final Function<ContainedType, Tree<ContainedType>> mapper) {
+		return topDownTransform(dat -> TopDownTransformResult.PUSHDOWN, node -> {
+			if (node.getChildrenCount() > 0) {
+				final Tree<ContainedType> parent = node.transformHead(mapper);
 
-		hasChildren = true;
+				node.doForChildren(parent::addChild);
 
-		childCount = 0;
-
-		children = new FunctionalList<>();
-
-		for (final ITree<ContainedType> child : childrn) {
-			children.add(child);
-
-			childCount++;
-		}
-	}
-
-	@Override
-	public void addChild(final ContainedType child) {
-		addChild(new Tree<>(child));
-	}
-
-	@Override
-	public void addChild(final ITree<ContainedType> child) {
-		if (hasChildren == false) {
-			hasChildren = true;
-
-			children = new FunctionalList<>();
-		}
-
-		childCount++;
-
-		children.add(child);
-	}
-
-	@Override
-	public void prependChild(final ITree<ContainedType> child) {
-		if (hasChildren == false) {
-			hasChildren = true;
-
-			children = new FunctionalList<>();
-		}
-
-		childCount++;
-
-		children.prepend(child);
-	}
-
-	@Override
-	public void doForChildren(final Consumer<ITree<ContainedType>> action) {
-		if (childCount > 0) children.forEach(action);
-	}
-
-	@Override
-	public int getChildrenCount() {
-		return childCount;
-	}
-
-	@Override
-	public int revFind(final Predicate<ITree<ContainedType>> childPred) {
-		if (childCount == 0) return -1;
-
-		for (int i = childCount - 1; i >= 0; i--) {
-			if (childPred.test(getChild(i))) return i;
-		}
-
-		return -1;
-	}
-
-	@Override
-	public void traverse(final TreeLinearizationMethod linearizationMethod,
-			final Consumer<ContainedType> action) {
-		if (hasChildren) {
-			switch (linearizationMethod) {
-			case INORDER:
-				if (childCount != 2) {
-					final String msg = "Can only do in-order traversal for binary trees.";
-
-					throw new IllegalArgumentException(msg);
-				}
-
-				children.getByIndex(0).traverse(linearizationMethod, action);
-
-				action.accept(data);
-
-				children.getByIndex(1).traverse(linearizationMethod, action);
-				break;
-			case POSTORDER:
-				children.forEach(child -> child.traverse(linearizationMethod, action));
-
-				action.accept(data);
-				break;
-			case PREORDER:
-				action.accept(data);
-
-				children.forEach(child -> child.traverse(linearizationMethod, action));
-				break;
-			default:
-				break;
-
-			}
-		} else {
-			action.accept(data);
-		}
-	}
-
-	@Override
-	public <NewType, ReturnedType> ReturnedType collapse(
-			final Function<ContainedType, NewType> leafTransform,
-			final BiFunction<ContainedType, IList<NewType>, NewType> nodeCollapser,
-			final Function<NewType, ReturnedType> resultTransformer) {
-		return resultTransformer.apply(internalCollapse(leafTransform, nodeCollapser));
-	}
-
-	@Override
-	public ITree<ContainedType>
-			flatMapTree(final Function<ContainedType, ITree<ContainedType>> mapper) {
-		if (hasChildren) {
-			final ITree<ContainedType> flatMappedData = mapper.apply(data);
-
-			final IList<ITree<ContainedType>> mappedChildren
-					= children.map(child -> child.flatMapTree(mapper));
-
-			mappedChildren.forEach(flatMappedData::addChild);
-
-			return flatMappedData;
-		}
-
-		return mapper.apply(data);
-	}
-
-	/*
-	 * Do a collapse of this tree.
-	 */
-
-	private <NewType> NewType internalCollapse(
-			final Function<ContainedType, NewType> leafTransform,
-			final BiFunction<ContainedType, IList<NewType>, NewType> nodeCollapser) {
-		if (hasChildren) {
-			final IList<NewType> collapsedChildren = children.map(child -> {
-				final NewType collapsed = child.collapse(leafTransform, nodeCollapser,
-						subTreeVal -> subTreeVal);
-
-				return collapsed;
-			});
-
-			return nodeCollapser.apply(data, collapsedChildren);
-		}
-
-		return leafTransform.apply(data);
-	}
-
-	private void internalToString(final StringBuilder builder, final int indentLevel,
-			final boolean initial) {
-		if (!initial) {
-			for (int i = 0; i < indentLevel; i++) builder.append(">\t");
-		}
-
-		builder.append("Node #");
-		builder.append(ID);
-		builder.append(": ");
-		builder.append(data == null ? "(null)" : data.toString());
-		builder.append("\n");
-
-		if (hasChildren) {
-			children.forEach(child -> {
-				if (child instanceof Tree<?>) {
-					final Tree<ContainedType> kid = (Tree<ContainedType>) child;
-
-					kid.internalToString(builder, indentLevel + 1, false);
-				} else {
-					for (int i = 0; i < indentLevel + 1; i++) {
-						builder.append(">\t");
-					}
-
-					builder.append("Unknown node of type ");
-					builder.append(child.getClass().getName());
-					builder.append("\n");
-				}
-			});
-		}
-	}
-
-	@Override
-	public <MappedType> ITree<MappedType> rebuildTree(
-			final Function<ContainedType, MappedType> leafTransformer,
-			final Function<ContainedType, MappedType> operatorTransformer) {
-		if (hasChildren) {
-			final IList<ITree<MappedType>> mappedChildren =
-					children.map(child -> 
-						child.rebuildTree(leafTransformer, operatorTransformer));
-
-			final MappedType mapData = operatorTransformer.apply(data);
-			return new Tree<>(mapData, mappedChildren);
-		}
-
-		return new Tree<>(leafTransformer.apply(data));
-	}
-
-	@Override
-	public void selectiveTransform(final Predicate<ContainedType> nodePicker,
-			final UnaryOperator<ContainedType> transformer) {
-		if (hasChildren) {
-			children.forEach(child -> child.selectiveTransform(nodePicker, transformer));
-		} else {
-			data = transformer.apply(data);
-		}
-	}
-
-	@Override
-	public ITree<ContainedType> topDownTransform(
-			final Function<ContainedType, TopDownTransformResult> transformPicker,
-			final UnaryOperator<ITree<ContainedType>> transformer) {
-		final TopDownTransformResult transformResult = transformPicker.apply(data);
-
-		switch (transformResult) {
-		case PASSTHROUGH:
-			ITree<ContainedType> result = new Tree<>(data);
-
-			if (hasChildren) {
-				children.forEach(child -> {
-					final ITree<ContainedType> kid
-							= child.topDownTransform(transformPicker, transformer);
-
-					result.addChild(kid);
-				});
+				return parent;
 			}
 
-			return result;
-		case SKIP:
-			return this;
-		case TRANSFORM:
-			return transformer.apply(this);
-		case RTRANSFORM:
-			return transformer.apply(this).topDownTransform(transformPicker, transformer);
-		case PUSHDOWN:
-			result = new Tree<>(data);
-
-			if (hasChildren) {
-				children.forEach(child -> {
-					final ITree<ContainedType> kid
-							= child.topDownTransform(transformPicker, transformer);
-
-					result.addChild(kid);
-				});
-			}
-
-			return transformer.apply(result);
-		case PULLUP:
-			final ITree<ContainedType> intermediateResult = transformer.apply(this);
-
-			result = new Tree<>(intermediateResult.getHead());
-
-			intermediateResult.doForChildren(child -> {
-				final ITree<ContainedType> kid
-						= child.topDownTransform(transformPicker, transformer);
-
-				result.addChild(kid);
-			});
-
-			return result;
-		default:
-			final String msg = String.format("Recieved unknown transform result type %s",
-					transformResult);
-
-			throw new IllegalArgumentException(msg);
-		}
+			return node.transformHead(mapper);
+		});
 	}
 
-	@Override
-	public <TransformedType> TransformedType transformChild(final int childNo,
-			final Function<ITree<ContainedType>, TransformedType> transformer) {
-		if (childNo < 0 || childNo > childCount - 1) {
-			final String msg = String.format("Child index #%d is invalid", childNo);
-
-			throw new IllegalArgumentException(msg);
-		}
-
-		final ITree<ContainedType> selectedKid = children.getByIndex(childNo);
-
-		return transformer.apply(selectedKid);
+	/**
+	 * Get the specified child of this tree.
+	 *
+	 * @param childNo
+	 *                The number of the child to get.
+	 *
+	 * @return The specified child of this tree.
+	 */
+	default Tree<ContainedType> getChild(final int childNo) {
+		return transformChild(childNo, child -> child);
 	}
 
-	@Override
-	public ITree<ContainedType> getChild(final int childNo) {
-		if (childNo < 0 || childNo > childCount - 1) {
-			final String msg = String.format("Child index #%d is invalid", childNo);
+	/**
+	 * Get a count of the number of direct children this node has.
+	 *
+	 * @return The number of direct children this node has.
+	 */
+	int getChildrenCount();
 
-			throw new IllegalArgumentException(msg);
-		}
-		return children.getByIndex(childNo);
+	/**
+	 * Get a count of the number of direct children this node has.
+	 *
+	 * @return The number of direct children this node has.
+	 */
+	default int size() {
+		return getChildrenCount();
 	}
 
-	@Override
-	public <TransformedType> TransformedType
-			transformHead(final Function<ContainedType, TransformedType> transformer) {
-		return transformer.apply(data);
+	/**
+	 * Get the data stored in this node.
+	 *
+	 * @return The data stored in this node.
+	 */
+	default ContainedType getHead() {
+		return transformHead(head -> head);
 	}
 
-	@Override
-	public void setHead(ContainedType dat) {
-		this.data = dat;
+	/**
+	 * Rebuild the tree with the same structure, but different nodes.
+	 *
+	 * @param <MappedType>
+	 *                            The type of the new tree.
+	 *
+	 * @param leafTransformer
+	 *                            The function to use to transform leaf tokens.
+	 *
+	 * @param internalTransformer
+	 *                            The function to use to transform internal tokens.
+	 *
+	 * @return The tree, with the nodes changed.
+	 */
+	<MappedType> Tree<MappedType> rebuildTree(
+			Function<ContainedType, MappedType> leafTransformer,
+			Function<ContainedType, MappedType> internalTransformer);
+
+	/**
+	 * Transform some of the nodes in this tree.
+	 *
+	 * @param nodePicker
+	 *                    The predicate to use to pick nodes to transform.
+	 *
+	 * @param transformer
+	 *                    The function to use to transform picked nodes.
+	 */
+	void selectiveTransform(Predicate<ContainedType> nodePicker,
+			UnaryOperator<ContainedType> transformer);
+
+	/**
+	 * Do a top-down transform of the tree.
+	 *
+	 * @param transformPicker
+	 *                        The function to use to pick how to progress.
+	 *
+	 * @param transformer
+	 *                        The function used to transform picked subtrees.
+	 *
+	 * @return The tree with the transform applied to picked subtrees.
+	 */
+	Tree<ContainedType> topDownTransform(
+			Function<ContainedType, TopDownTransformResult> transformPicker,
+			UnaryOperator<Tree<ContainedType>> transformer);
+
+	/**
+	 * Transform one of this nodes children.
+	 *
+	 * @param <TransformedType>
+	 *                          The type of the transformed value.
+	 *
+	 * @param childNo
+	 *                          The number of the child to transform.
+	 *
+	 * @param transformer
+	 *                          The function to use to transform the value.
+	 *
+	 * @return The transformed value.
+	 *
+	 * @throws IllegalArgumentException
+	 *                                  if the childNo is out of bounds (0 &lt;=
+	 *                                  childNo &lt;= childCount()).
+	 */
+	<TransformedType> TransformedType transformChild(int childNo,
+			Function<Tree<ContainedType>, TransformedType> transformer);
+
+	/**
+	 * Transform the value that is the head of this node.
+	 *
+	 * @param <TransformedType>
+	 *                          The type of the transformed value.
+	 *
+	 * @param transformer
+	 *                          The function to use to transform the value.
+	 *
+	 * @return The transformed value.
+	 */
+	<TransformedType> TransformedType
+			transformHead(Function<ContainedType, TransformedType> transformer);
+
+	/**
+	 * Transform the tree into a tree with a different type of token.
+	 *
+	 * @param <MappedType>
+	 *                     The type of the new tree.
+	 *
+	 * @param transformer
+	 *                     The function to use to transform tokens.
+	 *
+	 * @return A tree with the token types transformed.
+	 */
+	default <MappedType> Tree<MappedType>
+			transformTree(final Function<ContainedType, MappedType> transformer) {
+		return rebuildTree(transformer, transformer);
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
+	/**
+	 * Perform an action on each part of the tree.
+	 *
+	 * @param linearizationMethod
+	 *                            The way to traverse the tree.
+	 *
+	 * @param action
+	 *                            The action to perform on each tree node.
+	 */
+	void traverse(TreeLinearizationMethod linearizationMethod,
+			Consumer<ContainedType> action);
 
-		result = prime * result + childCount;
-		result = prime * result + (children == null ? 0 : children.hashCode());
-		result = prime * result + (data == null ? 0 : data.hashCode());
+	/**
+	 * Find the farthest to right child that satisfies the given predicate.
+	 *
+	 * @param childPred
+	 *                  The predicate to satisfy.
+	 *
+	 * @return The index of the right-most child that satisfies the predicate, or -1
+	 *         if one doesn't exist.
+	 */
+	int revFind(Predicate<Tree<ContainedType>> childPred);
 
-		return result;
+	/**
+	 * Check if this tree contains any nodes that satisfy the predicate.
+	 *
+	 * @param pred
+	 *             The predicate to look for.
+	 *
+	 * @return Whether or not any items satisfied the predicate.
+	 */
+	default boolean containsMatching(Predicate<ContainedType> pred) {
+		Toggle<Boolean> tog = new OneWayToggle<>(false, true);
+
+		traverse(TreeLinearizationMethod.POSTORDER, val -> {
+			if (pred.test(val)) tog.get();
+		});
+
+		return tog.get();
 	}
 
-	@Override
-	public String toString() {
-		final StringBuilder builder = new StringBuilder();
-
-		internalToString(builder, 1, true);
-
-		/* Delete a trailing nl. */
-		builder.deleteCharAt(builder.length() - 1);
-
-		return builder.toString();
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj)               return true;
-		if (obj == null)               return false;
-		if (!(obj instanceof Tree<?>)) return false;
-
-		final Tree<?> other = (Tree<?>) obj;
-
-		if (data == null) {
-			if (other.data != null) return false;
-		} else if (!data.equals(other.data)) {
-			return false;
-		}
-
-		if (childCount != other.childCount) return false;
-
-		if (children == null) {
-			if (other.children != null) return false;
-		} else if (!children.equals(other.children)) {
-			return false;
-		}
-
-		return true;
-	}
+	/**
+	 * Set the head of the tree.
+	 *
+	 * @param dat
+	 *            The value to set as the head of the tree.
+	 */
+	void setHead(ContainedType dat);
 }

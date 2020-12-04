@@ -5,7 +5,7 @@ import java.util.function.UnaryOperator;
 
 import bjc.data.internals.BoundListHolder;
 import bjc.funcdata.FunctionalList;
-import bjc.funcdata.IList;
+import bjc.funcdata.ListEx;
 
 /**
  * A holder that represents a set of non-deterministic computations.
@@ -15,8 +15,8 @@ import bjc.funcdata.IList;
  * @param <ContainedType>
  *                        The type of contained value.
  */
-public class ListHolder<ContainedType> implements IHolder<ContainedType> {
-	private IList<ContainedType> heldValues;
+public class ListHolder<ContainedType> implements Holder<ContainedType> {
+	private ListEx<ContainedType> heldValues;
 
 	/**
 	 * Create a new list holder.
@@ -36,34 +36,34 @@ public class ListHolder<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	/* Create a new holder with values. */
-	private ListHolder(final IList<ContainedType> toHold) {
+	private ListHolder(final ListEx<ContainedType> toHold) {
 		heldValues = toHold;
 	}
 
 	@Override
-	public <BoundType> IHolder<BoundType>
-			bind(final Function<ContainedType, IHolder<BoundType>> binder) {
-		final IList<IHolder<BoundType>> boundValues = heldValues.map(binder);
+	public <BoundType> Holder<BoundType>
+			bind(final Function<ContainedType, Holder<BoundType>> binder) {
+		final ListEx<Holder<BoundType>> boundValues = heldValues.map(binder);
 
 		return new BoundListHolder<>(boundValues);
 	}
 
 	@Override
-	public <NewType> Function<ContainedType, IHolder<NewType>>
+	public <NewType> Function<ContainedType, Holder<NewType>>
 			lift(final Function<ContainedType, NewType> func) {
 		return val -> new ListHolder<>(new FunctionalList<>(func.apply(val)));
 	}
 
 	@Override
-	public <MappedType> IHolder<MappedType>
+	public <MappedType> Holder<MappedType>
 			map(final Function<ContainedType, MappedType> mapper) {
-		final IList<MappedType> mappedValues = heldValues.map(mapper);
+		final ListEx<MappedType> mappedValues = heldValues.map(mapper);
 
 		return new ListHolder<>(mappedValues);
 	}
 
 	@Override
-	public IHolder<ContainedType>
+	public Holder<ContainedType>
 			transform(final UnaryOperator<ContainedType> transformer) {
 		heldValues = heldValues.map(transformer);
 

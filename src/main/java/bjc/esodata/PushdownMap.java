@@ -20,9 +20,9 @@ import bjc.funcdata.*;
  * @param <ValueType>
  *                    The values in the map.
  */
-public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
+public class PushdownMap<KeyType, ValueType> implements MapEx<KeyType, ValueType> {
 	/* Our backing storage. */
-	private final IMap<KeyType, Stack<ValueType>> backing;
+	private final MapEx<KeyType, Stack<ValueType>> backing;
 
 	private boolean isFrozen    = false;
 	private boolean thawEnabled = true;
@@ -60,7 +60,7 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 	}
 
 	@Override
-	public IList<KeyType> keyList() {
+	public ListEx<KeyType> keyList() {
 		return backing.keyList();
 	}
 
@@ -89,7 +89,7 @@ public class PushdownMap<KeyType, ValueType> implements IMap<KeyType, ValueType>
 	public ValueType remove(final KeyType key) {
 		if (isFrozen) throw new ObjectFrozen("Can't remove key " + key + " from frozen map");
 
-		IHolder<ValueType> result = IHolder.of(null);
+		Holder<ValueType> result = Holder.of(null);
 		
 		backing.get(key).ifPresent((stk) -> {
 			if (stk.size() > 1) {

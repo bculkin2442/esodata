@@ -11,7 +11,7 @@ import java.util.function.UnaryOperator;
  * @param <ContainedType>
  *                        The type of the value that may or may not be held.
  */
-public class Option<ContainedType> implements IHolder<ContainedType> {
+public class Option<ContainedType> implements Holder<ContainedType> {
 	private ContainedType held;
 
 	/**
@@ -25,21 +25,21 @@ public class Option<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public <BoundType> IHolder<BoundType>
-			bind(final Function<ContainedType, IHolder<BoundType>> binder) {
+	public <BoundType> Holder<BoundType>
+			bind(final Function<ContainedType, Holder<BoundType>> binder) {
 		if (held == null) return new Option<>(null);
 
 		return binder.apply(held);
 	}
 
 	@Override
-	public <NewType> Function<ContainedType, IHolder<NewType>>
+	public <NewType> Function<ContainedType, Holder<NewType>>
 			lift(final Function<ContainedType, NewType> func) {
 		return val -> new Option<>(func.apply(val));
 	}
 
 	@Override
-	public <MappedType> IHolder<MappedType>
+	public <MappedType> Holder<MappedType>
 			map(final Function<ContainedType, MappedType> mapper) {
 		if (held == null) return new Option<>(null);
 
@@ -47,7 +47,7 @@ public class Option<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public IHolder<ContainedType>
+	public Holder<ContainedType>
 			transform(final UnaryOperator<ContainedType> transformer) {
 		if (held != null) held = transformer.apply(held);
 

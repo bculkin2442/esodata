@@ -18,7 +18,7 @@ import bjc.data.internals.HalfBoundLazyPair;
  * @param <RightType>
  *                    The type on the right side of the pair.
  */
-public class LazyPair<LeftType, RightType> implements IPair<LeftType, RightType> {
+public class LazyPair<LeftType, RightType> implements Pair<LeftType, RightType> {
 	/* The supplier for the left value. */
 	private Supplier<LeftType> leftSupplier;
 	/* The left value. */
@@ -70,14 +70,14 @@ public class LazyPair<LeftType, RightType> implements IPair<LeftType, RightType>
 	}
 
 	@Override
-	public <BoundLeft, BoundRight> IPair<BoundLeft, BoundRight> bind(
-			final BiFunction<LeftType, RightType, IPair<BoundLeft, BoundRight>> binder) {
+	public <BoundLeft, BoundRight> Pair<BoundLeft, BoundRight> bind(
+			final BiFunction<LeftType, RightType, Pair<BoundLeft, BoundRight>> binder) {
 		return new BoundLazyPair<>(leftSupplier, rightSupplier, binder);
 	}
 
 	@Override
-	public <BoundLeft> IPair<BoundLeft, RightType>
-			bindLeft(final Function<LeftType, IPair<BoundLeft, RightType>> leftBinder) {
+	public <BoundLeft> Pair<BoundLeft, RightType>
+			bindLeft(final Function<LeftType, Pair<BoundLeft, RightType>> leftBinder) {
 		final Supplier<LeftType> leftSupp = () -> {
 			if (leftMaterialized) return leftValue;
 
@@ -88,8 +88,8 @@ public class LazyPair<LeftType, RightType> implements IPair<LeftType, RightType>
 	}
 
 	@Override
-	public <BoundRight> IPair<LeftType, BoundRight> bindRight(
-			final Function<RightType, IPair<LeftType, BoundRight>> rightBinder) {
+	public <BoundRight> Pair<LeftType, BoundRight> bindRight(
+			final Function<RightType, Pair<LeftType, BoundRight>> rightBinder) {
 		final Supplier<RightType> rightSupp = () -> {
 			if (rightMaterialized) return rightValue;
 
@@ -101,8 +101,8 @@ public class LazyPair<LeftType, RightType> implements IPair<LeftType, RightType>
 
 	@Override
 	public <OtherLeft, OtherRight, CombinedLeft, CombinedRight>
-			IPair<CombinedLeft, CombinedRight>
-			combine(final IPair<OtherLeft, OtherRight> otherPair,
+			Pair<CombinedLeft, CombinedRight>
+			combine(final Pair<OtherLeft, OtherRight> otherPair,
 					final BiFunction<LeftType, OtherLeft, CombinedLeft> leftCombiner,
 					final BiFunction<RightType, OtherRight,
 							CombinedRight> rightCombiner) {
@@ -139,7 +139,7 @@ public class LazyPair<LeftType, RightType> implements IPair<LeftType, RightType>
 	}
 
 	@Override
-	public <NewLeft> IPair<NewLeft, RightType>
+	public <NewLeft> Pair<NewLeft, RightType>
 			mapLeft(final Function<LeftType, NewLeft> mapper) {
 		final Supplier<NewLeft> leftSupp = () -> {
 			if (leftMaterialized) return mapper.apply(leftValue);
@@ -157,7 +157,7 @@ public class LazyPair<LeftType, RightType> implements IPair<LeftType, RightType>
 	}
 
 	@Override
-	public <NewRight> IPair<LeftType, NewRight>
+	public <NewRight> Pair<LeftType, NewRight>
 			mapRight(final Function<RightType, NewRight> mapper) {
 		final Supplier<LeftType> leftSupp = () -> {
 			if (leftMaterialized) return leftValue;

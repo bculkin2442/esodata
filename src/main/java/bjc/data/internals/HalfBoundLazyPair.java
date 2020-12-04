@@ -4,8 +4,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import bjc.data.IHolder;
-import bjc.data.IPair;
+import bjc.data.Holder;
+import bjc.data.Pair;
 import bjc.data.Identity;
 import bjc.data.LazyPair;
 
@@ -24,15 +24,15 @@ import bjc.data.LazyPair;
  */
 @SuppressWarnings("javadoc")
 public class HalfBoundLazyPair<OldType, NewLeft, NewRight>
-		implements IPair<NewLeft, NewRight> {
+		implements Pair<NewLeft, NewRight> {
 	/* The supplier of the old value. */
 	private final Supplier<OldType> oldSupplier;
 
 	/* The function to transform the old value into a new pair. */
-	private final Function<OldType, IPair<NewLeft, NewRight>> binder;
+	private final Function<OldType, Pair<NewLeft, NewRight>> binder;
 
 	/* The new bound pair. */
-	private IPair<NewLeft, NewRight> boundPair;
+	private Pair<NewLeft, NewRight> boundPair;
 	/* Has the pair been bound yet or not? */
 	private boolean pairBound;
 
@@ -46,16 +46,16 @@ public class HalfBoundLazyPair<OldType, NewLeft, NewRight>
 	 *                The function to use to create the pair from the old value.
 	 */
 	public HalfBoundLazyPair(final Supplier<OldType> oldSupp,
-			final Function<OldType, IPair<NewLeft, NewRight>> bindr) {
+			final Function<OldType, Pair<NewLeft, NewRight>> bindr) {
 		oldSupplier = oldSupp;
 		binder = bindr;
 	}
 
 	@Override
-	public <BoundLeft, BoundRight> IPair<BoundLeft, BoundRight> bind(
-			final BiFunction<NewLeft, NewRight, IPair<BoundLeft, BoundRight>> bindr) {
-		final IHolder<IPair<NewLeft, NewRight>> newPair = new Identity<>(boundPair);
-		final IHolder<Boolean> newPairMade = new Identity<>(pairBound);
+	public <BoundLeft, BoundRight> Pair<BoundLeft, BoundRight> bind(
+			final BiFunction<NewLeft, NewRight, Pair<BoundLeft, BoundRight>> bindr) {
+		final Holder<Pair<NewLeft, NewRight>> newPair = new Identity<>(boundPair);
+		final Holder<Boolean> newPairMade = new Identity<>(pairBound);
 
 		final Supplier<NewLeft> leftSupp = () -> {
 			if (!newPairMade.getValue()) {
@@ -81,10 +81,10 @@ public class HalfBoundLazyPair<OldType, NewLeft, NewRight>
 	}
 
 	@Override
-	public <BoundLeft> IPair<BoundLeft, NewRight>
-			bindLeft(final Function<NewLeft, IPair<BoundLeft, NewRight>> leftBinder) {
+	public <BoundLeft> Pair<BoundLeft, NewRight>
+			bindLeft(final Function<NewLeft, Pair<BoundLeft, NewRight>> leftBinder) {
 		final Supplier<NewLeft> leftSupp = () -> {
-			IPair<NewLeft, NewRight> newPair = boundPair;
+			Pair<NewLeft, NewRight> newPair = boundPair;
 
 			if (!pairBound) {
 				newPair = binder.apply(oldSupplier.get());
@@ -97,10 +97,10 @@ public class HalfBoundLazyPair<OldType, NewLeft, NewRight>
 	}
 
 	@Override
-	public <BoundRight> IPair<NewLeft, BoundRight>
-			bindRight(final Function<NewRight, IPair<NewLeft, BoundRight>> rightBinder) {
+	public <BoundRight> Pair<NewLeft, BoundRight>
+			bindRight(final Function<NewRight, Pair<NewLeft, BoundRight>> rightBinder) {
 		final Supplier<NewRight> rightSupp = () -> {
-			IPair<NewLeft, NewRight> newPair = boundPair;
+			Pair<NewLeft, NewRight> newPair = boundPair;
 
 			if (!pairBound) {
 				newPair = binder.apply(oldSupplier.get());
@@ -114,8 +114,8 @@ public class HalfBoundLazyPair<OldType, NewLeft, NewRight>
 
 	@Override
 	public <OtherLeft, OtherRight, CombinedLeft, CombinedRight>
-			IPair<CombinedLeft, CombinedRight>
-			combine(final IPair<OtherLeft, OtherRight> otherPair,
+			Pair<CombinedLeft, CombinedRight>
+			combine(final Pair<OtherLeft, OtherRight> otherPair,
 					final BiFunction<NewLeft, OtherLeft, CombinedLeft> leftCombiner,
 					final BiFunction<NewRight, OtherRight, CombinedRight> rightCombiner) {
 		return otherPair.bind((otherLeft, otherRight) -> bind((leftVal, rightVal) -> {
@@ -127,7 +127,7 @@ public class HalfBoundLazyPair<OldType, NewLeft, NewRight>
 	}
 
 	@Override
-	public <NewLeftType> IPair<NewLeftType, NewRight>
+	public <NewLeftType> Pair<NewLeftType, NewRight>
 			mapLeft(final Function<NewLeft, NewLeftType> mapper) {
 		final Supplier<NewLeftType> leftSupp = () -> {
 			if (pairBound)
@@ -149,7 +149,7 @@ public class HalfBoundLazyPair<OldType, NewLeft, NewRight>
 	}
 
 	@Override
-	public <NewRightType> IPair<NewLeft, NewRightType>
+	public <NewRightType> Pair<NewLeft, NewRightType>
 			mapRight(final Function<NewRight, NewRightType> mapper) {
 		final Supplier<NewLeft> leftSupp = () -> {
 			if (pairBound)

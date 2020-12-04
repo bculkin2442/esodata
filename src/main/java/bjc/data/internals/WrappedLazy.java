@@ -3,7 +3,7 @@ package bjc.data.internals;
 import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
-import bjc.data.IHolder;
+import bjc.data.Holder;
 import bjc.data.Lazy;
 
 /**
@@ -13,9 +13,9 @@ import bjc.data.Lazy;
  * @param <ContainedType>
  *                        The type of the wrapped value.
  */
-public class WrappedLazy<ContainedType> implements IHolder<ContainedType> {
+public class WrappedLazy<ContainedType> implements Holder<ContainedType> {
 	/* Held value. */
-	private final IHolder<IHolder<ContainedType>> held;
+	private final Holder<Holder<ContainedType>> held;
 
 	/**
 	 * Create a new wrapped lazy value.
@@ -23,7 +23,7 @@ public class WrappedLazy<ContainedType> implements IHolder<ContainedType> {
 	 * @param wrappedHolder
 	 *                      The holder to make lazy.
 	 */
-	public WrappedLazy(final IHolder<ContainedType> wrappedHolder) {
+	public WrappedLazy(final Holder<ContainedType> wrappedHolder) {
 		held = new Lazy<>(wrappedHolder);
 	}
 
@@ -34,15 +34,15 @@ public class WrappedLazy<ContainedType> implements IHolder<ContainedType> {
 	 * This is a case where reified generics would be useful, because then the
 	 * compiler could know which one we meant without the dummy parameter.
 	 */
-	private WrappedLazy(final IHolder<IHolder<ContainedType>> wrappedHolder,
+	private WrappedLazy(final Holder<Holder<ContainedType>> wrappedHolder,
 			@SuppressWarnings("unused") final boolean dummy) {
 		held = wrappedHolder;
 	}
 
 	@Override
-	public <BoundType> IHolder<BoundType>
-			bind(final Function<ContainedType, IHolder<BoundType>> binder) {
-		final IHolder<IHolder<BoundType>> newHolder = held.map(containedHolder -> {
+	public <BoundType> Holder<BoundType>
+			bind(final Function<ContainedType, Holder<BoundType>> binder) {
+		final Holder<Holder<BoundType>> newHolder = held.map(containedHolder -> {
 			return containedHolder.bind(binder);
 		});
 
@@ -50,7 +50,7 @@ public class WrappedLazy<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public <NewType> Function<ContainedType, IHolder<NewType>>
+	public <NewType> Function<ContainedType, Holder<NewType>>
 			lift(final Function<ContainedType, NewType> func) {
 		return val -> {
 			return new Lazy<>(func.apply(val));
@@ -58,9 +58,9 @@ public class WrappedLazy<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public <MappedType> IHolder<MappedType>
+	public <MappedType> Holder<MappedType>
 			map(final Function<ContainedType, MappedType> mapper) {
-		final IHolder<IHolder<MappedType>> newHolder = held.map(containedHolder -> {
+		final Holder<Holder<MappedType>> newHolder = held.map(containedHolder -> {
 			return containedHolder.map(mapper);
 		});
 
@@ -68,7 +68,7 @@ public class WrappedLazy<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public IHolder<ContainedType>
+	public Holder<ContainedType>
 			transform(final UnaryOperator<ContainedType> transformer) {
 		held.transform(containedHolder -> {
 			return containedHolder.transform(transformer);

@@ -15,11 +15,11 @@ import java.util.function.*;
  * @param <ValueType>
  *                    The type of the values of the map.
  */
-class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
+class ExtendedMap<KeyType, ValueType> implements MapEx<KeyType, ValueType> {
 	/* The map we delegate lookups to. */
-	private final IMap<KeyType, ValueType> delegate;
+	private final MapEx<KeyType, ValueType> delegate;
 	/* The map we store things in. */
-	private final IMap<KeyType, ValueType> store;
+	private final MapEx<KeyType, ValueType> store;
 
 	private boolean isFrozen     = false;
 	private boolean thawEnabled  = true;
@@ -33,8 +33,8 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 	 * @param store
 	 *                 The map to store things in.
 	 */
-	public ExtendedMap(final IMap<KeyType, ValueType> delegate,
-			final IMap<KeyType, ValueType> store) {
+	public ExtendedMap(final MapEx<KeyType, ValueType> delegate,
+			final MapEx<KeyType, ValueType> store) {
 		this.delegate = delegate;
 		this.store = store;
 	}
@@ -71,8 +71,8 @@ class ExtendedMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
 	}
 
 	@Override
-	public IList<KeyType> keyList() {
-		IList<KeyType> ilst = new FunctionalList<>();
+	public ListEx<KeyType> keyList() {
+		ListEx<KeyType> ilst = new FunctionalList<>();
 
 		ilst.addAll(store.keyList());
 		ilst.addAll(delegate.keyList());

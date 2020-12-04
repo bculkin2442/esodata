@@ -1,7 +1,7 @@
 package bjc.esodata;
 
 import bjc.funcdata.FunctionalMap;
-import bjc.funcdata.IMap;
+import bjc.funcdata.MapEx;
 
 /**
  * Simple implementation of {@link Directory}.
@@ -18,9 +18,9 @@ import bjc.funcdata.IMap;
  */
 public class UnifiedDirectory<K, V> implements Directory<K, V> {
 	/* Our directory children. */
-	private final IMap<K, Directory<K, V>> children;
+	private final MapEx<K, Directory<K, V>> children;
 	/* Our data children. */
-	private final IMap<K, V> data;
+	private final MapEx<K, V> data;
 
 	/** Create a new directory. */
 	public UnifiedDirectory() {

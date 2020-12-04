@@ -6,7 +6,7 @@ import java.util.function.UnaryOperator;
 
 import bjc.data.internals.BoundLazy;
 import bjc.funcdata.FunctionalList;
-import bjc.funcdata.IList;
+import bjc.funcdata.ListEx;
 
 /**
  * A holder that holds a means to create a value, but doesn't actually compute
@@ -17,7 +17,7 @@ import bjc.funcdata.IList;
  * @param <ContainedType>
  *                        The type of the value being held.
  */
-public class Lazy<ContainedType> implements IHolder<ContainedType> {
+public class Lazy<ContainedType> implements Holder<ContainedType> {
 	/* The supplier of the type. */
 	private Supplier<ContainedType> valueSupplier;
 	/* The actual type value. */
@@ -26,7 +26,7 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 	private boolean valueMaterialized;
 
 	/* The list of pending actions on the value. */
-	private IList<UnaryOperator<ContainedType>> actions = new FunctionalList<>();
+	private ListEx<UnaryOperator<ContainedType>> actions = new FunctionalList<>();
 
 	/**
 	 * Create a new lazy value from the specified seed value.
@@ -54,16 +54,16 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 
 	/* Create a new value from a supplier and a list of actions. */
 	private Lazy(final Supplier<ContainedType> supp,
-			final IList<UnaryOperator<ContainedType>> pendingActions) {
+			final ListEx<UnaryOperator<ContainedType>> pendingActions) {
 		valueSupplier = supp;
 
 		actions = pendingActions;
 	}
 
 	@Override
-	public <BoundType> IHolder<BoundType>
-			bind(final Function<ContainedType, IHolder<BoundType>> binder) {
-		final IList<UnaryOperator<ContainedType>> pendingActions = new FunctionalList<>();
+	public <BoundType> Holder<BoundType>
+			bind(final Function<ContainedType, Holder<BoundType>> binder) {
+		final ListEx<UnaryOperator<ContainedType>> pendingActions = new FunctionalList<>();
 
 		for (UnaryOperator<ContainedType> action : actions) {
 			pendingActions.add(action);
@@ -79,15 +79,15 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public <NewType> Function<ContainedType, IHolder<NewType>>
+	public <NewType> Function<ContainedType, Holder<NewType>>
 			lift(final Function<ContainedType, NewType> func) {
 		return val -> new Lazy<>(func.apply(val));
 	}
 
 	@Override
-	public <MappedType> IHolder<MappedType>
+	public <MappedType> Holder<MappedType>
 			map(final Function<ContainedType, MappedType> mapper) {
-		final IList<UnaryOperator<ContainedType>> pendingActions = new FunctionalList<>();
+		final ListEx<UnaryOperator<ContainedType>> pendingActions = new FunctionalList<>();
 		
 		for (UnaryOperator<ContainedType> action : actions) {
 			pendingActions.add(action);
@@ -126,7 +126,7 @@ public class Lazy<ContainedType> implements IHolder<ContainedType> {
 	}
 
 	@Override
-	public IHolder<ContainedType>
+	public Holder<ContainedType>
 			transform(final UnaryOperator<ContainedType> transformer) {
 		actions.add(transformer);
 

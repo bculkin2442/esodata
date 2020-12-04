@@ -6,7 +6,7 @@ import java.util.function.*;
 import bjc.data.*;
 
 /**
- * Basic implementation of {@link IMap}
+ * Basic implementation of {@link MapEx}
  *
  * @author ben
  *
@@ -16,7 +16,7 @@ import bjc.data.*;
  * @param <ValueType>
  *                    The type of the map's values.
  */
-public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueType> {
+public class FunctionalMap<KeyType, ValueType> implements MapEx<KeyType, ValueType> {
 	/* Our backing store. */
 	private Map<KeyType, ValueType> wrappedMap;
 
@@ -35,10 +35,10 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 	 *                The entries to put into the map.
 	 */
 	@SafeVarargs
-	public FunctionalMap(final IPair<KeyType, ValueType>... entries) {
+	public FunctionalMap(final Pair<KeyType, ValueType>... entries) {
 		this();
 
-		for (final IPair<KeyType, ValueType> entry : entries) {
+		for (final Pair<KeyType, ValueType> entry : entries) {
 			entry.doWith(wrappedMap::put);
 		}
 	}
@@ -89,7 +89,7 @@ public class FunctionalMap<KeyType, ValueType> implements IMap<KeyType, ValueTyp
 	}
 
 	@Override
-	public IList<KeyType> keyList() {
+	public ListEx<KeyType> keyList() {
 		final FunctionalList<KeyType> keys = new FunctionalList<>();
 
 		wrappedMap.keySet().forEach(keys::add);
