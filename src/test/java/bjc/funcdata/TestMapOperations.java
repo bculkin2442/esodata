@@ -27,7 +27,7 @@ public class TestMapOperations {
 	
 	@Test
 	public void getYieldsExpectedValue() {
-		assertEquals("Constructed map has key 'a' mapped to value 'A'", "A", map.get("a"));
+		assertEquals("Constructed map has key 'a' mapped to value 'A'", "A", map.get("a").get());
 	}
 	
 	@Test
@@ -35,14 +35,8 @@ public class TestMapOperations {
 		assertFalse("Constructed map doesn't contain key 'c'", map.containsKey("c"));
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
 	public void getOfNonexistentKeyThrows() {
-		map.get("c");
-	}
-	
-	@Test
-	public void getOrDefaultOfExistingKeyYieldsExistingValue() {
-		assertEquals("Constructed map getOrDefault for an existing key yields the existing value", "A", map.get("a"));
+		assertFalse("Getting a non-existant key yields an absent optional", map.get("c").isPresent());
 	}
 	
 	@Test
@@ -50,7 +44,7 @@ public class TestMapOperations {
 		map.put("c", "C");
 		
 		assertEquals("Constructed map now has 3 items", 3, map.size());
-		assertEquals("Constructed map now has 'c' mapped to 'C'", "C", map.get("c"));
+		assertEquals("Constructed map now has 'c' mapped to 'C'", "C", map.get("c").get());
 	}
 	
 	@Test
@@ -58,7 +52,7 @@ public class TestMapOperations {
 		String val = map.put("a", "D");
 		
 		assertEquals("Constructed map still contains 2 items", 2, map.size());
-		assertEquals("Constructed map now has 'a' mapped to 'D'", "D", map.get("a"));
+		assertEquals("Constructed map now has 'a' mapped to 'D'", "D", map.get("a").get());
 		assertEquals("put method returned old value of 'A'", "A", val);
 	}
 	

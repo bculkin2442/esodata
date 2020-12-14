@@ -33,6 +33,6 @@ public class TestMapCreation {
 		MapEx<String, String> map = MapEx.of("a", "A", "b", "B");
 		
 		assertTrue("Constructed map contains key 'a'", map.containsKey("a"));
-		assertEquals("Constructed map has key 'a' mapped to value 'A'", "A", map.get("a"));
+		assertEquals("Constructed map has key 'a' mapped to value 'A'", "A", map.get("a").get());
 	}
 }
