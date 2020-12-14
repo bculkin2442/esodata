@@ -36,6 +36,25 @@ public class Combinators {
 	}
 	
 	/**
+	 * If-then-else expression.
+	 * 
+	 * @param <Output> The output type.
+	 * 
+	 * @param in The boolean to use.
+	 * @param ifTrue The condition to run when it is true.
+	 * @param ifFalse The condition to run when it is false.
+	 * 
+	 * @return A value, based on the provided parameter
+	 */
+	public static <Output> Output iftt(
+			boolean in,
+			Supplier<Output> ifTrue,
+			Supplier<Output> ifFalse) 
+	{
+		return in ? ifTrue.get() : ifFalse.get();
+	}
+	
+	/**
 	 * Execute an action before calling a function.
 	 * 
 	 * @param <Input> The input to the function.
@@ -264,37 +283,15 @@ public class Combinators {
 	}
 	
 	/**
-	 * Return a function that does a series of actions upon a value, then returns
-	 * that value.
+	 * Convert a function into a consumer, ignoring its output.
 	 * 
-	 * @param <Type> The type given as an argument
+	 * @param <Input> The input to the function.
 	 * 
-	 * @param functions The actions to perform on the value.
+	 * @param func The function to convert.
 	 * 
-	 * @return A function that performs those arguments on a value.
+	 * @return A consumer which calls the function, and ignores the output.
 	 */
-	@SafeVarargs
-	public static <Type> Function<Type, Type> doWith(Function<Type, ?>... functions)
-	{
-		return (arg) -> {
-			for (Function<Type, ?> function : functions) function.apply(arg);
-			return arg;
-		};
-	}
-	
-	/**
-	 * Perform a series of actions upon a value, then return that value.
-	 * 
-	 * @param <Type> The type given as an argument
-	 * 
-	 * @param input  The value to use.
-	 * @param functions The actions to perform on the value.
-	 * 
-	 * @return A function that performs those arguments on a value.
-	 */
-	@SafeVarargs
-	public static <Type> Type with(Type input, Function<Type, ?>... functions)
-	{
-		return doWith(functions).apply(input);
+	public static <Input> Consumer<Input> ignore(Function<Input, ?> func) {
+		return (inp) -> func.apply(inp);
 	}
 }
