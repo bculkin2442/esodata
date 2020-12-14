@@ -1,7 +1,7 @@
 package bjc.data;
 
-import java.util.function.BiFunction;
-import java.util.function.Function;
+import java.util.*;
+import java.util.function.*;
 
 /**
  * Represents a pair where only one side has a value.
@@ -15,7 +15,7 @@ import java.util.function.Function;
  *                    The type that could be on the right.
  *
  */
-public class Either<LeftType, RightType> implements Pair<LeftType, RightType> {
+public class Either<LeftType, RightType> {
 	/**
 	 * Create a new either with the left value occupied.
 	 *
@@ -72,123 +72,138 @@ public class Either<LeftType, RightType> implements Pair<LeftType, RightType> {
 		}
 	}
 
-	@Override
-	public <BoundLeft, BoundRight> Pair<BoundLeft, BoundRight> bind(
-			final BiFunction<LeftType, RightType, Pair<BoundLeft, BoundRight>> binder) {
-		if (binder == null) throw new NullPointerException("Binder must not be null");
-
-		return binder.apply(leftVal, rightVal);
+	/**
+	 * Perform a mapping over this either.
+	 * 
+	 * @param <NewLeft> The new left type.
+	 * @param <NewRight> The new right type.
+	 * 
+	 * @param leftFunc The function to apply if this is a left either.
+	 * @param rightFunc The function to apply if this is a right either.
+	 * 
+	 * @return A new either, containing a value transformed by the appropriate function.
+	 */
+	public <NewLeft, NewRight> Either<NewLeft, NewRight> map(
+			Function<LeftType, NewLeft> leftFunc,
+			Function<RightType, NewRight> rightFunc)
+	{
+		if (isLeft) return left(leftFunc.apply(leftVal));
+		else        return right(rightFunc.apply(rightVal));
 	}
-
-	@Override
-	public <BoundLeft> Pair<BoundLeft, RightType>
-			bindLeft(final Function<LeftType, Pair<BoundLeft, RightType>> leftBinder) {
-		if (leftBinder == null) throw new NullPointerException("Left binder must not be null");
-
-		if (isLeft) return leftBinder.apply(leftVal);
-		else        return new Either<>(null, rightVal);
-	}
-
-	@Override
-	public <BoundRight> Pair<LeftType, BoundRight> bindRight(
-			final Function<RightType, Pair<LeftType, BoundRight>> rightBinder) {
-		if (rightBinder == null) throw new NullPointerException("Right binder must not be null");
-
-		if (isLeft) return new Either<>(leftVal, null);
-		else        return rightBinder.apply(rightVal);
-	}
-
-	@Override
-	public <OtherLeft, OtherRight, CombinedLeft, CombinedRight>
-			Pair<CombinedLeft, CombinedRight>
-			combine(final Pair<OtherLeft, OtherRight> otherPair,
-					final BiFunction<LeftType, OtherLeft, CombinedLeft> leftCombiner,
-					final BiFunction<RightType, OtherRight,
-							CombinedRight> rightCombiner) {
-		if (otherPair == null) {
-			throw new NullPointerException("Other pair must not be null");
-		} else if (leftCombiner == null) {
-			throw new NullPointerException("Left combiner must not be null");
-		} else if (rightCombiner == null) {
-			throw new NullPointerException("Right combiner must not be null");
-		}
-
-		if (isLeft) {
-			return otherPair.bind((otherLeft, otherRight) -> {
-				CombinedLeft cLeft = leftCombiner.apply(leftVal, otherLeft);
-
-				return new Either<>(cLeft, null);
-			});
-		} else {	
-			return otherPair.bind((otherLeft, otherRight) -> {
-				CombinedRight cRight = rightCombiner.apply(rightVal, otherRight);
 	
-				return new Either<>(null, cRight);
-			});
+	/**
+	 * Extract the value from this Either.
+	 * 
+	 * @param <Common> The common type to extract.
+	 * 
+	 * @param leftHandler The function to handle left-values.
+	 * @param rightHandler The function to handle right-values.
+	 * 
+	 * @return The result of applying the proper function.
+	 */
+	public <Common> Common extract(
+			Function<LeftType, Common> leftHandler,
+			Function<RightType, Common> rightHandler)
+	{
+		if (isLeft) return leftHandler.apply(leftVal);
+		else        return rightHandler.apply(rightVal);
+	}
+	
+	/**
+	 * Perform an action on this either.
+	 * 
+	 * @param leftHandler The handler of left values.
+	 * @param rightHandler The handler of right values.
+	 */
+	public void pick(
+			Consumer<LeftType> leftHandler, Consumer<RightType> rightHandler)
+	{
+		if (isLeft) leftHandler.accept(leftVal);
+		else        rightHandler.accept(rightVal);
+	}
+
+	/**
+	 * Check if this either is left-aligned (has the left value filled,
+	 * not the right value).
+	 * 
+	 * @return Whether this either is left-aligned.
+	 */
+	public boolean isLeft() {
+		return isLeft;
+	}
+
+	/**
+	 * Get the left value of this either if there is one.
+	 * 
+	 * @return An optional containing the left value, if there is one.
+	 */
+	public Optional<LeftType> getLeft() {
+		return Optional.ofNullable(leftVal);
+	}
+	
+	/**
+	 * Get the left value of this either, or get a {@link NoSuchElementException}
+	 * if there isn't one.
+	 * 
+	 * @return The left value of this either.
+	 * 
+	 * @throws NoSuchElementException If this either doesn't have a left value.
+	 */
+	public LeftType forceLeft() {
+		if (isLeft)
+		{
+			return leftVal;
+		} else
+		{
+			throw new NoSuchElementException("Either has no left value, is right value");
 		}
 	}
 
-	@Override
-	public <NewLeft> Pair<NewLeft, RightType>
-			mapLeft(final Function<LeftType, NewLeft> mapper) {
-		if (mapper == null) throw new NullPointerException("Mapper must not be null");
-
-		if (isLeft) return new Either<>(mapper.apply(leftVal), null);
-		else        return new Either<>(null, rightVal);
+	/**
+	 * Get the right value of this either if there is one.
+	 * 
+	 * @return An optional containing the right value, if there is one.
+	 */
+	public Optional<RightType> getRight() {
+		return Optional.ofNullable(rightVal);
 	}
-
-	@Override
-	public <NewRight> Pair<LeftType, NewRight>
-			mapRight(final Function<RightType, NewRight> mapper) {
-		if (mapper == null) throw new NullPointerException("Mapper must not be null");
-
-		if (isLeft) return new Either<>(leftVal, null);
-		else        return new Either<>(null, mapper.apply(rightVal));
+	
+	/**
+	 * Get the right value of this either, or get a {@link NoSuchElementException}
+	 * if there isn't one.
+	 * 
+	 * @return The right value of this either.
+	 * 
+	 * @throws NoSuchElementException If this either doesn't have a right value.
+	 */
+	public RightType forceRight() {
+		if (isLeft)
+		{
+			throw new NoSuchElementException("Either has no right value, has left value");
+		} else
+		{
+			return rightVal;
+		}
 	}
-
-	@Override
-	public <MergedType> MergedType
-			merge(final BiFunction<LeftType, RightType, MergedType> merger) {
-		if (merger == null) throw new NullPointerException("Merger must not be null");
-
-		return merger.apply(leftVal, rightVal);
-	}
-
+	
+	// Misc. overrides
+	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-
-		int result = 1;
-		result = prime * result + (isLeft ? 1231 : 1237);
-		result = prime * result + (leftVal == null ? 0 : leftVal.hashCode());
-		result = prime * result + (rightVal == null ? 0 : rightVal.hashCode());
-
-		return result;
+		return Objects.hash(isLeft, leftVal, rightVal);
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj)                    return true;
-		if (obj == null)                    return false;
-		if (!(obj instanceof Either<?, ?>)) return false;
-
-		final Either<?, ?> other = (Either<?, ?>) obj;
-
-		if (isLeft != other.isLeft) return false;
-
-		if (leftVal == null) {
-			if (other.leftVal != null) return false;
-		} else if (!leftVal.equals(other.leftVal)) {
-			return false;
-		}
-
-		if (rightVal == null) {
-			if (other.rightVal != null) return false;
-		} else if (!rightVal.equals(other.rightVal)) {
-			return false;
-		}
+	public boolean equals(Object obj) {
+		if (this == obj)                  return true;
+		if (obj == null)                  return false;
+		if (getClass() != obj.getClass()) return false;
 		
-		return true;
+		Either<?, ?> other = (Either<?, ?>) obj;
+		
+		return isLeft == other.isLeft
+				&& Objects.equals(leftVal, other.leftVal)
+				&& Objects.equals(rightVal, other.rightVal);
 	}
 
 	@Override
