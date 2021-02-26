@@ -2,24 +2,34 @@ package bjc.data;
 
 import static org.junit.Assert.*;
 
-import org.junit.Test;
+import java.util.*;
 
-/**
- * Test Either
- * @author Ben Culkin
- *
- */
-public class EitherTest {
+import org.junit.*;
 
-	/**
-	 * Do a test of Either.
-	 */
+@SuppressWarnings("javadoc")
+public class EitherTest
+{
+	private Either<String, String> leftEither;
+	private Either<String, String> rightEither;
+	
+	@Before
+	public void setUp() throws Exception {
+		leftEither  = Either.left("left");
+		rightEither = Either.right("right");
+	}
+
 	@Test
-	public void test() {
-		Either<String, String> left = Either.left("left");
-		Either<String, String> right = Either.right("right");
-		
-		assertNotEquals(left, right);
+	public void testIsLeft() {
+		assertTrue("isLeft properly marks left eithers", leftEither.isLeft());
+		assertFalse("isLeft properly marks right eithers", rightEither.isLeft());
+	}
+	
+	@Test
+	public void testGetLeft() {
+		assertEquals("getLeft treats left eithers properly",
+				Optional.of("left"), leftEither.getLeft());
+		assertEquals("getLeft treats right eithers properly",
+				Optional.empty(), rightEither.getLeft());
 	}
 
 }

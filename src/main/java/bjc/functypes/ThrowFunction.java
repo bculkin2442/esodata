@@ -1,5 +1,6 @@
 package bjc.functypes;
 
+import java.util.*;
 import java.util.function.*;
 
 /**
@@ -25,6 +26,46 @@ public interface ThrowFunction<InputType, ReturnType, ExType extends Throwable>
 	public ReturnType apply(InputType arg) throws ExType;
 	
 	/**
+     * Converts this into a {@link Function} by handling any thrown exceptions,
+     * then mapping the return type to get a consistent return type.
+     * 
+	 * @param <NewReturn> The new return type.
+     * 
+     * @param clasz The class of the handled exception. This needs to be provided
+     *              because you can't catch a generic exception, and we want to
+     *              make sure that we aren't catching any types of exception that
+     *              we aren't supposed to.
+	 * @param mapper The function which maps the normal return.         
+     * @param handler The handler to use.
+     * 
+     * @return A function which will either return its proper value, or the result
+     *         of invoking the handler.
+     */
+    @SuppressWarnings("unchecked")
+    default <NewReturn> Function<InputType, NewReturn> swallowMap(
+            Class<ExType> clasz,
+            Function<ReturnType, NewReturn> mapper,
+            Function<ExType, NewReturn> handler)
+    {
+        return (inp) -> {
+            try {
+                return mapper.apply(this.apply(inp));
+            } catch (Throwable ex) {
+                if (clasz.isInstance(ex)) {
+                    // Swallow this
+                    return handler.apply((ExType) ex);
+                } else {
+                    String msg = "Exception of incorrect type to be handled, only "
+                                             + clasz.getName()
+                                             + " are handled";
+                    
+                    throw new RuntimeException(msg, ex);
+                }
+            }
+        };
+    }
+    
+	/**
 	 * Converts this into a {@link Function} by handling any thrown exceptions.
 	 * 
 	 * @param clasz The class of the handled exception. This needs to be provided
@@ -37,30 +78,10 @@ public interface ThrowFunction<InputType, ReturnType, ExType extends Throwable>
 	 * @return A function which will either return its proper value, or the result
 	 *         of invoking the handler.
 	 */
-	@SuppressWarnings("unchecked")
 	default Function<InputType, ReturnType> swallow(
 			Class<ExType> clasz, Function<ExType, ReturnType> handler)
 	{
-		return (inp) ->
-		{
-			try 
-			{
-				return this.apply(inp);
-			} catch (Throwable ex) {
-				if (clasz.isInstance(ex)) 
-				{
-					// Swallow this
-					return handler.apply((ExType) ex);
-				} else
-				{
-					String msg = "Exception of incorrect type to be handled, only "
-											 + clasz.getName()
-											 + " are handled";
-					
-					throw new RuntimeException(msg, ex);
-				}
-			}
-		};
+		return swallowMap(clasz, (arg) -> arg, handler);
 	}
 	
 	/**
@@ -73,20 +94,16 @@ public interface ThrowFunction<InputType, ReturnType, ExType extends Throwable>
 	 */
 	@SuppressWarnings("unchecked")
 	default Function<InputType, ReturnType> recover(
-			Class<ExType> clasz, BiFunction<InputType, ExType, InputType> rescue) {
-		return Fixpoints.fix((arg, self) -> 
-		{
-			try 
-			{
+			Class<ExType> clasz, BiFunction<InputType, ExType, InputType> rescue)
+	{
+		return Fixpoints.fix((arg, self) ->  {
+			try {
 				return this.apply(arg);
-			} catch (Throwable ex) 
-			{
-				if (clasz.isInstance(ex)) 
-				{
+			} catch (Throwable ex) {
+				if (clasz.isInstance(ex)) {
 					// Swallow this
 					return self.apply(rescue.apply(arg, (ExType) ex));
-				} else 
-				{
+				} else {
 					String msg = "Exception of incorrect type to be handled, only "
 											 + clasz.getName()
 											 + " are handled";
@@ -125,6 +142,22 @@ public interface ThrowFunction<InputType, ReturnType, ExType extends Throwable>
 		return (arg) -> func.apply(this.apply(arg));
 	}
 	
+	/** Convert this function into one which will return an empty optional if an
+	 * exception is thrown, returning an optional containing the value otherwise.
+	 * 
+	 * Note that if this function returns a null value by itself, that will also
+	 * yield an empty nullable.
+	 * 
+	 * @param clasz The class of the exception. Needed because of type erasure,
+	 *              to ensure that we are catching the proper class.
+	 * 
+	 * @return A function which returns an optional instead.
+	 */
+	default Function<InputType, Optional<ReturnType>>
+	makeTotal(Class<ExType> clasz)
+	{
+	    return swallowMap(clasz, Optional::ofNullable, (ignored) -> Optional.empty());
+	}
 	/**
 	 * ThrowFunctions and functions which return a {@link Thrower} are isomorphic.
 	 * 

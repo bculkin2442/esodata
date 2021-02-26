@@ -13,7 +13,15 @@ import java.util.function.UnaryOperator;
  */
 public class Option<ContainedType> implements Holder<ContainedType> {
 	private ContainedType held;
-
+	private boolean isHolding;
+	
+	/**
+	 * Create a new empty optional.
+	 */
+	public Option() {
+	    isHolding = false;
+	}
+	
 	/**
 	 * Create a new optional, using the given initial value.
 	 *
@@ -22,12 +30,13 @@ public class Option<ContainedType> implements Holder<ContainedType> {
 	 */
 	public Option(final ContainedType seed) {
 		held = seed;
+		isHolding = true;
 	}
 
 	@Override
 	public <BoundType> Holder<BoundType>
 			bind(final Function<ContainedType, Holder<BoundType>> binder) {
-		if (held == null) return new Option<>(null);
+		if (isHolding) return new Option<>();
 
 		return binder.apply(held);
 	}
@@ -41,7 +50,7 @@ public class Option<ContainedType> implements Holder<ContainedType> {
 	@Override
 	public <MappedType> Holder<MappedType>
 			map(final Function<ContainedType, MappedType> mapper) {
-		if (held == null) return new Option<>(null);
+		if (isHolding) return new Option<>();
 
 		return new Option<>(mapper.apply(held));
 	}
@@ -49,7 +58,7 @@ public class Option<ContainedType> implements Holder<ContainedType> {
 	@Override
 	public Holder<ContainedType>
 			transform(final UnaryOperator<ContainedType> transformer) {
-		if (held != null) held = transformer.apply(held);
+		if (isHolding) held = transformer.apply(held);
 
 		return this;
 	}
@@ -57,7 +66,7 @@ public class Option<ContainedType> implements Holder<ContainedType> {
 	@Override
 	public <UnwrappedType> UnwrappedType
 			unwrap(final Function<ContainedType, UnwrappedType> unwrapper) {
-		if (held == null) return null;
+		if (isHolding) return null;
 
 		return unwrapper.apply(held);
 	}
