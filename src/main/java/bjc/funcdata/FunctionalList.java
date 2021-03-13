@@ -60,8 +60,10 @@ public class FunctionalList<E> implements Cloneable, ListEx<E> {
 	 *
 	 * Takes O(n) time, where n is the number of items specified
 	 *
-	 * @param items
-	 *              The items to put into this functional list.
+	 * @param <T> The type of items to put into the list.
+	 * 
+	 * @param items The items to put into this functional list.
+	 * 
 	 * @return The returned list.
 	 */
 	@SafeVarargs
@@ -72,8 +74,7 @@ public class FunctionalList<E> implements Cloneable, ListEx<E> {
 	/**
 	 * Create a new functional list with the specified size.
 	 *
-	 * @param size
-	 *             The size of the backing list .
+	 * @param size The size of the backing list .
 	 */
 	private FunctionalList(final int size) {
 		wrapped = new ArrayList<>(size);
@@ -84,8 +85,7 @@ public class FunctionalList<E> implements Cloneable, ListEx<E> {
 	 *
 	 * Takes O(1) time, since it doesn't copy the list.
 	 *
-	 * @param backing
-	 *                The list to use as a backing list.
+	 * @param backing The list to use as a backing list.
 	 */
 	public FunctionalList(final List<E> backing) {
 		if (backing == null)

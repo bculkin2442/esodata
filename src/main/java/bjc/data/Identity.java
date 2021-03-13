@@ -99,8 +99,8 @@ public class Identity<ContainedType> implements Holder<ContainedType> {
 	/**
 	 * Create a new identity container.
 	 *
-	 * @param val
-	 *            The contained value.
+	 * @param <ContainedType> The type of the contained value.
+	 * @param val The contained value.
 	 *
 	 * @return A new identity container.
 	 */
@@ -110,7 +110,9 @@ public class Identity<ContainedType> implements Holder<ContainedType> {
 
 	/**
 	 * Create a new empty identity container.
-	 *
+	 * 
+	 * @param <ContainedType> The type of the contained value.
+	 * 
 	 * @return A new empty identity container.
 	 */
 	public static <ContainedType> Identity<ContainedType> id() {

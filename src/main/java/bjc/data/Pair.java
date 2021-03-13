@@ -237,14 +237,14 @@ public interface Pair<LeftType, RightType> extends Bifunctor<LeftType, RightType
 
 	/**
 	 * Static pair constructor.
-	 *
-	 * @param left
-	 *              The left side of the pair.
-	 * @param right
-	 *              The right side of the pair.
+	 * 
+	 * @param <Left> The type of the left side.
+	 * @param <Right> The type of the right side.
+	 * @param left The left side of the pair.
+	 * @param right The right side of the pair.
 	 * @return A pair, with the specified left/right side.
 	 */
-	public static <T1, T2> Pair<T1, T2> pair(T1 left, T2 right) {
+	public static <Left, Right> Pair<Left, Right> pair(Left left, Right right) {
 		return new SimplePair<>(left, right);
 	}
 }

@@ -13,10 +13,9 @@ public class TestUtils {
 	/**
 	 * Assert an iterator provides a particular sequence of values.
 	 *
-	 * @param src
-	 *             The iterator to pull values from.
-	 * @param vals
-	 *             The values to expect from the iterator.
+	 * @param <T> The type of the values.
+	 * @param src The iterator to pull values from.
+	 * @param vals The values to expect from the iterator.
 	 */
 	@SafeVarargs
 	public static <T> void assertIteratorEquals(Iterator<T> src, T... vals) {
@@ -35,12 +34,10 @@ public class TestUtils {
 	/**
 	 * Assert an iterator provides a particular sequence of values.
 	 *
-	 * @param src
-	 *                The iterator to pull values from.
-	 * @param hasMore
-	 *                The expected value of hasNext for the iterator.
-	 * @param vals
-	 *                The values to expect from the iterator.
+	 * @param <T> The type of the values.
+	 * @param src The iterator to pull values from.
+	 * @param hasMore The expected value of hasNext for the iterator.
+	 * @param vals The values to expect from the iterator.
 	 */
 	@SafeVarargs
 	public static <T> void assertIteratorEquals(boolean hasMore, Iterator<T> src,
@@ -60,10 +57,9 @@ public class TestUtils {
 	/**
 	 * Assert an iterator provides a particular sequence of values.
 	 *
-	 * @param src
-	 *             The iterator to pull values from.
-	 * @param vals
-	 *             The values to expect from the iterator.
+	 * @param <T> The type of the values.
+	 * @param src The iterator to pull values from.
+	 * @param vals The values to expect from the iterator.
 	 */
 	@SafeVarargs
 	public static <T> void assertIteratorSet(Iterator<T> src, T... vals) {
@@ -88,12 +84,10 @@ public class TestUtils {
 	/**
 	 * Assert an iterator provides a particular sequence of values.
 	 *
-	 * @param src
-	 *                The iterator to pull values from.
-	 * @param hasMore
-	 *                The expected value of hasNext for the iterator.
-	 * @param vals
-	 *                The values to expect from the iterator.
+	 * @param <T> The type of the values.
+	 * @param src The iterator to pull values from.
+	 * @param hasMore The expected value of hasNext for the iterator.
+	 * @param vals The values to expect from the iterator.
 	 */
 	@SafeVarargs
 	public static <T> void assertIteratorSet(boolean hasMore, Iterator<T> src,
@@ -113,11 +107,9 @@ public class TestUtils {
 	/**
 	 * Assert that a list contains a certain set of values.
 	 *
-	 * @param src
-	 *             The list to read values from.
-	 *
-	 * @param exps
-	 *             The values to expect in the list.
+	 * @param <T> The type of the values.
+	 * @param src The list to read values from.
+	 * @param exps The values to expect in the list.
 	 */
 	@SafeVarargs
 	public static <T> void assertListEquals(List<T> src, T... exps) {

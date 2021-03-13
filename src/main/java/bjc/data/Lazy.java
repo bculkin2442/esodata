@@ -195,9 +195,10 @@ public class Lazy<ContainedType> implements Holder<ContainedType> {
 
 	/**
 	 * Create a new lazy container with an already present value.
-	 *
-	 * @param val
-	 *            The value for the lazy container.
+	 * 
+	 * @param <ContainedType> The type of the contained value.
+	 * 
+	 * @param val The value for the lazy container.
 	 *
 	 * @return A new lazy container holding that value.
 	 */
@@ -208,8 +209,9 @@ public class Lazy<ContainedType> implements Holder<ContainedType> {
 	/**
 	 * Create a new lazy container with a suspended value.
 	 *
-	 * @param supp
-	 *             The suspended value for the lazy container.
+	 * @param <ContainedType> The type of the contained value.
+	 * 
+	 * @param supp The suspended value for the lazy container.
 	 *
 	 * @return A new lazy container that will un-suspend the value when necessary.
 	 */

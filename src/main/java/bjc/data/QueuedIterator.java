@@ -9,8 +9,7 @@ import java.util.Iterator;
  *
  * @author bjculkin
  *
- * @param <E>
- *            The type of element this iterator iterates over
+ * @param <E> The type of element this iterator iterates over
  */
 public class QueuedIterator<E> implements Iterator<E> {
 	private Iterator<E> cur;
@@ -19,7 +18,9 @@ public class QueuedIterator<E> implements Iterator<E> {
 
 	/**
 	 * Static method for constructing iterators.
-	 *
+	 * 
+	 * @param <E> The type of element this iterator iterates over
+	 * 
 	 * @return A queued iterator.
 	 */
 	public static <E> QueuedIterator<E> queued() {
@@ -29,8 +30,9 @@ public class QueuedIterator<E> implements Iterator<E> {
 	/**
 	 * Static method for constructing iterators.
 	 *
-	 * @param vals
-	 *             The values to iterate over.
+	 * @param <E> The type of element this iterator iterates over
+	 * 
+	 * @param vals The values to iterate over.
 	 *
 	 * @return A queued iterator.
 	 */
@@ -42,8 +44,9 @@ public class QueuedIterator<E> implements Iterator<E> {
 	/**
 	 * Static method for constructing iterators.
 	 *
-	 * @param itrs
-	 *             The iterators to use.
+	 * @param <E> The type of element this iterator iterates over
+	 * 
+	 * @param itrs The iterators to use.
 	 *
 	 * @return A queued iterator over the provided iterators.
 	 */
@@ -55,8 +58,9 @@ public class QueuedIterator<E> implements Iterator<E> {
 	/**
 	 * Static method for constructing iterators.
 	 *
-	 * @param itrs
-	 *             The iterables to use.
+	 * @param <E> The type of element this iterator iterates over
+	 * 
+	 * @param itrs The iterables to use.
 	 *
 	 * @return A queued iterator over the provided iterables.
 	 */
