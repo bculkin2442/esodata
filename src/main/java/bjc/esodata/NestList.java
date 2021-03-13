@@ -351,7 +351,8 @@ public class NestList<Element> extends AbstractList<Either<Element, NestList<Ele
 		return backing.get(index);
 	}
 
-	@Override
+	@SuppressWarnings("unlikely-arg-type")
+    @Override
 	public boolean remove(Object o) {
 		return backing.remove(o);
 	}
