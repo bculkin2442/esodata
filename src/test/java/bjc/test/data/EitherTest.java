@@ -1,4 +1,4 @@
-package bjc.data;
+package bjc.test.data;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,8 @@ import java.util.*;
 
 import org.junit.*;
 
-@SuppressWarnings("javadoc")
+import bjc.data.Either;
+
 public class EitherTest
 {
 	private Either<String, String> leftEither;

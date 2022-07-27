@@ -1,6 +1,9 @@
 package bjc.esodata;
 
 import java.util.*;
+import java.util.Map.Entry;
+
+import bjc.data.Pair;
 
 /**
  * A map that has support for multiple values for a given key.
@@ -14,7 +17,7 @@ import java.util.*;
  * @param <KeyType> The type of keys in the map.
  * @param <ValueType> The type of values in the map.
  */
-public class Multimap<KeyType, ValueType> {
+public class Multimap<KeyType, ValueType> implements Iterable<Pair<KeyType, ValueType>> {
 	private Map<KeyType, ThresholdSet<ValueType>> backing;
 
 	/**
@@ -80,6 +83,17 @@ public class Multimap<KeyType, ValueType> {
 	}
 
 	/**
+	 * Get the single value in the map, if there is one.
+	 * @param key The key to look up
+	 * @return An optional containing the key if it is there once, or empty if it is there either no or more than one times
+	 */
+	public Optional<ValueType> getSingle(KeyType key) {
+		Set<ValueType> set = get(key);
+		
+		if (set.size() == 1) return Optional.of(set.iterator().next());
+		return Optional.empty();
+	}
+	/**
 	 * Check if there is at least one value mapped to the given key.
 	 *
 	 * @param key
@@ -107,5 +121,33 @@ public class Multimap<KeyType, ValueType> {
 		if (!backing.containsKey(key)) return false;
 
 		return backing.get(key).contains(value) > 0;
+	}
+	
+	@Override
+	public Iterator<Pair<KeyType, ValueType>> iterator() {
+		return new Iterator<>() {
+			private Iterator<Entry<KeyType, ThresholdSet<ValueType>>> mapIter = backing.entrySet().iterator();
+			private KeyType currKey;
+			private Iterator<ValueType> setIter;
+			
+			@Override
+			public boolean hasNext() {
+				while (setIter == null || !setIter.hasNext()) {
+					if (!mapIter.hasNext()) return false;
+					Entry<KeyType,ThresholdSet<ValueType>> entry = mapIter.next();
+					
+					currKey = entry.getKey();
+					setIter = entry.getValue().setView().iterator();
+				}
+				
+				return setIter.hasNext();
+			}
+			
+			@Override
+			public Pair<KeyType, ValueType> next() {
+				if (setIter == null || !setIter.hasNext()) throw new NoSuchElementException();
+				return Pair.pair(currKey, setIter.next()) ;
+			}
+		};
 	}
 }

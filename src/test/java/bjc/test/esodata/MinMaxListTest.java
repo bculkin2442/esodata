@@ -1,10 +1,12 @@
-package bjc.esodata;
+package bjc.test.esodata;
 
 import static org.junit.Assert.*;
 
 import java.util.*;
 
 import org.junit.*;
+
+import bjc.esodata.MinMaxList;
 
 @SuppressWarnings("javadoc")
 public class MinMaxListTest {

@@ -1,9 +1,11 @@
-package bjc.data;
+package bjc.test.data;
 
-import static bjc.TestUtils.*;
+import static bjc.test.TestUtils.*;
 import java.util.*;
 
 import org.junit.Test;
+
+import bjc.data.CircularIterator;
 
 /**
  * Test for circular iterators.,

@@ -1,0 +1,75 @@
+package bjc.esodata;
+
+import java.util.*;
+
+/**
+ * A labeled tree, where you can reference sub-nodes by their label as long as the reference is unambiguous.
+ *
+ * Inspired by the way that you can reference COBOL members by their name, as long as it is unambiguous. If it is ambiguous, you can instead use parent nodes to disambiguate.
+ *
+ * @param <Contained> The type of data contained in the nodes.
+ */
+public class AbbrevTree<Contained> {
+	/** Represents a single node in an AbbrevTree */
+	public interface AbbrevNode<Contained> {
+		/** The label for the node. */
+		public String getLabel();
+		/** The data for the node. */
+		public Contained getData();
+		/**
+		 * Add a child to this node.
+		 * 
+		 * If a node already exists with the given label, it will be replaced.
+		 *
+		 * @param label The label for the child.
+		 * @param contained The data contained in the child.
+		 */
+		public void addChild(String label, String contained);
+		/**
+		 * Get a child, starting the search from this node.
+		 * @param labels The label(s) to search for. If the label is ambiguous, provide additional ones to make it unambiguous.
+		 */
+		public AbbrevNode<Contained> getNode(String... labels);
+	}
+
+	public Contained get(String... labels) {
+		return null;		
+	}
+}
+
+class AbbrevNode<Contained> {
+	private String label;
+	private Contained data;
+
+	private List<AbbrevNode<Contained>> children;
+	private AbbrevTree<Contained> container;
+
+	/**
+	 * Create a new AbbrevNode with a label and contents.
+	 * @param label The label for this node.
+	 * @param data The data contained in the node.
+	 * @param container The tree that contains the node.
+	 */
+	public AbbrevNode(String label, Contained data, AbbrevTree<Contained> container) {
+		this(container);
+
+		this.label = label;
+		this.data = data;
+	}
+
+	/**
+	 * Get the label for this node.
+	 * @return The label for this node.
+	 */
+	public String getLabel() {
+		return label;
+	}
+
+	/**
+	 * Get the data for this node.
+	 * @return The data for this node.
+	 */
+	public Contained getData() {
+		return data;
+	}
+}

@@ -1,11 +1,13 @@
 /**
  * 
  */
-package bjc.data;
+package bjc.test.data;
 
 import static org.junit.Assert.*;
 
 import org.junit.*;
+
+import bjc.data.ArrayIterator;
 
 /**
  * Test ArrayIterator

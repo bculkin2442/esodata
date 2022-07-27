@@ -2,6 +2,10 @@ package bjc.esodata;
 
 import java.util.*;
 
+import bjc.data.Pair;
+import bjc.data.SimplePair;
+import bjc.data.TransformIterator;
+
 /**
  * Represents a counted set, that overflows to a map.
  *
@@ -17,12 +21,11 @@ import java.util.*;
  * The iterator that this type gives by default is an iterator over all of the
  * values in the set, not including any of those in the map.
  *
- * @param <KeyType>
- *                  The value being counted.
+ * @param <KeyType> The value being counted.
  *
  * @author Ben Culkin
  */
-public class ThresholdSet<KeyType> {
+public class ThresholdSet<KeyType> implements Iterable<Pair<KeyType, Integer>> {
 	// View of this class as a java.util.Set
 	private class SetView extends AbstractSet<KeyType> {
 		/*
@@ -37,7 +40,8 @@ public class ThresholdSet<KeyType> {
 			int ret = ThresholdSet.this.add(key);
 
 			// No change to set contents
-			if (ret > 2) return false;
+			if (ret > 2)
+				return false;
 
 			return true;
 		}
@@ -51,7 +55,8 @@ public class ThresholdSet<KeyType> {
 			int ret = ThresholdSet.this.remove(k);
 
 			// We removed the element.
-			if (ret == 0) return true;
+			if (ret == 0)
+				return true;
 
 			return false;
 		}
@@ -65,7 +70,8 @@ public class ThresholdSet<KeyType> {
 			int ret = ThresholdSet.this.contains(k);
 
 			// The object is set-visible
-			if (ret == 1) return true;
+			if (ret == 1)
+				return true;
 
 			return false;
 		}
@@ -101,15 +107,15 @@ public class ThresholdSet<KeyType> {
 	/**
 	 * Add multiple keys at once to the map.
 	 *
-	 * @param keys
-	 *             The keys to add.
+	 * @param keys The keys to add.
 	 *
 	 * @return An array containing the results of adding the keys.
 	 */
 	public int[] addKeys(@SuppressWarnings("unchecked") KeyType... keys) {
 		int[] ret = new int[keys.length];
 
-		for (int i = 0; i < keys.length; i++) ret[i] = add(keys[i]);
+		for (int i = 0; i < keys.length; i++)
+			ret[i] = add(keys[i]);
 
 		return ret;
 	}
@@ -117,11 +123,10 @@ public class ThresholdSet<KeyType> {
 	/**
 	 * Add a key to the collection.
 	 *
-	 * @param key
-	 *            The key to add to the collection.
+	 * @param key The key to add to the collection.
 	 *
 	 * @return The number of times that key now exists in the collection. Should
-	 *         always be &lt; 0.
+	 *         always be &gt; 0.
 	 */
 	public int add(KeyType key) {
 		if (keySet.contains(key)) {
@@ -149,15 +154,15 @@ public class ThresholdSet<KeyType> {
 	/**
 	 * Remove a bunch of keys from the collection.
 	 *
-	 * @param keys
-	 *             The keys to remove from the collection.
+	 * @param keys The keys to remove from the collection.
 	 *
 	 * @return The results from removing the keys.
 	 */
 	public int[] removeKeys(@SuppressWarnings("unchecked") KeyType... keys) {
 		int[] ret = new int[keys.length];
 
-		for (int i = 0; i < keys.length; i++) ret[i] = remove(keys[i]);
+		for (int i = 0; i < keys.length; i++)
+			ret[i] = remove(keys[i]);
 
 		return ret;
 	}
@@ -165,8 +170,7 @@ public class ThresholdSet<KeyType> {
 	/**
 	 * Remove a key from the collection.
 	 *
-	 * @param key
-	 *            The key to remove from the collection.
+	 * @param key The key to remove from the collection.
 	 *
 	 * @return The number of times that key now exists in the collection. Returns -1
 	 *         if that key wasn't in the collection beforehand.
@@ -188,11 +192,11 @@ public class ThresholdSet<KeyType> {
 				keySet.add(key);
 
 				return 1;
-			} else {
-				keyMap.put(key, cnt);
-
-				return cnt;
 			}
+
+			keyMap.put(key, cnt);
+
+			return cnt;
 		} else {
 			// We don't know about that key
 			return -1;
@@ -202,15 +206,15 @@ public class ThresholdSet<KeyType> {
 	/**
 	 * Get the number of times the set contains a set of given keys.
 	 *
-	 * @param keys
-	 *             The keys to look for.
+	 * @param keys The keys to look for.
 	 *
 	 * @return The containment counts for each key.
 	 */
 	public int[] containsKeys(@SuppressWarnings("unchecked") KeyType... keys) {
 		int[] ret = new int[keys.length];
 
-		for (int i = 0; i < keys.length; i++) ret[i] = contains(keys[i]);
+		for (int i = 0; i < keys.length; i++)
+			ret[i] = contains(keys[i]);
 
 		return ret;
 	}
@@ -218,15 +222,17 @@ public class ThresholdSet<KeyType> {
 	/**
 	 * Get the number of times the set contains a given key.
 	 *
-	 * @param key
-	 *            The key to look for.
+	 * @param key The key to look for.
 	 *
 	 * @return The number of times the key occurs; -1 if it doesn't occur.
 	 */
 	public int contains(KeyType key) {
-		if (keySet.contains(key))     return 1;
-		if (!keyMap.containsKey(key)) return -1;
-		else                          return keyMap.get(key);
+		if (keySet.contains(key))
+			return 1;
+		if (!keyMap.containsKey(key))
+			return -1;
+
+		return keyMap.get(key);
 	}
 
 	/**
@@ -252,12 +258,18 @@ public class ThresholdSet<KeyType> {
 		return new SetView();
 	}
 
+	@Override
+	public Iterator<Pair<KeyType, Integer>> iterator() {
+		return new TransformIterator<>(keyMap.entrySet().iterator(),
+				(entry) -> new SimplePair<>(entry.getKey(), entry.getValue()));
+	}
+
 	/**
 	 * Static threshold set constructor.
+	 * 
 	 * @param <KType> The type of keys for the threshold set.
 	 *
-	 * @param keys
-	 *             The initial keys to add to the threshold set.
+	 * @param keys    The initial keys to add to the threshold set.
 	 * @return A threshold set with the given keys.
 	 */
 	@SafeVarargs

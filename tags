@@ -1,0 +1,1375 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AbbrevMap2	src/main/java/bjc/esodata/AbbrevMap2.java	/^	public AbbrevMap2() {$/;"	m	class:AbbrevMap2
+AbbrevMap2	src/main/java/bjc/esodata/AbbrevMap2.java	/^public class AbbrevMap2 {$/;"	c
+AbbrevNode	src/main/java/bjc/esodata/AbbrevTree.java	/^	public AbbrevNode(String label, Contained data, AbbrevTree<Contained> container) {$/;"	m	class:AbbrevNode
+AbbrevNode	src/main/java/bjc/esodata/AbbrevTree.java	/^	public interface AbbrevNode<Contained> {$/;"	i	class:AbbrevTree
+AbbrevNode	src/main/java/bjc/esodata/AbbrevTree.java	/^class AbbrevNode<Contained> {$/;"	c
+AbbrevTree	src/main/java/bjc/esodata/AbbrevTree.java	/^public class AbbrevTree<Contained> {$/;"	c
+ArrayChooser	src/main/java/bjc/functypes/ArrayChooser.java	/^public interface ArrayChooser<ElementType> {$/;"	i
+ArrayIterator	src/main/java/bjc/data/ArrayIterator.java	/^	public ArrayIterator(T... elms) {$/;"	m	class:ArrayIterator
+ArrayIterator	src/main/java/bjc/data/ArrayIterator.java	/^public class ArrayIterator<T> implements Iterator<T> {$/;"	c
+ArrayIteratorTest	src/test/java/bjc/data/ArrayIteratorTest.java	/^public class ArrayIteratorTest {$/;"	c
+Bifunctor	src/main/java/bjc/funcdata/theory/Bifunctor.java	/^public interface Bifunctor<LeftType, RightType> {$/;"	i
+BifunctorMap	src/main/java/bjc/funcdata/theory/Bifunctor.java	/^	public interface BifunctorMap<OldLeft, OldRight, NewLeft, NewRight>$/;"	i	interface:Bifunctor
+BinarySearchTree	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	public BinarySearchTree(final Comparator<T> cmp) {$/;"	m	class:BinarySearchTree
+BinarySearchTree	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^public class BinarySearchTree<T> {$/;"	c
+BinarySearchTreeExample	src/example/java/bjc/funcdata/bst/BinarySearchTreeExample.java	/^public class BinarySearchTreeExample {$/;"	c
+BinarySearchTreeLeaf	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	public BinarySearchTreeLeaf(final T element) {$/;"	m	class:BinarySearchTreeLeaf
+BinarySearchTreeLeaf	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^public class BinarySearchTreeLeaf<T> implements TreePart<T> {$/;"	c
+BinarySearchTreeNode	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	public BinarySearchTreeNode(final T element, final TreePart<T> lft,$/;"	m	class:BinarySearchTreeNode
+BinarySearchTreeNode	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^public class BinarySearchTreeNode<T> extends BinarySearchTreeLeaf<T> {$/;"	c
+BooleanToggle	src/main/java/bjc/data/BooleanToggle.java	/^	public BooleanToggle() {$/;"	m	class:BooleanToggle
+BooleanToggle	src/main/java/bjc/data/BooleanToggle.java	/^	public BooleanToggle(final boolean initial) {$/;"	m	class:BooleanToggle
+BooleanToggle	src/main/java/bjc/data/BooleanToggle.java	/^public class BooleanToggle implements Toggle<Boolean> {$/;"	c
+BooleanToggleTest	src/test/java/bjc/data/BooleanToggleTest.java	/^public class BooleanToggleTest {$/;"	c
+BoundLazy	src/main/java/bjc/data/internals/BoundLazy.java	/^	public BoundLazy(final Supplier<Holder<OldType>> supp,$/;"	m	class:BoundLazy
+BoundLazy	src/main/java/bjc/data/internals/BoundLazy.java	/^public class BoundLazy<OldType, BoundContainedType>$/;"	c
+BoundLazyPair	src/main/java/bjc/data/internals/BoundLazyPair.java	/^	public BoundLazyPair(final Supplier<OldLeft> leftSupp,$/;"	m	class:BoundLazyPair
+BoundLazyPair	src/main/java/bjc/data/internals/BoundLazyPair.java	/^public class BoundLazyPair<OldLeft, OldRight, NewLeft, NewRight>$/;"	c
+BoundListHolder	src/main/java/bjc/data/internals/BoundListHolder.java	/^	public BoundListHolder(final ListEx<Holder<ContainedType>> toHold) {$/;"	m	class:BoundListHolder
+BoundListHolder	src/main/java/bjc/data/internals/BoundListHolder.java	/^public class BoundListHolder<ContainedType> implements Holder<ContainedType> {$/;"	c
+CircularIterator	src/main/java/bjc/data/CircularIterator.java	/^	public CircularIterator(final Iterable<E> src) {$/;"	m	class:CircularIterator
+CircularIterator	src/main/java/bjc/data/CircularIterator.java	/^	public CircularIterator(final Iterable<E> src, final boolean circ) {$/;"	m	class:CircularIterator
+CircularIterator	src/main/java/bjc/data/CircularIterator.java	/^public class CircularIterator<E> implements Iterator<E> {$/;"	c
+CircularIteratorTest	src/test/java/bjc/data/CircularIteratorTest.java	/^public class CircularIteratorTest {$/;"	c
+Combinators	src/main/java/bjc/functypes/Combinators.java	/^public class Combinators {$/;"	c
+Context	src/main/java/bjc/data/Context.java	/^public interface Context {$/;"	i
+ContextImpl	src/main/java/bjc/data/Contexts.java	/^		public ContextImpl(Context parent) {$/;"	m	class:Contexts.ContextImpl
+ContextImpl	src/main/java/bjc/data/Contexts.java	/^	private static class ContextImpl implements Context {$/;"	c	class:Contexts
+Contexts	src/main/java/bjc/data/Contexts.java	/^	private Contexts() {$/;"	m	class:Contexts	file:
+Contexts	src/main/java/bjc/data/Contexts.java	/^public class Contexts {$/;"	c
+DefaultList	src/main/java/bjc/esodata/DefaultList.java	/^	public DefaultList() {$/;"	m	class:DefaultList
+DefaultList	src/main/java/bjc/esodata/DefaultList.java	/^	public DefaultList(List<ValueType> backer) {$/;"	m	class:DefaultList
+DefaultList	src/main/java/bjc/esodata/DefaultList.java	/^	public DefaultList(List<ValueType> backer, ValueType defVal) {$/;"	m	class:DefaultList
+DefaultList	src/main/java/bjc/esodata/DefaultList.java	/^	public DefaultList(ValueType defVal) {$/;"	m	class:DefaultList
+DefaultList	src/main/java/bjc/esodata/DefaultList.java	/^public class DefaultList<ValueType> extends AbstractList<ValueType> {$/;"	c
+DirectedWalkFunction	src/main/java/bjc/funcdata/bst/DirectedWalkFunction.java	/^public interface DirectedWalkFunction<T> {$/;"	i
+DirectedWalkResult	src/main/java/bjc/funcdata/bst/DirectedWalkFunction.java	/^	public enum DirectedWalkResult {$/;"	g	interface:DirectedWalkFunction
+Directory	src/main/java/bjc/esodata/Directory.java	/^public interface Directory<K, V> {$/;"	i
+DoubleSided	src/main/java/bjc/esodata/DoubleSided.java	/^public interface DoubleSided {$/;"	i
+DoubleTape	src/main/java/bjc/esodata/DoubleTape.java	/^	public DoubleTape() {$/;"	m	class:DoubleTape
+DoubleTape	src/main/java/bjc/esodata/DoubleTape.java	/^	public DoubleTape(final boolean autoExtnd) {$/;"	m	class:DoubleTape
+DoubleTape	src/main/java/bjc/esodata/DoubleTape.java	/^public class DoubleTape<T> implements Tape<T>, DoubleSided {$/;"	c
+Either	src/main/java/bjc/data/Either.java	/^	private Either(final LeftType left, final RightType right) {$/;"	m	class:Either	file:
+Either	src/main/java/bjc/data/Either.java	/^public class Either<LeftType, RightType> {$/;"	c
+EitherTest	src/test/java/bjc/data/EitherTest.java	/^public class EitherTest$/;"	c
+ExtendedMap	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public ExtendedMap(final MapEx<KeyType, ValueType> delegate,$/;"	m	class:ExtendedMap
+ExtendedMap	src/main/java/bjc/funcdata/ExtendedMap.java	/^class ExtendedMap<KeyType, ValueType> implements MapEx<KeyType, ValueType> {$/;"	c
+FAILURE	src/main/java/bjc/funcdata/bst/DirectedWalkFunction.java	/^		FAILURE,$/;"	e	enum:DirectedWalkFunction.DirectedWalkResult	file:
+FixpointExample	src/example/java/bjc/functypes/FixpointExample.java	/^public class FixpointExample$/;"	c
+Fixpoints	src/main/java/bjc/functypes/Fixpoints.java	/^public interface Fixpoints {$/;"	i
+FlatNestIterator	src/main/java/bjc/esodata/FlatNestIterator.java	/^	public FlatNestIterator(ListIterator<Either<Element, NestList<Element>>> iterator)$/;"	m	class:FlatNestIterator
+FlatNestIterator	src/main/java/bjc/esodata/FlatNestIterator.java	/^final class FlatNestIterator<Element> implements ListIterator<Element>$/;"	c
+Freezable	src/main/java/bjc/funcdata/Freezable.java	/^public interface Freezable {$/;"	i
+FunctionalIsomorphism	src/main/java/bjc/functypes/FunctionalIsomorphism.java	/^	public FunctionalIsomorphism(Function<Source, Dest> to,$/;"	m	class:FunctionalIsomorphism
+FunctionalIsomorphism	src/main/java/bjc/functypes/FunctionalIsomorphism.java	/^public class FunctionalIsomorphism<Source, Dest> implements Isomorphism<Source, Dest>$/;"	c
+FunctionalList	src/main/java/bjc/funcdata/FunctionalList.java	/^	private FunctionalList(final int size) {$/;"	m	class:FunctionalList	file:
+FunctionalList	src/main/java/bjc/funcdata/FunctionalList.java	/^	public FunctionalList() {$/;"	m	class:FunctionalList
+FunctionalList	src/main/java/bjc/funcdata/FunctionalList.java	/^	public FunctionalList(final E... items) {$/;"	m	class:FunctionalList
+FunctionalList	src/main/java/bjc/funcdata/FunctionalList.java	/^	public FunctionalList(final List<E> backing) {$/;"	m	class:FunctionalList
+FunctionalList	src/main/java/bjc/funcdata/FunctionalList.java	/^public class FunctionalList<E> implements Cloneable, ListEx<E> {$/;"	c
+FunctionalMap	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public FunctionalMap() {$/;"	m	class:FunctionalMap
+FunctionalMap	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public FunctionalMap(final Map<KeyType, ValueType> wrap) {$/;"	m	class:FunctionalMap
+FunctionalMap	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public FunctionalMap(final Pair<KeyType, ValueType>... entries) {$/;"	m	class:FunctionalMap
+FunctionalMap	src/main/java/bjc/funcdata/FunctionalMap.java	/^public class FunctionalMap<KeyType, ValueType> implements MapEx<KeyType, ValueType> {$/;"	c
+FunctionalStringTokenizer	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^	public FunctionalStringTokenizer(final String inp) {$/;"	m	class:FunctionalStringTokenizer
+FunctionalStringTokenizer	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^	public FunctionalStringTokenizer(final String input, final String seperators) {$/;"	m	class:FunctionalStringTokenizer
+FunctionalStringTokenizer	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^	public FunctionalStringTokenizer(final StringTokenizer toWrap) {$/;"	m	class:FunctionalStringTokenizer
+FunctionalStringTokenizer	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^public class FunctionalStringTokenizer {$/;"	c
+Functor	src/main/java/bjc/funcdata/theory/Functor.java	/^public interface Functor<ContainedType> {$/;"	i
+GeneratingIterator	src/main/java/bjc/data/GeneratingIterator.java	/^	public GeneratingIterator(E initial, UnaryOperator<E> transition,$/;"	m	class:GeneratingIterator
+GeneratingIterator	src/main/java/bjc/data/GeneratingIterator.java	/^public class GeneratingIterator<E> implements Iterator<E> {$/;"	c
+HalfBoundLazyPair	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^	public HalfBoundLazyPair(final Supplier<OldType> oldSupp,$/;"	m	class:HalfBoundLazyPair
+HalfBoundLazyPair	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^public class HalfBoundLazyPair<OldType, NewLeft, NewRight>$/;"	c
+Holder	src/main/java/bjc/data/Holder.java	/^public interface Holder<ContainedType> extends Functor<ContainedType> {$/;"	i
+ID	src/main/java/bjc/data/SimpleTree.java	/^	private int ID;$/;"	f	class:SimpleTree	file:
+ID	src/main/java/bjc/functypes/ID.java	/^public class ID {$/;"	c
+IDTest	src/test/java/bjc/functypes/IDTest.java	/^public class IDTest {$/;"	c
+INORDER	src/main/java/bjc/funcdata/bst/TreeLinearizationMethod.java	/^	INORDER,$/;"	e	enum:TreeLinearizationMethod	file:
+Identity	src/main/java/bjc/data/Identity.java	/^	public Identity() {$/;"	m	class:Identity
+Identity	src/main/java/bjc/data/Identity.java	/^	public Identity(final ContainedType value) {$/;"	m	class:Identity
+Identity	src/main/java/bjc/data/Identity.java	/^public class Identity<ContainedType> implements Holder<ContainedType> {$/;"	c
+IntArrayChooser	src/main/java/bjc/functypes/IntArrayChooser.java	/^public interface IntArrayChooser {$/;"	i
+IntHolder	src/main/java/bjc/data/IntHolder.java	/^	public IntHolder() {$/;"	m	class:IntHolder
+IntHolder	src/main/java/bjc/data/IntHolder.java	/^	public IntHolder(int i) {$/;"	m	class:IntHolder
+IntHolder	src/main/java/bjc/data/IntHolder.java	/^public class IntHolder {$/;"	c
+Isomorphism	src/main/java/bjc/functypes/Isomorphism.java	/^public interface Isomorphism<Source, Dest>$/;"	i
+LEFT	src/main/java/bjc/funcdata/bst/DirectedWalkFunction.java	/^		LEFT,$/;"	e	enum:DirectedWalkFunction.DirectedWalkResult	file:
+Lazy	src/main/java/bjc/data/Lazy.java	/^	private Lazy(final Supplier<ContainedType> supp,$/;"	m	class:Lazy	file:
+Lazy	src/main/java/bjc/data/Lazy.java	/^	public Lazy(final ContainedType value) {$/;"	m	class:Lazy
+Lazy	src/main/java/bjc/data/Lazy.java	/^	public Lazy(final Supplier<ContainedType> supp) {$/;"	m	class:Lazy
+Lazy	src/main/java/bjc/data/Lazy.java	/^public class Lazy<ContainedType> implements Holder<ContainedType> {$/;"	c
+LazyPair	src/main/java/bjc/data/LazyPair.java	/^	public LazyPair(final LeftType leftVal, final RightType rightVal) {$/;"	m	class:LazyPair
+LazyPair	src/main/java/bjc/data/LazyPair.java	/^	public LazyPair(final Supplier<LeftType> leftSupp,$/;"	m	class:LazyPair
+LazyPair	src/main/java/bjc/data/LazyPair.java	/^public class LazyPair<LeftType, RightType> implements Pair<LeftType, RightType> {$/;"	c
+LeftBifunctorMap	src/main/java/bjc/funcdata/theory/Bifunctor.java	/^	public interface LeftBifunctorMap<OldLeft, OldRight, NewLeft>$/;"	i	interface:Bifunctor
+ListEx	src/main/java/bjc/funcdata/ListEx.java	/^public interface ListEx<ContainedType> extends Iterable<ContainedType> {$/;"	i
+ListFlattener	src/main/java/bjc/functypes/ListFlattener.java	/^public interface ListFlattener<S> extends Function<ListEx<S>, S> {$/;"	i
+ListHolder	src/main/java/bjc/data/ListHolder.java	/^	private ListHolder(final ListEx<ContainedType> toHold) {$/;"	m	class:ListHolder	file:
+ListHolder	src/main/java/bjc/data/ListHolder.java	/^	public ListHolder(final ContainedType... values) {$/;"	m	class:ListHolder
+ListHolder	src/main/java/bjc/data/ListHolder.java	/^public class ListHolder<ContainedType> implements Holder<ContainedType> {$/;"	c
+MapEx	src/main/java/bjc/funcdata/MapEx.java	/^public interface MapEx<KeyType, ValueType> extends Freezable {$/;"	i
+MapSet	src/main/java/bjc/esodata/MapSet.java	/^	public MapSet() {$/;"	m	class:MapSet
+MapSet	src/main/java/bjc/esodata/MapSet.java	/^	public MapSet(Map<String, Map<KeyType, ValueType>> back) {$/;"	m	class:MapSet
+MapSet	src/main/java/bjc/esodata/MapSet.java	/^public class MapSet<KeyType, ValueType> extends AbstractMap<KeyType, ValueType> {$/;"	c
+MemoizedThrower	src/main/java/bjc/functypes/Thrower.java	/^	public MemoizedThrower(Thrower<ValueType, ExceptionType> source)$/;"	m	class:MemoizedThrower
+MemoizedThrower	src/main/java/bjc/functypes/Thrower.java	/^class MemoizedThrower<ValueType, ExceptionType extends Throwable>$/;"	c
+MinMaxList	src/main/java/bjc/esodata/MinMaxList.java	/^	public MinMaxList(Comparator<ValueType> picker) {$/;"	m	class:MinMaxList
+MinMaxList	src/main/java/bjc/esodata/MinMaxList.java	/^	public MinMaxList(Comparator<ValueType> picker, Collection<ValueType> backing) {$/;"	m	class:MinMaxList
+MinMaxList	src/main/java/bjc/esodata/MinMaxList.java	/^	public MinMaxList(Comparator<ValueType> picker, List<ValueType> backing) {$/;"	m	class:MinMaxList
+MinMaxList	src/main/java/bjc/esodata/MinMaxList.java	/^	public MinMaxList(Comparator<ValueType> picker, ValueType... values) {$/;"	m	class:MinMaxList
+MinMaxList	src/main/java/bjc/esodata/MinMaxList.java	/^public class MinMaxList<ValueType> extends AbstractList<ValueType> {$/;"	c
+MinMaxListTest	src/test/java/bjc/esodata/MinMaxListTest.java	/^public class MinMaxListTest {$/;"	c
+Multimap	src/main/java/bjc/data/Multimap.java	/^public class Multimap<KeyType, ValueType> {$/;"	c
+Multimap	src/main/java/bjc/esodata/Multimap.java	/^	public Multimap() {$/;"	m	class:Multimap
+Multimap	src/main/java/bjc/esodata/Multimap.java	/^public class Multimap<KeyType, ValueType> {$/;"	c
+NULL	src/main/java/bjc/data/Contexts.java	/^	public static final Context NULL = new NullContextImpl();$/;"	f	class:Contexts
+NestList	src/main/java/bjc/esodata/NestList.java	/^	public NestList() {$/;"	m	class:NestList
+NestList	src/main/java/bjc/esodata/NestList.java	/^	public NestList(int cap) {$/;"	m	class:NestList
+NestList	src/main/java/bjc/esodata/NestList.java	/^public class NestList<Element> extends AbstractList<Either<Element, NestList<Element>>>$/;"	c
+NestListTest	src/test/java/bjc/esodata/NestListTest.java	/^public class NestListTest$/;"	c
+NonCMEIterator	src/main/java/bjc/data/NonCMEIterator.java	/^	public NonCMEIterator(List<ElementType> source) {$/;"	m	class:NonCMEIterator
+NonCMEIterator	src/main/java/bjc/data/NonCMEIterator.java	/^public class NonCMEIterator<ElementType> implements Iterator<ElementType> {$/;"	c
+NonCMEListIterator	src/main/java/bjc/data/NonCMEListIterator.java	/^	public NonCMEListIterator(List<ElementType> source) {$/;"	m	class:NonCMEListIterator
+NonCMEListIterator	src/main/java/bjc/data/NonCMEListIterator.java	/^public class NonCMEListIterator<ElementType> extends NonCMEIterator<ElementType> implements ListIterator<ElementType> {$/;"	c
+NullContextImpl	src/main/java/bjc/data/Contexts.java	/^	private static class NullContextImpl implements Context {$/;"	c	class:Contexts
+ObjectFrozen	src/main/java/bjc/funcdata/ObjectFrozen.java	/^	public ObjectFrozen() {$/;"	m	class:ObjectFrozen
+ObjectFrozen	src/main/java/bjc/funcdata/ObjectFrozen.java	/^	public ObjectFrozen(String message) {$/;"	m	class:ObjectFrozen
+ObjectFrozen	src/main/java/bjc/funcdata/ObjectFrozen.java	/^	public ObjectFrozen(String message, Throwable cause) {$/;"	m	class:ObjectFrozen
+ObjectFrozen	src/main/java/bjc/funcdata/ObjectFrozen.java	/^	public ObjectFrozen(Throwable cause) {$/;"	m	class:ObjectFrozen
+ObjectFrozen	src/main/java/bjc/funcdata/ObjectFrozen.java	/^public class ObjectFrozen extends RuntimeException {$/;"	c
+OneWayToggle	src/main/java/bjc/data/OneWayToggle.java	/^	public OneWayToggle(E first, E second) {$/;"	m	class:OneWayToggle
+OneWayToggle	src/main/java/bjc/data/OneWayToggle.java	/^public class OneWayToggle<E> implements Toggle<E> {$/;"	c
+Option	src/main/java/bjc/data/Option.java	/^	public Option() {$/;"	m	class:Option
+Option	src/main/java/bjc/data/Option.java	/^	public Option(final ContainedType seed) {$/;"	m	class:Option
+Option	src/main/java/bjc/data/Option.java	/^public class Option<ContainedType> implements Holder<ContainedType> {$/;"	c
+PASSTHROUGH	src/main/java/bjc/data/TopDownTransformResult.java	/^	PASSTHROUGH,$/;"	e	enum:TopDownTransformResult	file:
+POSTORDER	src/main/java/bjc/funcdata/bst/TreeLinearizationMethod.java	/^	POSTORDER,$/;"	e	enum:TreeLinearizationMethod	file:
+PREORDER	src/main/java/bjc/funcdata/bst/TreeLinearizationMethod.java	/^	PREORDER$/;"	e	enum:TreeLinearizationMethod	file:
+PULLUP	src/main/java/bjc/data/TopDownTransformResult.java	/^	PULLUP;$/;"	e	enum:TopDownTransformResult	file:
+PUSHDOWN	src/main/java/bjc/data/TopDownTransformResult.java	/^	PUSHDOWN,$/;"	e	enum:TopDownTransformResult	file:
+Pair	src/main/java/bjc/data/Pair.java	/^public interface Pair<LeftType, RightType> extends Bifunctor<LeftType, RightType> {$/;"	i
+PushdownMap	src/main/java/bjc/esodata/PushdownMap.java	/^	public PushdownMap() {$/;"	m	class:PushdownMap
+PushdownMap	src/main/java/bjc/esodata/PushdownMap.java	/^public class PushdownMap<KeyType, ValueType> implements MapEx<KeyType, ValueType> {$/;"	c
+QueueStack	src/main/java/bjc/esodata/QueueStack.java	/^	public QueueStack() {$/;"	m	class:QueueStack
+QueueStack	src/main/java/bjc/esodata/QueueStack.java	/^public class QueueStack<T> extends Stack<T> {$/;"	c
+QueuedIterator	src/main/java/bjc/data/QueuedIterator.java	/^	public QueuedIterator() {$/;"	m	class:QueuedIterator
+QueuedIterator	src/main/java/bjc/data/QueuedIterator.java	/^	public QueuedIterator(E... vals) {$/;"	m	class:QueuedIterator
+QueuedIterator	src/main/java/bjc/data/QueuedIterator.java	/^	public QueuedIterator(Iterable<E>... inits) {$/;"	m	class:QueuedIterator
+QueuedIterator	src/main/java/bjc/data/QueuedIterator.java	/^	public QueuedIterator(Iterator<E>... inits) {$/;"	m	class:QueuedIterator
+QueuedIterator	src/main/java/bjc/data/QueuedIterator.java	/^public class QueuedIterator<E> implements Iterator<E> {$/;"	c
+QueuedIteratorTest	src/test/java/bjc/data/QueuedIteratorTest.java	/^public class QueuedIteratorTest {$/;"	c
+RIGHT	src/main/java/bjc/funcdata/bst/DirectedWalkFunction.java	/^		RIGHT,$/;"	e	enum:DirectedWalkFunction.DirectedWalkResult	file:
+RTRANSFORM	src/main/java/bjc/data/TopDownTransformResult.java	/^	RTRANSFORM,$/;"	e	enum:TopDownTransformResult	file:
+ResettableIterator	src/main/java/bjc/data/ResettableIterator.java	/^	public ResettableIterator(Iterable<T> itr) {$/;"	m	class:ResettableIterator
+ResettableIterator	src/main/java/bjc/data/ResettableIterator.java	/^	public ResettableIterator(Iterator<T> itr) {$/;"	m	class:ResettableIterator
+ResettableIterator	src/main/java/bjc/data/ResettableIterator.java	/^public class ResettableIterator<T> implements Iterator<T> {$/;"	c
+ReverseListIterator	src/main/java/bjc/data/ReverseListIterator.java	/^	public ReverseListIterator(List<Element> source)$/;"	m	class:ReverseListIterator
+ReverseListIterator	src/main/java/bjc/data/ReverseListIterator.java	/^public class ReverseListIterator<Element> implements ListIterator<Element>$/;"	c
+RightBifunctorMap	src/main/java/bjc/funcdata/theory/Bifunctor.java	/^	public interface RightBifunctorMap<OldLeft, OldRight, NewRight>$/;"	i	interface:Bifunctor
+SKIP	src/main/java/bjc/data/TopDownTransformResult.java	/^	SKIP,$/;"	e	enum:TopDownTransformResult	file:
+SUCCESS	src/main/java/bjc/funcdata/bst/DirectedWalkFunction.java	/^		SUCCESS$/;"	e	enum:DirectedWalkFunction.DirectedWalkResult	file:
+SentryList	src/main/java/bjc/funcdata/SentryList.java	/^	public SentryList() {$/;"	m	class:SentryList
+SentryList	src/main/java/bjc/funcdata/SentryList.java	/^	public SentryList(final List<T> backing) {$/;"	m	class:SentryList
+SentryList	src/main/java/bjc/funcdata/SentryList.java	/^public class SentryList<T> extends FunctionalList<T> {$/;"	c
+SetView	src/main/java/bjc/esodata/ThresholdSet.java	/^	private class SetView extends AbstractSet<KeyType> {$/;"	c	class:ThresholdSet
+SimpleDirectory	src/main/java/bjc/esodata/SimpleDirectory.java	/^	public SimpleDirectory() {$/;"	m	class:SimpleDirectory
+SimpleDirectory	src/main/java/bjc/esodata/SimpleDirectory.java	/^public class SimpleDirectory<K, V> implements Directory<K, V> {$/;"	c
+SimplePair	src/main/java/bjc/data/SimplePair.java	/^	public SimplePair() {$/;"	m	class:SimplePair
+SimplePair	src/main/java/bjc/data/SimplePair.java	/^	public SimplePair(final LeftType left, final RightType right) {$/;"	m	class:SimplePair
+SimplePair	src/main/java/bjc/data/SimplePair.java	/^public class SimplePair<LeftType, RightType> implements Pair<LeftType, RightType> {$/;"	c
+SimpleStack	src/main/java/bjc/esodata/SimpleStack.java	/^	public SimpleStack() {$/;"	m	class:SimpleStack
+SimpleStack	src/main/java/bjc/esodata/SimpleStack.java	/^public class SimpleStack<T> extends Stack<T> {$/;"	c
+SimpleTree	src/main/java/bjc/data/SimpleTree.java	/^	public SimpleTree() {$/;"	m	class:SimpleTree
+SimpleTree	src/main/java/bjc/data/SimpleTree.java	/^	public SimpleTree(final ContainedType leaf) {$/;"	m	class:SimpleTree
+SimpleTree	src/main/java/bjc/data/SimpleTree.java	/^	public SimpleTree(final ContainedType leaf, final ListEx<Tree<ContainedType>> childrn) {$/;"	m	class:SimpleTree
+SimpleTree	src/main/java/bjc/data/SimpleTree.java	/^	public SimpleTree(final ContainedType leaf, final Tree<ContainedType>... childrn) {$/;"	m	class:SimpleTree
+SimpleTree	src/main/java/bjc/data/SimpleTree.java	/^public class SimpleTree<ContainedType> implements Tree<ContainedType> {$/;"	c
+SingleIterator	src/main/java/bjc/data/SingleIterator.java	/^	public SingleIterator(final T item) {$/;"	m	class:SingleIterator
+SingleIterator	src/main/java/bjc/data/SingleIterator.java	/^public class SingleIterator<T> implements Iterator<T> {$/;"	c
+SingleSupplier	src/main/java/bjc/data/SingleSupplier.java	/^	public SingleSupplier(final Supplier<T> supp) {$/;"	m	class:SingleSupplier
+SingleSupplier	src/main/java/bjc/data/SingleSupplier.java	/^public class SingleSupplier<T> implements Supplier<T> {$/;"	c
+SingleTape	src/main/java/bjc/esodata/SingleTape.java	/^	public SingleTape() {$/;"	m	class:SingleTape
+SingleTape	src/main/java/bjc/esodata/SingleTape.java	/^	public SingleTape(Iterable<T> itr) {$/;"	m	class:SingleTape
+SingleTape	src/main/java/bjc/esodata/SingleTape.java	/^	public SingleTape(T... vals) {$/;"	m	class:SingleTape
+SingleTape	src/main/java/bjc/esodata/SingleTape.java	/^	public SingleTape(final boolean autoExtnd) {$/;"	m	class:SingleTape
+SingleTape	src/main/java/bjc/esodata/SingleTape.java	/^public class SingleTape<T> implements Tape<T> {$/;"	c
+SpaghettiStack	src/main/java/bjc/esodata/SpaghettiStack.java	/^	public SpaghettiStack(final Stack<T> par) {$/;"	m	class:SpaghettiStack
+SpaghettiStack	src/main/java/bjc/esodata/SpaghettiStack.java	/^class SpaghettiStack<T> extends Stack<T> {$/;"	c
+Stack	src/main/java/bjc/esodata/Stack.java	/^public abstract class Stack<T> {$/;"	c
+StackTest	src/test/java/bjc/esodata/StackTest.java	/^public class StackTest {$/;"	c
+StackUnderflow	src/main/java/bjc/esodata/Stack.java	/^	public static class StackUnderflow extends RuntimeException {$/;"	c	class:Stack
+TRANSFORM	src/main/java/bjc/data/TopDownTransformResult.java	/^	TRANSFORM,$/;"	e	enum:TopDownTransformResult	file:
+TS	src/main/java/bjc/esodata/ThresholdSet.java	/^	public static <KType> ThresholdSet<KType> TS(KType... keys) {$/;"	m	class:ThresholdSet
+Tape	src/main/java/bjc/esodata/Tape.java	/^public interface Tape<T> {$/;"	i
+TapeLibrary	src/main/java/bjc/esodata/TapeLibrary.java	/^	public TapeLibrary()$/;"	m	class:TapeLibrary
+TapeLibrary	src/main/java/bjc/esodata/TapeLibrary.java	/^	public TapeLibrary(String label, Tape<ElementType> tape)$/;"	m	class:TapeLibrary
+TapeLibrary	src/main/java/bjc/esodata/TapeLibrary.java	/^public class TapeLibrary<ElementType> implements TapeView<ElementType>$/;"	c
+TapeView	src/main/java/bjc/esodata/TapeView.java	/^public interface TapeView<ElementType> extends Tape<ElementType>$/;"	i
+TestMapCreation	src/test/java/bjc/funcdata/TestMapCreation.java	/^public class TestMapCreation {$/;"	c
+TestMapOperations	src/test/java/bjc/funcdata/TestMapOperations.java	/^public class TestMapOperations {$/;"	c
+TestUtils	src/test/java/bjc/TestUtils.java	/^public class TestUtils {$/;"	c
+ThresholdSet	src/main/java/bjc/esodata/ThresholdSet.java	/^	public ThresholdSet() {$/;"	m	class:ThresholdSet
+ThresholdSet	src/main/java/bjc/esodata/ThresholdSet.java	/^public class ThresholdSet<KeyType> {$/;"	c
+ThresholdSetTest	src/test/java/bjc/esodata/ThresholdSetTest.java	/^public class ThresholdSetTest {$/;"	c
+ThrowFunction	src/main/java/bjc/functypes/ThrowFunction.java	/^public interface ThrowFunction<InputType, ReturnType, ExType extends Throwable>$/;"	i
+Thrower	src/main/java/bjc/functypes/Thrower.java	/^public interface Thrower<ValueType, ExceptionType extends Throwable>$/;"	i
+Toggle	src/main/java/bjc/data/Toggle.java	/^public interface Toggle<E> {$/;"	i
+TopDownTransformIterator	src/main/java/bjc/data/TopDownTransformIterator.java	/^	public TopDownTransformIterator($/;"	m	class:TopDownTransformIterator
+TopDownTransformIterator	src/main/java/bjc/data/TopDownTransformIterator.java	/^public class TopDownTransformIterator<ContainedType>$/;"	c
+TopDownTransformResult	src/main/java/bjc/data/TopDownTransformResult.java	/^public enum TopDownTransformResult {$/;"	g
+TransformIterator	src/main/java/bjc/data/TransformIterator.java	/^	public TransformIterator(final Iterator<S> source, final Function<S, D> transform) {$/;"	m	class:TransformIterator
+TransformIterator	src/main/java/bjc/data/TransformIterator.java	/^public class TransformIterator<S, D> implements Iterator<D> {$/;"	c
+TransformedValueMap	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public TransformedValueMap(final MapEx<OldKey, OldValue> backingMap,$/;"	m	class:TransformedValueMap
+TransformedValueMap	src/main/java/bjc/funcdata/TransformedValueMap.java	/^final class TransformedValueMap<OldKey, OldValue, NewValue>$/;"	c
+Tree	src/main/java/bjc/data/Tree.java	/^public interface Tree<ContainedType> {$/;"	i
+TreeLinearizationMethod	src/main/java/bjc/funcdata/bst/TreeLinearizationMethod.java	/^public enum TreeLinearizationMethod {$/;"	g
+TreePart	src/main/java/bjc/funcdata/bst/TreePart.java	/^public interface TreePart<T> {$/;"	i
+TreeTransform	src/main/java/bjc/data/TopDownTransformIterator.java	/^	public interface TreeTransform<ContainedType> extends BiFunction<Tree<ContainedType>,$/;"	i	class:TopDownTransformIterator
+UnifiedDirectory	src/main/java/bjc/esodata/UnifiedDirectory.java	/^	public UnifiedDirectory() {$/;"	m	class:UnifiedDirectory
+UnifiedDirectory	src/main/java/bjc/esodata/UnifiedDirectory.java	/^public class UnifiedDirectory<K, V> implements Directory<K, V> {$/;"	c
+ValueToggle	src/main/java/bjc/data/ValueToggle.java	/^	public ValueToggle(final E left, final E right) {$/;"	m	class:ValueToggle
+ValueToggle	src/main/java/bjc/data/ValueToggle.java	/^public class ValueToggle<E> implements Toggle<E> {$/;"	c
+WrappedLazy	src/main/java/bjc/data/internals/WrappedLazy.java	/^	private WrappedLazy(final Holder<Holder<ContainedType>> wrappedHolder,$/;"	m	class:WrappedLazy	file:
+WrappedLazy	src/main/java/bjc/data/internals/WrappedLazy.java	/^	public WrappedLazy(final Holder<ContainedType> wrappedHolder) {$/;"	m	class:WrappedLazy
+WrappedLazy	src/main/java/bjc/data/internals/WrappedLazy.java	/^public class WrappedLazy<ContainedType> implements Holder<ContainedType> {$/;"	c
+WrappedOption	src/main/java/bjc/data/internals/WrappedOption.java	/^	private WrappedOption(final Holder<Holder<ContainedType>> toHold,$/;"	m	class:WrappedOption	file:
+WrappedOption	src/main/java/bjc/data/internals/WrappedOption.java	/^	public WrappedOption(final Holder<ContainedType> seedValue) {$/;"	m	class:WrappedOption
+WrappedOption	src/main/java/bjc/data/internals/WrappedOption.java	/^public class WrappedOption<ContainedType> implements Holder<ContainedType> {$/;"	c
+actions	src/main/java/bjc/data/Lazy.java	/^	private ListEx<UnaryOperator<ContainedType>> actions = new FunctionalList<>();$/;"	f	class:Lazy	file:
+actions	src/main/java/bjc/data/internals/BoundLazy.java	/^	private final ListEx<UnaryOperator<BoundContainedType>> actions$/;"	f	class:BoundLazy	file:
+add	src/main/java/bjc/data/NonCMEListIterator.java	/^	public void add(ElementType element) {$/;"	m	class:NonCMEListIterator
+add	src/main/java/bjc/data/ReverseListIterator.java	/^	public void add(Element element) {$/;"	m	class:ReverseListIterator
+add	src/main/java/bjc/esodata/AbbrevMap2.java	/^	public void add(String... words) {$/;"	m	class:AbbrevMap2
+add	src/main/java/bjc/esodata/DefaultList.java	/^	public void add(int idx, ValueType val) {$/;"	m	class:DefaultList
+add	src/main/java/bjc/esodata/FlatNestIterator.java	/^	public void add(Element e) {$/;"	m	class:FlatNestIterator
+add	src/main/java/bjc/esodata/MinMaxList.java	/^	public void add(int index, ValueType element) {$/;"	m	class:MinMaxList
+add	src/main/java/bjc/esodata/Multimap.java	/^	public void add(KeyType key, ValueType value) {$/;"	m	class:Multimap
+add	src/main/java/bjc/esodata/NestList.java	/^	public boolean add(Either<Element, NestList<Element>> e) {$/;"	m	class:NestList
+add	src/main/java/bjc/esodata/NestList.java	/^	public void add(int index, Either<Element, NestList<Element>> element) {$/;"	m	class:NestList
+add	src/main/java/bjc/esodata/ThresholdSet.java	/^		public boolean add(KeyType key) {$/;"	m	class:ThresholdSet.SetView
+add	src/main/java/bjc/esodata/ThresholdSet.java	/^	public int add(KeyType key) {$/;"	m	class:ThresholdSet
+add	src/main/java/bjc/funcdata/FunctionalList.java	/^	public boolean add(final E item) {$/;"	m	class:FunctionalList
+add	src/main/java/bjc/funcdata/ListEx.java	/^	boolean add(ContainedType item);$/;"	m	interface:ListEx
+add	src/main/java/bjc/funcdata/SentryList.java	/^	public boolean add(final T item) {$/;"	m	class:SentryList
+add	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	public void add(final T element, final Comparator<T> comparator) {$/;"	m	class:BinarySearchTreeLeaf
+add	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	public void add(final T element, final Comparator<T> comparator) {$/;"	m	class:BinarySearchTreeNode
+add	src/main/java/bjc/funcdata/bst/TreePart.java	/^	public void add(T element, Comparator<T> comparator);$/;"	m	interface:TreePart
+addAll	src/main/java/bjc/funcdata/ListEx.java	/^	default boolean addAll(final ContainedType... items) {$/;"	m	interface:ListEx
+addAll	src/main/java/bjc/funcdata/ListEx.java	/^	default boolean addAll(final ListEx<ContainedType> items) {$/;"	m	interface:ListEx
+addChild	src/main/java/bjc/data/SimpleTree.java	/^	public void addChild(final ContainedType child) {$/;"	m	class:SimpleTree
+addChild	src/main/java/bjc/data/SimpleTree.java	/^	public void addChild(final Tree<ContainedType> child) {$/;"	m	class:SimpleTree
+addChild	src/main/java/bjc/data/Tree.java	/^	void addChild(ContainedType child);$/;"	m	interface:Tree
+addChild	src/main/java/bjc/data/Tree.java	/^	void addChild(Tree<ContainedType> child);$/;"	m	interface:Tree
+addChild	src/main/java/bjc/esodata/AbbrevTree.java	/^		public void addChild(String label, String contained);$/;"	m	interface:AbbrevTree.AbbrevNode
+addItem	src/main/java/bjc/esodata/NestList.java	/^	public boolean addItem(Element element) {$/;"	m	class:NestList
+addItem	src/main/java/bjc/esodata/NestList.java	/^	public boolean addItem(NestList<Element> element) {$/;"	m	class:NestList
+addItems	src/main/java/bjc/esodata/NestList.java	/^	public boolean[] addItems(@SuppressWarnings("unchecked") Element... elements) {$/;"	m	class:NestList
+addItems	src/main/java/bjc/esodata/NestList.java	/^	public boolean[] addItems(@SuppressWarnings("unchecked") NestList<Element>... elements) {$/;"	m	class:NestList
+addKeys	src/main/java/bjc/esodata/ThresholdSet.java	/^	public int[] addKeys(@SuppressWarnings("unchecked") KeyType... keys) {$/;"	m	class:ThresholdSet
+addMap	src/main/java/bjc/esodata/MapSet.java	/^	public void addMap(String key, Map<KeyType, ValueType> map) {$/;"	m	class:MapSet
+addNode	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	public void addNode(final T element) {$/;"	m	class:BinarySearchTree
+addSublist	src/main/java/bjc/esodata/NestList.java	/^	public boolean addSublist(@SuppressWarnings("unchecked") Element... elements) {$/;"	m	class:NestList
+addYield	src/main/java/bjc/data/TopDownTransformIterator.java	/^	public void addYield(final Iterator<Tree<ContainedType>> src) {$/;"	m	class:TopDownTransformIterator
+adjustedPivotInBounds	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	private boolean adjustedPivotInBounds(final ListEx<T> elements, final int pivot,$/;"	m	class:BinarySearchTree	file:
+after	src/main/java/bjc/data/QueuedIterator.java	/^	public void after(@SuppressWarnings("unchecked") E... vals) {$/;"	m	class:QueuedIterator
+after	src/main/java/bjc/data/QueuedIterator.java	/^	public void after(Iterable<E> itr) {$/;"	m	class:QueuedIterator
+after	src/main/java/bjc/data/QueuedIterator.java	/^	public void after(Iterator<E> itr) {$/;"	m	class:QueuedIterator
+alignment	src/main/java/bjc/data/ValueToggle.java	/^	private final BooleanToggle alignment;$/;"	f	class:ValueToggle	file:
+allMatch	src/main/java/bjc/funcdata/FunctionalList.java	/^	public boolean allMatch(final Predicate<E> predicate) {$/;"	m	class:FunctionalList
+allMatch	src/main/java/bjc/funcdata/ListEx.java	/^	boolean allMatch(Predicate<ContainedType> matcher);$/;"	m	interface:ListEx
+allowAutoCreation	src/main/java/bjc/esodata/TapeLibrary.java	/^	private boolean allowAutoCreation;$/;"	f	class:TapeLibrary	file:
+andThen	src/main/java/bjc/functypes/Combinators.java	/^	public static <Input, Output> Consumer<Input> andThen($/;"	m	class:Combinators
+anyMatch	src/main/java/bjc/funcdata/FunctionalList.java	/^	public boolean anyMatch(final Predicate<E> predicate) {$/;"	m	class:FunctionalList
+anyMatch	src/main/java/bjc/funcdata/ListEx.java	/^	boolean anyMatch(Predicate<ContainedType> matcher);$/;"	m	interface:ListEx
+append	src/main/java/bjc/esodata/SingleTape.java	/^	public void append(T itm) {$/;"	m	class:SingleTape
+append	src/main/java/bjc/esodata/Tape.java	/^	default void append(T itm) {$/;"	m	interface:Tape
+apply	src/main/java/bjc/esodata/Stack.java	/^	public void apply(final int n, final Consumer<Stack<T>> action) {$/;"	m	class:Stack
+apply	src/main/java/bjc/functypes/ThrowFunction.java	/^	public ReturnType apply(InputType arg) throws ExType;$/;"	m	interface:ThrowFunction
+around	src/main/java/bjc/functypes/Combinators.java	/^	public static <Input, Output> Function<Input, Output> around($/;"	m	class:Combinators
+arr	src/main/java/bjc/data/ArrayIterator.java	/^	private Object[] arr;$/;"	f	class:ArrayIterator	file:
+asMap	src/main/java/bjc/esodata/TapeLibrary.java	/^	public Map<String, Tape<ElementType>> asMap()$/;"	m	class:TapeLibrary
+assertIteratorEquals	src/test/java/bjc/TestUtils.java	/^	public static <T> void assertIteratorEquals(Iterator<T> src, T... vals) {$/;"	m	class:TestUtils
+assertIteratorEquals	src/test/java/bjc/TestUtils.java	/^	public static <T> void assertIteratorEquals(boolean hasMore, Iterator<T> src,$/;"	m	class:TestUtils
+assertIteratorSet	src/test/java/bjc/TestUtils.java	/^	public static <T> void assertIteratorSet(Iterator<T> src, T... vals) {$/;"	m	class:TestUtils
+assertIteratorSet	src/test/java/bjc/TestUtils.java	/^	public static <T> void assertIteratorSet(boolean hasMore, Iterator<T> src,$/;"	m	class:TestUtils
+assertListEquals	src/test/java/bjc/TestUtils.java	/^	public static <T> void assertListEquals(List<T> src, T... exps) {$/;"	m	class:TestUtils
+assertStackEquals	src/test/java/bjc/TestUtils.java	/^	public static <T> void assertStackEquals(bjc.esodata.Stack<T> src, T... exps) {$/;"	m	class:TestUtils
+atEnd	src/main/java/bjc/esodata/Tape.java	/^	default boolean atEnd() {$/;"	m	interface:Tape
+autoExtend	src/main/java/bjc/esodata/SingleTape.java	/^	protected boolean autoExtend;$/;"	f	class:SingleTape
+back	src/main/java/bjc/esodata/DoubleTape.java	/^	private Tape<T> back;$/;"	f	class:DoubleTape	file:
+backing	src/main/java/bjc/data/ResettableIterator.java	/^	private Iterator<T> backing;$/;"	f	class:ResettableIterator	file:
+backing	src/main/java/bjc/esodata/AbbrevMap2.java	/^	private Multimap<String, String> backing;$/;"	f	class:AbbrevMap2	file:
+backing	src/main/java/bjc/esodata/DefaultList.java	/^	private List<ValueType> backing;$/;"	f	class:DefaultList	file:
+backing	src/main/java/bjc/esodata/MapSet.java	/^	private Map<String, Map<KeyType, ValueType>> backing;$/;"	f	class:MapSet	file:
+backing	src/main/java/bjc/esodata/MinMaxList.java	/^	private final List<ValueType>       backing;$/;"	f	class:MinMaxList	file:
+backing	src/main/java/bjc/esodata/Multimap.java	/^	private Map<KeyType, ThresholdSet<ValueType>> backing;$/;"	f	class:Multimap	file:
+backing	src/main/java/bjc/esodata/NestList.java	/^	private final List<Either<Element, NestList<Element>>> backing;$/;"	f	class:NestList	file:
+backing	src/main/java/bjc/esodata/PushdownMap.java	/^	private final MapEx<KeyType, Stack<ValueType>> backing;$/;"	f	class:PushdownMap	file:
+backing	src/main/java/bjc/esodata/QueueStack.java	/^	private final Deque<T> backing;$/;"	f	class:QueueStack	file:
+backing	src/main/java/bjc/esodata/SimpleStack.java	/^	private final Deque<T> backing;$/;"	f	class:SimpleStack	file:
+backing	src/main/java/bjc/esodata/SingleTape.java	/^	protected ArrayList<T> backing;$/;"	f	class:SingleTape
+backing	src/main/java/bjc/esodata/SpaghettiStack.java	/^	private final Stack<T> backing;$/;"	f	class:SpaghettiStack	file:
+backing	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	private final MapEx<OldKey, OldValue> backing;$/;"	f	class:TransformedValueMap	file:
+balance	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	public void balance() {$/;"	m	class:BinarySearchTree
+before	src/main/java/bjc/data/QueuedIterator.java	/^	public void before(@SuppressWarnings("unchecked") E... vals) {$/;"	m	class:QueuedIterator
+before	src/main/java/bjc/data/QueuedIterator.java	/^	public void before(Iterable<E> itr) {$/;"	m	class:QueuedIterator
+before	src/main/java/bjc/data/QueuedIterator.java	/^	public void before(Iterator<E> itr) {$/;"	m	class:QueuedIterator
+beforeThis	src/main/java/bjc/functypes/Combinators.java	/^	public static <Input, Output> Function<Input, Output> beforeThis($/;"	m	class:Combinators
+bimap	src/main/java/bjc/funcdata/theory/Bifunctor.java	/^			bimap(final Function<OldLeft, NewLeft> leftFunc,$/;"	m	interface:Bifunctor
+bind	src/main/java/bjc/data/Holder.java	/^			bind(Function<ContainedType, Holder<BoundType>> binder);$/;"	m	interface:Holder
+bind	src/main/java/bjc/data/Identity.java	/^			bind(final Function<ContainedType, Holder<BoundType>> binder) {$/;"	m	class:Identity
+bind	src/main/java/bjc/data/Lazy.java	/^			bind(final Function<ContainedType, Holder<BoundType>> binder) {$/;"	m	class:Lazy
+bind	src/main/java/bjc/data/LazyPair.java	/^	public <BoundLeft, BoundRight> Pair<BoundLeft, BoundRight> bind($/;"	m	class:LazyPair
+bind	src/main/java/bjc/data/ListHolder.java	/^			bind(final Function<ContainedType, Holder<BoundType>> binder) {$/;"	m	class:ListHolder
+bind	src/main/java/bjc/data/Option.java	/^			bind(final Function<ContainedType, Holder<BoundType>> binder) {$/;"	m	class:Option
+bind	src/main/java/bjc/data/Pair.java	/^			bind(BiFunction<LeftType, RightType, Pair<BoundLeft, BoundRight>> binder);$/;"	m	interface:Pair
+bind	src/main/java/bjc/data/SimplePair.java	/^	public <BoundLeft, BoundRight> Pair<BoundLeft, BoundRight> bind($/;"	m	class:SimplePair
+bind	src/main/java/bjc/data/internals/BoundLazy.java	/^			bind(final Function<BoundContainedType, Holder<BoundType>> bindr) {$/;"	m	class:BoundLazy
+bind	src/main/java/bjc/data/internals/BoundLazyPair.java	/^	public <BoundLeft, BoundRight> Pair<BoundLeft, BoundRight> bind($/;"	m	class:BoundLazyPair
+bind	src/main/java/bjc/data/internals/BoundListHolder.java	/^			bind(final Function<ContainedType, Holder<BoundType>> binder) {$/;"	m	class:BoundListHolder
+bind	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^	public <BoundLeft, BoundRight> Pair<BoundLeft, BoundRight> bind($/;"	m	class:HalfBoundLazyPair
+bind	src/main/java/bjc/data/internals/WrappedLazy.java	/^			bind(final Function<ContainedType, Holder<BoundType>> binder) {$/;"	m	class:WrappedLazy
+bind	src/main/java/bjc/data/internals/WrappedOption.java	/^			bind(final Function<ContainedType, Holder<BoundType>> binder) {$/;"	m	class:WrappedOption
+bind	src/main/java/bjc/functypes/Thrower.java	/^	default <NewOutputType> Thrower<NewOutputType, ExceptionType> bind($/;"	m	interface:Thrower
+bindLeft	src/main/java/bjc/data/LazyPair.java	/^			bindLeft(final Function<LeftType, Pair<BoundLeft, RightType>> leftBinder) {$/;"	m	class:LazyPair
+bindLeft	src/main/java/bjc/data/Pair.java	/^			bindLeft(Function<LeftType, Pair<BoundLeft, RightType>> leftBinder);$/;"	m	interface:Pair
+bindLeft	src/main/java/bjc/data/SimplePair.java	/^			bindLeft(final Function<LeftType, Pair<BoundLeft, RightType>> leftBinder) {$/;"	m	class:SimplePair
+bindLeft	src/main/java/bjc/data/internals/BoundLazyPair.java	/^			bindLeft(final Function<NewLeft, Pair<BoundLeft, NewRight>> leftBinder) {$/;"	m	class:BoundLazyPair
+bindLeft	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^			bindLeft(final Function<NewLeft, Pair<BoundLeft, NewRight>> leftBinder) {$/;"	m	class:HalfBoundLazyPair
+bindRight	src/main/java/bjc/data/LazyPair.java	/^	public <BoundRight> Pair<LeftType, BoundRight> bindRight($/;"	m	class:LazyPair
+bindRight	src/main/java/bjc/data/Pair.java	/^			bindRight(Function<RightType, Pair<LeftType, BoundRight>> rightBinder);$/;"	m	interface:Pair
+bindRight	src/main/java/bjc/data/SimplePair.java	/^	public <BoundRight> Pair<LeftType, BoundRight> bindRight($/;"	m	class:SimplePair
+bindRight	src/main/java/bjc/data/internals/BoundLazyPair.java	/^			bindRight(final Function<NewRight, Pair<NewLeft, BoundRight>> rightBinder) {$/;"	m	class:BoundLazyPair
+bindRight	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^			bindRight(final Function<NewRight, Pair<NewLeft, BoundRight>> rightBinder) {$/;"	m	class:HalfBoundLazyPair
+binder	src/main/java/bjc/data/internals/BoundLazy.java	/^	private final Function<OldType, Holder<BoundContainedType>> binder;$/;"	f	class:BoundLazy	file:
+binder	src/main/java/bjc/data/internals/BoundLazyPair.java	/^	private final BiFunction<OldLeft, OldRight, Pair<NewLeft, NewRight>> binder;$/;"	f	class:BoundLazyPair	file:
+binder	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^	private final Function<OldType, Pair<NewLeft, NewRight>> binder;$/;"	f	class:HalfBoundLazyPair	file:
+bjc	src/test/java/bjc/TestUtils.java	/^package bjc;$/;"	p
+bjc.data	src/main/java/bjc/data/ArrayIterator.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/BooleanToggle.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/CircularIterator.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/Context.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/Contexts.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/Either.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/GeneratingIterator.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/Holder.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/Identity.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/IntHolder.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/Lazy.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/LazyPair.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/ListHolder.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/Multimap.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/NonCMEIterator.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/NonCMEListIterator.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/OneWayToggle.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/Option.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/Pair.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/QueuedIterator.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/ResettableIterator.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/ReverseListIterator.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/SimplePair.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/SimpleTree.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/SingleIterator.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/SingleSupplier.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/Toggle.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/TopDownTransformIterator.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/TopDownTransformResult.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/TransformIterator.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/Tree.java	/^package bjc.data;$/;"	p
+bjc.data	src/main/java/bjc/data/ValueToggle.java	/^package bjc.data;$/;"	p
+bjc.data	src/test/java/bjc/data/ArrayIteratorTest.java	/^package bjc.data;$/;"	p
+bjc.data	src/test/java/bjc/data/BooleanToggleTest.java	/^package bjc.data;$/;"	p
+bjc.data	src/test/java/bjc/data/CircularIteratorTest.java	/^package bjc.data;$/;"	p
+bjc.data	src/test/java/bjc/data/EitherTest.java	/^package bjc.data;$/;"	p
+bjc.data	src/test/java/bjc/data/QueuedIteratorTest.java	/^package bjc.data;$/;"	p
+bjc.data.internals	src/main/java/bjc/data/internals/BoundLazy.java	/^package bjc.data.internals;$/;"	p
+bjc.data.internals	src/main/java/bjc/data/internals/BoundLazyPair.java	/^package bjc.data.internals;$/;"	p
+bjc.data.internals	src/main/java/bjc/data/internals/BoundListHolder.java	/^package bjc.data.internals;$/;"	p
+bjc.data.internals	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^package bjc.data.internals;$/;"	p
+bjc.data.internals	src/main/java/bjc/data/internals/WrappedLazy.java	/^package bjc.data.internals;$/;"	p
+bjc.data.internals	src/main/java/bjc/data/internals/WrappedOption.java	/^package bjc.data.internals;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/AbbrevMap2.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/AbbrevTree.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/DefaultList.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/Directory.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/DoubleSided.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/DoubleTape.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/FlatNestIterator.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/MapSet.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/MinMaxList.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/Multimap.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/NestList.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/PushdownMap.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/QueueStack.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/SimpleDirectory.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/SimpleStack.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/SingleTape.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/SpaghettiStack.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/Stack.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/Tape.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/TapeLibrary.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/TapeView.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/ThresholdSet.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/main/java/bjc/esodata/UnifiedDirectory.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/test/java/bjc/esodata/MinMaxListTest.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/test/java/bjc/esodata/NestListTest.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/test/java/bjc/esodata/StackTest.java	/^package bjc.esodata;$/;"	p
+bjc.esodata	src/test/java/bjc/esodata/ThresholdSetTest.java	/^package bjc.esodata;$/;"	p
+bjc.funcdata	src/main/java/bjc/funcdata/ExtendedMap.java	/^package bjc.funcdata;$/;"	p
+bjc.funcdata	src/main/java/bjc/funcdata/Freezable.java	/^package bjc.funcdata;$/;"	p
+bjc.funcdata	src/main/java/bjc/funcdata/FunctionalList.java	/^package bjc.funcdata;$/;"	p
+bjc.funcdata	src/main/java/bjc/funcdata/FunctionalMap.java	/^package bjc.funcdata;$/;"	p
+bjc.funcdata	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^package bjc.funcdata;$/;"	p
+bjc.funcdata	src/main/java/bjc/funcdata/ListEx.java	/^package bjc.funcdata;$/;"	p
+bjc.funcdata	src/main/java/bjc/funcdata/MapEx.java	/^package bjc.funcdata;$/;"	p
+bjc.funcdata	src/main/java/bjc/funcdata/ObjectFrozen.java	/^package bjc.funcdata;$/;"	p
+bjc.funcdata	src/main/java/bjc/funcdata/SentryList.java	/^package bjc.funcdata;$/;"	p
+bjc.funcdata	src/main/java/bjc/funcdata/TransformedValueMap.java	/^package bjc.funcdata;$/;"	p
+bjc.funcdata	src/test/java/bjc/funcdata/TestMapCreation.java	/^package bjc.funcdata;$/;"	p
+bjc.funcdata	src/test/java/bjc/funcdata/TestMapOperations.java	/^package bjc.funcdata;$/;"	p
+bjc.funcdata.bst	src/example/java/bjc/funcdata/bst/BinarySearchTreeExample.java	/^package bjc.funcdata.bst;$/;"	p
+bjc.funcdata.bst	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^package bjc.funcdata.bst;$/;"	p
+bjc.funcdata.bst	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^package bjc.funcdata.bst;$/;"	p
+bjc.funcdata.bst	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^package bjc.funcdata.bst;$/;"	p
+bjc.funcdata.bst	src/main/java/bjc/funcdata/bst/DirectedWalkFunction.java	/^package bjc.funcdata.bst;$/;"	p
+bjc.funcdata.bst	src/main/java/bjc/funcdata/bst/TreeLinearizationMethod.java	/^package bjc.funcdata.bst;$/;"	p
+bjc.funcdata.bst	src/main/java/bjc/funcdata/bst/TreePart.java	/^package bjc.funcdata.bst;$/;"	p
+bjc.funcdata.theory	src/main/java/bjc/funcdata/theory/Bifunctor.java	/^package bjc.funcdata.theory;$/;"	p
+bjc.funcdata.theory	src/main/java/bjc/funcdata/theory/Functor.java	/^package bjc.funcdata.theory;$/;"	p
+bjc.functypes	src/example/java/bjc/functypes/FixpointExample.java	/^package bjc.functypes;$/;"	p
+bjc.functypes	src/main/java/bjc/functypes/ArrayChooser.java	/^package bjc.functypes;$/;"	p
+bjc.functypes	src/main/java/bjc/functypes/Combinators.java	/^package bjc.functypes;$/;"	p
+bjc.functypes	src/main/java/bjc/functypes/Fixpoints.java	/^package bjc.functypes;$/;"	p
+bjc.functypes	src/main/java/bjc/functypes/FunctionalIsomorphism.java	/^package bjc.functypes;$/;"	p
+bjc.functypes	src/main/java/bjc/functypes/ID.java	/^package bjc.functypes;$/;"	p
+bjc.functypes	src/main/java/bjc/functypes/IntArrayChooser.java	/^package bjc.functypes;$/;"	p
+bjc.functypes	src/main/java/bjc/functypes/Isomorphism.java	/^package bjc.functypes;$/;"	p
+bjc.functypes	src/main/java/bjc/functypes/ListFlattener.java	/^package bjc.functypes;$/;"	p
+bjc.functypes	src/main/java/bjc/functypes/ThrowFunction.java	/^package bjc.functypes;$/;"	p
+bjc.functypes	src/main/java/bjc/functypes/Thrower.java	/^package bjc.functypes;$/;"	p
+bjc.functypes	src/test/java/bjc/functypes/IDTest.java	/^package bjc.functypes;$/;"	p
+boundHolder	src/main/java/bjc/data/internals/BoundLazy.java	/^	private Holder<BoundContainedType> boundHolder;$/;"	f	class:BoundLazy	file:
+boundPair	src/main/java/bjc/data/internals/BoundLazyPair.java	/^	private Pair<NewLeft, NewRight> boundPair;$/;"	f	class:BoundLazyPair	file:
+boundPair	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^	private Pair<NewLeft, NewRight> boundPair;$/;"	f	class:HalfBoundLazyPair	file:
+cache	src/main/java/bjc/data/ResettableIterator.java	/^	private List<T> cache;$/;"	f	class:ResettableIterator	file:
+cacheIterator	src/main/java/bjc/data/ResettableIterator.java	/^	private Iterator<T> cacheIterator;$/;"	f	class:ResettableIterator	file:
+calculateBoth	src/main/java/bjc/esodata/MinMaxList.java	/^	private void calculateBoth() {$/;"	m	class:MinMaxList	file:
+calculateMaximum	src/main/java/bjc/esodata/MinMaxList.java	/^	private void calculateMaximum() {$/;"	m	class:MinMaxList	file:
+calculateMinimum	src/main/java/bjc/esodata/MinMaxList.java	/^	private void calculateMinimum() {$/;"	m	class:MinMaxList	file:
+canFreeze	src/main/java/bjc/esodata/PushdownMap.java	/^	public boolean canFreeze() {$/;"	m	class:PushdownMap
+canFreeze	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public boolean canFreeze() {$/;"	m	class:ExtendedMap
+canFreeze	src/main/java/bjc/funcdata/Freezable.java	/^	default boolean canFreeze() {$/;"	m	interface:Freezable
+canFreeze	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public boolean canFreeze() {$/;"	m	class:FunctionalMap
+canFreeze	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public boolean canFreeze() {$/;"	m	class:TransformedValueMap
+canFreezeMap	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void canFreezeMap() {$/;"	m	class:TestMapOperations
+canThaw	src/main/java/bjc/esodata/PushdownMap.java	/^	public boolean canThaw() {$/;"	m	class:PushdownMap
+canThaw	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public boolean canThaw() {$/;"	m	class:ExtendedMap
+canThaw	src/main/java/bjc/funcdata/Freezable.java	/^	default boolean canThaw() {$/;"	m	interface:Freezable
+canThaw	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public boolean canThaw() {$/;"	m	class:FunctionalMap
+canThaw	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public boolean canThaw() {$/;"	m	class:TransformedValueMap
+childCount	src/main/java/bjc/data/SimpleTree.java	/^	private int childCount = 0;$/;"	f	class:SimpleTree	file:
+children	src/main/java/bjc/data/SimpleTree.java	/^	private ListEx<Tree<ContainedType>> children;$/;"	f	class:SimpleTree	file:
+children	src/main/java/bjc/esodata/AbbrevTree.java	/^	private List<AbbrevNode<Contained>> children;$/;"	f	class:AbbrevNode	file:
+children	src/main/java/bjc/esodata/SimpleDirectory.java	/^	private final MapEx<K, Directory<K, V>> children;$/;"	f	class:SimpleDirectory	file:
+children	src/main/java/bjc/esodata/UnifiedDirectory.java	/^	private final MapEx<K, Directory<K, V>> children;$/;"	f	class:UnifiedDirectory	file:
+choose	src/main/java/bjc/functypes/ArrayChooser.java	/^	public ElementType choose(@SuppressWarnings("unchecked") ElementType... elements);$/;"	m	interface:ArrayChooser
+choose	src/main/java/bjc/functypes/IntArrayChooser.java	/^	public int choose(int... ints);$/;"	m	interface:IntArrayChooser
+clear	src/main/java/bjc/esodata/PushdownMap.java	/^	public void clear() {$/;"	m	class:PushdownMap
+clear	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public void clear() {$/;"	m	class:ExtendedMap
+clear	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public void clear() {$/;"	m	class:FunctionalMap
+clear	src/main/java/bjc/funcdata/MapEx.java	/^	default void clear() {$/;"	m	interface:MapEx
+clear	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public void clear() {$/;"	m	class:TransformedValueMap
+clearCache	src/main/java/bjc/data/ResettableIterator.java	/^	public void clearCache() {$/;"	m	class:ResettableIterator
+clearMap	src/main/java/bjc/esodata/MapSet.java	/^	public void clearMap() {$/;"	m	class:MapSet
+clearOfFrozenMapFails	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void clearOfFrozenMapFails() {$/;"	m	class:TestMapOperations
+clearRemovesAllValues	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void clearRemovesAllValues() {$/;"	m	class:TestMapOperations
+cleave	src/main/java/bjc/esodata/Stack.java	/^	public void cleave(@SuppressWarnings("unchecked") final Consumer<Stack<T>>... actions) {$/;"	m	class:Stack
+cleave	src/main/java/bjc/esodata/Stack.java	/^	public void cleave(final List<Consumer<Stack<T>>> actions) {$/;"	m	class:Stack
+clone	src/main/java/bjc/funcdata/FunctionalList.java	/^	public ListEx<E> clone() {$/;"	m	class:FunctionalList
+collapse	src/main/java/bjc/data/SimpleTree.java	/^	public <NewType, ReturnedType> ReturnedType collapse($/;"	m	class:SimpleTree
+collapse	src/main/java/bjc/data/Tree.java	/^	<NewType, ReturnedType> ReturnedType collapse($/;"	m	interface:Tree
+collapse	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	public <E> E collapse(final Function<T, E> leafTransformer,$/;"	m	class:BinarySearchTreeLeaf
+collapse	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	public <E> E collapse(final Function<T, E> nodeCollapser,$/;"	m	class:BinarySearchTreeNode
+collapse	src/main/java/bjc/funcdata/bst/TreePart.java	/^	public <E> E collapse(Function<T, E> nodeCollapser,$/;"	m	interface:TreePart
+collect	src/main/java/bjc/funcdata/ListEx.java	/^			collect(final Collector<ContainedType, StateType, ReducedType> collector) {$/;"	m	interface:ListEx
+combine	src/main/java/bjc/data/LazyPair.java	/^			combine(final Pair<OtherLeft, OtherRight> otherPair,$/;"	m	class:LazyPair
+combine	src/main/java/bjc/data/Pair.java	/^			combine(Pair<OtherLeft, OtherRight> otherPair,$/;"	m	interface:Pair
+combine	src/main/java/bjc/data/Pair.java	/^			combine(final Pair<OtherLeft, OtherRight> otherPair) {$/;"	m	interface:Pair
+combine	src/main/java/bjc/data/SimplePair.java	/^			combine(final Pair<OtherLeft, OtherRight> otherPair,$/;"	m	class:SimplePair
+combine	src/main/java/bjc/data/internals/BoundLazyPair.java	/^			combine(final Pair<OtherLeft, OtherRight> otherPair,$/;"	m	class:BoundLazyPair
+combine	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^			combine(final Pair<OtherLeft, OtherRight> otherPair,$/;"	m	class:HalfBoundLazyPair
+combineWith	src/main/java/bjc/funcdata/FunctionalList.java	/^	public <T, F> ListEx<F> combineWith(final ListEx<T> rightList,$/;"	m	class:FunctionalList
+combineWith	src/main/java/bjc/funcdata/ListEx.java	/^	<OtherType, CombinedType> ListEx<CombinedType> combineWith(ListEx<OtherType> list,$/;"	m	interface:ListEx
+comparator	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	private final Comparator<T> comparator;$/;"	f	class:BinarySearchTree	file:
+compose	src/main/java/bjc/functypes/Combinators.java	/^	public static <Left, Middle, Right> Function<Left, Right> compose($/;"	m	class:Combinators
+compose	src/main/java/bjc/functypes/ThrowFunction.java	/^	compose($/;"	m	interface:ThrowFunction
+concat	src/main/java/bjc/functypes/Combinators.java	/^	concat(Function<Input, Output1> funcA, Function<Input, Output2> funcB)$/;"	m	class:Combinators
+concat	src/main/java/bjc/functypes/Combinators.java	/^	concat(Function<Input, Output>... funcs)$/;"	m	class:Combinators
+container	src/main/java/bjc/esodata/AbbrevTree.java	/^	private AbbrevTree<Contained> container;$/;"	f	class:AbbrevNode	file:
+contains	src/main/java/bjc/esodata/Multimap.java	/^	public boolean contains(KeyType key) {$/;"	m	class:Multimap
+contains	src/main/java/bjc/esodata/Multimap.java	/^	public boolean contains(KeyType key, ValueType value) {$/;"	m	class:Multimap
+contains	src/main/java/bjc/esodata/ThresholdSet.java	/^		public boolean contains(Object o) {$/;"	m	class:ThresholdSet.SetView
+contains	src/main/java/bjc/esodata/ThresholdSet.java	/^	public int contains(KeyType key) {$/;"	m	class:ThresholdSet
+contains	src/main/java/bjc/funcdata/FunctionalList.java	/^	public boolean contains(final E item) {$/;"	m	class:FunctionalList
+contains	src/main/java/bjc/funcdata/ListEx.java	/^	boolean contains(ContainedType item);$/;"	m	interface:ListEx
+contains	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	public boolean contains(final T element, final Comparator<T> comparator) {$/;"	m	class:BinarySearchTreeLeaf
+contains	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	public boolean contains(final T element, final Comparator<T> comparator) {$/;"	m	class:BinarySearchTreeNode
+contains	src/main/java/bjc/funcdata/bst/TreePart.java	/^	public boolean contains(T element, Comparator<T> comparator);$/;"	m	interface:TreePart
+containsExpectedKey	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void containsExpectedKey() {$/;"	m	class:TestMapOperations
+containsKey	src/main/java/bjc/esodata/Directory.java	/^	boolean containsKey(K key);$/;"	m	interface:Directory
+containsKey	src/main/java/bjc/esodata/PushdownMap.java	/^	public boolean containsKey(final KeyType key) {$/;"	m	class:PushdownMap
+containsKey	src/main/java/bjc/esodata/SimpleDirectory.java	/^	public boolean containsKey(final K key) {$/;"	m	class:SimpleDirectory
+containsKey	src/main/java/bjc/esodata/UnifiedDirectory.java	/^	public boolean containsKey(final K key) {$/;"	m	class:UnifiedDirectory
+containsKey	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public boolean containsKey(final KeyType key) {$/;"	m	class:ExtendedMap
+containsKey	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public boolean containsKey(final KeyType key) {$/;"	m	class:FunctionalMap
+containsKey	src/main/java/bjc/funcdata/MapEx.java	/^	boolean containsKey(KeyType key);$/;"	m	interface:MapEx
+containsKey	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public boolean containsKey(final OldKey key) {$/;"	m	class:TransformedValueMap
+containsKeys	src/main/java/bjc/esodata/ThresholdSet.java	/^	public int[] containsKeys(@SuppressWarnings("unchecked") KeyType... keys) {$/;"	m	class:ThresholdSet
+containsMap	src/main/java/bjc/esodata/MapSet.java	/^	public boolean containsMap(String key) {$/;"	m	class:MapSet
+containsMatching	src/main/java/bjc/data/Tree.java	/^	default boolean containsMatching(Predicate<ContainedType> pred) {$/;"	m	interface:Tree
+create	src/main/java/bjc/data/Contexts.java	/^	public static Context create() {$/;"	m	class:Contexts
+create	src/main/java/bjc/data/Contexts.java	/^	public static Context create(Context parent) {$/;"	m	class:Contexts
+cur	src/main/java/bjc/data/QueuedIterator.java	/^	private Iterator<E> cur;$/;"	f	class:QueuedIterator	file:
+curChild	src/main/java/bjc/data/TopDownTransformIterator.java	/^	private TopDownTransformIterator<ContainedType> curChild;$/;"	f	class:TopDownTransformIterator	file:
+curElm	src/main/java/bjc/data/CircularIterator.java	/^	private E curElm;$/;"	f	class:CircularIterator	file:
+curr	src/main/java/bjc/data/CircularIterator.java	/^	private Iterator<E> curr;$/;"	f	class:CircularIterator	file:
+currIndex	src/main/java/bjc/data/NonCMEIterator.java	/^	protected int currIndex;$/;"	f	class:NonCMEIterator
+currIndex	src/main/java/bjc/data/ReverseListIterator.java	/^	private int currIndex;$/;"	f	class:ReverseListIterator	file:
+currYield	src/main/java/bjc/data/TopDownTransformIterator.java	/^	private Iterator<Tree<ContainedType>> currYield;$/;"	f	class:TopDownTransformIterator	file:
+currentLabel	src/main/java/bjc/esodata/TapeLibrary.java	/^	private String            currentLabel;$/;"	f	class:TapeLibrary	file:
+currentLabel	src/main/java/bjc/esodata/TapeLibrary.java	/^	public String currentLabel()$/;"	m	class:TapeLibrary
+currentMap	src/main/java/bjc/esodata/MapSet.java	/^	private Map<KeyType, ValueType> currentMap = null;$/;"	f	class:MapSet	file:
+currentSide	src/main/java/bjc/esodata/DoubleSided.java	/^	boolean currentSide();$/;"	m	interface:DoubleSided
+currentSide	src/main/java/bjc/esodata/DoubleTape.java	/^	public boolean currentSide() {$/;"	m	class:DoubleTape
+currentTape	src/main/java/bjc/esodata/TapeLibrary.java	/^	private Tape<ElementType> currentTape;$/;"	f	class:TapeLibrary	file:
+data	src/main/java/bjc/data/SimpleTree.java	/^	private ContainedType data;$/;"	f	class:SimpleTree	file:
+data	src/main/java/bjc/esodata/AbbrevTree.java	/^	private Contained data;$/;"	f	class:AbbrevNode	file:
+data	src/main/java/bjc/esodata/SimpleDirectory.java	/^	private final MapEx<K, V> data;$/;"	f	class:SimpleDirectory	file:
+data	src/main/java/bjc/esodata/UnifiedDirectory.java	/^	private final MapEx<K, V> data;$/;"	f	class:UnifiedDirectory	file:
+data	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	protected T data;$/;"	f	class:BinarySearchTreeLeaf
+data	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	public T data() {$/;"	m	class:BinarySearchTreeLeaf
+data	src/main/java/bjc/funcdata/bst/TreePart.java	/^	public T data();$/;"	m	interface:TreePart
+deabbrev	src/main/java/bjc/esodata/AbbrevMap2.java	/^	public String deabbrev(String word) {$/;"	m	class:AbbrevMap2
+deabbrevAll	src/main/java/bjc/esodata/AbbrevMap2.java	/^	public Set<String> deabbrevAll(String word) {$/;"	m	class:AbbrevMap2
+deepFlatten	src/main/java/bjc/esodata/NestList.java	/^	public List<Element> deepFlatten() {$/;"	m	class:NestList
+deepFreeze	src/main/java/bjc/esodata/PushdownMap.java	/^	public boolean deepFreeze() {$/;"	m	class:PushdownMap
+deepFreeze	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public boolean deepFreeze() {$/;"	m	class:ExtendedMap
+deepFreeze	src/main/java/bjc/funcdata/Freezable.java	/^	default boolean deepFreeze() {$/;"	m	interface:Freezable
+deepFreeze	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public boolean deepFreeze() {$/;"	m	class:FunctionalMap
+deepFreeze	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public boolean deepFreeze() {$/;"	m	class:TransformedValueMap
+deepMap	src/main/java/bjc/esodata/NestList.java	/^	public <NewElement> NestList<NewElement> deepMap($/;"	m	class:NestList
+deepReduce	src/main/java/bjc/esodata/NestList.java	/^	public <Output> Output deepReduce($/;"	m	class:NestList
+deepSize	src/main/java/bjc/esodata/NestList.java	/^	public int deepSize() {$/;"	m	class:NestList
+deepdup	src/main/java/bjc/esodata/Stack.java	/^	public void deepdup() {$/;"	m	class:Stack
+deepmultirot	src/main/java/bjc/esodata/Stack.java	/^	public void deepmultirot(int n, int m, int i) {$/;"	m	class:Stack
+deepswap	src/main/java/bjc/esodata/Stack.java	/^	public void deepswap() {$/;"	m	class:Stack
+defVal	src/main/java/bjc/esodata/DefaultList.java	/^	private ValueType defVal;$/;"	f	class:DefaultList	file:
+delegate	src/main/java/bjc/funcdata/ExtendedMap.java	/^	private final MapEx<KeyType, ValueType> delegate;$/;"	f	class:ExtendedMap	file:
+delete	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	public void delete(final T element, final Comparator<T> comparator) {$/;"	m	class:BinarySearchTreeLeaf
+delete	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	public void delete(final T element, final Comparator<T> comparator) {$/;"	m	class:BinarySearchTreeNode
+delete	src/main/java/bjc/funcdata/bst/TreePart.java	/^	public void delete(T element, Comparator<T> comparator);$/;"	m	interface:TreePart
+deleteNode	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	public void deleteNode(final T element) {$/;"	m	class:BinarySearchTree
+dip	src/main/java/bjc/esodata/Stack.java	/^	public void dip(final Consumer<Stack<T>> action) {$/;"	m	class:Stack
+dip	src/main/java/bjc/esodata/Stack.java	/^	public void dip(final int n, final Consumer<Stack<T>> action) {$/;"	m	class:Stack
+directedWalk	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	public boolean directedWalk(final DirectedWalkFunction<T> treeWalker) {$/;"	m	class:BinarySearchTreeLeaf
+directedWalk	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	public boolean directedWalk(final DirectedWalkFunction<T> treeWalker) {$/;"	m	class:BinarySearchTreeNode
+directedWalk	src/main/java/bjc/funcdata/bst/TreePart.java	/^	public boolean directedWalk(DirectedWalkFunction<T> walker);$/;"	m	interface:TreePart
+display	src/example/java/bjc/funcdata/bst/BinarySearchTreeExample.java	/^	private static void display(final BinarySearchTree<Character> tree,$/;"	m	class:BinarySearchTreeExample	file:
+doCircle	src/main/java/bjc/data/CircularIterator.java	/^	private boolean doCircle;$/;"	f	class:CircularIterator	file:
+doForChildren	src/main/java/bjc/data/SimpleTree.java	/^	public void doForChildren(final Consumer<Tree<ContainedType>> action) {$/;"	m	class:SimpleTree
+doForChildren	src/main/java/bjc/data/Tree.java	/^	void doForChildren(Consumer<Tree<ContainedType>> action);$/;"	m	interface:Tree
+doWith	src/main/java/bjc/data/Holder.java	/^	public default void doWith(final Consumer<? super ContainedType> action) {$/;"	m	interface:Holder
+doWith	src/main/java/bjc/data/Pair.java	/^	public default void doWith(final BiConsumer<LeftType, RightType> consumer) {$/;"	m	interface:Pair
+doWith	src/main/java/bjc/functypes/Combinators.java	/^	public static <Type> Function<Type, Type> doWith(Consumer<Type>... consumers)$/;"	m	class:Combinators
+doesNotContainNotAddedKey	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void doesNotContainNotAddedKey() {$/;"	m	class:TestMapOperations
+done	src/main/java/bjc/data/TopDownTransformIterator.java	/^	private boolean done;$/;"	f	class:TopDownTransformIterator	file:
+drop	src/main/java/bjc/esodata/Stack.java	/^	public void drop() {$/;"	m	class:Stack
+drop	src/main/java/bjc/esodata/Stack.java	/^	public void drop(final int n) {$/;"	m	class:Stack
+duckMap	src/main/java/bjc/esodata/NestList.java	/^	public <NewElement> NestList<NewElement> duckMap($/;"	m	class:NestList
+dup	src/main/java/bjc/esodata/Stack.java	/^	public void dup() {$/;"	m	class:Stack
+dup	src/main/java/bjc/esodata/Stack.java	/^	public void dup(final int n) {$/;"	m	class:Stack
+ejectTape	src/main/java/bjc/esodata/TapeLibrary.java	/^	public void ejectTape()$/;"	m	class:TapeLibrary
+elementCount	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	private int elementCount;$/;"	f	class:BinarySearchTree	file:
+entrySet	src/main/java/bjc/esodata/MapSet.java	/^	public Set<Map.Entry<KeyType, ValueType>> entrySet() {$/;"	m	class:MapSet
+equals	src/main/java/bjc/data/BooleanToggle.java	/^	public boolean equals(final Object obj) {$/;"	m	class:BooleanToggle
+equals	src/main/java/bjc/data/Either.java	/^	public boolean equals(Object obj) {$/;"	m	class:Either
+equals	src/main/java/bjc/data/Identity.java	/^	public boolean equals(final Object obj) {$/;"	m	class:Identity
+equals	src/main/java/bjc/data/Lazy.java	/^	public boolean equals(final Object obj) {$/;"	m	class:Lazy
+equals	src/main/java/bjc/data/LazyPair.java	/^	public boolean equals(final Object obj) {$/;"	m	class:LazyPair
+equals	src/main/java/bjc/data/ListHolder.java	/^	public boolean equals(final Object obj) {$/;"	m	class:ListHolder
+equals	src/main/java/bjc/data/Option.java	/^	public boolean equals(final Object obj) {$/;"	m	class:Option
+equals	src/main/java/bjc/data/SimplePair.java	/^	public boolean equals(final Object obj) {$/;"	m	class:SimplePair
+equals	src/main/java/bjc/data/SimpleTree.java	/^	public boolean equals(final Object obj) {$/;"	m	class:SimpleTree
+equals	src/main/java/bjc/esodata/DoubleTape.java	/^	public boolean equals(final Object obj) {$/;"	m	class:DoubleTape
+equals	src/main/java/bjc/esodata/MinMaxList.java	/^	public boolean equals(Object obj) {$/;"	m	class:MinMaxList
+equals	src/main/java/bjc/esodata/NestList.java	/^	public boolean equals(Object obj) {$/;"	m	class:NestList
+equals	src/main/java/bjc/esodata/PushdownMap.java	/^	public boolean equals(final Object obj) {$/;"	m	class:PushdownMap
+equals	src/main/java/bjc/esodata/QueueStack.java	/^	public boolean equals(final Object obj) {$/;"	m	class:QueueStack
+equals	src/main/java/bjc/esodata/SimpleDirectory.java	/^	public boolean equals(final Object obj) {$/;"	m	class:SimpleDirectory
+equals	src/main/java/bjc/esodata/SimpleStack.java	/^	public boolean equals(final Object obj) {$/;"	m	class:SimpleStack
+equals	src/main/java/bjc/esodata/SingleTape.java	/^	public boolean equals(final Object obj) {$/;"	m	class:SingleTape
+equals	src/main/java/bjc/esodata/SpaghettiStack.java	/^	public boolean equals(final Object obj) {$/;"	m	class:SpaghettiStack
+equals	src/main/java/bjc/esodata/UnifiedDirectory.java	/^	public boolean equals(final Object obj) {$/;"	m	class:UnifiedDirectory
+equals	src/main/java/bjc/funcdata/ExtendedMap.java	/^  public boolean equals(Object obj) {$/;"	m	class:ExtendedMap
+equals	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public boolean equals(final Object obj) {$/;"	m	class:FunctionalMap
+equals	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	public boolean equals(final Object obj) {$/;"	m	class:BinarySearchTree
+equals	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	public boolean equals(final Object obj) {$/;"	m	class:BinarySearchTreeLeaf
+equals	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	public boolean equals(final Object obj) {$/;"	m	class:BinarySearchTreeNode
+expandInto	src/main/java/bjc/esodata/NestList.java	/^	public NestList<Element> expandInto($/;"	m	class:NestList
+extend	src/main/java/bjc/funcdata/MapEx.java	/^	default MapEx<KeyType, ValueType> extend() {$/;"	m	interface:MapEx
+extend	src/main/java/bjc/funcdata/MapEx.java	/^	default MapEx<KeyType, ValueType> extend(MapEx<KeyType, ValueType> backer) {$/;"	m	interface:MapEx
+extract	src/main/java/bjc/data/Either.java	/^	public <Common> Common extract($/;"	m	class:Either
+extract	src/main/java/bjc/functypes/Thrower.java	/^	ValueType extract() throws ExceptionType;$/;"	m	interface:Thrower
+extract	src/main/java/bjc/functypes/Thrower.java	/^        public ValueType extract() throws ExceptionType$/;"	m	class:MemoizedThrower
+first	src/main/java/bjc/data/OneWayToggle.java	/^	private E first;$/;"	f	class:OneWayToggle	file:
+first	src/main/java/bjc/esodata/DoubleTape.java	/^	public void first() {$/;"	m	class:DoubleTape
+first	src/main/java/bjc/esodata/SingleTape.java	/^	public void first() {$/;"	m	class:SingleTape
+first	src/main/java/bjc/esodata/Tape.java	/^	void first();$/;"	m	interface:Tape
+first	src/main/java/bjc/esodata/TapeView.java	/^	public default void first()$/;"	m	interface:TapeView
+first	src/main/java/bjc/funcdata/FunctionalList.java	/^	public E first() {$/;"	m	class:FunctionalList
+first	src/main/java/bjc/funcdata/ListEx.java	/^	ContainedType first();$/;"	m	interface:ListEx
+fix	src/main/java/bjc/functypes/Fixpoints.java	/^	static <InputType, ReturnType> Function<InputType, ReturnType> fix($/;"	m	interface:Fixpoints
+flatIterator	src/main/java/bjc/esodata/NestList.java	/^	public ListIterator<Element> flatIterator() {$/;"	m	class:NestList
+flatMap	src/main/java/bjc/funcdata/FunctionalList.java	/^	public <T> ListEx<T> flatMap(final Function<E, ListEx<T>> expander) {$/;"	m	class:FunctionalList
+flatMap	src/main/java/bjc/funcdata/ListEx.java	/^			flatMap(Function<ContainedType, ListEx<MappedType>> expander);$/;"	m	interface:ListEx
+flatMapTree	src/main/java/bjc/data/SimpleTree.java	/^			flatMapTree(final Function<ContainedType, Tree<ContainedType>> mapper) {$/;"	m	class:SimpleTree
+flatMapTree	src/main/java/bjc/data/Tree.java	/^			flatMapTree(final Function<ContainedType, Tree<ContainedType>> mapper) {$/;"	m	interface:Tree
+flatten	src/main/java/bjc/esodata/NestList.java	/^	public NestList<Element> flatten() {$/;"	m	class:NestList
+flip	src/main/java/bjc/esodata/DoubleSided.java	/^	void flip();$/;"	m	interface:DoubleSided
+flip	src/main/java/bjc/esodata/DoubleTape.java	/^	public void flip() {$/;"	m	class:DoubleTape
+flushYields	src/main/java/bjc/data/TopDownTransformIterator.java	/^	public Tree<ContainedType> flushYields(final Tree<ContainedType> val) {$/;"	m	class:TopDownTransformIterator
+fmap	src/main/java/bjc/data/Holder.java	/^			fmap(final Function<ArgType, ReturnType> func) {$/;"	m	interface:Holder
+fmap	src/main/java/bjc/funcdata/theory/Functor.java	/^			fmap(Function<ArgType, ReturnType> func);$/;"	m	interface:Functor
+fmap	src/main/java/bjc/functypes/Thrower.java	/^	Function<Thrower<Input, ExType>,Thrower<Output, ExType>> fmap($/;"	m	interface:Thrower
+fmapLeft	src/main/java/bjc/data/Pair.java	/^			fmapLeft(final Function<OldLeft, NewLeft> func) {$/;"	m	interface:Pair
+fmapLeft	src/main/java/bjc/funcdata/theory/Bifunctor.java	/^			fmapLeft(Function<OldLeft, NewLeft> func);$/;"	m	interface:Bifunctor
+fmapRight	src/main/java/bjc/data/Pair.java	/^			fmapRight(final Function<OldRight, NewRight> func) {$/;"	m	interface:Pair
+fmapRight	src/main/java/bjc/funcdata/theory/Bifunctor.java	/^			fmapRight(Function<OldRight, NewRight> func);$/;"	m	interface:Bifunctor
+forEach	src/main/java/bjc/esodata/PushdownMap.java	/^	public void forEach(final BiConsumer<KeyType, ValueType> action) {$/;"	m	class:PushdownMap
+forEach	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public void forEach(final BiConsumer<KeyType, ValueType> action) {$/;"	m	class:ExtendedMap
+forEach	src/main/java/bjc/funcdata/FunctionalList.java	/^	public void forEach(final Consumer<? super E> action) {$/;"	m	class:FunctionalList
+forEach	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public void forEach(final BiConsumer<KeyType, ValueType> action) {$/;"	m	class:FunctionalMap
+forEach	src/main/java/bjc/funcdata/ListEx.java	/^	void forEach(Consumer<? super ContainedType> action);$/;"	m	interface:ListEx
+forEach	src/main/java/bjc/funcdata/MapEx.java	/^	void forEach(BiConsumer<KeyType, ValueType> action);$/;"	m	interface:MapEx
+forEach	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public void forEach(final BiConsumer<OldKey, NewValue> action) {$/;"	m	class:TransformedValueMap
+forEach	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	public boolean forEach(final TreeLinearizationMethod linearizationMethod,$/;"	m	class:BinarySearchTreeLeaf
+forEach	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	public boolean forEach(final TreeLinearizationMethod linearizationMethod,$/;"	m	class:BinarySearchTreeNode
+forEach	src/main/java/bjc/funcdata/bst/TreePart.java	/^	public boolean forEach(TreeLinearizationMethod linearizationMethod,$/;"	m	interface:TreePart
+forEachGetsExpectedElements	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void forEachGetsExpectedElements() {$/;"	m	class:TestMapOperations
+forEachIndexed	src/main/java/bjc/funcdata/FunctionalList.java	/^	public void forEachIndexed(final BiConsumer<Integer, E> indexedAction) {$/;"	m	class:FunctionalList
+forEachIndexed	src/main/java/bjc/funcdata/ListEx.java	/^	void forEachIndexed(BiConsumer<Integer, ContainedType> action);$/;"	m	interface:ListEx
+forEachKey	src/main/java/bjc/funcdata/MapEx.java	/^	default void forEachKey(final Consumer<KeyType> action) {$/;"	m	interface:MapEx
+forEachKeyGetsAddedKeys	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void forEachKeyGetsAddedKeys() {$/;"	m	class:TestMapOperations
+forEachToken	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^	public void forEachToken(final Consumer<String> action) {$/;"	m	class:FunctionalStringTokenizer
+forEachValue	src/main/java/bjc/funcdata/MapEx.java	/^	default void forEachValue(final Consumer<ValueType> action) {$/;"	m	interface:MapEx
+forEachValueGetsAddedValues	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void forEachValueGetsAddedValues() {$/;"	m	class:TestMapOperations
+forceLeft	src/main/java/bjc/data/Either.java	/^	public LeftType forceLeft() {$/;"	m	class:Either
+forceRight	src/main/java/bjc/data/Either.java	/^	public RightType forceRight() {$/;"	m	class:Either
+freeze	src/main/java/bjc/esodata/PushdownMap.java	/^	public boolean freeze() {$/;"	m	class:PushdownMap
+freeze	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public boolean freeze() {$/;"	m	class:ExtendedMap
+freeze	src/main/java/bjc/funcdata/Freezable.java	/^	public boolean freeze();$/;"	m	interface:Freezable
+freeze	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public boolean freeze() {$/;"	m	class:FunctionalMap
+freeze	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public boolean freeze() {$/;"	m	class:TransformedValueMap
+from	src/main/java/bjc/functypes/FunctionalIsomorphism.java	/^	public Source from(Dest val)$/;"	m	class:FunctionalIsomorphism
+from	src/main/java/bjc/functypes/Isomorphism.java	/^	Source from(Dest val);$/;"	m	interface:Isomorphism
+from	src/main/java/bjc/functypes/Isomorphism.java	/^	static <Src, Dst> Isomorphism<Src, Dst> from($/;"	m	interface:Isomorphism
+from	src/main/java/bjc/functypes/Thrower.java	/^	Thrower<ValType, ? extends Throwable> from(Supplier<ValType> val)$/;"	m	interface:Thrower
+from	src/main/java/bjc/functypes/Thrower.java	/^	Thrower<ValType, ? extends Throwable> from(ValType val)$/;"	m	interface:Thrower
+fromFunc	src/main/java/bjc/functypes/FunctionalIsomorphism.java	/^	private Function<Dest, Source> fromFunc;$/;"	f	class:FunctionalIsomorphism	file:
+fromString	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^	public static FunctionalStringTokenizer fromString(final String strang) {$/;"	m	class:FunctionalStringTokenizer
+front	src/main/java/bjc/esodata/DoubleTape.java	/^	private Tape<T> front;$/;"	f	class:DoubleTape	file:
+frontActive	src/main/java/bjc/esodata/DoubleTape.java	/^	private boolean frontActive;$/;"	f	class:DoubleTape	file:
+genAbbrevs	src/main/java/bjc/esodata/AbbrevMap2.java	/^	private List<String> genAbbrevs(String word) {$/;"	m	class:AbbrevMap2	file:
+get	src/main/java/bjc/data/BooleanToggle.java	/^	public Boolean get() {$/;"	m	class:BooleanToggle
+get	src/main/java/bjc/data/Context.java	/^	<T> T get(Class<T> contract);$/;"	m	interface:Context
+get	src/main/java/bjc/data/Context.java	/^	Object get(String name);$/;"	m	interface:Context
+get	src/main/java/bjc/data/Context.java	/^	default <T> T get(String name, Class<T> contract) {$/;"	m	interface:Context
+get	src/main/java/bjc/data/Contexts.java	/^		public <T> T get(Class<T> contract) {$/;"	m	class:Contexts.ContextImpl
+get	src/main/java/bjc/data/Contexts.java	/^		public <T> T get(Class<T> contract) {$/;"	m	class:Contexts.NullContextImpl
+get	src/main/java/bjc/data/Contexts.java	/^		public Object get(String name) {$/;"	m	class:Contexts.ContextImpl
+get	src/main/java/bjc/data/Contexts.java	/^		public Object get(String name) {$/;"	m	class:Contexts.NullContextImpl
+get	src/main/java/bjc/data/IntHolder.java	/^	public int get() {$/;"	m	class:IntHolder
+get	src/main/java/bjc/data/OneWayToggle.java	/^	public E get() {$/;"	m	class:OneWayToggle
+get	src/main/java/bjc/data/SingleSupplier.java	/^	public T get() {$/;"	m	class:SingleSupplier
+get	src/main/java/bjc/data/Toggle.java	/^	E get();$/;"	m	interface:Toggle
+get	src/main/java/bjc/data/ValueToggle.java	/^	public E get() {$/;"	m	class:ValueToggle
+get	src/main/java/bjc/esodata/AbbrevTree.java	/^	public Contained get(String... labels) {$/;"	m	class:AbbrevTree
+get	src/main/java/bjc/esodata/DefaultList.java	/^	public ValueType get(int idx) {$/;"	m	class:DefaultList
+get	src/main/java/bjc/esodata/MinMaxList.java	/^	public ValueType get(int index) {$/;"	m	class:MinMaxList
+get	src/main/java/bjc/esodata/Multimap.java	/^	public Set<ValueType> get(KeyType key) {$/;"	m	class:Multimap
+get	src/main/java/bjc/esodata/NestList.java	/^	public Either<Element, NestList<Element>> get(int index) {$/;"	m	class:NestList
+get	src/main/java/bjc/esodata/PushdownMap.java	/^	public Optional<ValueType> get(final KeyType key) {$/;"	m	class:PushdownMap
+get	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public Optional<ValueType> get(final KeyType key) {$/;"	m	class:ExtendedMap
+get	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public Optional<ValueType> get(final KeyType key) {$/;"	m	class:FunctionalMap
+get	src/main/java/bjc/funcdata/MapEx.java	/^	Optional<ValueType> get(KeyType key);$/;"	m	interface:MapEx
+get	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public Optional<NewValue> get(final OldKey key) {$/;"	m	class:TransformedValueMap
+getByIndex	src/main/java/bjc/funcdata/FunctionalList.java	/^	public E getByIndex(final int index) {$/;"	m	class:FunctionalList
+getByIndex	src/main/java/bjc/funcdata/ListEx.java	/^	ContainedType getByIndex(int index);$/;"	m	interface:ListEx
+getChild	src/main/java/bjc/data/SimpleTree.java	/^	public Tree<ContainedType> getChild(final int childNo) {$/;"	m	class:SimpleTree
+getChild	src/main/java/bjc/data/Tree.java	/^	default Tree<ContainedType> getChild(final int childNo) {$/;"	m	interface:Tree
+getChildrenCount	src/main/java/bjc/data/SimpleTree.java	/^	public int getChildrenCount() {$/;"	m	class:SimpleTree
+getChildrenCount	src/main/java/bjc/data/Tree.java	/^	int getChildrenCount();$/;"	m	interface:Tree
+getData	src/main/java/bjc/esodata/AbbrevTree.java	/^		public Contained getData();$/;"	m	interface:AbbrevTree.AbbrevNode
+getData	src/main/java/bjc/esodata/AbbrevTree.java	/^	public Contained getData() {$/;"	m	class:AbbrevNode
+getDefault	src/main/java/bjc/esodata/DefaultList.java	/^	public ValueType getDefault() {$/;"	m	class:DefaultList
+getHead	src/main/java/bjc/data/Tree.java	/^	default ContainedType getHead() {$/;"	m	interface:Tree
+getInternal	src/main/java/bjc/funcdata/FunctionalList.java	/^	public List<E> getInternal() {$/;"	m	class:FunctionalList
+getInternal	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^	public StringTokenizer getInternal() {$/;"	m	class:FunctionalStringTokenizer
+getIso	src/main/java/bjc/functypes/ThrowFunction.java	/^	getIso() $/;"	m	interface:ThrowFunction
+getKey	src/main/java/bjc/esodata/Directory.java	/^	V getKey(K key);$/;"	m	interface:Directory
+getKey	src/main/java/bjc/esodata/SimpleDirectory.java	/^	public V getKey(final K key) {$/;"	m	class:SimpleDirectory
+getKey	src/main/java/bjc/esodata/UnifiedDirectory.java	/^	public V getKey(final K key) {$/;"	m	class:UnifiedDirectory
+getLabel	src/main/java/bjc/esodata/AbbrevTree.java	/^		public String getLabel();$/;"	m	interface:AbbrevTree.AbbrevNode
+getLabel	src/main/java/bjc/esodata/AbbrevTree.java	/^	public String getLabel() {$/;"	m	class:AbbrevNode
+getLeft	src/main/java/bjc/data/Either.java	/^	public Optional<LeftType> getLeft() {$/;"	m	class:Either
+getLeft	src/main/java/bjc/data/LazyPair.java	/^	public LeftType getLeft() {$/;"	m	class:LazyPair
+getLeft	src/main/java/bjc/data/Pair.java	/^	public default LeftType getLeft() {$/;"	m	interface:Pair
+getLeft	src/main/java/bjc/data/SimplePair.java	/^	public LeftType getLeft() {$/;"	m	class:SimplePair
+getLeft	src/main/java/bjc/funcdata/theory/Bifunctor.java	/^	public LeftType getLeft();$/;"	m	interface:Bifunctor
+getMap	src/main/java/bjc/esodata/MapSet.java	/^	public Map<KeyType, ValueType> getMap(String key) {$/;"	m	class:MapSet
+getMapEntries	src/main/java/bjc/esodata/MapSet.java	/^	public Set<Map.Entry<String, Map<KeyType, ValueType>>> getMapEntries() {$/;"	m	class:MapSet
+getMapKeys	src/main/java/bjc/esodata/MapSet.java	/^	public Set<String> getMapKeys() {$/;"	m	class:MapSet
+getMapValues	src/main/java/bjc/esodata/MapSet.java	/^	public Collection<Map<KeyType, ValueType>> getMapValues() {$/;"	m	class:MapSet
+getMatching	src/main/java/bjc/funcdata/FunctionalList.java	/^	public ListEx<E> getMatching(final Predicate<E> predicate) {$/;"	m	class:FunctionalList
+getMatching	src/main/java/bjc/funcdata/ListEx.java	/^	ListEx<ContainedType> getMatching(Predicate<ContainedType> predicate);$/;"	m	interface:ListEx
+getNode	src/main/java/bjc/esodata/AbbrevTree.java	/^		public AbbrevNode<Contained> getNode(String... labels);$/;"	m	interface:AbbrevTree.AbbrevNode
+getOfNonexistentKeyThrows	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void getOfNonexistentKeyThrows() {$/;"	m	class:TestMapOperations
+getParent	src/main/java/bjc/data/Context.java	/^	Context getParent();$/;"	m	interface:Context
+getParent	src/main/java/bjc/data/Contexts.java	/^		public Context getParent() {$/;"	m	class:Contexts.ContextImpl
+getParent	src/main/java/bjc/data/Contexts.java	/^		public Context getParent() {$/;"	m	class:Contexts.NullContextImpl
+getRight	src/main/java/bjc/data/Either.java	/^	public Optional<RightType> getRight() {$/;"	m	class:Either
+getRight	src/main/java/bjc/data/LazyPair.java	/^	public RightType getRight() {$/;"	m	class:LazyPair
+getRight	src/main/java/bjc/data/Pair.java	/^	public default RightType getRight() {$/;"	m	interface:Pair
+getRight	src/main/java/bjc/data/SimplePair.java	/^	public RightType getRight() {$/;"	m	class:SimplePair
+getRight	src/main/java/bjc/funcdata/theory/Bifunctor.java	/^	public RightType getRight();$/;"	m	interface:Bifunctor
+getRoot	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	public TreePart<T> getRoot() {$/;"	m	class:BinarySearchTree
+getSize	src/main/java/bjc/funcdata/FunctionalList.java	/^	public int getSize() {$/;"	m	class:FunctionalList
+getSize	src/main/java/bjc/funcdata/ListEx.java	/^	int getSize();$/;"	m	interface:ListEx
+getSubdirectory	src/main/java/bjc/esodata/Directory.java	/^	Directory<K, V> getSubdirectory(K key);$/;"	m	interface:Directory
+getSubdirectory	src/main/java/bjc/esodata/SimpleDirectory.java	/^	public Directory<K, V> getSubdirectory(final K key) {$/;"	m	class:SimpleDirectory
+getSubdirectory	src/main/java/bjc/esodata/UnifiedDirectory.java	/^	public Directory<K, V> getSubdirectory(final K key) {$/;"	m	class:UnifiedDirectory
+getValue	src/main/java/bjc/data/Holder.java	/^	public default ContainedType getValue() {$/;"	m	interface:Holder
+getValue	src/main/java/bjc/funcdata/theory/Functor.java	/^	public ContainedType getValue();$/;"	m	interface:Functor
+getYieldsExpectedValue	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void getYieldsExpectedValue() {$/;"	m	class:TestMapOperations
+gotFirst	src/main/java/bjc/data/OneWayToggle.java	/^	private boolean gotFirst;$/;"	f	class:OneWayToggle	file:
+gotten	src/main/java/bjc/data/SingleSupplier.java	/^	private boolean gotten;$/;"	f	class:SingleSupplier	file:
+hasChildren	src/main/java/bjc/data/SimpleTree.java	/^	private boolean hasChildren;$/;"	f	class:SimpleTree	file:
+hasMoreTokens	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^	public boolean hasMoreTokens() {$/;"	m	class:FunctionalStringTokenizer
+hasNext	src/main/java/bjc/data/ArrayIterator.java	/^	public boolean hasNext() {$/;"	m	class:ArrayIterator
+hasNext	src/main/java/bjc/data/CircularIterator.java	/^	public boolean hasNext() {$/;"	m	class:CircularIterator
+hasNext	src/main/java/bjc/data/GeneratingIterator.java	/^	public boolean hasNext() {$/;"	m	class:GeneratingIterator
+hasNext	src/main/java/bjc/data/NonCMEIterator.java	/^	public boolean hasNext() {$/;"	m	class:NonCMEIterator
+hasNext	src/main/java/bjc/data/QueuedIterator.java	/^	public boolean hasNext() {$/;"	m	class:QueuedIterator
+hasNext	src/main/java/bjc/data/ResettableIterator.java	/^	public boolean hasNext() {$/;"	m	class:ResettableIterator
+hasNext	src/main/java/bjc/data/ReverseListIterator.java	/^	public boolean hasNext() {$/;"	m	class:ReverseListIterator
+hasNext	src/main/java/bjc/data/SingleIterator.java	/^	public boolean hasNext() {$/;"	m	class:SingleIterator
+hasNext	src/main/java/bjc/data/TopDownTransformIterator.java	/^	public boolean hasNext() {$/;"	m	class:TopDownTransformIterator
+hasNext	src/main/java/bjc/data/TransformIterator.java	/^	public boolean hasNext() {$/;"	m	class:TransformIterator
+hasNext	src/main/java/bjc/esodata/FlatNestIterator.java	/^	public boolean hasNext() {$/;"	m	class:FlatNestIterator
+hasPrevious	src/main/java/bjc/data/NonCMEListIterator.java	/^	public boolean hasPrevious() {$/;"	m	class:NonCMEListIterator
+hasPrevious	src/main/java/bjc/data/ReverseListIterator.java	/^	public boolean hasPrevious() {$/;"	m	class:ReverseListIterator
+hasPrevious	src/main/java/bjc/esodata/FlatNestIterator.java	/^	public boolean hasPrevious() {$/;"	m	class:FlatNestIterator
+hasSubdirectory	src/main/java/bjc/esodata/Directory.java	/^	boolean hasSubdirectory(K key);$/;"	m	interface:Directory
+hasSubdirectory	src/main/java/bjc/esodata/SimpleDirectory.java	/^	public boolean hasSubdirectory(final K key) {$/;"	m	class:SimpleDirectory
+hasSubdirectory	src/main/java/bjc/esodata/UnifiedDirectory.java	/^	public boolean hasSubdirectory(final K key) {$/;"	m	class:UnifiedDirectory
+hasTape	src/main/java/bjc/esodata/TapeLibrary.java	/^	public boolean hasTape(String label) $/;"	m	class:TapeLibrary
+hashCode	src/main/java/bjc/data/BooleanToggle.java	/^	public int hashCode() {$/;"	m	class:BooleanToggle
+hashCode	src/main/java/bjc/data/Either.java	/^	public int hashCode() {$/;"	m	class:Either
+hashCode	src/main/java/bjc/data/Identity.java	/^	public int hashCode() {$/;"	m	class:Identity
+hashCode	src/main/java/bjc/data/Lazy.java	/^	public int hashCode() {$/;"	m	class:Lazy
+hashCode	src/main/java/bjc/data/LazyPair.java	/^	public int hashCode() {$/;"	m	class:LazyPair
+hashCode	src/main/java/bjc/data/ListHolder.java	/^	public int hashCode() {$/;"	m	class:ListHolder
+hashCode	src/main/java/bjc/data/Option.java	/^	public int hashCode() {$/;"	m	class:Option
+hashCode	src/main/java/bjc/data/SimplePair.java	/^	public int hashCode() {$/;"	m	class:SimplePair
+hashCode	src/main/java/bjc/data/SimpleTree.java	/^	public int hashCode() {$/;"	m	class:SimpleTree
+hashCode	src/main/java/bjc/esodata/DoubleTape.java	/^	public int hashCode() {$/;"	m	class:DoubleTape
+hashCode	src/main/java/bjc/esodata/MinMaxList.java	/^	public int hashCode() {$/;"	m	class:MinMaxList
+hashCode	src/main/java/bjc/esodata/NestList.java	/^	public int hashCode() {$/;"	m	class:NestList
+hashCode	src/main/java/bjc/esodata/PushdownMap.java	/^	public int hashCode() {$/;"	m	class:PushdownMap
+hashCode	src/main/java/bjc/esodata/QueueStack.java	/^	public int hashCode() {$/;"	m	class:QueueStack
+hashCode	src/main/java/bjc/esodata/SimpleDirectory.java	/^	public int hashCode() {$/;"	m	class:SimpleDirectory
+hashCode	src/main/java/bjc/esodata/SimpleStack.java	/^	public int hashCode() {$/;"	m	class:SimpleStack
+hashCode	src/main/java/bjc/esodata/SingleTape.java	/^	public int hashCode() {$/;"	m	class:SingleTape
+hashCode	src/main/java/bjc/esodata/SpaghettiStack.java	/^	public int hashCode() {$/;"	m	class:SpaghettiStack
+hashCode	src/main/java/bjc/esodata/UnifiedDirectory.java	/^	public int hashCode() {$/;"	m	class:UnifiedDirectory
+hashCode	src/main/java/bjc/funcdata/ExtendedMap.java	/^  public int hashCode() {$/;"	m	class:ExtendedMap
+hashCode	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public int hashCode() {$/;"	m	class:FunctionalMap
+hashCode	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	public int hashCode() {$/;"	m	class:BinarySearchTree
+hashCode	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	public int hashCode() {$/;"	m	class:BinarySearchTreeLeaf
+hashCode	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	public int hashCode() {$/;"	m	class:BinarySearchTreeNode
+held	src/main/java/bjc/data/Option.java	/^	private ContainedType held;$/;"	f	class:Option	file:
+held	src/main/java/bjc/data/internals/WrappedLazy.java	/^	private final Holder<Holder<ContainedType>> held;$/;"	f	class:WrappedLazy	file:
+held	src/main/java/bjc/data/internals/WrappedOption.java	/^	private final Holder<Holder<ContainedType>> held;$/;"	f	class:WrappedOption	file:
+heldHolders	src/main/java/bjc/data/internals/BoundListHolder.java	/^	private final ListEx<Holder<ContainedType>> heldHolders;$/;"	f	class:BoundListHolder	file:
+heldValue	src/main/java/bjc/data/Identity.java	/^	private ContainedType heldValue;$/;"	f	class:Identity	file:
+heldValue	src/main/java/bjc/data/Lazy.java	/^	private ContainedType heldValue;$/;"	f	class:Lazy	file:
+heldValues	src/main/java/bjc/data/ListHolder.java	/^	private ListEx<ContainedType> heldValues;$/;"	f	class:ListHolder	file:
+holderBound	src/main/java/bjc/data/internals/BoundLazy.java	/^	private boolean holderBound;$/;"	f	class:BoundLazy	file:
+id	src/main/java/bjc/data/Identity.java	/^	public static <ContainedType> Identity<ContainedType> id() {$/;"	m	class:Identity
+id	src/main/java/bjc/data/Identity.java	/^	public static <ContainedType> Identity<ContainedType> id(final ContainedType val) {$/;"	m	class:Identity
+id	src/main/java/bjc/data/SingleSupplier.java	/^	private final long id;$/;"	f	class:SingleSupplier	file:
+id	src/main/java/bjc/functypes/ID.java	/^	public static <A> UnaryOperator<A> id() {$/;"	m	class:ID
+idx	src/main/java/bjc/data/ArrayIterator.java	/^	private int idx;$/;"	f	class:ArrayIterator	file:
+iftt	src/main/java/bjc/functypes/Combinators.java	/^	public static <Input, Output> Function<Input, Output> iftt($/;"	m	class:Combinators
+iftt	src/main/java/bjc/functypes/Combinators.java	/^	public static <Output> Output iftt($/;"	m	class:Combinators
+ignore	src/main/java/bjc/functypes/Combinators.java	/^	public static <Input> Consumer<Input> ignore(Function<Input, ?> func) {$/;"	m	class:Combinators
+incr	src/main/java/bjc/data/IntHolder.java	/^	public int incr() {$/;"	m	class:IntHolder
+incr	src/main/java/bjc/data/IntHolder.java	/^	public int incr(int i) {$/;"	m	class:IntHolder
+initial	src/main/java/bjc/data/TopDownTransformIterator.java	/^	private boolean initial;$/;"	f	class:TopDownTransformIterator	file:
+inorderTraverse	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	private boolean inorderTraverse(final TreeLinearizationMethod linearizationMethod,$/;"	m	class:BinarySearchTreeNode	file:
+input	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^	private final StringTokenizer input;$/;"	f	class:FunctionalStringTokenizer	file:
+insertAfter	src/main/java/bjc/esodata/DoubleTape.java	/^	public void insertAfter(final T itm) {$/;"	m	class:DoubleTape
+insertAfter	src/main/java/bjc/esodata/SingleTape.java	/^	public void insertAfter(final T itm) {$/;"	m	class:SingleTape
+insertAfter	src/main/java/bjc/esodata/Tape.java	/^	void insertAfter(T itm);$/;"	m	interface:Tape
+insertAfter	src/main/java/bjc/esodata/TapeView.java	/^	public default void insertAfter(ElementType itm)$/;"	m	interface:TapeView
+insertBefore	src/main/java/bjc/esodata/DoubleTape.java	/^	public void insertBefore(final T itm) {$/;"	m	class:DoubleTape
+insertBefore	src/main/java/bjc/esodata/SingleTape.java	/^	public void insertBefore(final T itm) {$/;"	m	class:SingleTape
+insertBefore	src/main/java/bjc/esodata/Tape.java	/^	void insertBefore(T itm);$/;"	m	interface:Tape
+insertBefore	src/main/java/bjc/esodata/TapeView.java	/^	public default void insertBefore(ElementType itm)$/;"	m	interface:TapeView
+insertTape	src/main/java/bjc/esodata/TapeLibrary.java	/^	public Tape<ElementType> insertTape(String label, Tape<ElementType> tape)$/;"	m	class:TapeLibrary
+instSite	src/main/java/bjc/data/SingleSupplier.java	/^	private Exception instSite;$/;"	f	class:SingleSupplier	file:
+intComparator	src/test/java/bjc/esodata/MinMaxListTest.java	/^	private final static Comparator<Integer> intComparator = (lhs, rhs) -> lhs - rhs;;$/;"	f	class:MinMaxListTest	file:
+internalCollapse	src/main/java/bjc/data/SimpleTree.java	/^	private <NewType> NewType internalCollapse($/;"	m	class:SimpleTree	file:
+internalToString	src/main/java/bjc/data/SimpleTree.java	/^	private void internalToString(final StringBuilder builder, final int indentLevel,$/;"	m	class:SimpleTree	file:
+introducing	src/main/java/bjc/functypes/Combinators.java	/^	public static <Input, Output, State> Function<Input, Output> introducing($/;"	m	class:Combinators
+invoke	src/main/java/bjc/functypes/Combinators.java	/^	public static <Input, Output> Output invoke(Function<Input, Output> action) $/;"	m	class:Combinators
+invrot	src/main/java/bjc/esodata/Stack.java	/^	public void invrot() {$/;"	m	class:Stack
+isAllowAutoCreation	src/main/java/bjc/esodata/TapeLibrary.java	/^	public boolean isAllowAutoCreation() {$/;"	m	class:TapeLibrary
+isDeleted	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	protected boolean isDeleted;$/;"	f	class:BinarySearchTreeLeaf
+isEmpty	src/main/java/bjc/esodata/QueueStack.java	/^	public boolean isEmpty() {$/;"	m	class:QueueStack
+isEmpty	src/main/java/bjc/esodata/SimpleStack.java	/^	public boolean isEmpty() {$/;"	m	class:SimpleStack
+isEmpty	src/main/java/bjc/esodata/SpaghettiStack.java	/^	public boolean isEmpty() {$/;"	m	class:SpaghettiStack
+isEmpty	src/main/java/bjc/esodata/Stack.java	/^	public boolean isEmpty() {$/;"	m	class:Stack
+isEmpty	src/main/java/bjc/funcdata/FunctionalList.java	/^	public boolean isEmpty() {$/;"	m	class:FunctionalList
+isEmpty	src/main/java/bjc/funcdata/ListEx.java	/^	boolean isEmpty();$/;"	m	interface:ListEx
+isFrozen	src/main/java/bjc/esodata/PushdownMap.java	/^	private boolean isFrozen    = false;$/;"	f	class:PushdownMap	file:
+isFrozen	src/main/java/bjc/esodata/PushdownMap.java	/^	public boolean isFrozen() {$/;"	m	class:PushdownMap
+isFrozen	src/main/java/bjc/funcdata/ExtendedMap.java	/^	private boolean isFrozen     = false;$/;"	f	class:ExtendedMap	file:
+isFrozen	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public boolean isFrozen() {$/;"	m	class:ExtendedMap
+isFrozen	src/main/java/bjc/funcdata/Freezable.java	/^	public boolean isFrozen();$/;"	m	interface:Freezable
+isFrozen	src/main/java/bjc/funcdata/FunctionalMap.java	/^	private boolean isFrozen    = false;$/;"	f	class:FunctionalMap	file:
+isFrozen	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public boolean isFrozen() {$/;"	m	class:FunctionalMap
+isFrozen	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	private boolean isFrozen    = false;$/;"	f	class:TransformedValueMap	file:
+isFrozen	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public boolean isFrozen() {$/;"	m	class:TransformedValueMap
+isHolding	src/main/java/bjc/data/Option.java	/^	private boolean isHolding;$/;"	f	class:Option	file:
+isInTree	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	public boolean isInTree(final T element) {$/;"	m	class:BinarySearchTree
+isLeft	src/main/java/bjc/data/Either.java	/^	private boolean isLeft;$/;"	f	class:Either	file:
+isLeft	src/main/java/bjc/data/Either.java	/^	public boolean isLeft() {$/;"	m	class:Either
+isPartitionFull	src/main/java/bjc/funcdata/FunctionalList.java	/^	private Boolean isPartitionFull(final int numberPerPartition,$/;"	m	class:FunctionalList	file:
+isRepeating	src/main/java/bjc/data/ResettableIterator.java	/^	private boolean isRepeating = false;$/;"	f	class:ResettableIterator	file:
+isThawed	src/main/java/bjc/funcdata/Freezable.java	/^	default boolean isThawed() {$/;"	m	interface:Freezable
+item	src/main/java/bjc/esodata/DoubleTape.java	/^	public T item() {$/;"	m	class:DoubleTape
+item	src/main/java/bjc/esodata/DoubleTape.java	/^	public void item(final T itm) {$/;"	m	class:DoubleTape
+item	src/main/java/bjc/esodata/SingleTape.java	/^	public T item() {$/;"	m	class:SingleTape
+item	src/main/java/bjc/esodata/SingleTape.java	/^	public void item(final T itm) {$/;"	m	class:SingleTape
+item	src/main/java/bjc/esodata/Tape.java	/^	T item();$/;"	m	interface:Tape
+item	src/main/java/bjc/esodata/Tape.java	/^	void item(T itm);$/;"	m	interface:Tape
+item	src/main/java/bjc/esodata/TapeView.java	/^	public default ElementType item()$/;"	m	interface:TapeView
+item	src/main/java/bjc/esodata/TapeView.java	/^	public default void item(ElementType itm)$/;"	m	interface:TapeView
+iterator	src/main/java/bjc/esodata/ThresholdSet.java	/^		public Iterator<KeyType> iterator() {$/;"	m	class:ThresholdSet.SetView
+iterator	src/main/java/bjc/funcdata/ListEx.java	/^	default Iterator<ContainedType> iterator() {$/;"	m	interface:ListEx
+iterators	src/main/java/bjc/esodata/FlatNestIterator.java	/^	private Deque<ListIterator<Either<Element, NestList<Element>>>> iterators;$/;"	f	class:FlatNestIterator	file:
+itm	src/main/java/bjc/data/SingleIterator.java	/^	private final T itm;$/;"	f	class:SingleIterator	file:
+keep	src/main/java/bjc/esodata/Stack.java	/^	public void keep(final Consumer<Stack<T>> action) {$/;"	m	class:Stack
+keep	src/main/java/bjc/esodata/Stack.java	/^	public void keep(final int n, final Consumer<Stack<T>> action) {$/;"	m	class:Stack
+keyList	src/main/java/bjc/esodata/PushdownMap.java	/^	public ListEx<KeyType> keyList() {$/;"	m	class:PushdownMap
+keyList	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public ListEx<KeyType> keyList() {$/;"	m	class:ExtendedMap
+keyList	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public ListEx<KeyType> keyList() {$/;"	m	class:FunctionalMap
+keyList	src/main/java/bjc/funcdata/MapEx.java	/^	ListEx<KeyType> keyList();$/;"	m	interface:MapEx
+keyList	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public ListEx<OldKey> keyList() {$/;"	m	class:TransformedValueMap
+keyListReturnsListOfKeys	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void keyListReturnsListOfKeys() {$/;"	m	class:TestMapOperations
+keyMap	src/main/java/bjc/esodata/ThresholdSet.java	/^	private Map<KeyType, Integer> keyMap;$/;"	f	class:ThresholdSet	file:
+keySet	src/main/java/bjc/esodata/ThresholdSet.java	/^	private Set<KeyType> keySet;$/;"	f	class:ThresholdSet	file:
+label	src/main/java/bjc/esodata/AbbrevTree.java	/^	private String label;$/;"	f	class:AbbrevNode	file:
+last	src/main/java/bjc/data/QueuedIterator.java	/^	public void last(@SuppressWarnings("unchecked") E... vals) {$/;"	m	class:QueuedIterator
+last	src/main/java/bjc/data/QueuedIterator.java	/^	public void last(Iterable<E> itr) {$/;"	m	class:QueuedIterator
+last	src/main/java/bjc/data/QueuedIterator.java	/^	public void last(Iterator<E> itr) {$/;"	m	class:QueuedIterator
+last	src/main/java/bjc/esodata/DoubleTape.java	/^	public void last() {$/;"	m	class:DoubleTape
+last	src/main/java/bjc/esodata/SingleTape.java	/^	public void last() {$/;"	m	class:SingleTape
+last	src/main/java/bjc/esodata/Tape.java	/^	void last();$/;"	m	interface:Tape
+last	src/main/java/bjc/esodata/TapeView.java	/^	public default void last()$/;"	m	interface:TapeView
+last	src/main/java/bjc/funcdata/FunctionalList.java	/^	public E last() {$/;"	m	class:FunctionalList
+last	src/main/java/bjc/funcdata/ListEx.java	/^	ContainedType last();$/;"	m	interface:ListEx
+lazy	src/main/java/bjc/data/Lazy.java	/^			lazy(final Supplier<ContainedType> supp) {$/;"	m	class:Lazy
+lazy	src/main/java/bjc/data/Lazy.java	/^	public static <ContainedType> Lazy<ContainedType> lazy(final ContainedType val) {$/;"	m	class:Lazy
+left	src/main/java/bjc/data/Either.java	/^			left(final LeftType left) {$/;"	m	class:Either
+left	src/main/java/bjc/esodata/DoubleTape.java	/^	public boolean left() {$/;"	m	class:DoubleTape
+left	src/main/java/bjc/esodata/DoubleTape.java	/^	public boolean left(final int amt) {$/;"	m	class:DoubleTape
+left	src/main/java/bjc/esodata/SingleTape.java	/^	public boolean left() {$/;"	m	class:SingleTape
+left	src/main/java/bjc/esodata/SingleTape.java	/^	public boolean left(final int amt) {$/;"	m	class:SingleTape
+left	src/main/java/bjc/esodata/Tape.java	/^	boolean left();$/;"	m	interface:Tape
+left	src/main/java/bjc/esodata/Tape.java	/^	boolean left(int amt);$/;"	m	interface:Tape
+left	src/main/java/bjc/esodata/TapeView.java	/^	public default boolean left()$/;"	m	interface:TapeView
+left	src/main/java/bjc/esodata/TapeView.java	/^	public default boolean left(int amt)$/;"	m	interface:TapeView
+left	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	private TreePart<T> left;$/;"	f	class:BinarySearchTreeNode	file:
+leftEither	src/test/java/bjc/data/EitherTest.java	/^	private Either<String, String> leftEither;$/;"	f	class:EitherTest	file:
+leftMaterialized	src/main/java/bjc/data/LazyPair.java	/^	private boolean leftMaterialized;$/;"	f	class:LazyPair	file:
+leftSupplier	src/main/java/bjc/data/LazyPair.java	/^	private Supplier<LeftType> leftSupplier;$/;"	f	class:LazyPair	file:
+leftSupplier	src/main/java/bjc/data/internals/BoundLazyPair.java	/^	private final Supplier<OldLeft> leftSupplier;$/;"	f	class:BoundLazyPair	file:
+leftVal	src/main/java/bjc/data/Either.java	/^	private LeftType leftVal;$/;"	f	class:Either	file:
+leftValue	src/main/java/bjc/data/LazyPair.java	/^	private LeftType leftValue;$/;"	f	class:LazyPair	file:
+leftValue	src/main/java/bjc/data/SimplePair.java	/^	private LeftType leftValue;$/;"	f	class:SimplePair	file:
+lft	src/main/java/bjc/data/ValueToggle.java	/^	private final E lft;$/;"	f	class:ValueToggle	file:
+library	src/main/java/bjc/esodata/TapeLibrary.java	/^	private final Map<String, Tape<ElementType>> library;$/;"	f	class:TapeLibrary	file:
+lift	src/main/java/bjc/data/Holder.java	/^			lift(Function<ContainedType, NewType> func);$/;"	m	interface:Holder
+lift	src/main/java/bjc/data/Identity.java	/^			lift(final Function<ContainedType, NewType> func) {$/;"	m	class:Identity
+lift	src/main/java/bjc/data/Lazy.java	/^			lift(final Function<ContainedType, NewType> func) {$/;"	m	class:Lazy
+lift	src/main/java/bjc/data/ListHolder.java	/^			lift(final Function<ContainedType, NewType> func) {$/;"	m	class:ListHolder
+lift	src/main/java/bjc/data/Option.java	/^			lift(final Function<ContainedType, NewType> func) {$/;"	m	class:Option
+lift	src/main/java/bjc/data/internals/BoundLazy.java	/^			lift(final Function<BoundContainedType, NewType> func) {$/;"	m	class:BoundLazy
+lift	src/main/java/bjc/data/internals/BoundListHolder.java	/^			lift(final Function<ContainedType, NewType> func) {$/;"	m	class:BoundListHolder
+lift	src/main/java/bjc/data/internals/WrappedLazy.java	/^			lift(final Function<ContainedType, NewType> func) {$/;"	m	class:WrappedLazy
+lift	src/main/java/bjc/data/internals/WrappedOption.java	/^			lift(final Function<ContainedType, NewType> func) {$/;"	m	class:WrappedOption
+listOf	src/main/java/bjc/funcdata/FunctionalList.java	/^	public static <T> ListEx<T> listOf(final T... items) {$/;"	m	class:FunctionalList
+main	src/example/java/bjc/funcdata/bst/BinarySearchTreeExample.java	/^	public static void main(final String[] args) {$/;"	m	class:BinarySearchTreeExample
+main	src/example/java/bjc/functypes/FixpointExample.java	/^	public static void main(String[] args) {$/;"	m	class:FixpointExample
+makeLazy	src/main/java/bjc/data/Holder.java	/^	public default Holder<ContainedType> makeLazy() {$/;"	m	interface:Holder
+makeList	src/main/java/bjc/data/Holder.java	/^	public default Holder<ContainedType> makeList() {$/;"	m	interface:Holder
+makeOptional	src/main/java/bjc/data/Holder.java	/^	public default Holder<ContainedType> makeOptional() {$/;"	m	interface:Holder
+makeTotal	src/main/java/bjc/functypes/ThrowFunction.java	/^	makeTotal(Class<ExType> clasz)$/;"	m	interface:ThrowFunction
+map	src/main/java/bjc/data/Either.java	/^	public <NewLeft, NewRight> Either<NewLeft, NewRight> map($/;"	m	class:Either
+map	src/main/java/bjc/data/Holder.java	/^			map(Function<ContainedType, MappedType> mapper);$/;"	m	interface:Holder
+map	src/main/java/bjc/data/Identity.java	/^			map(final Function<ContainedType, MappedType> mapper) {$/;"	m	class:Identity
+map	src/main/java/bjc/data/Lazy.java	/^			map(final Function<ContainedType, MappedType> mapper) {$/;"	m	class:Lazy
+map	src/main/java/bjc/data/ListHolder.java	/^			map(final Function<ContainedType, MappedType> mapper) {$/;"	m	class:ListHolder
+map	src/main/java/bjc/data/Option.java	/^			map(final Function<ContainedType, MappedType> mapper) {$/;"	m	class:Option
+map	src/main/java/bjc/data/internals/BoundLazy.java	/^			map(final Function<BoundContainedType, MappedType> mapper) {$/;"	m	class:BoundLazy
+map	src/main/java/bjc/data/internals/BoundListHolder.java	/^			map(final Function<ContainedType, MappedType> mapper) {$/;"	m	class:BoundListHolder
+map	src/main/java/bjc/data/internals/WrappedLazy.java	/^			map(final Function<ContainedType, MappedType> mapper) {$/;"	m	class:WrappedLazy
+map	src/main/java/bjc/data/internals/WrappedOption.java	/^			map(final Function<ContainedType, MappedType> mapper) {$/;"	m	class:WrappedOption
+map	src/main/java/bjc/esodata/NestList.java	/^	public <NewElement> NestList<NewElement> map($/;"	m	class:NestList
+map	src/main/java/bjc/funcdata/FunctionalList.java	/^	public <T> ListEx<T> map(final Function<E, T> elementTransformer) {$/;"	m	class:FunctionalList
+map	src/main/java/bjc/funcdata/ListEx.java	/^	<MappedType> ListEx<MappedType> map(Function<ContainedType, MappedType> transformer);$/;"	m	interface:ListEx
+map	src/test/java/bjc/funcdata/TestMapOperations.java	/^	private MapEx<String, String> map;$/;"	f	class:TestMapOperations	file:
+mapIsThawedByDefault	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void mapIsThawedByDefault() {$/;"	m	class:TestMapOperations
+mapLeft	src/main/java/bjc/data/LazyPair.java	/^			mapLeft(final Function<LeftType, NewLeft> mapper) {$/;"	m	class:LazyPair
+mapLeft	src/main/java/bjc/data/Pair.java	/^			mapLeft(Function<LeftType, NewLeft> mapper);$/;"	m	interface:Pair
+mapLeft	src/main/java/bjc/data/SimplePair.java	/^			mapLeft(final Function<LeftType, NewLeft> mapper) {$/;"	m	class:SimplePair
+mapLeft	src/main/java/bjc/data/internals/BoundLazyPair.java	/^			mapLeft(final Function<NewLeft, NewLeftType> mapper) {$/;"	m	class:BoundLazyPair
+mapLeft	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^			mapLeft(final Function<NewLeft, NewLeftType> mapper) {$/;"	m	class:HalfBoundLazyPair
+mapOfCreatesWithGivenContents	src/test/java/bjc/funcdata/TestMapCreation.java	/^	public void mapOfCreatesWithGivenContents() {$/;"	m	class:TestMapCreation
+mapOfMismatchedCountErrors	src/test/java/bjc/funcdata/TestMapCreation.java	/^	public void mapOfMismatchedCountErrors() {$/;"	m	class:TestMapCreation
+mapOfMismatchedTypeErrors	src/test/java/bjc/funcdata/TestMapCreation.java	/^	public void mapOfMismatchedTypeErrors() {$/;"	m	class:TestMapCreation
+mapOfNothingCreatesEmptyMap	src/test/java/bjc/funcdata/TestMapCreation.java	/^	public void mapOfNothingCreatesEmptyMap() {$/;"	m	class:TestMapCreation
+mapRight	src/main/java/bjc/data/LazyPair.java	/^			mapRight(final Function<RightType, NewRight> mapper) {$/;"	m	class:LazyPair
+mapRight	src/main/java/bjc/data/Pair.java	/^			mapRight(Function<RightType, NewRight> mapper);$/;"	m	interface:Pair
+mapRight	src/main/java/bjc/data/SimplePair.java	/^			mapRight(final Function<RightType, NewRight> mapper) {$/;"	m	class:SimplePair
+mapRight	src/main/java/bjc/data/internals/BoundLazyPair.java	/^			mapRight(final Function<NewRight, NewRightType> mapper) {$/;"	m	class:BoundLazyPair
+mapRight	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^			mapRight(final Function<NewRight, NewRightType> mapper) {$/;"	m	class:HalfBoundLazyPair
+maxElement	src/main/java/bjc/esodata/MinMaxList.java	/^	private ValueType maxElement;$/;"	f	class:MinMaxList	file:
+maximum	src/main/java/bjc/esodata/MinMaxList.java	/^	public ValueType maximum() {$/;"	m	class:MinMaxList
+memoFix	src/main/java/bjc/functypes/Fixpoints.java	/^	static <InputType, ReturnType> Function<InputType, ReturnType> memoFix($/;"	m	interface:Fixpoints
+memoize	src/main/java/bjc/functypes/Thrower.java	/^	default Thrower<ValueType, ExceptionType> memoize() {$/;"	m	interface:Thrower
+merge	src/main/java/bjc/data/LazyPair.java	/^			merge(final BiFunction<LeftType, RightType, MergedType> merger) {$/;"	m	class:LazyPair
+merge	src/main/java/bjc/data/Pair.java	/^			merge(BiFunction<LeftType, RightType, MergedType> merger);$/;"	m	interface:Pair
+merge	src/main/java/bjc/data/SimplePair.java	/^			merge(final BiFunction<LeftType, RightType, MergedType> merger) {$/;"	m	class:SimplePair
+merge	src/main/java/bjc/data/internals/BoundLazyPair.java	/^			merge(final BiFunction<NewLeft, NewRight, MergedType> merger) {$/;"	m	class:BoundLazyPair
+merge	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^			merge(final BiFunction<NewLeft, NewRight, MergedType> merger) {$/;"	m	class:HalfBoundLazyPair
+minElement	src/main/java/bjc/esodata/MinMaxList.java	/^	private ValueType minElement;$/;"	f	class:MinMaxList	file:
+minMaxListAddUpdatesMinMax	src/test/java/bjc/esodata/MinMaxListTest.java	/^	public void minMaxListAddUpdatesMinMax() {$/;"	m	class:MinMaxListTest
+minMaxListInitializesMinMax	src/test/java/bjc/esodata/MinMaxListTest.java	/^	public void minMaxListInitializesMinMax() {$/;"	m	class:MinMaxListTest
+minMaxListRemoveUpdatesMinMax	src/test/java/bjc/esodata/MinMaxListTest.java	/^	public void minMaxListRemoveUpdatesMinMax() {$/;"	m	class:MinMaxListTest
+minimum	src/main/java/bjc/esodata/MinMaxList.java	/^	public ValueType minimum() {$/;"	m	class:MinMaxList
+mountTape	src/main/java/bjc/esodata/TapeLibrary.java	/^	public boolean mountTape(String label)$/;"	m	class:TapeLibrary
+multiapply	src/main/java/bjc/esodata/Stack.java	/^	public void multiapply(final int n, final int m, final Consumer<Stack<T>> action) {$/;"	m	class:Stack
+multicleave	src/main/java/bjc/esodata/Stack.java	/^	public void multicleave(final int n, @SuppressWarnings("unchecked") final Consumer<Stack<T>>... actions) {$/;"	m	class:Stack
+multicleave	src/main/java/bjc/esodata/Stack.java	/^	public void multicleave(final int n, final List<Consumer<Stack<T>>> actions) {$/;"	m	class:Stack
+multidup	src/main/java/bjc/esodata/Stack.java	/^	public void multidup(final int n, final int m) {$/;"	m	class:Stack
+multiover	src/main/java/bjc/esodata/Stack.java	/^	public void multiover(final int n, final int m) {$/;"	m	class:Stack
+multipop	src/main/java/bjc/esodata/Stack.java	/^	public List<T> multipop(int n) {$/;"	m	class:Stack
+multipoprev	src/main/java/bjc/esodata/Stack.java	/^	public List<T> multipoprev(int n) {$/;"	m	class:Stack
+multirot	src/main/java/bjc/esodata/Stack.java	/^	public void multirot(int n, int i) {$/;"	m	class:Stack
+multispread	src/main/java/bjc/esodata/Stack.java	/^	public void multispread(final int n, @SuppressWarnings("unchecked") final Consumer<Stack<T>>... actions) {$/;"	m	class:Stack
+multispread	src/main/java/bjc/esodata/Stack.java	/^	public void multispread(final int n, final List<Consumer<Stack<T>>> actions) {$/;"	m	class:Stack
+newSubdirectory	src/main/java/bjc/esodata/Directory.java	/^	default Directory<K, V> newSubdirectory(final K key) {$/;"	m	interface:Directory
+next	src/main/java/bjc/data/ArrayIterator.java	/^	public T next() {$/;"	m	class:ArrayIterator
+next	src/main/java/bjc/data/CircularIterator.java	/^	public E next() {$/;"	m	class:CircularIterator
+next	src/main/java/bjc/data/GeneratingIterator.java	/^	public E next() {$/;"	m	class:GeneratingIterator
+next	src/main/java/bjc/data/NonCMEIterator.java	/^	public ElementType next() {$/;"	m	class:NonCMEIterator
+next	src/main/java/bjc/data/QueuedIterator.java	/^	public E next() {$/;"	m	class:QueuedIterator
+next	src/main/java/bjc/data/ResettableIterator.java	/^	public T next() {$/;"	m	class:ResettableIterator
+next	src/main/java/bjc/data/ReverseListIterator.java	/^	public Element next() {$/;"	m	class:ReverseListIterator
+next	src/main/java/bjc/data/SingleIterator.java	/^	public T next() {$/;"	m	class:SingleIterator
+next	src/main/java/bjc/data/TopDownTransformIterator.java	/^	public Tree<ContainedType> next() {$/;"	m	class:TopDownTransformIterator
+next	src/main/java/bjc/data/TransformIterator.java	/^	public D next() {$/;"	m	class:TransformIterator
+next	src/main/java/bjc/esodata/FlatNestIterator.java	/^	public Element next() {$/;"	m	class:FlatNestIterator
+nextID	src/main/java/bjc/data/SimpleTree.java	/^	private static int nextID = 0;$/;"	f	class:SimpleTree	file:
+nextID	src/main/java/bjc/data/SingleSupplier.java	/^	private static long nextID = 0;$/;"	f	class:SingleSupplier	file:
+nextIndex	src/main/java/bjc/data/NonCMEListIterator.java	/^	public int nextIndex() {$/;"	m	class:NonCMEListIterator
+nextIndex	src/main/java/bjc/data/ReverseListIterator.java	/^	public int nextIndex() {$/;"	m	class:ReverseListIterator
+nextIndex	src/main/java/bjc/esodata/FlatNestIterator.java	/^	public int nextIndex() {$/;"	m	class:FlatNestIterator
+nextToken	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^	public String nextToken() {$/;"	m	class:FunctionalStringTokenizer
+nip	src/main/java/bjc/esodata/Stack.java	/^	public void nip() {$/;"	m	class:Stack
+nip	src/main/java/bjc/esodata/Stack.java	/^	public void nip(final int n) {$/;"	m	class:Stack
+objects	src/main/java/bjc/data/Contexts.java	/^		private final Map<String, Object> objects;$/;"	f	class:Contexts.ContextImpl	file:
+of	src/main/java/bjc/data/Holder.java	/^	static <ElementType> Holder<ElementType> of(ElementType contained) {$/;"	m	interface:Holder
+of	src/main/java/bjc/funcdata/MapEx.java	/^	static <KeyType2, ValueType2> MapEx<KeyType2, ValueType2> of(Object... args) {$/;"	m	interface:MapEx
+oldSupplier	src/main/java/bjc/data/internals/BoundLazy.java	/^	private final Supplier<Holder<OldType>> oldSupplier;$/;"	f	class:BoundLazy	file:
+oldSupplier	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^	private final Supplier<OldType> oldSupplier;$/;"	f	class:HalfBoundLazyPair	file:
+over	src/main/java/bjc/esodata/Stack.java	/^	public void over() {$/;"	m	class:Stack
+over	src/main/java/bjc/esodata/Stack.java	/^	public void over(final int n) {$/;"	m	class:Stack
+pair	src/main/java/bjc/data/Pair.java	/^	public static <Left, Right> Pair<Left, Right> pair(Left left, Right right) {$/;"	m	interface:Pair
+pairBound	src/main/java/bjc/data/internals/BoundLazyPair.java	/^	private boolean pairBound;$/;"	f	class:BoundLazyPair	file:
+pairBound	src/main/java/bjc/data/internals/HalfBoundLazyPair.java	/^	private boolean pairBound;$/;"	f	class:HalfBoundLazyPair	file:
+pairWith	src/main/java/bjc/funcdata/FunctionalList.java	/^	public <T> ListEx<Pair<E, T>> pairWith(final ListEx<T> rightList) {$/;"	m	class:FunctionalList
+pairWith	src/main/java/bjc/funcdata/ListEx.java	/^	<OtherType> ListEx<Pair<ContainedType, OtherType>> pairWith(ListEx<OtherType> list);$/;"	m	interface:ListEx
+parent	src/main/java/bjc/data/Contexts.java	/^		private final Context parent;$/;"	f	class:Contexts.ContextImpl	file:
+parent	src/main/java/bjc/esodata/SpaghettiStack.java	/^	private final Stack<T> parent;$/;"	f	class:SpaghettiStack	file:
+partition	src/main/java/bjc/funcdata/FunctionalList.java	/^	public ListEx<ListEx<E>> partition(final int numberPerPartition) {$/;"	m	class:FunctionalList
+partition	src/main/java/bjc/funcdata/ListEx.java	/^	ListEx<ListEx<ContainedType>> partition(int partitionSize);$/;"	m	interface:ListEx
+peek	src/main/java/bjc/data/BooleanToggle.java	/^	public Boolean peek() {$/;"	m	class:BooleanToggle
+peek	src/main/java/bjc/data/OneWayToggle.java	/^	public E peek() {$/;"	m	class:OneWayToggle
+peek	src/main/java/bjc/data/Toggle.java	/^	E peek();$/;"	m	interface:Toggle
+peek	src/main/java/bjc/data/ValueToggle.java	/^	public E peek() {$/;"	m	class:ValueToggle
+pending	src/main/java/bjc/data/QueuedIterator.java	/^	private Deque<Iterator<E>> pending;$/;"	f	class:QueuedIterator	file:
+pick	src/main/java/bjc/data/Either.java	/^	public void pick($/;"	m	class:Either
+pick	src/main/java/bjc/esodata/Stack.java	/^	public void pick() {$/;"	m	class:Stack
+picker	src/main/java/bjc/data/TopDownTransformIterator.java	/^	private final Function<ContainedType, TopDownTransformResult> picker;$/;"	f	class:TopDownTransformIterator	file:
+picker	src/main/java/bjc/esodata/MinMaxList.java	/^	private final Comparator<ValueType> picker;$/;"	f	class:MinMaxList	file:
+pop	src/main/java/bjc/esodata/QueueStack.java	/^	public T pop() {$/;"	m	class:QueueStack
+pop	src/main/java/bjc/esodata/SimpleStack.java	/^	public T pop() {$/;"	m	class:SimpleStack
+pop	src/main/java/bjc/esodata/SpaghettiStack.java	/^	public T pop() {$/;"	m	class:SpaghettiStack
+pop	src/main/java/bjc/esodata/Stack.java	/^	public abstract T pop();$/;"	m	class:Stack
+popFirst	src/main/java/bjc/funcdata/FunctionalList.java	/^	public E popFirst() {$/;"	m	class:FunctionalList
+popFirst	src/main/java/bjc/funcdata/ListEx.java	/^	ContainedType popFirst();$/;"	m	interface:ListEx
+popLast	src/main/java/bjc/funcdata/FunctionalList.java	/^	public E popLast() {$/;"	m	class:FunctionalList
+popLast	src/main/java/bjc/funcdata/ListEx.java	/^	ContainedType popLast();$/;"	m	interface:ListEx
+pos	src/main/java/bjc/esodata/SingleTape.java	/^	protected int pos;$/;"	f	class:SingleTape
+position	src/main/java/bjc/esodata/DoubleTape.java	/^	public int position() {$/;"	m	class:DoubleTape
+position	src/main/java/bjc/esodata/SingleTape.java	/^	public int position() {$/;"	m	class:SingleTape
+position	src/main/java/bjc/esodata/Tape.java	/^	int position();$/;"	m	interface:Tape
+position	src/main/java/bjc/esodata/TapeView.java	/^	public default int position()$/;"	m	interface:TapeView
+postChildren	src/main/java/bjc/data/TopDownTransformIterator.java	/^	private final Deque<Tree<ContainedType>> postChildren;$/;"	f	class:TopDownTransformIterator	file:
+postParent	src/main/java/bjc/data/TopDownTransformIterator.java	/^	private Tree<ContainedType> postParent;$/;"	f	class:TopDownTransformIterator	file:
+postorderTraverse	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	private boolean postorderTraverse(final TreeLinearizationMethod linearizationMethod,$/;"	m	class:BinarySearchTreeNode	file:
+preChildren	src/main/java/bjc/data/TopDownTransformIterator.java	/^	private final Deque<Tree<ContainedType>> preChildren;$/;"	f	class:TopDownTransformIterator	file:
+preParent	src/main/java/bjc/data/TopDownTransformIterator.java	/^	private Tree<ContainedType> preParent;$/;"	f	class:TopDownTransformIterator	file:
+preorderTraverse	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	private boolean preorderTraverse(final TreeLinearizationMethod linearizationMethod,$/;"	m	class:BinarySearchTreeNode	file:
+prepend	src/main/java/bjc/funcdata/FunctionalList.java	/^	public void prepend(final E item) {$/;"	m	class:FunctionalList
+prepend	src/main/java/bjc/funcdata/ListEx.java	/^	void prepend(ContainedType item);$/;"	m	interface:ListEx
+prependAll	src/main/java/bjc/funcdata/ListEx.java	/^	default void prependAll(final ContainedType... items) {$/;"	m	interface:ListEx
+prependChild	src/main/java/bjc/data/SimpleTree.java	/^	public void prependChild(final Tree<ContainedType> child) {$/;"	m	class:SimpleTree
+prependChild	src/main/java/bjc/data/Tree.java	/^	void prependChild(Tree<ContainedType> child);$/;"	m	interface:Tree
+previous	src/main/java/bjc/data/NonCMEListIterator.java	/^	public ElementType previous() {$/;"	m	class:NonCMEListIterator
+previous	src/main/java/bjc/data/ReverseListIterator.java	/^	public Element previous() {$/;"	m	class:ReverseListIterator
+previous	src/main/java/bjc/esodata/FlatNestIterator.java	/^	public Element previous() {$/;"	m	class:FlatNestIterator
+previousIndex	src/main/java/bjc/data/NonCMEListIterator.java	/^	public int previousIndex() {$/;"	m	class:NonCMEListIterator
+previousIndex	src/main/java/bjc/data/ReverseListIterator.java	/^	public int previousIndex() {$/;"	m	class:ReverseListIterator
+previousIndex	src/main/java/bjc/esodata/FlatNestIterator.java	/^	public int previousIndex() {$/;"	m	class:FlatNestIterator
+provided	src/main/java/bjc/functypes/Combinators.java	/^	public static <Input, Output> Function<Input, Optional<Output>> provided($/;"	m	class:Combinators
+push	src/main/java/bjc/esodata/QueueStack.java	/^	public void push(final T elm) {$/;"	m	class:QueueStack
+push	src/main/java/bjc/esodata/SimpleStack.java	/^	public void push(final T elm) {$/;"	m	class:SimpleStack
+push	src/main/java/bjc/esodata/SpaghettiStack.java	/^	public void push(final T elm) {$/;"	m	class:SpaghettiStack
+push	src/main/java/bjc/esodata/Stack.java	/^	public abstract void push(T elm);$/;"	m	class:Stack
+pushAll	src/main/java/bjc/esodata/Stack.java	/^	public void pushAll(@SuppressWarnings("unchecked") T... elms) {$/;"	m	class:Stack
+pushAll	src/main/java/bjc/esodata/Stack.java	/^	public void pushAll(List<T> elms) {$/;"	m	class:Stack
+put	src/main/java/bjc/esodata/MapSet.java	/^	public ValueType put(KeyType key, ValueType value) {$/;"	m	class:MapSet
+put	src/main/java/bjc/esodata/PushdownMap.java	/^	public ValueType put(final KeyType key, final ValueType val) {$/;"	m	class:PushdownMap
+put	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public ValueType put(final KeyType key, final ValueType val) {$/;"	m	class:ExtendedMap
+put	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public ValueType put(final KeyType key, final ValueType val) {$/;"	m	class:FunctionalMap
+put	src/main/java/bjc/funcdata/MapEx.java	/^	ValueType put(KeyType key, ValueType val);$/;"	m	interface:MapEx
+put	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public NewValue put(final OldKey key, final NewValue value) {$/;"	m	class:TransformedValueMap
+putKey	src/main/java/bjc/esodata/Directory.java	/^	V putKey(K key, V val);$/;"	m	interface:Directory
+putKey	src/main/java/bjc/esodata/SimpleDirectory.java	/^	public V putKey(final K key, final V val) {$/;"	m	class:SimpleDirectory
+putKey	src/main/java/bjc/esodata/UnifiedDirectory.java	/^	public V putKey(final K key, final V val) {$/;"	m	class:UnifiedDirectory
+putOfExistingKeyUpdatesValue	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void putOfExistingKeyUpdatesValue() {$/;"	m	class:TestMapOperations
+putOfNonExistingKeyAddsValue	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void putOfNonExistingKeyAddsValue() {$/;"	m	class:TestMapOperations
+putSubdirectory	src/main/java/bjc/esodata/Directory.java	/^	Directory<K, V> putSubdirectory(K key, Directory<K, V> value);$/;"	m	interface:Directory
+putSubdirectory	src/main/java/bjc/esodata/SimpleDirectory.java	/^	public Directory<K, V> putSubdirectory(final K key, final Directory<K, V> val) {$/;"	m	class:SimpleDirectory
+putSubdirectory	src/main/java/bjc/esodata/UnifiedDirectory.java	/^	public Directory<K, V> putSubdirectory(final K key, final Directory<K, V> val) {$/;"	m	class:UnifiedDirectory
+queued	src/main/java/bjc/data/QueuedIterator.java	/^	public static <E> QueuedIterator<E> queued() {$/;"	m	class:QueuedIterator
+queued	src/main/java/bjc/data/QueuedIterator.java	/^	public static <E> QueuedIterator<E> queued(E... vals) {$/;"	m	class:QueuedIterator
+queued	src/main/java/bjc/data/QueuedIterator.java	/^	public static <E> QueuedIterator<E> queued(Iterable<E>... itrs) {$/;"	m	class:QueuedIterator
+queued	src/main/java/bjc/data/QueuedIterator.java	/^	public static <E> QueuedIterator<E> queued(Iterator<E>... itrs) {$/;"	m	class:QueuedIterator
+randItem	src/main/java/bjc/funcdata/FunctionalList.java	/^	public E randItem(final Function<Integer, Integer> rnd) {$/;"	m	class:FunctionalList
+randItem	src/main/java/bjc/funcdata/ListEx.java	/^	ContainedType randItem(Function<Integer, Integer> rnd);$/;"	m	interface:ListEx
+randItem	src/main/java/bjc/funcdata/ListEx.java	/^	default ContainedType randItem() {$/;"	m	interface:ListEx
+rebuildTree	src/main/java/bjc/data/SimpleTree.java	/^	public <MappedType> Tree<MappedType> rebuildTree($/;"	m	class:SimpleTree
+rebuildTree	src/main/java/bjc/data/Tree.java	/^	<MappedType> Tree<MappedType> rebuildTree($/;"	m	interface:Tree
+recalcMax	src/main/java/bjc/esodata/MinMaxList.java	/^	private boolean recalcMax = false;$/;"	f	class:MinMaxList	file:
+recalcMin	src/main/java/bjc/esodata/MinMaxList.java	/^	private boolean recalcMin = false;$/;"	f	class:MinMaxList	file:
+recover	src/main/java/bjc/functypes/ThrowFunction.java	/^	default Function<InputType, ReturnType> recover($/;"	m	interface:ThrowFunction
+reduce	src/main/java/bjc/esodata/NestList.java	/^	public <Output> Output reduce($/;"	m	class:NestList
+reduceAux	src/main/java/bjc/funcdata/FunctionalList.java	/^	public <T, F> F reduceAux(final T initialValue,$/;"	m	class:FunctionalList
+reduceAux	src/main/java/bjc/funcdata/ListEx.java	/^	<StateType, ReducedType> ReducedType reduceAux(StateType initial,$/;"	m	interface:ListEx
+reduceAux	src/main/java/bjc/funcdata/ListEx.java	/^	default <StateType> StateType reduceAux(StateType initial,$/;"	m	interface:ListEx
+register	src/main/java/bjc/data/Context.java	/^	void register(String name, Object o);$/;"	m	interface:Context
+register	src/main/java/bjc/data/Contexts.java	/^		public void register(String name, Object o) {$/;"	m	class:Contexts.ContextImpl
+register	src/main/java/bjc/data/Contexts.java	/^		public void register(String name, Object o) {$/;"	m	class:Contexts.NullContextImpl
+remove	src/main/java/bjc/data/CircularIterator.java	/^	public void remove() {$/;"	m	class:CircularIterator
+remove	src/main/java/bjc/data/NonCMEListIterator.java	/^	public void remove() {$/;"	m	class:NonCMEListIterator
+remove	src/main/java/bjc/data/ReverseListIterator.java	/^	public void remove() {$/;"	m	class:ReverseListIterator
+remove	src/main/java/bjc/esodata/DefaultList.java	/^	public ValueType remove(int idx) {$/;"	m	class:DefaultList
+remove	src/main/java/bjc/esodata/DoubleTape.java	/^	public T remove() {$/;"	m	class:DoubleTape
+remove	src/main/java/bjc/esodata/FlatNestIterator.java	/^	public void remove() {$/;"	m	class:FlatNestIterator
+remove	src/main/java/bjc/esodata/MinMaxList.java	/^	public ValueType remove(int index) {$/;"	m	class:MinMaxList
+remove	src/main/java/bjc/esodata/Multimap.java	/^	public void remove(KeyType key) {$/;"	m	class:Multimap
+remove	src/main/java/bjc/esodata/Multimap.java	/^	public void remove(KeyType key, ValueType value) {$/;"	m	class:Multimap
+remove	src/main/java/bjc/esodata/NestList.java	/^	public Either<Element, NestList<Element>> remove(int index) {$/;"	m	class:NestList
+remove	src/main/java/bjc/esodata/NestList.java	/^	public boolean remove(Object o) {$/;"	m	class:NestList
+remove	src/main/java/bjc/esodata/PushdownMap.java	/^	public ValueType remove(final KeyType key) {$/;"	m	class:PushdownMap
+remove	src/main/java/bjc/esodata/SingleTape.java	/^	public T remove() {$/;"	m	class:SingleTape
+remove	src/main/java/bjc/esodata/Tape.java	/^	T remove();$/;"	m	interface:Tape
+remove	src/main/java/bjc/esodata/TapeView.java	/^	public default ElementType remove()$/;"	m	interface:TapeView
+remove	src/main/java/bjc/esodata/ThresholdSet.java	/^		public boolean remove(Object o) {$/;"	m	class:ThresholdSet.SetView
+remove	src/main/java/bjc/esodata/ThresholdSet.java	/^	public int remove(KeyType key) {$/;"	m	class:ThresholdSet
+remove	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public ValueType remove(final KeyType key) {$/;"	m	class:ExtendedMap
+remove	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public ValueType remove(final KeyType key) {$/;"	m	class:FunctionalMap
+remove	src/main/java/bjc/funcdata/MapEx.java	/^	ValueType remove(KeyType key);$/;"	m	interface:MapEx
+remove	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public NewValue remove(final OldKey key) {$/;"	m	class:TransformedValueMap
+removeIf	src/main/java/bjc/funcdata/FunctionalList.java	/^	public boolean removeIf(final Predicate<E> removePredicate) {$/;"	m	class:FunctionalList
+removeIf	src/main/java/bjc/funcdata/ListEx.java	/^	boolean removeIf(Predicate<ContainedType> predicate);$/;"	m	interface:ListEx
+removeKeys	src/main/java/bjc/esodata/ThresholdSet.java	/^	public int[] removeKeys(@SuppressWarnings("unchecked") KeyType... keys) {$/;"	m	class:ThresholdSet
+removeMatching	src/main/java/bjc/funcdata/FunctionalList.java	/^	public void removeMatching(final E desiredElement) {$/;"	m	class:FunctionalList
+removeMatching	src/main/java/bjc/funcdata/ListEx.java	/^	void removeMatching(ContainedType element);$/;"	m	interface:ListEx
+removeOfExistingKeyRemovesKey	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void removeOfExistingKeyRemovesKey() {$/;"	m	class:TestMapOperations
+removeOfNonExistingKeyDoesntRemoveAnything	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void removeOfNonExistingKeyDoesntRemoveAnything() {$/;"	m	class:TestMapOperations
+removeTape	src/main/java/bjc/esodata/TapeLibrary.java	/^	public Tape<ElementType> removeTape(String label)$/;"	m	class:TapeLibrary
+removeWords	src/main/java/bjc/esodata/AbbrevMap2.java	/^	public void removeWords(String... words) {$/;"	m	class:AbbrevMap2
+replace	src/main/java/bjc/data/Holder.java	/^	public default Holder<ContainedType> replace(final ContainedType newValue) {$/;"	m	interface:Holder
+replace	src/main/java/bjc/esodata/NestList.java	/^	public void replace($/;"	m	class:NestList
+reset	src/main/java/bjc/data/ResettableIterator.java	/^	public void reset() {$/;"	m	class:ResettableIterator
+revFind	src/main/java/bjc/data/SimpleTree.java	/^	public int revFind(final Predicate<Tree<ContainedType>> childPred) {$/;"	m	class:SimpleTree
+revFind	src/main/java/bjc/data/Tree.java	/^	int revFind(Predicate<Tree<ContainedType>> childPred);$/;"	m	interface:Tree
+reverse	src/main/java/bjc/funcdata/FunctionalList.java	/^	public void reverse() {$/;"	m	class:FunctionalList
+reverse	src/main/java/bjc/funcdata/ListEx.java	/^	void reverse();$/;"	m	interface:ListEx
+rght	src/main/java/bjc/data/ValueToggle.java	/^	private final E rght;$/;"	f	class:ValueToggle	file:
+right	src/main/java/bjc/data/Either.java	/^			right(final RightType right) {$/;"	m	class:Either
+right	src/main/java/bjc/esodata/DoubleTape.java	/^	public boolean right() {$/;"	m	class:DoubleTape
+right	src/main/java/bjc/esodata/DoubleTape.java	/^	public boolean right(final int amt) {$/;"	m	class:DoubleTape
+right	src/main/java/bjc/esodata/SingleTape.java	/^	public boolean right() {$/;"	m	class:SingleTape
+right	src/main/java/bjc/esodata/SingleTape.java	/^	public boolean right(final int amt) {$/;"	m	class:SingleTape
+right	src/main/java/bjc/esodata/Tape.java	/^	boolean right();$/;"	m	interface:Tape
+right	src/main/java/bjc/esodata/Tape.java	/^	boolean right(int amt);$/;"	m	interface:Tape
+right	src/main/java/bjc/esodata/TapeView.java	/^	public default boolean right()$/;"	m	interface:TapeView
+right	src/main/java/bjc/esodata/TapeView.java	/^	public default boolean right(int amt)$/;"	m	interface:TapeView
+right	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	private TreePart<T> right;$/;"	f	class:BinarySearchTreeNode	file:
+rightEither	src/test/java/bjc/data/EitherTest.java	/^	private Either<String, String> rightEither;$/;"	f	class:EitherTest	file:
+rightMaterialized	src/main/java/bjc/data/LazyPair.java	/^	private boolean rightMaterialized;$/;"	f	class:LazyPair	file:
+rightSupplier	src/main/java/bjc/data/LazyPair.java	/^	private Supplier<RightType> rightSupplier;$/;"	f	class:LazyPair	file:
+rightSupplier	src/main/java/bjc/data/internals/BoundLazyPair.java	/^	private final Supplier<OldRight> rightSupplier;$/;"	f	class:BoundLazyPair	file:
+rightVal	src/main/java/bjc/data/Either.java	/^	private RightType rightVal;$/;"	f	class:Either	file:
+rightValue	src/main/java/bjc/data/LazyPair.java	/^	private RightType rightValue;$/;"	f	class:LazyPair	file:
+rightValue	src/main/java/bjc/data/SimplePair.java	/^	private RightType rightValue;$/;"	f	class:SimplePair	file:
+root	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	private TreePart<T> root;$/;"	f	class:BinarySearchTree	file:
+rot	src/main/java/bjc/esodata/Stack.java	/^	public void rot() {$/;"	m	class:Stack
+runExample	src/example/java/bjc/funcdata/bst/BinarySearchTreeExample.java	/^	private static void runExample(final Scanner input, OutputStream outpt) {$/;"	m	class:BinarySearchTreeExample	file:
+search	src/main/java/bjc/funcdata/FunctionalList.java	/^	public E search(final E searchKey, final Comparator<E> comparator) {$/;"	m	class:FunctionalList
+search	src/main/java/bjc/funcdata/ListEx.java	/^	ContainedType search(ContainedType key, Comparator<ContainedType> comparator);$/;"	m	interface:ListEx
+second	src/main/java/bjc/data/OneWayToggle.java	/^	private E second;$/;"	f	class:OneWayToggle	file:
+seekTo	src/main/java/bjc/esodata/DoubleTape.java	/^	public boolean seekTo(int tgtPos) {$/;"	m	class:DoubleTape
+seekTo	src/main/java/bjc/esodata/SingleTape.java	/^	public boolean seekTo(int tgtPos) {$/;"	m	class:SingleTape
+seekTo	src/main/java/bjc/esodata/Tape.java	/^	boolean seekTo(int pos);$/;"	m	interface:Tape
+seekTo	src/main/java/bjc/esodata/TapeView.java	/^	public default boolean seekTo(int pos)$/;"	m	interface:TapeView
+selectiveTransform	src/main/java/bjc/data/SimpleTree.java	/^	public void selectiveTransform(final Predicate<ContainedType> nodePicker,$/;"	m	class:SimpleTree
+selectiveTransform	src/main/java/bjc/data/Tree.java	/^	void selectiveTransform(Predicate<ContainedType> nodePicker,$/;"	m	interface:Tree
+seq	src/main/java/bjc/functypes/Thrower.java	/^	Thrower<List<Output>, ExType> seq(List<Thrower<Output, ExType>> throwers)$/;"	m	interface:Thrower
+seq	src/main/java/bjc/functypes/Thrower.java	/^	Thrower<List<Output>, ExType> seq(Thrower<Output, ExType>... throwers)$/;"	m	interface:Thrower
+serialVersionUID	src/main/java/bjc/esodata/Stack.java	/^		private static final long serialVersionUID = 1423867176204571539L;$/;"	f	class:Stack.StackUnderflow	file:
+serialVersionUID	src/main/java/bjc/funcdata/ObjectFrozen.java	/^	private static final long serialVersionUID = -1567447627139090728L;$/;"	f	class:ObjectFrozen	file:
+set	src/main/java/bjc/data/BooleanToggle.java	/^	public void set(final boolean vl) {$/;"	m	class:BooleanToggle
+set	src/main/java/bjc/data/IntHolder.java	/^	public void set(int i) {$/;"	m	class:IntHolder
+set	src/main/java/bjc/data/NonCMEListIterator.java	/^	public void set(ElementType element) {$/;"	m	class:NonCMEListIterator
+set	src/main/java/bjc/data/OneWayToggle.java	/^	public void set(boolean gotFirst) {$/;"	m	class:OneWayToggle
+set	src/main/java/bjc/data/ReverseListIterator.java	/^	public void set(Element element) {$/;"	m	class:ReverseListIterator
+set	src/main/java/bjc/data/Toggle.java	/^	void set(boolean isLeft);$/;"	m	interface:Toggle
+set	src/main/java/bjc/data/ValueToggle.java	/^	public void set(final boolean isLeft) {$/;"	m	class:ValueToggle
+set	src/main/java/bjc/esodata/DefaultList.java	/^	public ValueType set(int idx, ValueType val) {$/;"	m	class:DefaultList
+set	src/main/java/bjc/esodata/FlatNestIterator.java	/^	public void set(Element e) {$/;"	m	class:FlatNestIterator
+set	src/main/java/bjc/esodata/MinMaxList.java	/^	public ValueType set(int index, ValueType element) {$/;"	m	class:MinMaxList
+setAllowAutoCreation	src/main/java/bjc/esodata/TapeLibrary.java	/^	public void setAllowAutoCreation(boolean allowAutoCreation)$/;"	m	class:TapeLibrary
+setCreateMap	src/main/java/bjc/esodata/MapSet.java	/^	public void setCreateMap(String key) {$/;"	m	class:MapSet
+setDefault	src/main/java/bjc/esodata/DefaultList.java	/^	public void setDefault(ValueType defVal) {$/;"	m	class:DefaultList
+setHead	src/main/java/bjc/data/SimpleTree.java	/^	public void setHead(ContainedType dat) {$/;"	m	class:SimpleTree
+setHead	src/main/java/bjc/data/Tree.java	/^	void setHead(ContainedType dat);$/;"	m	interface:Tree
+setIterator	src/main/java/bjc/esodata/ThresholdSet.java	/^	Iterator<KeyType> setIterator() {$/;"	m	class:ThresholdSet
+setMap	src/main/java/bjc/esodata/MapSet.java	/^	public boolean setMap(String key) {$/;"	m	class:MapSet
+setPutMap	src/main/java/bjc/esodata/MapSet.java	/^	public void setPutMap(String key, Map<KeyType, ValueType> map) {$/;"	m	class:MapSet
+setSize	src/main/java/bjc/esodata/ThresholdSet.java	/^	int setSize() {$/;"	m	class:ThresholdSet
+setState	src/main/java/bjc/data/GeneratingIterator.java	/^	public E setState(E newState) {$/;"	m	class:GeneratingIterator
+setUp	src/test/java/bjc/data/EitherTest.java	/^	public void setUp() throws Exception {$/;"	m	class:EitherTest
+setUp	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void setUp() throws Exception {$/;"	m	class:TestMapOperations
+setView	src/main/java/bjc/esodata/ThresholdSet.java	/^	public Set<KeyType> setView() {$/;"	m	class:ThresholdSet
+size	src/main/java/bjc/data/Tree.java	/^	default int size() {$/;"	m	interface:Tree
+size	src/main/java/bjc/esodata/DefaultList.java	/^	public int size() {$/;"	m	class:DefaultList
+size	src/main/java/bjc/esodata/DoubleTape.java	/^	public int size() {$/;"	m	class:DoubleTape
+size	src/main/java/bjc/esodata/MinMaxList.java	/^	public int size() {$/;"	m	class:MinMaxList
+size	src/main/java/bjc/esodata/NestList.java	/^	public int size() {$/;"	m	class:NestList
+size	src/main/java/bjc/esodata/PushdownMap.java	/^	public int size() {$/;"	m	class:PushdownMap
+size	src/main/java/bjc/esodata/QueueStack.java	/^	public int size() {$/;"	m	class:QueueStack
+size	src/main/java/bjc/esodata/SimpleStack.java	/^	public int size() {$/;"	m	class:SimpleStack
+size	src/main/java/bjc/esodata/SingleTape.java	/^	public int size() {$/;"	m	class:SingleTape
+size	src/main/java/bjc/esodata/SpaghettiStack.java	/^	public int size() {$/;"	m	class:SpaghettiStack
+size	src/main/java/bjc/esodata/Stack.java	/^	public abstract int size();$/;"	m	class:Stack
+size	src/main/java/bjc/esodata/Tape.java	/^	int size();$/;"	m	interface:Tape
+size	src/main/java/bjc/esodata/TapeView.java	/^	public default int size()$/;"	m	interface:TapeView
+size	src/main/java/bjc/esodata/ThresholdSet.java	/^		public int size() {$/;"	m	class:ThresholdSet.SetView
+size	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public int size() {$/;"	m	class:ExtendedMap
+size	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public int size() {$/;"	m	class:FunctionalMap
+size	src/main/java/bjc/funcdata/MapEx.java	/^	default int size() {$/;"	m	interface:MapEx
+size	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public int size() {$/;"	m	class:TransformedValueMap
+sizeMatchesExpected	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void sizeMatchesExpected() {$/;"	m	class:TestMapOperations
+sort	src/main/java/bjc/funcdata/FunctionalList.java	/^	public void sort(final Comparator<E> comparator) {$/;"	m	class:FunctionalList
+sort	src/main/java/bjc/funcdata/ListEx.java	/^	void sort(Comparator<ContainedType> comparator);$/;"	m	interface:ListEx
+source	src/main/java/bjc/data/CircularIterator.java	/^	private Iterable<E> source;$/;"	f	class:CircularIterator	file:
+source	src/main/java/bjc/data/NonCMEIterator.java	/^	protected final List<ElementType> source;$/;"	f	class:NonCMEIterator
+source	src/main/java/bjc/data/ReverseListIterator.java	/^	private List<Element> source;$/;"	f	class:ReverseListIterator	file:
+source	src/main/java/bjc/data/SingleSupplier.java	/^	private final Supplier<T> source;$/;"	f	class:SingleSupplier	file:
+source	src/main/java/bjc/data/TransformIterator.java	/^	private final Iterator<S> source;$/;"	f	class:TransformIterator	file:
+source	src/main/java/bjc/functypes/Thrower.java	/^	private final Thrower<ValueType, ExceptionType> source;$/;"	f	class:MemoizedThrower	file:
+spaghettify	src/main/java/bjc/esodata/Stack.java	/^	public Stack<T> spaghettify() {$/;"	m	class:Stack
+spread	src/main/java/bjc/esodata/Stack.java	/^	public void spread(@SuppressWarnings("unchecked") final Consumer<Stack<T>>... conses) {$/;"	m	class:Stack
+spread	src/main/java/bjc/esodata/Stack.java	/^	public void spread(final List<Consumer<Stack<T>>> conses) {$/;"	m	class:Stack
+state	src/main/java/bjc/data/GeneratingIterator.java	/^	private E state;$/;"	f	class:GeneratingIterator	file:
+store	src/main/java/bjc/funcdata/ExtendedMap.java	/^	private final MapEx<KeyType, ValueType> store;$/;"	f	class:ExtendedMap	file:
+stpper	src/main/java/bjc/data/GeneratingIterator.java	/^	private Predicate<E> stpper;$/;"	f	class:GeneratingIterator	file:
+suspend	src/main/java/bjc/functypes/ThrowFunction.java	/^	default Thrower<ReturnType, ExType> suspend(InputType arg) $/;"	m	interface:ThrowFunction
+swallow	src/main/java/bjc/functypes/ThrowFunction.java	/^	default Function<InputType, ReturnType> swallow($/;"	m	interface:ThrowFunction
+swallowMap	src/main/java/bjc/functypes/ThrowFunction.java	/^    default <NewReturn> Function<InputType, NewReturn> swallowMap($/;"	m	interface:ThrowFunction
+swap	src/main/java/bjc/esodata/Stack.java	/^	public void swap() {$/;"	m	class:Stack
+tail	src/main/java/bjc/funcdata/FunctionalList.java	/^	public ListEx<E> tail() {$/;"	m	class:FunctionalList
+tail	src/main/java/bjc/funcdata/ListEx.java	/^	ListEx<ContainedType> tail();$/;"	m	interface:ListEx
+tapeView	src/main/java/bjc/esodata/TapeLibrary.java	/^	public Tape<ElementType> tapeView()$/;"	m	class:TapeLibrary
+tapeView	src/main/java/bjc/esodata/TapeView.java	/^	public Tape<ElementType> tapeView();$/;"	m	interface:TapeView
+test	src/test/java/bjc/data/ArrayIteratorTest.java	/^	public void test() {$/;"	m	class:ArrayIteratorTest
+test	src/test/java/bjc/data/BooleanToggleTest.java	/^	public void test() {$/;"	m	class:BooleanToggleTest
+test	src/test/java/bjc/data/QueuedIteratorTest.java	/^	public void test() {$/;"	m	class:QueuedIteratorTest
+testAdd	src/test/java/bjc/esodata/ThresholdSetTest.java	/^	public void testAdd() {$/;"	m	class:ThresholdSetTest
+testAddItemElement	src/test/java/bjc/esodata/NestListTest.java	/^	public void testAddItemElement() {$/;"	m	class:NestListTest
+testAddItemNestListOfElement	src/test/java/bjc/esodata/NestListTest.java	/^	public void testAddItemNestListOfElement() {$/;"	m	class:NestListTest
+testAddMulti	src/test/java/bjc/esodata/ThresholdSetTest.java	/^	public void testAddMulti() {$/;"	m	class:ThresholdSetTest
+testAddMulti2	src/test/java/bjc/esodata/ThresholdSetTest.java	/^	public void testAddMulti2() {$/;"	m	class:ThresholdSetTest
+testAddSublist	src/test/java/bjc/esodata/NestListTest.java	/^	public void testAddSublist() {$/;"	m	class:NestListTest
+testAfter	src/test/java/bjc/data/QueuedIteratorTest.java	/^	public void testAfter() {$/;"	m	class:QueuedIteratorTest
+testBasic	src/test/java/bjc/esodata/StackTest.java	/^	public void testBasic() {$/;"	m	class:StackTest
+testBasicComb	src/test/java/bjc/esodata/StackTest.java	/^	public void testBasicComb() {$/;"	m	class:StackTest
+testBefore	src/test/java/bjc/data/QueuedIteratorTest.java	/^	public void testBefore() {$/;"	m	class:QueuedIteratorTest
+testContains	src/test/java/bjc/esodata/ThresholdSetTest.java	/^	public void testContains() {$/;"	m	class:ThresholdSetTest
+testDataComb	src/test/java/bjc/esodata/StackTest.java	/^	public void testDataComb() {$/;"	m	class:StackTest
+testDeepFlatten	src/test/java/bjc/esodata/NestListTest.java	/^	public void testDeepFlatten() {$/;"	m	class:NestListTest
+testFlatIterator	src/test/java/bjc/esodata/NestListTest.java	/^	public void testFlatIterator() {$/;"	m	class:NestListTest
+testFlatten	src/test/java/bjc/esodata/NestListTest.java	/^	public void testFlatten() {	$/;"	m	class:NestListTest
+testGetLeft	src/test/java/bjc/data/EitherTest.java	/^	public void testGetLeft() {$/;"	m	class:EitherTest
+testID	src/test/java/bjc/functypes/IDTest.java	/^	public void testID() {$/;"	m	class:IDTest
+testIsLeft	src/test/java/bjc/data/EitherTest.java	/^	public void testIsLeft() {$/;"	m	class:EitherTest
+testLast	src/test/java/bjc/data/QueuedIteratorTest.java	/^	public void testLast() {$/;"	m	class:QueuedIteratorTest
+testRegular	src/test/java/bjc/data/CircularIteratorTest.java	/^	public void testRegular() {$/;"	m	class:CircularIteratorTest
+testRemove	src/test/java/bjc/data/CircularIteratorTest.java	/^	public void testRemove() {$/;"	m	class:CircularIteratorTest
+testRemoveMulti	src/test/java/bjc/esodata/ThresholdSetTest.java	/^	public void testRemoveMulti() {$/;"	m	class:ThresholdSetTest
+testRepLast	src/test/java/bjc/data/CircularIteratorTest.java	/^	public void testRepLast() {$/;"	m	class:CircularIteratorTest
+testSetTransparency	src/test/java/bjc/esodata/ThresholdSetTest.java	/^	public void testSetTransparency() {$/;"	m	class:ThresholdSetTest
+testSpaghetti	src/test/java/bjc/esodata/StackTest.java	/^	public void testSpaghetti() {$/;"	m	class:StackTest
+thaw	src/main/java/bjc/esodata/PushdownMap.java	/^	public boolean thaw() {$/;"	m	class:PushdownMap
+thaw	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public boolean thaw() {$/;"	m	class:ExtendedMap
+thaw	src/main/java/bjc/funcdata/Freezable.java	/^	public boolean thaw();$/;"	m	interface:Freezable
+thaw	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public boolean thaw() {$/;"	m	class:FunctionalMap
+thaw	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public boolean thaw() {$/;"	m	class:TransformedValueMap
+thawEnabled	src/main/java/bjc/esodata/PushdownMap.java	/^	private boolean thawEnabled = true;$/;"	f	class:PushdownMap	file:
+thawEnabled	src/main/java/bjc/funcdata/ExtendedMap.java	/^	private boolean thawEnabled  = true;$/;"	f	class:ExtendedMap	file:
+thawEnabled	src/main/java/bjc/funcdata/FunctionalMap.java	/^	private boolean thawEnabled = true;$/;"	f	class:FunctionalMap	file:
+thawEnabled	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	private boolean thawEnabled = true;$/;"	f	class:TransformedValueMap	file:
+times	src/main/java/bjc/functypes/Combinators.java	/^	public static void times(int times, Consumer<Integer> action)$/;"	m	class:Combinators
+to	src/main/java/bjc/functypes/FunctionalIsomorphism.java	/^	public Dest to(Source val)$/;"	m	class:FunctionalIsomorphism
+to	src/main/java/bjc/functypes/Isomorphism.java	/^	Dest to(Source val);$/;"	m	interface:Isomorphism
+toArray	src/main/java/bjc/esodata/QueueStack.java	/^	public T[] toArray() {$/;"	m	class:QueueStack
+toArray	src/main/java/bjc/esodata/SimpleStack.java	/^	public T[] toArray() {$/;"	m	class:SimpleStack
+toArray	src/main/java/bjc/esodata/SpaghettiStack.java	/^	public T[] toArray() {$/;"	m	class:SpaghettiStack
+toArray	src/main/java/bjc/esodata/Stack.java	/^	public abstract T[] toArray();$/;"	m	class:Stack
+toArray	src/main/java/bjc/funcdata/FunctionalList.java	/^	public E[] toArray(final E[] arrType) {$/;"	m	class:FunctionalList
+toArray	src/main/java/bjc/funcdata/ListEx.java	/^	ContainedType[] toArray(ContainedType[] type);$/;"	m	interface:ListEx
+toFunc	src/main/java/bjc/functypes/FunctionalIsomorphism.java	/^	private Function<Source, Dest> toFunc;$/;"	f	class:FunctionalIsomorphism	file:
+toIterable	src/main/java/bjc/funcdata/FunctionalList.java	/^	public Iterable<E> toIterable() {$/;"	m	class:FunctionalList
+toIterable	src/main/java/bjc/funcdata/ListEx.java	/^	Iterable<ContainedType> toIterable();$/;"	m	interface:ListEx
+toList	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^	public <E> ListEx<E> toList(final Function<String, E> transformer) {$/;"	m	class:FunctionalStringTokenizer
+toList	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^	public ListEx<String> toList() {$/;"	m	class:FunctionalStringTokenizer
+toString	src/main/java/bjc/data/BooleanToggle.java	/^	public String toString() {$/;"	m	class:BooleanToggle
+toString	src/main/java/bjc/data/Either.java	/^	public String toString() {$/;"	m	class:Either
+toString	src/main/java/bjc/data/Identity.java	/^	public String toString() {$/;"	m	class:Identity
+toString	src/main/java/bjc/data/Lazy.java	/^	public String toString() {$/;"	m	class:Lazy
+toString	src/main/java/bjc/data/LazyPair.java	/^	public String toString() {$/;"	m	class:LazyPair
+toString	src/main/java/bjc/data/ListHolder.java	/^	public String toString() {$/;"	m	class:ListHolder
+toString	src/main/java/bjc/data/Option.java	/^	public String toString() {$/;"	m	class:Option
+toString	src/main/java/bjc/data/SimplePair.java	/^	public String toString() {$/;"	m	class:SimplePair
+toString	src/main/java/bjc/data/SimpleTree.java	/^	public String toString() {$/;"	m	class:SimpleTree
+toString	src/main/java/bjc/data/SingleSupplier.java	/^	public String toString() {$/;"	m	class:SingleSupplier
+toString	src/main/java/bjc/data/internals/BoundLazy.java	/^	public String toString() {$/;"	m	class:BoundLazy
+toString	src/main/java/bjc/data/internals/BoundLazyPair.java	/^	public String toString() {$/;"	m	class:BoundLazyPair
+toString	src/main/java/bjc/esodata/DoubleTape.java	/^	public String toString() {$/;"	m	class:DoubleTape
+toString	src/main/java/bjc/esodata/MinMaxList.java	/^	public String toString() {$/;"	m	class:MinMaxList
+toString	src/main/java/bjc/esodata/PushdownMap.java	/^	public String toString() {$/;"	m	class:PushdownMap
+toString	src/main/java/bjc/esodata/QueueStack.java	/^	public String toString() {$/;"	m	class:QueueStack
+toString	src/main/java/bjc/esodata/SimpleDirectory.java	/^	public String toString() {$/;"	m	class:SimpleDirectory
+toString	src/main/java/bjc/esodata/SimpleStack.java	/^	public String toString() {$/;"	m	class:SimpleStack
+toString	src/main/java/bjc/esodata/SingleTape.java	/^	public String toString() {$/;"	m	class:SingleTape
+toString	src/main/java/bjc/esodata/SpaghettiStack.java	/^	public String toString() {$/;"	m	class:SpaghettiStack
+toString	src/main/java/bjc/esodata/ThresholdSet.java	/^	public String toString() {$/;"	m	class:ThresholdSet
+toString	src/main/java/bjc/esodata/UnifiedDirectory.java	/^	public String toString() {$/;"	m	class:UnifiedDirectory
+toString	src/main/java/bjc/funcdata/ExtendedMap.java	/^	public String toString() {$/;"	m	class:ExtendedMap
+toString	src/main/java/bjc/funcdata/FunctionalList.java	/^	public String toString() {$/;"	m	class:FunctionalList
+toString	src/main/java/bjc/funcdata/FunctionalMap.java	/^	public String toString() {$/;"	m	class:FunctionalMap
+toString	src/main/java/bjc/funcdata/FunctionalStringTokenizer.java	/^	public String toString() {$/;"	m	class:FunctionalStringTokenizer
+toString	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	public String toString() {$/;"	m	class:TransformedValueMap
+toString	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	public String toString() {$/;"	m	class:BinarySearchTree
+toString	src/main/java/bjc/funcdata/bst/BinarySearchTreeLeaf.java	/^	public String toString() {$/;"	m	class:BinarySearchTreeLeaf
+toString	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	public String toString() {$/;"	m	class:BinarySearchTreeNode
+toYield	src/main/java/bjc/data/TopDownTransformIterator.java	/^	private final Deque<Iterator<Tree<ContainedType>>> toYield;$/;"	f	class:TopDownTransformIterator	file:
+top	src/main/java/bjc/esodata/QueueStack.java	/^	public T top() {$/;"	m	class:QueueStack
+top	src/main/java/bjc/esodata/SimpleStack.java	/^	public T top() {$/;"	m	class:SimpleStack
+top	src/main/java/bjc/esodata/SpaghettiStack.java	/^	public T top() {$/;"	m	class:SpaghettiStack
+top	src/main/java/bjc/esodata/Stack.java	/^	public abstract T top();$/;"	m	class:Stack
+topDownTransform	src/main/java/bjc/data/SimpleTree.java	/^	public Tree<ContainedType> topDownTransform($/;"	m	class:SimpleTree
+topDownTransform	src/main/java/bjc/data/Tree.java	/^	Tree<ContainedType> topDownTransform($/;"	m	interface:Tree
+transform	src/main/java/bjc/data/Holder.java	/^	public Holder<ContainedType> transform(UnaryOperator<ContainedType> transformer);$/;"	m	interface:Holder
+transform	src/main/java/bjc/data/Identity.java	/^			transform(final UnaryOperator<ContainedType> transformer) {$/;"	m	class:Identity
+transform	src/main/java/bjc/data/Lazy.java	/^			transform(final UnaryOperator<ContainedType> transformer) {$/;"	m	class:Lazy
+transform	src/main/java/bjc/data/ListHolder.java	/^			transform(final UnaryOperator<ContainedType> transformer) {$/;"	m	class:ListHolder
+transform	src/main/java/bjc/data/Option.java	/^			transform(final UnaryOperator<ContainedType> transformer) {$/;"	m	class:Option
+transform	src/main/java/bjc/data/TopDownTransformIterator.java	/^	private final TreeTransform<ContainedType> transform;$/;"	f	class:TopDownTransformIterator	file:
+transform	src/main/java/bjc/data/TransformIterator.java	/^	private final Function<S, D> transform;$/;"	f	class:TransformIterator	file:
+transform	src/main/java/bjc/data/internals/BoundLazy.java	/^			transform(final UnaryOperator<BoundContainedType> transformer) {$/;"	m	class:BoundLazy
+transform	src/main/java/bjc/data/internals/BoundListHolder.java	/^			transform(final UnaryOperator<ContainedType> transformer) {$/;"	m	class:BoundListHolder
+transform	src/main/java/bjc/data/internals/WrappedLazy.java	/^			transform(final UnaryOperator<ContainedType> transformer) {$/;"	m	class:WrappedLazy
+transform	src/main/java/bjc/data/internals/WrappedOption.java	/^			transform(final UnaryOperator<ContainedType> transformer) {$/;"	m	class:WrappedOption
+transform	src/main/java/bjc/funcdata/MapEx.java	/^	default <V2> MapEx<KeyType, V2> transform(final Function<ValueType, V2> transformer) {$/;"	m	interface:MapEx
+transformChild	src/main/java/bjc/data/SimpleTree.java	/^	public <TransformedType> TransformedType transformChild(final int childNo,$/;"	m	class:SimpleTree
+transformChild	src/main/java/bjc/data/Tree.java	/^	<TransformedType> TransformedType transformChild(int childNo,$/;"	m	interface:Tree
+transformHead	src/main/java/bjc/data/SimpleTree.java	/^			transformHead(final Function<ContainedType, TransformedType> transformer) {$/;"	m	class:SimpleTree
+transformHead	src/main/java/bjc/data/Tree.java	/^			transformHead(Function<ContainedType, TransformedType> transformer);$/;"	m	interface:Tree
+transformTree	src/main/java/bjc/data/Tree.java	/^			transformTree(final Function<ContainedType, MappedType> transformer) {$/;"	m	interface:Tree
+transformer	src/main/java/bjc/funcdata/TransformedValueMap.java	/^	private final Function<OldValue, NewValue> transformer;$/;"	f	class:TransformedValueMap	file:
+transtion	src/main/java/bjc/data/GeneratingIterator.java	/^	private UnaryOperator<E> transtion;$/;"	f	class:GeneratingIterator	file:
+traverse	src/main/java/bjc/data/SimpleTree.java	/^	public void traverse(final TreeLinearizationMethod linearizationMethod,$/;"	m	class:SimpleTree
+traverse	src/main/java/bjc/data/Tree.java	/^	void traverse(TreeLinearizationMethod linearizationMethod,$/;"	m	interface:Tree
+traverse	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	public void traverse(final TreeLinearizationMethod linearizationMethod,$/;"	m	class:BinarySearchTree
+traverseElement	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	private boolean traverseElement(final Predicate<T> traversalPredicate) {$/;"	m	class:BinarySearchTreeNode	file:
+traverseLeftBranch	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	private boolean traverseLeftBranch(final TreeLinearizationMethod linearizationMethod,$/;"	m	class:BinarySearchTreeNode	file:
+traverseRightBranch	src/main/java/bjc/funcdata/bst/BinarySearchTreeNode.java	/^	private boolean traverseRightBranch(final TreeLinearizationMethod linearizationMethod,$/;"	m	class:BinarySearchTreeNode	file:
+trim	src/main/java/bjc/funcdata/bst/BinarySearchTree.java	/^	public void trim() {$/;"	m	class:BinarySearchTree
+unwrap	src/main/java/bjc/data/Holder.java	/^			unwrap(Function<ContainedType, UnwrappedType> unwrapper);$/;"	m	interface:Holder
+unwrap	src/main/java/bjc/data/Identity.java	/^			unwrap(final Function<ContainedType, UnwrappedType> unwrapper) {$/;"	m	class:Identity
+unwrap	src/main/java/bjc/data/Lazy.java	/^			unwrap(final Function<ContainedType, UnwrappedType> unwrapper) {$/;"	m	class:Lazy
+unwrap	src/main/java/bjc/data/ListHolder.java	/^			unwrap(final Function<ContainedType, UnwrappedType> unwrapper) {$/;"	m	class:ListHolder
+unwrap	src/main/java/bjc/data/Option.java	/^			unwrap(final Function<ContainedType, UnwrappedType> unwrapper) {$/;"	m	class:Option
+unwrap	src/main/java/bjc/data/internals/BoundLazy.java	/^			unwrap(final Function<BoundContainedType, UnwrappedType> unwrapper) {$/;"	m	class:BoundLazy
+unwrap	src/main/java/bjc/data/internals/BoundListHolder.java	/^			unwrap(final Function<ContainedType, UnwrappedType> unwrapper) {$/;"	m	class:BoundListHolder
+unwrap	src/main/java/bjc/data/internals/WrappedLazy.java	/^			unwrap(final Function<ContainedType, UnwrappedType> unwrapper) {$/;"	m	class:WrappedLazy
+unwrap	src/main/java/bjc/data/internals/WrappedOption.java	/^			unwrap(final Function<ContainedType, UnwrappedType> unwrapper) {$/;"	m	class:WrappedOption
+val	src/main/java/bjc/data/BooleanToggle.java	/^	private boolean val;$/;"	f	class:BooleanToggle	file:
+val	src/main/java/bjc/data/IntHolder.java	/^	public int val;$/;"	f	class:IntHolder
+val	src/main/java/bjc/functypes/Thrower.java	/^	private ValueType val;$/;"	f	class:MemoizedThrower	file:
+valueList	src/main/java/bjc/funcdata/MapEx.java	/^	default ListEx<ValueType> valueList() {$/;"	m	interface:MapEx
+valueListReturnsListOfValues	src/test/java/bjc/funcdata/TestMapOperations.java	/^	public void valueListReturnsListOfValues() {$/;"	m	class:TestMapOperations
+valueMaterialized	src/main/java/bjc/data/Lazy.java	/^	private boolean valueMaterialized;$/;"	f	class:Lazy	file:
+valueSupplier	src/main/java/bjc/data/Lazy.java	/^	private Supplier<ContainedType> valueSupplier;$/;"	f	class:Lazy	file:
+values	src/main/java/bjc/esodata/ThresholdSet.java	/^	public Set<KeyType> values() {$/;"	m	class:ThresholdSet
+walk	src/main/java/bjc/funcdata/bst/DirectedWalkFunction.java	/^	public DirectedWalkResult walk(T element);$/;"	m	interface:DirectedWalkFunction
+with	src/main/java/bjc/functypes/Combinators.java	/^	public static <Type> Type with(Type input, Consumer<Type>... consumers)$/;"	m	class:Combinators
+wrapped	src/main/java/bjc/funcdata/FunctionalList.java	/^	private final List<E> wrapped;$/;"	f	class:FunctionalList	file:
+wrappedMap	src/main/java/bjc/funcdata/FunctionalMap.java	/^	private Map<KeyType, ValueType> wrappedMap;$/;"	f	class:FunctionalMap	file:
+yielded	src/main/java/bjc/data/SingleIterator.java	/^	private boolean yielded;$/;"	f	class:SingleIterator	file:

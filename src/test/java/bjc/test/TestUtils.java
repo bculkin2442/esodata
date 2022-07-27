@@ -1,4 +1,4 @@
-package bjc;
+package bjc.test;
 
 import java.util.*;
 

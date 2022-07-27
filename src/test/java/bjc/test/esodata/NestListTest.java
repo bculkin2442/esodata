@@ -1,4 +1,4 @@
-package bjc.esodata;
+package bjc.test.esodata;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,7 @@ import java.util.*;
 import org.junit.*;
 
 import bjc.*;
+import bjc.esodata.NestList;
 
 @SuppressWarnings("javadoc")
 public class NestListTest

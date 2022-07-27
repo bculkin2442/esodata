@@ -1,10 +1,12 @@
-package bjc.functypes;
+package bjc.test.functypes;
 
 import static org.junit.Assert.*;
 
 import java.util.function.*;
 
 import org.junit.*;
+
+import bjc.functypes.ID;
 
 @SuppressWarnings("javadoc")
 public class IDTest {

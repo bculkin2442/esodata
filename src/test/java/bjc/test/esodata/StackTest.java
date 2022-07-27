@@ -1,8 +1,11 @@
-package bjc.esodata;
+package bjc.test.esodata;
 
 import org.junit.Test;
 
-import static bjc.TestUtils.*;
+import bjc.esodata.SimpleStack;
+import bjc.esodata.Stack;
+
+import static bjc.test.TestUtils.*;
 
 import static org.junit.Assert.*;
 

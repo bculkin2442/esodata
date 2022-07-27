@@ -1,8 +1,10 @@
-package bjc.funcdata;
+package bjc.test.funcdata;
 
 import static org.junit.Assert.*;
 
 import org.junit.*;
+
+import bjc.funcdata.MapEx;
 
 @SuppressWarnings("javadoc")
 public class TestMapCreation {

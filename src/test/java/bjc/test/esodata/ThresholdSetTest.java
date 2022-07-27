@@ -1,8 +1,10 @@
-package bjc.esodata;
+package bjc.test.esodata;
 
 import org.junit.Test;
 
-import static bjc.TestUtils.*;
+import bjc.esodata.ThresholdSet;
+
+import static bjc.test.TestUtils.*;
 
 import static bjc.esodata.ThresholdSet.*;
 
@@ -20,7 +22,7 @@ public class ThresholdSetTest {
 		ThresholdSet<String> thst = TS("a", "b");
 
 		assertIteratorSet(false, thst.setView().iterator(), "a", "b");
-		assertEquals(thst.setSize(), 2);
+		assertEquals(thst.setView().size(), 2);
 	}
 
 	@Test
@@ -28,7 +30,7 @@ public class ThresholdSetTest {
 		ThresholdSet<String> thst = TS("a", "b", "a");
 
 		assertIteratorSet(false, thst.setView().iterator(), "b");
-		assertEquals(thst.setSize(), 1);
+		assertEquals(thst.setView().size(), 1);
 	}
 
 	@Test
@@ -37,7 +39,7 @@ public class ThresholdSetTest {
 		thst.add("a");
 
 		assertIteratorSet(false, thst.setView().iterator(), "b");
-		assertEquals(thst.setSize(), 1);
+		assertEquals(thst.setView().size(), 1);
 	}
 
 	@Test
@@ -57,12 +59,12 @@ public class ThresholdSetTest {
 		thst.remove("a");
 
 		assertIteratorSet(false, thst.setView().iterator(), "a", "b");
-		assertEquals(2, thst.setSize());
+		assertEquals(2, thst.setView().size());
 
 		thst.remove("a");
 
 		assertIteratorSet(false, thst.setView().iterator(), "b");
-		assertEquals(1, thst.setSize());
+		assertEquals(1, thst.setView().size());
 	}
 
 	@Test

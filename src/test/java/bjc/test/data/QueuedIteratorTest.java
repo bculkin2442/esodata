@@ -1,10 +1,12 @@
-package bjc.data;
+package bjc.test.data;
 
 import static java.util.Arrays.asList;
 
 import org.junit.Test;
 
-import static bjc.TestUtils.*;
+import bjc.data.QueuedIterator;
+
+import static bjc.test.TestUtils.*;
 import static bjc.data.QueuedIterator.queued;
 
 /**
