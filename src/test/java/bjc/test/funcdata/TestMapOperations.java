@@ -7,6 +7,7 @@ import java.util.*;
 import org.junit.*;
 
 import bjc.funcdata.MapEx;
+import bjc.funcdata.ObjectFrozen;
 
 @SuppressWarnings("javadoc")
 public class TestMapOperations {
