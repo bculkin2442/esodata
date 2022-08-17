@@ -5,12 +5,12 @@ import java.util.*;
 /*
  * @TODO Oct 6, 2020 - Ben Culkin - :CleverCache
  * 
- * In the future, there are certain efficencies we could take with our cached 
+ * In the future, there are certain efficiencies we could take with our cached 
  * elements; namely, the case where we repeat the same element multiple times,
  *  or the case where we have a mixture of identical (and probably sizable) elements
  * 
- *  The general downside to these of course, is that these efficencies would cost
- *  us something in terms of complexity, as well as not benefitting iterators which
+ *  The general downside to these of course, is that these efficiencies would cost
+ *  us something in terms of complexity, as well as not benefiting iterators which
  *  aren't large enough.
  *  
  *  Still an interesting thought as to the best way to implement such a thing though.
@@ -57,7 +57,7 @@ public class ResettableIterator<T> implements Iterator<T> {
 	@Override
 	public boolean hasNext() {
 		if (isRepeating) return cacheIterator.hasNext() ? true : backing.hasNext();
-		else             return backing.hasNext();
+		return backing.hasNext();
 	}
 
 	@Override
@@ -65,10 +65,10 @@ public class ResettableIterator<T> implements Iterator<T> {
 		if (isRepeating) {
 			if (cacheIterator.hasNext()) {
 				return cacheIterator.next();
-			} else {
-				cacheIterator = null;
-				isRepeating = false;
 			}
+			
+			cacheIterator = null;
+			isRepeating = false;
 		}
 
 		T itm = backing.next();

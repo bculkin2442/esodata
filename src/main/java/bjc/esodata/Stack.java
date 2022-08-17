@@ -337,7 +337,7 @@ public abstract class Stack<T> {
 	}
 
 	/*
-	 * Dataflow Combinators
+	 * Data-flow Combinators
 	 */
 
 	/**

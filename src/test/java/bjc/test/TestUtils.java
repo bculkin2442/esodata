@@ -21,7 +21,13 @@ public class TestUtils {
 	public static <T> void assertIteratorEquals(Iterator<T> src, T... vals) {
 		for (int i = 0; i < vals.length; i++) {
 			if (src.hasNext()) {
-				assertEquals(vals[i], src.next());
+				T actNext = src.next();
+				T expNext = vals[i];
+				
+				String fmt = "mismatch at index %d";
+				String msg = String.format(fmt, i);
+				
+				assertEquals(msg, expNext, actNext);
 			} else {
 				String msg = String.format("not enough values: got %d, wanted %d", i,
 						vals.length);
