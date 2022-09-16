@@ -64,11 +64,9 @@ public class BinarySearchTreeExample {
 	 *             Unused CLI args
 	 */
 	public static void main(final String[] args) {
-		final Scanner input = new Scanner(System.in);
-		
-		runExample(input, System.out);
-
-		input.close();
+		try (Scanner input = new Scanner(System.in)) {
+			runExample(input, System.out);
+		}
 	}
 
 	private static void runExample(final Scanner input, OutputStream outpt) {

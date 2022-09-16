@@ -1,5 +1,8 @@
 package bjc.data;
 
+import java.util.Formattable;
+import java.util.FormattableFlags;
+import java.util.Formatter;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -18,7 +21,7 @@ import bjc.funcdata.theory.Bifunctor;
  *                    The type of the right side of the pair.
  *
  */
-public interface Pair<LeftType, RightType> extends Bifunctor<LeftType, RightType> {
+public interface Pair<LeftType, RightType> extends Bifunctor<LeftType, RightType>, Formattable {
 	/**
 	 * Bind a function across the values in this pair.
 	 *
@@ -246,5 +249,14 @@ public interface Pair<LeftType, RightType> extends Bifunctor<LeftType, RightType
 	 */
 	public static <Left, Right> Pair<Left, Right> pair(Left left, Right right) {
 		return new SimplePair<>(left, right);
+	}
+	
+	@Override
+	default void formatTo(Formatter formatter, int flags, int width, int precision) {
+		if ((flags & FormattableFlags.ALTERNATE) != 0) {
+			formatter.format("(%s, %s)", getLeft(), getRight());
+		} else {
+			formatter.format("Pair [l=%s, r=%s", getLeft(), getRight());
+		}
 	}
 }

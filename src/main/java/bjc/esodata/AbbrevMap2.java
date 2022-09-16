@@ -41,7 +41,7 @@ public class AbbrevMap2 {
 	}
 
 	// Generate all of the strings a given word could be abbreviated as
-	private List<String> genAbbrevs(String word) {
+	private static List<String> genAbbrevs(String word) {
 		List<String> retList = new ArrayList<>();
 
 		int len = word.length();

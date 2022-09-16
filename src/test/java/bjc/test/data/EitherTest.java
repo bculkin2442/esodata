@@ -8,6 +8,7 @@ import org.junit.*;
 
 import bjc.data.Either;
 
+@SuppressWarnings("javadoc")
 public class EitherTest
 {
 	private Either<String, String> leftEither;

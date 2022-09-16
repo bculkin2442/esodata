@@ -1,4 +1,4 @@
-package bjc.data;
+package bjc.test.data;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import bjc.data.MarkListIterator;
 import bjc.test.TestUtils;
 
 /**

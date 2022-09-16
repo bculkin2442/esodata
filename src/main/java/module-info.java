@@ -1,3 +1,9 @@
+/**
+ * Contains various more esoteric data structures.
+ * 
+ * @author bjculkin
+ *
+ */
 module esodata {
 	exports bjc.data;
 	exports bjc.esodata;

@@ -34,6 +34,15 @@ public class MarkListIterator<E> implements ListIterator<E> {
 	}
 
 	/**
+	 * Get the current element of the iterator.
+	 * 
+	 * @return The current iterator of the element
+	 */
+	public E current() {
+		return cache.get(currIdx);
+	}
+	
+	/**
 	 * Create a new marking list iterator.
 	 * 
 	 * @param backing The iterable to get the backing iterator from.

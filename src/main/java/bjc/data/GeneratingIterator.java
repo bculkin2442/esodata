@@ -42,7 +42,7 @@ public class GeneratingIterator<E> implements Iterator<E> {
 
 	@Override
 	public boolean hasNext() {
-		return stpper.test(state);
+		return !stpper.test(state);
 	}
 
 	/*

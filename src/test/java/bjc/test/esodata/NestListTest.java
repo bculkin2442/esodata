@@ -6,7 +6,6 @@ import java.util.*;
 
 import org.junit.*;
 
-import bjc.*;
 import bjc.esodata.NestList;
 import bjc.test.TestUtils;
 

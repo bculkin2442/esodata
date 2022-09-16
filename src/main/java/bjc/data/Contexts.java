@@ -37,67 +37,67 @@ public class Contexts {
 	public static Context create(Context parent) {
 		return new ContextImpl(parent);
 	}
+}
 
-	private static class NullContextImpl implements Context {
-		@Override
-		public Context getParent() {
-			return this;
-		}
-
-		@Override
-		public void register(String name, Object o) {
-			throw new UnsupportedOperationException();
-		}
-
-		@Override
-		public Object get(String name) {
-			throw new NoSuchElementException();
-		}
-		
-		@Override
-		public <T> T get(Class<T> contract) {
-			throw new NoSuchElementException();
-		}
+class NullContextImpl implements Context {
+	@Override
+	public Context getParent() {
+		return this;
 	}
 
-	private static class ContextImpl implements Context {
+	@Override
+	public void register(String name, Object o) {
+		throw new UnsupportedOperationException();
+	}
 
-		private final Context parent;
+	@Override
+	public Object get(String name) {
+		throw new NoSuchElementException();
+	}
+	
+	@Override
+	public <T> T get(Class<T> contract) {
+		throw new NoSuchElementException();
+	}
+}
 
-		private final Map<String, Object> objects;
+class ContextImpl implements Context {
 
-		public ContextImpl(Context parent) {
-			this.parent = parent;
-			this.objects = new HashMap<>();
+	private final Context parent;
+
+	private final Map<String, Object> objects;
+
+	public ContextImpl(Context parent) {
+		this.parent = parent;
+		this.objects = new HashMap<>();
+	}
+
+	@Override
+	public void register(String name, Object o) {
+		objects.put(name, o);
+	}
+
+	@Override
+	public Object get(String name) {
+		if (objects.containsKey(name)) {
+			return objects.get(name);
 		}
+		return parent.get(name);
+	}
 
-		@Override
-		public void register(String name, Object o) {
-			objects.put(name, o);
-		}
-
-		@Override
-		public Object get(String name) {
-			if (objects.containsKey(name)) {
-				return objects.get(name);
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T get(Class<T> contract) {
+		for (Object o : objects.values()) {
+			if (contract.isInstance(o)) {
+				return (T) o;
 			}
-			return parent.get(name);
 		}
+		return parent.get(contract);
+	}
 
-		@SuppressWarnings("unchecked")
-		@Override
-		public <T> T get(Class<T> contract) {
-			for (Object o : objects.values()) {
-				if (contract.isInstance(o)) {
-					return (T) o;
-				}
-			}
-			return parent.get(contract);
-		}
-
-		@Override
-		public Context getParent() {
-			return parent;
-		}
+	@Override
+	public Context getParent() {
+		return parent;
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -486,5 +487,22 @@ public class FunctionalList<E> implements Cloneable, ListEx<E> {
 		sb.append(")");
 
 		return sb.toString();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(wrapped);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FunctionalList<?> other = (FunctionalList<?>) obj;
+		return Objects.equals(wrapped, other.wrapped);
 	}
 }
