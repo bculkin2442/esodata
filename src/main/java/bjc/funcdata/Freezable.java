@@ -12,7 +12,7 @@ package bjc.funcdata;
  * 
  * @author Ben Culkin
  */
-public interface Freezable {
+public interface Freezable<F extends Freezable<?>> {
 	/**
 	 * Freezes the internal state of this object, making it immutable.
 	 * 
@@ -69,5 +69,16 @@ public interface Freezable {
 	 */
 	default boolean isThawed() {
 		return !isFrozen();
+	}
+	
+	/**
+	 * Clone this object in a thawed state.
+	 * 
+	 * @return A thawed clone of this object
+	 * 
+	 * @throws CloneNotSupportedException If the underlying object doesn't support cloning
+	 */
+	default F cloneAsThawed() throws CloneNotSupportedException {
+		throw new CloneNotSupportedException();
 	}
 }
