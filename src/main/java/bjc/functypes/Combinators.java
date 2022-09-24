@@ -17,281 +17,276 @@ public class Combinators {
 	/**
 	 * If-then-else combinator.
 	 * 
-	 * @param <Input> The input type.
+	 * @param <Input>  The input type.
 	 * @param <Output> The output type.
 	 * 
-	 * @param in The predicate to run.
-	 * @param ifTrue The condition to run when it is true.
-	 * @param ifFalse The condition to run when it is false.
+	 * @param in       The predicate to run.
+	 * @param ifTrue   The condition to run when it is true.
+	 * @param ifFalse  The condition to run when it is false.
 	 * 
-	 * @return A function which will invoke one or the other action, based on the predicate.
+	 * @return A function which will invoke one or the other action, based on the
+	 *         predicate.
 	 */
 	@SuppressWarnings("unused")
-	public static <Input, Output> Function<Input, Output> iftt(
-			Predicate<Input> in,
-			Function<Input, Output> ifTrue,
-			Function<Input, Output> ifFalse) 
-	{
+	public static <Input, Output> Function<Input, Output> iftt(Predicate<Input> in, Function<Input, Output> ifTrue,
+			Function<Input, Output> ifFalse) {
 		return arg -> in.test(arg) ? ifTrue.apply(arg) : ifFalse.apply(arg);
 	}
-	
+
 	/**
 	 * If-then-else expression.
 	 * 
 	 * @param <Output> The output type.
 	 * 
-	 * @param in The boolean to use.
-	 * @param ifTrue The condition to run when it is true.
-	 * @param ifFalse The condition to run when it is false.
+	 * @param in       The boolean to use.
+	 * @param ifTrue   The condition to run when it is true.
+	 * @param ifFalse  The condition to run when it is false.
 	 * 
 	 * @return A value, based on the provided parameter
 	 */
-	public static <Output> Output iftt(
-			boolean in,
-			Supplier<Output> ifTrue,
-			Supplier<Output> ifFalse) 
-	{
+	public static <Output> Output iftt(boolean in, Supplier<Output> ifTrue, Supplier<Output> ifFalse) {
 		return in ? ifTrue.get() : ifFalse.get();
 	}
-	
+
 	/**
 	 * Execute an action before calling a function.
 	 * 
-	 * @param <Input> The input to the function.
+	 * @param <Input>  The input to the function.
 	 * @param <Output> The output from the function.
 	 * 
-	 * @param action The action to run on the input.
+	 * @param action   The action to run on the input.
 	 * @param terminal The function to call.
 	 * 
 	 * @return A function that runs the provided action before calling the function.
 	 */
-	public static <Input, Output> Function<Input, Output> beforeThis(
-			Consumer<Input> action,
-			Function<Input, Output> terminal) 
-	{
+	public static <Input, Output> Function<Input, Output> beforeThis(Consumer<Input> action,
+			Function<Input, Output> terminal) {
 		return (arg) -> {
 			action.accept(arg);
 			return terminal.apply(arg);
 		};
 	}
-	
+
 	/**
 	 * Execute an action after calling a function.
 	 * 
-	 * @param <Input> The input to the function.
+	 * @param <Input>  The input to the function.
 	 * @param <Output> The output to the function.
 	 * 
-	 * @param initial The function to call.
-	 * @param action The action to call after doing the function.
+	 * @param initial  The function to call.
+	 * @param action   The action to call after doing the function.
 	 * 
 	 * @return A function that calls the provided action after the function.
 	 */
-	public static <Input, Output> Consumer<Input> andThen(
-			Function<Input, Output> initial,
-			Consumer<Output> action)
-	{
+	public static <Input, Output> Consumer<Input> andThen(Function<Input, Output> initial, Consumer<Output> action) {
 		return (arg) -> action.accept(initial.apply(arg));
 	}
-	
+
 	/**
 	 * Standalone function composer.
 	 * 
-	 * @param <Left> The input type of the initial function.
+	 * @param <Left>   The input type of the initial function.
 	 * @param <Middle> The shared input/output type.
-	 * @param <Right> The output type of the terminal function.
+	 * @param <Right>  The output type of the terminal function.
 	 * 
-	 * @param initial The first function to call.
+	 * @param initial  The first function to call.
 	 * @param terminal The second function to call.
 	 * 
 	 * @return A function that composes the provided functions together.
 	 */
-	public static <Left, Middle, Right> Function<Left, Right> compose(
-			Function<Left, Middle> initial,
-			Function<Middle, Right> terminal) 
-	{
+	public static <Left, Middle, Right> Function<Left, Right> compose(Function<Left, Middle> initial,
+			Function<Middle, Right> terminal) {
 		return (arg) -> terminal.apply(initial.apply(arg));
 	}
-	
+
 	/**
 	 * Execute a function with some internal state.
 	 * 
-	 * @param <Input> The input type of the function.
+	 * @param <Input>  The input type of the function.
 	 * @param <Output> The output type of the function.
-	 * @param <State> The type of the internal state.
+	 * @param <State>  The type of the internal state.
 	 * 
-	 * @param source The function which provides internal state.
-	 * @param action The function to call.
+	 * @param source   The function which provides internal state.
+	 * @param action   The function to call.
 	 * 
 	 * @return A function which hides the production of the internal state.
 	 */
-	public static <Input, Output, State> Function<Input, Output> introducing(
-			Supplier<State> source,
-			BiFunction<State, Input, Output> action)
-	{
+	public static <Input, Output, State> Function<Input, Output> introducing(Supplier<State> source,
+			BiFunction<State, Input, Output> action) {
 		return (input) -> action.apply(source.get(), input);
 	}
-	
+
 	/**
 	 * Invoke a given function with null to produce its result.
 	 * 
-	 * @param <Input> The input type of the function.
+	 * @param <Input>  The input type of the function.
 	 * @param <Output> The output type of the function.
 	 * 
-	 * @param action The function to invoke.
+	 * @param action   The function to invoke.
 	 * 
 	 * @return The result of calling the function with null.
 	 */
-	public static <Input, Output> Output invoke(Function<Input, Output> action) 
-	{
+	public static <Input, Output> Output invoke(Function<Input, Output> action) {
 		return action.apply(null);
 	}
-	
+
 	/**
 	 * Execute an action a given number of times.
 	 * 
-	 * @param times The number of times to execute the action.
+	 * @param times  The number of times to execute the action.
 	 * @param action The action to execute.
 	 */
-	public static void times(int times, Consumer<Integer> action)
-	{
-		for (int i = 0; i < times; i++) action.accept(i);
+	public static void times(int times, Consumer<Integer> action) {
+		for (int i = 0; i < times; i++)
+			action.accept(i);
 	}
-	
+
+	/**
+	 * Construct a function that applies the given operator a fixed number of times.
+	 * 
+	 * @param <T>   The type of the data
+	 * 
+	 * @param times The number of times to execute
+	 * @param func  The function to apply
+	 * 
+	 * @return A function that applies the given one the specified number of times.
+	 */
+	public static <T> UnaryOperator<T> times(int times, UnaryOperator<T> func) {
+		return (val) -> {
+			T retVal = val;
+			for (int i = 0; i < times; i++)
+				retVal = func.apply(retVal);
+			return retVal;
+		};
+	}
+
 	/**
 	 * Invoke a wrapper instead of invoking a normal function.
 	 * 
-	 * @param <Input> The input type to the function.
+	 * @param <Input>  The input type to the function.
 	 * @param <Output> The output type to the function.
 	 * 
 	 * @param function The function to apply.
-	 * @param wrapper The wrapper around a function.
+	 * @param wrapper  The wrapper around a function.
 	 * 
 	 * @return A function that invokes the wrapper instead.
 	 */
-	public static <Input, Output> Function<Input, Output> around(
-			Function<Input, Output> function,
-			BiFunction<Input, Function<Input, Output>, Output> wrapper)
-	{
+	public static <Input, Output> Function<Input, Output> around(Function<Input, Output> function,
+			BiFunction<Input, Function<Input, Output>, Output> wrapper) {
 		return (input) -> wrapper.apply(input, function);
 	}
-	
+
 	/**
 	 * Only run a given function when the argument satisfies a condition.
 	 * 
-	 * @param <Input> The input type of the function.
+	 * @param <Input>  The input type of the function.
 	 * @param <Output> The output type of the function.
 	 * 
 	 * @param function The function to run.
-	 * @param guard The guard to use for checking the input.
+	 * @param guard    The guard to use for checking the input.
 	 * 
-	 * @return A function which takes the given input, and only calls the
-	 *         function if the guard returns true. Otherwise, it will return
-	 *         an empty optional.
+	 * @return A function which takes the given input, and only calls the function
+	 *         if the guard returns true. Otherwise, it will return an empty
+	 *         optional.
 	 */
-	public static <Input, Output> Function<Input, Optional<Output>> provided(
-			Function<Input, Output> function,
-			Predicate<Input> guard)
-	{
-		return iftt(guard,
-				(arg)     -> Optional.ofNullable(function.apply(arg)),
-				(ignored) -> Optional.empty()
-		);
+	public static <Input, Output> Function<Input, Optional<Output>> provided(Function<Input, Output> function,
+			Predicate<Input> guard) {
+		return iftt(guard, (arg) -> Optional.ofNullable(function.apply(arg)), (ignored) -> Optional.empty());
 	}
-	
+
 	/**
 	 * Concatenate two functions together, so that they run on the same argument.
 	 * 
-	 * @param <Input> The type of the input.
+	 * @param <Input>   The type of the input.
 	 * @param <Output1> The type of the first output.
 	 * @param <Output2> The type of the second output.
 	 * 
-	 * @param funcA The first function to call.
-	 * @param funcB The second function to call.
+	 * @param funcA     The first function to call.
+	 * @param funcB     The second function to call.
 	 * 
 	 * @return A function that returns a pair of the results of calling both
 	 *         functions.
 	 */
-	public static
-	<Input, Output1, Output2> Function<Input, Pair<Output1, Output2>>
-	concat(Function<Input, Output1> funcA, Function<Input, Output2> funcB)
-	{
+	public static <Input, Output1, Output2> Function<Input, Pair<Output1, Output2>> concat(
+			Function<Input, Output1> funcA, Function<Input, Output2> funcB) {
 		return (arg) -> Pair.pair(funcA.apply(arg), funcB.apply(arg));
 	}
-	
+
 	/**
 	 * Concatenate a series of functions together, returning a list of their
 	 * results.
 	 * 
-	 * @param <Input> The input type for the functions.
+	 * @param <Input>  The input type for the functions.
 	 * @param <Output> The output type for the functions.
 	 * 
-	 * @param funcs The series of functions to call.
+	 * @param funcs    The series of functions to call.
 	 * 
-	 * @return A function that calls each of those functions, and returns a
-	 *         list of their results.
+	 * @return A function that calls each of those functions, and returns a list of
+	 *         their results.
 	 */
 	@SafeVarargs
-	public static
-	<Input, Output> Function<Input, List<Output>>
-	concat(Function<Input, Output>... funcs)
-	{
+	public static <Input, Output> Function<Input, List<Output>> concat(Function<Input, Output>... funcs) {
 		List<Function<Input, Output>> funcList = Arrays.asList(funcs);
-		
+
 		// Kind of a nuisance that Java can't properly guess the type of
 		// our mapper function, but oh well.
-		
-		return (arg) ->
-			funcList.stream()
-			.map((Function<Function<Input, Output>, Output>)
-					(func) -> func.apply(arg))
-			.collect(toList());
+
+		return (arg) -> funcList.stream().map((Function<Function<Input, Output>, Output>) (func) -> func.apply(arg))
+				.collect(toList());
 	}
-	
+
 	/**
 	 * Return a function that does a series of actions upon a value, then returns
 	 * that value.
 	 * 
-	 * @param <Type> The type given as an argument
+	 * @param <Type>    The type given as an argument
 	 * 
 	 * @param consumers The actions to perform on the value.
 	 * 
 	 * @return A function that performs those arguments on a value.
 	 */
 	@SafeVarargs
-	public static <Type> Function<Type, Type> doWith(Consumer<Type>... consumers)
-	{
+	public static <Type> Function<Type, Type> doWith(Consumer<Type>... consumers) {
 		return (arg) -> {
-			for (Consumer<Type> consumer : consumers) consumer.accept(arg);
+			for (Consumer<Type> consumer : consumers)
+				consumer.accept(arg);
 			return arg;
 		};
 	}
-	
+
 	/**
 	 * Perform a series of actions upon a value, then return that value.
 	 * 
-	 * @param <Type> The type given as an argument
+	 * @param <Type>    The type given as an argument
 	 * 
-	 * @param input  The value to use.
+	 * @param input     The value to use.
 	 * @param consumers The actions to perform on the value.
 	 * 
 	 * @return A function that performs those arguments on a value.
 	 */
 	@SafeVarargs
-	public static <Type> Type with(Type input, Consumer<Type>... consumers)
-	{
+	public static <Type> Type with(Type input, Consumer<Type>... consumers) {
 		return doWith(consumers).apply(input);
 	}
-	
+
 	/**
 	 * Convert a function into a consumer, ignoring its output.
 	 * 
 	 * @param <Input> The input to the function.
 	 * 
-	 * @param func The function to convert.
+	 * @param func    The function to convert.
 	 * 
 	 * @return A consumer which calls the function, and ignores the output.
 	 */
 	public static <Input> Consumer<Input> ignore(Function<Input, ?> func) {
 		return (inp) -> func.apply(inp);
+	}
+	
+	public static <Input, Output> Function<Supplier<Input>, Output> lazify(Function<Input, Output> f) {
+		return (supp) -> f.apply(supp.get());
+	}
+	
+	public static <Input, Output> Function<Input, Output> strictify(Function<Supplier<Input>, Output> f) {
+		return (val) -> f.apply(() -> val);
 	}
 }
