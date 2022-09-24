@@ -14,67 +14,56 @@ import bjc.funcdata.bst.TreeLinearizationMethod;
  *
  * @author ben
  *
- * @param <ContainedType>
- *                        The type of data contained in the tree nodes.
+ * @param <ContainedType> The type of data contained in the tree nodes.
  *
  */
 public interface Tree<ContainedType> {
 	/**
 	 * Append a child to this node.
 	 *
-	 * @param child
-	 *              The child to append to this node.
+	 * @param child The child to append to this node.
 	 */
 	void addChild(Tree<ContainedType> child);
 
 	/**
 	 * Append a child to this node.
 	 *
-	 * @param child
-	 *              The child to append to this node.
+	 * @param child The child to append to this node.
 	 */
 	void addChild(ContainedType child);
 
 	/**
 	 * Prepend a child to this node.
 	 *
-	 * @param child
-	 *              The child to prepend to this node.
+	 * @param child The child to prepend to this node.
 	 */
 	void prependChild(Tree<ContainedType> child);
 
 	/**
 	 * Collapse a tree into a single version.
 	 *
-	 * @param <NewType>
-	 *                          The intermediate type being folded.
+	 * @param <NewType>         The intermediate type being folded.
 	 *
-	 * @param <ReturnedType>
-	 *                          The type that is the end result.
+	 * @param <ReturnedType>    The type that is the end result.
 	 *
-	 * @param leafTransform
-	 *                          The function to use to convert leaf values.
+	 * @param leafTransform     The function to use to convert leaf values.
 	 *
-	 * @param nodeCollapser
-	 *                          The function to use to convert internal nodes and
+	 * @param nodeCollapser     The function to use to convert internal nodes and
 	 *                          their children.
 	 *
-	 * @param resultTransformer
-	 *                          The function to use to convert a state to the
+	 * @param resultTransformer The function to use to convert a state to the
 	 *                          returned version.
 	 *
 	 * @return The final transformed state.
 	 */
-	<NewType, ReturnedType> ReturnedType collapse(
-			Function<ContainedType, NewType> leafTransform,
+	<NewType, ReturnedType> ReturnedType collapse(Function<ContainedType, NewType> leafTransform,
 			BiFunction<ContainedType, ListEx<NewType>, NewType> nodeCollapser,
 			Function<NewType, ReturnedType> resultTransformer);
 
 	/**
 	 * Execute a given action for each of this tree's children.
 	 *
-	 * @param action
-	 *               The action to execute for each child.
+	 * @param action The action to execute for each child.
 	 */
 	void doForChildren(Consumer<Tree<ContainedType>> action);
 
@@ -82,13 +71,11 @@ public interface Tree<ContainedType> {
 	 * Expand the nodes of a tree into trees, and then merge the contents of those
 	 * trees into a single tree.
 	 *
-	 * @param mapper
-	 *               The function to use to map values into trees.
+	 * @param mapper The function to use to map values into trees.
 	 *
 	 * @return A tree, with some nodes expanded into trees.
 	 */
-	default Tree<ContainedType>
-			flatMapTree(final Function<ContainedType, Tree<ContainedType>> mapper) {
+	default Tree<ContainedType> flatMapTree(final Function<ContainedType, Tree<ContainedType>> mapper) {
 		return topDownTransform(dat -> TopDownTransformResult.PUSHDOWN, node -> {
 			if (node.getChildrenCount() > 0) {
 				final Tree<ContainedType> parent = node.transformHead(mapper);
@@ -105,8 +92,7 @@ public interface Tree<ContainedType> {
 	/**
 	 * Get the specified child of this tree.
 	 *
-	 * @param childNo
-	 *                The number of the child to get.
+	 * @param childNo The number of the child to get.
 	 *
 	 * @return The specified child of this tree.
 	 */
@@ -142,64 +128,50 @@ public interface Tree<ContainedType> {
 	/**
 	 * Rebuild the tree with the same structure, but different nodes.
 	 *
-	 * @param <MappedType>
-	 *                            The type of the new tree.
+	 * @param <MappedType>        The type of the new tree.
 	 *
-	 * @param leafTransformer
-	 *                            The function to use to transform leaf tokens.
+	 * @param leafTransformer     The function to use to transform leaf tokens.
 	 *
-	 * @param internalTransformer
-	 *                            The function to use to transform internal tokens.
+	 * @param internalTransformer The function to use to transform internal tokens.
 	 *
 	 * @return The tree, with the nodes changed.
 	 */
-	<MappedType> Tree<MappedType> rebuildTree(
-			Function<ContainedType, MappedType> leafTransformer,
+	<MappedType> Tree<MappedType> rebuildTree(Function<ContainedType, MappedType> leafTransformer,
 			Function<ContainedType, MappedType> internalTransformer);
 
 	/**
 	 * Transform some of the nodes in this tree.
 	 *
-	 * @param nodePicker
-	 *                    The predicate to use to pick nodes to transform.
+	 * @param nodePicker  The predicate to use to pick nodes to transform.
 	 *
-	 * @param transformer
-	 *                    The function to use to transform picked nodes.
+	 * @param transformer The function to use to transform picked nodes.
 	 */
-	void selectiveTransform(Predicate<ContainedType> nodePicker,
-			UnaryOperator<ContainedType> transformer);
+	void selectiveTransform(Predicate<ContainedType> nodePicker, UnaryOperator<ContainedType> transformer);
 
 	/**
 	 * Do a top-down transform of the tree.
 	 *
-	 * @param transformPicker
-	 *                        The function to use to pick how to progress.
+	 * @param transformPicker The function to use to pick how to progress.
 	 *
-	 * @param transformer
-	 *                        The function used to transform picked subtrees.
+	 * @param transformer     The function used to transform picked subtrees.
 	 *
 	 * @return The tree with the transform applied to picked subtrees.
 	 */
-	Tree<ContainedType> topDownTransform(
-			Function<ContainedType, TopDownTransformResult> transformPicker,
+	Tree<ContainedType> topDownTransform(Function<ContainedType, TopDownTransformResult> transformPicker,
 			UnaryOperator<Tree<ContainedType>> transformer);
 
 	/**
 	 * Transform one of this nodes children.
 	 *
-	 * @param <TransformedType>
-	 *                          The type of the transformed value.
+	 * @param <TransformedType> The type of the transformed value.
 	 *
-	 * @param childNo
-	 *                          The number of the child to transform.
+	 * @param childNo           The number of the child to transform.
 	 *
-	 * @param transformer
-	 *                          The function to use to transform the value.
+	 * @param transformer       The function to use to transform the value.
 	 *
 	 * @return The transformed value.
 	 *
-	 * @throws IllegalArgumentException
-	 *                                  if the childNo is out of bounds (0 &lt;=
+	 * @throws IllegalArgumentException if the childNo is out of bounds (0 &lt;=
 	 *                                  childNo &lt;= childCount()).
 	 */
 	<TransformedType> TransformedType transformChild(int childNo,
@@ -208,50 +180,44 @@ public interface Tree<ContainedType> {
 	/**
 	 * Transform the value that is the head of this node.
 	 *
-	 * @param <TransformedType>
-	 *                          The type of the transformed value.
+	 * @param <TransformedType> The type of the transformed value.
 	 *
-	 * @param transformer
-	 *                          The function to use to transform the value.
+	 * @param transformer       The function to use to transform the value.
 	 *
 	 * @return The transformed value.
 	 */
-	<TransformedType> TransformedType
-			transformHead(Function<ContainedType, TransformedType> transformer);
+	<TransformedType> TransformedType transformHead(Function<ContainedType, TransformedType> transformer);
 
 	/**
 	 * Transform the tree into a tree with a different type of token.
 	 *
-	 * @param <MappedType>
-	 *                     The type of the new tree.
+	 * @param <MappedType> The type of the new tree.
 	 *
-	 * @param transformer
-	 *                     The function to use to transform tokens.
+	 * @param transformer  The function to use to transform tokens.
 	 *
 	 * @return A tree with the token types transformed.
 	 */
-	default <MappedType> Tree<MappedType>
-			transformTree(final Function<ContainedType, MappedType> transformer) {
+	default <MappedType> Tree<MappedType> transformTree(final Function<ContainedType, MappedType> transformer) {
 		return rebuildTree(transformer, transformer);
 	}
 
+	// TODO: Add method which traverses tree, but randomizes order children are
+	// visited in
+	
+	// TODO: Add method which allows parallel traversal of children.
 	/**
 	 * Perform an action on each part of the tree.
 	 *
-	 * @param linearizationMethod
-	 *                            The way to traverse the tree.
+	 * @param linearizationMethod The way to traverse the tree.
 	 *
-	 * @param action
-	 *                            The action to perform on each tree node.
+	 * @param action              The action to perform on each tree node.
 	 */
-	void traverse(TreeLinearizationMethod linearizationMethod,
-			Consumer<ContainedType> action);
+	void traverse(TreeLinearizationMethod linearizationMethod, Consumer<ContainedType> action);
 
 	/**
 	 * Find the farthest to right child that satisfies the given predicate.
 	 *
-	 * @param childPred
-	 *                  The predicate to satisfy.
+	 * @param childPred The predicate to satisfy.
 	 *
 	 * @return The index of the right-most child that satisfies the predicate, or -1
 	 *         if one doesn't exist.
@@ -261,8 +227,7 @@ public interface Tree<ContainedType> {
 	/**
 	 * Check if this tree contains any nodes that satisfy the predicate.
 	 *
-	 * @param pred
-	 *             The predicate to look for.
+	 * @param pred The predicate to look for.
 	 *
 	 * @return Whether or not any items satisfied the predicate.
 	 */
@@ -270,7 +235,8 @@ public interface Tree<ContainedType> {
 		Toggle<Boolean> tog = new OneWayToggle<>(false, true);
 
 		traverse(TreeLinearizationMethod.POSTORDER, val -> {
-			if (pred.test(val)) tog.get();
+			if (pred.test(val))
+				tog.get();
 		});
 
 		return tog.get();
@@ -279,8 +245,7 @@ public interface Tree<ContainedType> {
 	/**
 	 * Set the head of the tree.
 	 *
-	 * @param dat
-	 *            The value to set as the head of the tree.
+	 * @param dat The value to set as the head of the tree.
 	 */
 	void setHead(ContainedType dat);
 }
