@@ -1,3 +1,20 @@
+/* 
+ * esodata - data structures and other things, of varying utility
+ * Copyright 2022, Ben Culkin
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *   
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package bjc.funcdata.bst;
 
 import java.io.*;
@@ -10,10 +27,8 @@ import java.util.*;
  *
  */
 public class BinarySearchTreeExample {
-	private static void display(final BinarySearchTree<Character> tree,
-			final Scanner input, PrintStream output) {
-		output.print(
-				"What order would you like the tree to be printed in (m for options): ");
+	private static void display(final BinarySearchTree<Character> tree, final Scanner input, PrintStream output) {
+		output.print("What order would you like the tree to be printed in (m for options): ");
 		char command;
 
 		while (true) {
@@ -23,12 +38,9 @@ public class BinarySearchTreeExample {
 			switch (command) {
 			case 'm':
 				System.out.println("Possible tree printing methods: ");
-				System.out.println(
-						"\tp: Preorder printing (print parent first, then left & right).");
-				System.out.println(
-						"\ti: Inorder printing (print left first, then parent & right).");
-				System.out.println(
-						"\to: Postorder printing (print left first, then right & parent).");
+				System.out.println("\tp: Preorder printing (print parent first, then left & right).");
+				System.out.println("\ti: Inorder printing (print left first, then parent & right).");
+				System.out.println("\to: Postorder printing (print left first, then right & parent).");
 				break;
 			case 'p':
 				method = TreeLinearizationMethod.PREORDER;
@@ -52,16 +64,14 @@ public class BinarySearchTreeExample {
 				return;
 			}
 
-			System.out.print(
-					"What order would you like the tree to be printed in (m for options): ");
+			System.out.print("What order would you like the tree to be printed in (m for options): ");
 		}
 	}
 
 	/**
 	 * Main method of class
 	 *
-	 * @param args
-	 *             Unused CLI args
+	 * @param args Unused CLI args
 	 */
 	public static void main(final String[] args) {
 		try (Scanner input = new Scanner(System.in)) {
@@ -71,11 +81,10 @@ public class BinarySearchTreeExample {
 
 	private static void runExample(final Scanner input, OutputStream outpt) {
 		System.out.println("Binary Tree Constructor/Searcher");
-		final BinarySearchTree<Character> tree
-				= new BinarySearchTree<>((o1, o2) -> o1 - o2);
+		final BinarySearchTree<Character> tree = new BinarySearchTree<>((o1, o2) -> o1 - o2);
 
 		PrintStream output = new PrintStream(outpt);
-		
+
 		char command = ' ';
 		while (command != 'e') {
 			output.print("Enter a command (m for help): ");

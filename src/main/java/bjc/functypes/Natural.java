@@ -15,26 +15,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package bjc.esodata;
+package bjc.functypes;
 
-/**
- * Interface for a double-sided object.
- *
- * @author bjculkin
- *
- */
-public interface DoubleSided {
-	/**
-	 * Flips the object.
-	 *
-	 * The active side becomes inactive, and the inactive side becomes active.
-	 */
-	void flip();
+@FunctionalInterface
+public interface Natural<F extends Container<?, F>, G extends Container<?, G>> extends BiContainer<F, G, Natural<?, ?>> {
+	<X> Container<X, G> apply(Container<X, F> val);
 
-	/**
-	 * Check which side of the object is active;
-	 *
-	 * @return True if the front side is active, false otherwise.
-	 */
-	boolean currentSide();
+	public static Natural<ListC<?>, ListC<?>> listID() {
+		return new Natural<>() {
+			@Override
+			public <X> ListC<X> apply(Container<X, ListC<?>> val) {
+				ListC<X> lst = (ListC<X>) val;
+				
+				return lst;
+			}
+		};
+	}
 }

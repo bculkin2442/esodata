@@ -15,26 +15,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package bjc.esodata;
+package bjc.functypes;
 
-/**
- * Interface for a double-sided object.
- *
- * @author bjculkin
- *
- */
-public interface DoubleSided {
-	/**
-	 * Flips the object.
-	 *
-	 * The active side becomes inactive, and the inactive side becomes active.
-	 */
-	void flip();
+import java.util.List;
 
-	/**
-	 * Check which side of the object is active;
-	 *
-	 * @return True if the front side is active, false otherwise.
-	 */
-	boolean currentSide();
+public class ListC<T> implements Container<T, ListC<?>> {
+	private List<T> contained;
+	
+	public ListC(List<T> contained) {
+		this.contained = contained;
+	}
+	
+	public List<T> list() {
+		return contained;
+	}
 }

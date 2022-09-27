@@ -1,3 +1,20 @@
+/* 
+ * esodata - data structures and other things, of varying utility
+ * Copyright 2022, Ben Culkin
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *   
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package bjc.esodata;
 
 import java.util.*;
@@ -29,8 +46,8 @@ public class PairMap<Left, Right, Value> implements Map<Pair<Left, Right>, Value
 	public PairMap() {
 		this.backing = new HashMap<>();
 		
-		this.leftTracker = new Multimap<>();
-		this.rightTracker = new Multimap<>();
+		this.leftTracker = new TSetMultimap<>();
+		this.rightTracker = new TSetMultimap<>();
 	}
 	
 	/**
@@ -122,8 +139,8 @@ public class PairMap<Left, Right, Value> implements Map<Pair<Left, Right>, Value
 	public void clear() {
 		backing.clear();
 
-		leftTracker = new Multimap<>();
-		rightTracker = new Multimap<>();
+		leftTracker = new TSetMultimap<>();
+		rightTracker = new TSetMultimap<>();
 	}
 
 	// TODO: Update these to not break the tracking invariants

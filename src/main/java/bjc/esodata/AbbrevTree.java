@@ -1,3 +1,20 @@
+/* 
+ * esodata - data structures and other things, of varying utility
+ * Copyright 2022, Ben Culkin
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *   
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
 package bjc.esodata;
 
 import java.util.*;
@@ -22,7 +39,7 @@ import bjc.funcdata.ListEx;
  * @param <Contained> The type of data contained in the nodes.
  */
 public class AbbrevTree<Label, Contained> implements Iterable<Pair<Label, Contained>> {
-	private Multimap<Label, AbbrevTree<Label, Contained>> labelledNodes;
+	private TSetMultimap<Label, AbbrevTree<Label, Contained>> labelledNodes;
 
 	private Map<Label, AbbrevTree<Label, Contained>> children;
 	private AbbrevTree<Label, Contained> parent;
@@ -34,7 +51,7 @@ public class AbbrevTree<Label, Contained> implements Iterable<Pair<Label, Contai
 	 * Create a new empty root AbbrevTree.
 	 */
 	public AbbrevTree() {
-		labelledNodes = new Multimap<>();
+		labelledNodes = new TSetMultimap<>();
 		children = new HashMap<>();
 	}
 
@@ -57,7 +74,7 @@ public class AbbrevTree<Label, Contained> implements Iterable<Pair<Label, Contai
 	 * @param parent The parent of this node
 	 */
 	public AbbrevTree(AbbrevTree<Label, Contained> parent) {
-		labelledNodes = new Multimap<>();
+		labelledNodes = new TSetMultimap<>();
 		children = new HashMap<>();
 
 		this.parent = parent;
