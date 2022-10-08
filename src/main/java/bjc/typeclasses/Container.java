@@ -15,20 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package bjc.functypes;
+package bjc.typeclasses;
 
-@FunctionalInterface
-public interface Natural<F extends Container<?, F>, G extends Container<?, G>> extends BiContainer<F, G, Natural<?, ?>> {
-	<X> Container<X, G> apply(Container<X, F> val);
-
-	public static Natural<ListC<?>, ListC<?>> listID() {
-		return new Natural<>() {
-			@Override
-			public <X> ListC<X> apply(Container<X, ListC<?>> val) {
-				ListC<X> lst = (ListC<X>) val;
-				
-				return lst;
-			}
-		};
-	}
+public interface Container<T, C extends Container<?, C>> {
+	// Marker
 }

@@ -1,5 +1,5 @@
 /* 
- * esodata - data structures and other things, of varying utility
+ * esodata - Data structures of varying utility
  * Copyright 2022, Ben Culkin
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -15,8 +15,4 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package bjc.functypes.optics;
-
-public interface PrismX<W1, W2, P1, P2> extends Optic<W1, W2, P1, P2> {
-
-}
+package bjc.typeclasses;

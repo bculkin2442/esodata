@@ -15,8 +15,4 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package bjc.functypes;
-
-public interface BiContainer<L, R, C extends BiContainer<?, ?, C>> {
-	// marker
-}
+package bjc.optics.impl;

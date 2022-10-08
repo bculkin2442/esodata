@@ -1,5 +1,6 @@
 /* 
- * esodata - data structures and other things, of varying utility
+ * esodata - data structures of varying utility
+ * 
  * Copyright 2022, Ben Culkin
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +16,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+package bjc.functypes;
+
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
+
 /**
- * 
+ * Various utility functions for predicates
+ * @author bjcul
+ *
  */
-package bjc.functypes.optics;
+public class Predicates {
+	/**
+	 * A predicate for logical implication (!x || y)
+	 * 
+	 * @param x The LHS
+	 * @param y The RHS
+	 * 
+	 * @return Whether the LHS implies the RHS
+	 */
+	public static boolean implies(boolean x, boolean y) {
+		return !x || y;
+	}
+}

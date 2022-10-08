@@ -1,0 +1,126 @@
+https://bartoszmilewski.com/2014/01/14/functors-are-containers/
+	Note that I've not quite ironed out the whole deal w/ BiContainer yet, and type classes which take two parameters
+
+For lenses, name the class Iso as Mirror instead, to keep with the theme
+
+A profunctor value of the type p a b could then be considered a container of bs that are keyed by elements of type a.
+
+class (Profunctor p) => TamModule (ten :: * -> * -> *) p where
+  leftAction  :: p a b -> p (c `ten` a) (c `ten` b)
+  rightAction :: p a b -> p (a `ten` c) (b `ten` c)
+
+type TamOptic ten s t a b 
+    = forall p. TamModule ten p => p a b -> p s t
+data Optic ten s t a b 
+    = forall c. Optic (s -> c `ten` a) (c `ten` b -> t)
+
+type TamProd p = TamModule (,) p
+type TamSum p = TamModule Either p
+
+data Pastro p a b where
+  Pastro :: ((y, z) -> b) -> p x y -> (a -> (x, z)) 
+            -> Pastro p a b
+data Copastro p a b where
+  Copastro :: (Either y z -> b) -> p x y -> (a -> Either x z) 
+            -> Copastro p a b
+// https://bartoszmilewski.com/2017/07/07/profunctor-optics-the-categorical-view/
+
+https://r6research.livejournal.com/28338.html?utm_source=3userpost - A new case for the pointed functor class
+https://r6research.livejournal.com/28050.html - Grate: A new kind of Optic
+https://r6research.livejournal.com/27476.html - Profunctor hierarchy for objects
+
+class Functor c => Naperian c where
+  zipFWith :: Functor f => (f a -> b) -> f (c a) -> (c b)
+
+class (Traversable v, Naperian v) => FiniteVector v where
+  naperianTraverse :: (Functor f, Applicative g) => (f a -> g b) -> f (v a) -> g (v b)
+
+-- A simple example to get people started.
+instance FiniteVector Triple where
+  naperianTraverse h fv = Triple <$> h (one <$> fv) <*> h (two <$> fv) <*> h (three <$> fv)
+   where
+    one (Triple x y z) = x
+    two (Triple x y z) = y
+    three (Triple x y z) = z
+vectorSize :: FiniteVector v => Proxy (Constant () (v a)) -> Integer
+vectorSize p = getSum . getConstant $ naperianTraverse (const (Constant (Sum 1)) (Constant () `asProxyTypeOf` p)
+class Profunctor p => Power p where
+  waddle :: FiniteVector v => p a b -> p (v a) (v b)
+type FiniteGrate s t a b = Power p => p a b -> p s t
+
+type Lens' s a = forall f. Functor f => (a -> f a) -> s -> f s
+
+// Create lens for a Hours/Minutes/Seconds time type, which does the right thing
+
+data SLens α γ β = SLens {putR :: (α, γ) → (β , γ), putL :: (β , γ) → (α, γ), missing :: γ }
+
+(;) :: (SLens α σ1 β ) → (SLens β σ2 γ) → (SLens α (σ1,σ2) γ)
+l1 ; l2 = SLens putR putL (l1.missing, l2.missing)
+	 where putR (a, (s1, s2)) =
+	 	 let (b, s′1) = putR (a, s1)
+	 		 (c, s′2) = putR (b, s2)
+		in (c, (s′1, s′2))
+	putL (c, (s1, s2)) =
+	   	let (b, s′2) = putL (c, s2)
+			(a, s′1) = putL (b, s1)
+		in (a, (s′1, s′2))
+idLensS :: SLens X () X
+idLensS = SLens id id ()
+
+type StateT σ τ α = σ → τ (α, σ)
+instance Monad τ ⇒ Monad (StateT σ τ ) where
+	return a = λs. return (a, s)
+	m >>= k = λs. do {(a, s′) ← m s; k a s′ 
+
+get :: Monad τ ⇒ StateT σ τ σ
+get = λs. return (s, s)
+set :: Monad τ ⇒ σ → StateT σ τ ()
+set s′ = λs. return ((), s′)
+
+lift :: Monad τ ⇒ τ α → StateT σ τ α
+lift m = λs. do {a ← m; return (a, s)} 
+
+gets :: Monad τ ⇒ (σ → α) → StateT σ τ α
+gets f = do {s ← get; return (f s)}
+eval :: Monad τ ⇒ StateT σ τ α → σ → τ α
+eval m s = do {(a, s′) ← m s; return a }
+exec :: Monad τ ⇒ StateT σ τ α → σ → τ σ
+exec m s = do {(a, s′) ← m s; return s′ } 
+
+data Codec g p x a = Codec { get :: g a, put :: x -> p a }
+instance (Functor g, Functor p) => Profunctor (Codec g p)
+instance (Monad g, Monad p) => Monad (Codec g p x)
+
+http://oleg.fi/gists/posts/2017-03-20-affine-traversal.html
+
+data Kiosk a b s t = Kiosk (s -> Either t a) (s -> b -> t)
+sellKiosk :: Kiosk a b a b
+sellKiosk = Kiosk Right (\_ -> id)
+instance Profunctor (Kiosk u v) where
+    dimap f g (Kiosk getter setter) = Kiosk
+        (\a -> first g $ getter (f a))
+        (\a v -> g (setter (f a) v))
+instance Strong (Kiosk u v) where
+    first' (Kiosk getter setter) = Kiosk
+        (\(a, c) -> first (,c) $ getter a)
+        (\(a, c) v -> (setter a v, c))
+instance Choice (Kiosk u v) where
+    right' (Kiosk getter setter) = Kiosk
+        (\eca -> assoc (second getter eca))
+        (\eca v -> second (`setter` v) eca)
+      where
+        assoc :: Either a (Either b c) -> Either (Either a b) c
+        assoc (Left a)          = Left (Left a)
+        assoc (Right (Left b))  = Left (Right b)
+        assoc (Right (Right c)) = Right c
+
+newtype Kiask a b t = Kiask { runKiask :: (Either t a, b -> t) }
+sellKiask :: a -> Kiask a b b
+sellKiask a = Kiask (Right a, id)
+instance Functor (Kiask a b) where
+    fmap f (Kiask (Left t, g)) = Kiask (Left (f t), f . g)
+    fmap f (Kiask (Right a, g)) = Kiask (Right a, f . g)
+instance Pointed (Kiask a b) where
+    point x = Kiask (Left x, const x)
+    
+http://oleg.fi/gists/posts/2021-01-08-indexed-optics-dilemma.html

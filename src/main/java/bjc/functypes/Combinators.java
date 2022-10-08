@@ -301,14 +301,50 @@ public class Combinators {
 
 	// TODO: write a switch-like combinator that uses a KeyedList to get the desired
 	// fallthrough semantics
-	
+
 	// TODO: non-shortcircuiting boolean combinators
-	
+
+	/**
+	 * Convert a function into one that takes a supplier as its parameter
+	 * 
+	 * Note this is not as useful as the reverse, as we need to evaluate the
+	 * supplier to call the function.
+	 * 
+	 * @param <Input>  The input type
+	 * @param <Output> The output type
+	 * 
+	 * @param f        The function
+	 * 
+	 * @return The function, taking a supplier as its first function
+	 */
 	public static <Input, Output> Function<Supplier<Input>, Output> lazify(Function<Input, Output> f) {
 		return (supp) -> f.apply(supp.get());
 	}
 
+	/**
+	 * Convert a lazy function into an eager one
+	 * 
+	 * @param <Input> The input type
+	 * @param <Output> The output type
+	 * 
+	 * @param f A function that takes a supplier as its parameter
+	 * 
+	 * @return A function which just takes a value
+	 */
 	public static <Input, Output> Function<Input, Output> strictify(Function<Supplier<Input>, Output> f) {
 		return (val) -> f.apply(() -> val);
+	}
+	
+	/**
+	 * Convert a pure function into one that mutates a holder.
+	 * 
+	 * @param <Input> The type of the function.
+	 * 
+	 * @param f The function.
+	 * 
+	 * @return A function that mutates a holder using the given function
+	 */
+	public static <Input> Consumer<Holder<Input>> mutating(UnaryOperator<Input> f) {
+		return (hld) -> hld.transform(f);
 	}
 }

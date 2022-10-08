@@ -15,4 +15,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package bjc.functypes.optics.impl;
+package bjc.optics;
+
+/**
+ * General interface for optics of varying sorts
+ * 
+ * @author bjcul
+ *
+ * @param <W1> The first item the optic is used on
+ * @param <W2> The second item the optic is used on
+ * @param <P1> The first item the optic focuses on
+ * @param <P2> The second item the optic focuses on
+ */
+public interface Optic<W1, W2, P1, P2> {
+	// Marker interface
+}

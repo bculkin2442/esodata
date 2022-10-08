@@ -26,6 +26,7 @@ import bjc.data.internals.WrappedLazy;
 import bjc.data.internals.WrappedOption;
 import bjc.funcdata.FunctionalList;
 import bjc.funcdata.theory.Functor;
+import bjc.typeclasses.Container;
 
 /**
  * A holder of a single value.
@@ -35,7 +36,8 @@ import bjc.funcdata.theory.Functor;
  * @param <ContainedType>
  *                        The type of value held.
  */
-public interface Holder<ContainedType> extends Functor<ContainedType> {
+public interface Holder<ContainedType> extends Functor<ContainedType>, Container<ContainedType, Holder<ContainedType>> {
+	// note: to really work, this should also take the binding parameter
 	/**
 	 * Bind a function across the value in this container.
 	 *

@@ -20,6 +20,8 @@ package bjc.functypes;
 import java.util.*;
 import java.util.function.*;
 
+import bjc.typeclasses.Isomorphism;
+
 /**
  * An instance of {@link Function} that can throw an exception.
  * 

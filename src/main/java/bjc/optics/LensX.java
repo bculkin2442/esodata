@@ -15,9 +15,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package bjc.functypes.optics;
+package bjc.optics;
 
-import static bjc.functypes.optics.Lenses.immutable;
+import static bjc.optics.Lenses.immutable;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;

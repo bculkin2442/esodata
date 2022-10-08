@@ -15,8 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package bjc.functypes;
+package bjc.optics;
 
-public interface Container<T, C extends Container<?, C>> {
-	// Marker
+public interface PrismX<W1, W2, P1, P2> extends Optic<W1, W2, P1, P2> {
+
 }

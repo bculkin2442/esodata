@@ -15,18 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package bjc.functypes;
-
-import java.util.List;
-
-public class ListC<T> implements Container<T, ListC<?>> {
-	private List<T> contained;
-	
-	public ListC(List<T> contained) {
-		this.contained = contained;
-	}
-	
-	public List<T> list() {
-		return contained;
-	}
-}
+/**
+ * 
+ */
+package bjc.optics;

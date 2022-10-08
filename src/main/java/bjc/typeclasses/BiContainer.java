@@ -15,16 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package bjc.functypes.optics;
+package bjc.typeclasses;
 
-/**
- * A type-invariant var Laarhoven lens.
- * 
- * @author bjcul
- *
- * @param <Whole> The item this lens can focus on
- * @param <Part> The field this lens focuses on
- */
-public interface Lens<Whole, Part> extends LensX<Whole, Whole, Part, Part> {
-	// Alias type
+public interface BiContainer<L, R, C extends BiContainer<?, ?, C>> {
+	// marker
 }

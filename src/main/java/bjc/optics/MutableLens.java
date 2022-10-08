@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package bjc.functypes.optics;
+package bjc.optics;
 
 /**
  * A type-invariant lens for mutating objects.
