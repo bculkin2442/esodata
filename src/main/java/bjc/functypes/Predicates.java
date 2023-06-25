@@ -18,9 +18,6 @@
  */
 package bjc.functypes;
 
-import java.util.function.BiPredicate;
-import java.util.function.Predicate;
-
 /**
  * Various utility functions for predicates
  * @author bjcul

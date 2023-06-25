@@ -31,7 +31,7 @@ import java.util.function.*;
  * @param <ValueType>
  *                    The type of this map's values.
  */
-public interface MapEx<KeyType, ValueType> extends Freezable {
+public interface MapEx<KeyType, ValueType> extends Freezable<MapEx<KeyType, ValueType>> {
 	/**
 	 * Execute an action for each entry in the map.
 	 *

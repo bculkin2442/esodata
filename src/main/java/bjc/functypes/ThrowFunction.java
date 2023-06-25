@@ -73,13 +73,13 @@ public interface ThrowFunction<InputType, ReturnType, ExType extends Throwable>
                 if (clasz.isInstance(ex)) {
                     // Swallow this
                     return handler.apply((ExType) ex);
-                } else {
-                    String msg = "Exception of incorrect type to be handled, only "
-                                             + clasz.getName()
-                                             + " are handled";
-                    
-                    throw new RuntimeException(msg, ex);
                 }
+                
+				String msg = "Exception of incorrect type to be handled, only "
+				                         + clasz.getName()
+				                         + " are handled";
+				
+				throw new RuntimeException(msg, ex);
             }
         };
     }
@@ -122,13 +122,13 @@ public interface ThrowFunction<InputType, ReturnType, ExType extends Throwable>
 				if (clasz.isInstance(ex)) {
 					// Swallow this
 					return self.apply(rescue.apply(arg, (ExType) ex));
-				} else {
-					String msg = "Exception of incorrect type to be handled, only "
-											 + clasz.getName()
-											 + " are handled";
-					
-					throw new RuntimeException(msg, ex);
 				}
+				
+				String msg = "Exception of incorrect type to be handled, only "
+										 + clasz.getName()
+										 + " are handled";
+				
+				throw new RuntimeException(msg, ex);
 			}
 		});
 	}

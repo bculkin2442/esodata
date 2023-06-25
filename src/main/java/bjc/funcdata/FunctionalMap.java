@@ -95,9 +95,9 @@ public class FunctionalMap<KeyType, ValueType> implements MapEx<KeyType, ValueTy
 
 		if (wrappedMap.containsKey(key)) {
 			return Optional.of(wrappedMap.get(key));
-		} else {
-			return Optional.empty();
 		}
+		
+		return Optional.empty();
 	}
 
 	@Override
@@ -172,9 +172,9 @@ public class FunctionalMap<KeyType, ValueType> implements MapEx<KeyType, ValueTy
 		if (thawEnabled) {
 			isFrozen = false;
 			return true;			
-		} else {
-			return false;
 		}
+		
+		return false;
 	}
 
 	@Override

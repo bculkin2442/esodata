@@ -18,6 +18,7 @@
 package bjc.esodata;
 
 import java.util.*;
+import java.util.function.Function;
 
 /**
  * A map that allows you to reference strings by unambiguous abbreviations to
@@ -34,17 +35,64 @@ import java.util.*;
  * @author Ben Culkin
  */
 public class AbbrevMap2 {
+	/**
+	 * Strategy to generate abbreviations for an AbbrevMap.
+	 * @author bjcul
+	 *
+	 */
+	public static interface AbbrevStrategy extends Function<String, List<String>>{
+		// alias iface.
+	}
+	
 	// Stores a mapping from strings, to strings that they could be abbreviations
 	// for
 	private Multimap<String, String> backing;
 
+	private List<AbbrevStrategy> strategies;
+	
+	/**
+	 * Strategy which generates abbreviations as all of the prefixes of a word
+	 */
+	public static final AbbrevStrategy INITIAL = (word) -> {
+		List<String> retList = new ArrayList<>();
+
+		int len = word.length();
+
+		for (int i = 1; i <= len; i++) {
+			String substr = word.substring(0, i);
+
+			retList.add(substr);
+		}
+
+		return retList;
+	};
+	
+	/**
+	 * Strategy which converts a camel-case word into the letters of its components.
+	 */
+	public static final AbbrevStrategy CAMELCASE = (word) -> {
+		List<String> retList = new ArrayList<>();
+		// TODO implement a thing
+		return retList;
+	};
+	
 	/**
 	 * Create a new abbreviation map.
 	 */
 	public AbbrevMap2() {
-		backing = new TSetMultimap<>();
+		this(INITIAL);
 	}
 
+	/**
+	 * Create a new abbreviation map.
+	 * 
+	 * @param strategies The strategies to use to generate abbreviations.
+	 */
+	public AbbrevMap2(AbbrevStrategy... strategies) {
+		this.backing = new TSetMultimap<>();
+		this.strategies = List.of(strategies);
+	}
+	
 	/**
 	 * Add words to the map.
 	 *
@@ -58,15 +106,11 @@ public class AbbrevMap2 {
 	}
 
 	// Generate all of the strings a given word could be abbreviated as
-	private static List<String> genAbbrevs(String word) {
+	private List<String> genAbbrevs(String word) {
 		List<String> retList = new ArrayList<>();
 
-		int len = word.length();
-
-		for (int i = 1; i <= len; i++) {
-			String substr = word.substring(0, i);
-
-			retList.add(substr);
+		for (AbbrevStrategy strategy : strategies) {
+			retList.addAll(strategy.apply(word));
 		}
 
 		return retList;
@@ -88,9 +132,9 @@ public class AbbrevMap2 {
 	 * Get all of the strings that a string could be an abbreviation for.
 	 *
 	 * @param word
-	 *             The word to attempt to deabbreviate.
+	 *             The word to attempt to de-abbreviate.
 	 *
-	 * @return All of the possible deabbreviations for that word.
+	 * @return All of the possible de-abbreviations for that word.
 	 */
 	public Set<String> deabbrevAll(String word) {
 		return backing.get(word);
@@ -100,15 +144,16 @@ public class AbbrevMap2 {
 	 * Get the unambiguous thing the string is an abbreviation for.
 	 *
 	 * @param word
-	 *             The word to attempt to deabbreviate.
+	 *             The word to attempt to de-abbreviate.
 	 *
-	 * @return The unambiguous deabbreviation of the string, or null if there isn't
+	 * @return The unambiguous de-abbreviation of the string, or null if there isn't
 	 *         one.
 	 */
 	public String deabbrev(String word) {
 		Set<String> st = backing.get(word);
 
 		if (st.size() == 1) return st.iterator().next();
-		else                return null;
+		
+		return null;
 	}
 }

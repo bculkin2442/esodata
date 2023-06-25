@@ -108,7 +108,8 @@ public class DefaultList<ValueType> extends AbstractList<ValueType> {
 	@Override
 	public ValueType get(int idx) {
 		if (idx < 0 || idx >= backing.size()) return defVal;
-		else                                  return backing.get(idx);
+		
+		return backing.get(idx);
 	}
 
 	@Override

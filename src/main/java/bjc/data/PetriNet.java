@@ -31,11 +31,19 @@ public class PetriNet<Label> {
 	private Map<Label, Integer> nodes;
 	private Map<Label, PetriTransition<Label>> transitions;
 
+	/**
+	 * Create a new Petri net
+	 */
 	public PetriNet() {
 		nodes = new HashMap<>();
 		transitions = new HashMap<>();
 	}
 
+	/**
+	 * Merge this Petri net for another.
+	 * 
+	 * @param net The other Petri net.
+	 */
 	public void merge(PetriNet<Label> net) {
 		for (Entry<Label, Integer> node : net.nodes.entrySet()) {
 			int value = node.getValue();
@@ -50,6 +58,15 @@ public class PetriNet<Label> {
 		}
 	}
 	
+	/**
+	 * Create a Petri net from merging others.
+	 * 
+	 * @param <Label> The type of the labels in the Petri net
+	 * @param nets The nets to merge
+	 * 
+	 * @return A net formed by merging all of the provided ones.
+	 */
+	@SafeVarargs
 	public static <Label> PetriNet<Label> merged(PetriNet<Label>... nets) {
 		PetriNet<Label> result = new PetriNet<>();
 

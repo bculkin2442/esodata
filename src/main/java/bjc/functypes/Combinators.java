@@ -347,4 +347,21 @@ public class Combinators {
 	public static <Input> Consumer<Holder<Input>> mutating(UnaryOperator<Input> f) {
 		return (hld) -> hld.transform(f);
 	}
+	
+	/**
+	 * Splat a function so that it is applied to many arguments at once.
+	 * 
+	 * @param <Input> The input type
+	 * @param <Output> The output type
+	 * 
+	 * @param f The function
+	 * @return A splatted variant of the function
+	 */
+	public static <Input, Output> VarArgFunction<Input, Output> splat(Function<Input, Output> f) {
+		return (vals) -> {
+			List<Output> ret = new ArrayList<>(vals.length);
+			for (Input val : vals) ret.add(f.apply(val));
+			return ret;
+		};
+	}
 }

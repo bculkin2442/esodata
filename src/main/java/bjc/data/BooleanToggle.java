@@ -83,7 +83,7 @@ public class BooleanToggle implements Toggle<Boolean> {
 		final BooleanToggle other = (BooleanToggle) obj;
 
 		if (val != other.val) return false;
-		else                  return true;
+		return true;
 	}
 
 	@Override

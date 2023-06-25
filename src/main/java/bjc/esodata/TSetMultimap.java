@@ -94,7 +94,8 @@ public class TSetMultimap<KeyType, ValueType> implements Iterable<Pair<KeyType, 
 	@Override
 	public Set<ValueType> get(KeyType key) {
 		if (!backing.containsKey(key)) return new HashSet<>();
-		else                           return backing.get(key).values();
+		
+		return backing.get(key).values();
 	}
 
 	@Override

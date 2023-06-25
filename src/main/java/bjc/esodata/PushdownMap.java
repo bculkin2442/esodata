@@ -163,9 +163,9 @@ public class PushdownMap<KeyType, ValueType> implements MapEx<KeyType, ValueType
 		if (thawEnabled) {
 			isFrozen = false;
 			return true;
-		} else {
-			return false;
 		}
+		
+		return false;
 	}
 
 	@Override

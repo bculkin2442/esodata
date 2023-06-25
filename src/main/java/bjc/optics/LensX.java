@@ -19,7 +19,6 @@ package bjc.optics;
 
 import static bjc.optics.Lenses.immutable;
 
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**

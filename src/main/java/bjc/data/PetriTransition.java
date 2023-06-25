@@ -20,12 +20,22 @@ package bjc.data;
 import java.util.*;
 import java.util.Map.Entry;
 
+/**
+ * Represents a transition in a Petri net
+ * @author bjcul
+ *
+ * @param <Label> The type of the label
+ */
 public class PetriTransition<Label> {
 	private final Label name;
 
 	private Map<Label, Integer> sources;
 	private Map<Label, Integer> destinations;
 
+	/**
+	 * Create a new transition
+	 * @param name The name for this transition
+	 */
 	public PetriTransition(Label name) {
 		this.name = name;
 
@@ -33,22 +43,54 @@ public class PetriTransition<Label> {
 		destinations = new HashMap<>();
 	}
 
+	/**
+	 * Add a source to this transition
+	 * 
+	 * @param lab The label to move from
+	 * @param tokens The number of tokens to move
+	 */
 	public void addSource(Label lab, int tokens) {
 		sources.merge(lab, tokens, (k, v) -> v + tokens);
 	}
 
+	/**
+	 * Remove a source from this transition
+	 * 
+	 * @param lab The source to remove
+	 * @return The number of tokens that would've been moved
+	 */
 	public int removeSource(Label lab) {
 		return sources.remove(lab);
 	}
 
+	/**
+	 * Add a destination to this transition.
+	 * 
+	 * @param lab The label for the destination
+	 * @param tokens The number of tokens to add
+	 */
 	public void addDestination(Label lab, int tokens) {
 		destinations.merge(lab, tokens, (k, v) -> v + tokens);
 	}
 
-	public int removeDestination(Label lab, int tokens) {
+	/**
+	 * Remove a destination from this transition
+	 * 
+	 * @param lab The destination to remove
+	 * 
+	 * @return The number of tokens which would've moved
+	 */
+	public int removeDestination(Label lab) {
 		return destinations.remove(lab);
 	}
 
+	/**
+	 * Apply this transition to a map
+	 * 
+	 * @param nodes The map to apply the transition to
+	 * 
+	 * @return Whether the transition was successfully applied.
+	 */
 	public boolean apply(Map<Label, Integer> nodes) {
 		Set<Entry<Label, Integer>> debts = new HashSet<>();
 		boolean failed = false;
@@ -100,6 +142,11 @@ public class PetriTransition<Label> {
 		return true;
 	}
 	
+	/**
+	 * Merge this transition with another one
+	 * 
+	 * @param transition The transition to merge
+	 */
 	public void merge(PetriTransition<Label> transition) {
 		for (Entry<Label, Integer> source : transition.sources.entrySet()) {
 			int val = source.getValue();
@@ -133,6 +180,16 @@ public class PetriTransition<Label> {
 				&& Objects.equals(sources, other.sources);
 	}
 
+	/**
+	 * Create a transition from merging a bunch
+	 * 
+	 * @param <Label> The type of the label
+	 * 
+	 * @param mergeName The label for the merged transition
+	 * @param transitions The transitions to merge
+	 * 
+	 * @return A transition created by merging the given ones
+	 */
 	@SafeVarargs
 	public static <Label> PetriTransition<Label> merged(Label mergeName, PetriTransition<Label>... transitions) {
 		PetriTransition<Label> result = new PetriTransition<>(mergeName);

@@ -28,6 +28,7 @@ package bjc.funcdata;
  * you attempt to modify a frozen object, but they may also choose not to.
  * 
  * @author Ben Culkin
+ * @param <F> The type of the implementing object
  */
 public interface Freezable<F extends Freezable<?>> {
 	/**

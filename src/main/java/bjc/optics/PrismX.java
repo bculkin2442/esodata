@@ -17,6 +17,73 @@
  */
 package bjc.optics;
 
-public interface PrismX<W1, W2, P1, P2> extends Optic<W1, W2, P1, P2> {
+import java.util.function.Function;
 
+import bjc.data.Either;
+
+/**
+ * Represents a Prism, which is a type of optic.
+ * 
+ * TODO: Add better description
+ * 
+ * @author bjcul
+ *
+ * @param <W1> The type of the first whole
+ * @param <W2> The type of the second whole
+ * @param <P1> The type of the first part
+ * @param <P2> The type of the second part
+ */
+public interface PrismX<W1, W2, P1, P2> extends Optic<W1, W2, P1, P2> {
+	/**
+	 * Match against this prism.
+	 * 
+	 * @param part The part to match
+	 * @return Either the matched value or the prism
+	 */
+	Either<P2, W1> match(P1 part);
+
+	/**
+	 * Build this prism from a given part.
+	 * 
+	 * @param whole The whole to build from
+	 * @return The part that is constructed
+	 */
+	P2 build(W2 whole);
+
+	/**
+	 * Create a prism from its component parts
+	 * 
+	 * @param <W1> The type of the first whole
+	 * @param <W2> The type of the second whole
+	 * @param <P1> The type of the first part
+	 * @param <P2> The type of the second part
+	 * 
+	 * @param f The 'match' function for the prism
+	 * @param g The 'build' function for the prism
+	 * 
+	 * @return A prism built from the given parts
+	 */
+	static <W1, W2, P1, P2> PrismX<W1, W2, P1, P2> of(Function<P1, Either<P2, W1>> f, Function<W2, P2> g) {
+		return new FunctionalPrismX<>(g, f);
+	}
+}
+
+final class FunctionalPrismX<W1, W2, P1, P2> implements PrismX<W1, W2, P1, P2> {
+	private final Function<W2, P2> g;
+	private final Function<P1, Either<P2, W1>> f;
+
+	public FunctionalPrismX(Function<W2, P2> g, Function<P1, Either<P2, W1>> f) {
+		this.g = g;
+		this.f = f;
+	}
+
+	@Override
+	public P2 build(W2 whole) {
+		return g.apply(whole);
+	}
+
+	@Override
+	public Either<P2, W1> match(P1 part) {
+		return f.apply(part);
+	}
 }

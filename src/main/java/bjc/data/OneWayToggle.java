@@ -57,8 +57,7 @@ public class OneWayToggle<E> implements Toggle<E> {
 
 	@Override
 	public E peek() {
-		if (gotFirst) return second;
-		else          return first;
+		return gotFirst ? second : first;
 	}
 
 	@Override

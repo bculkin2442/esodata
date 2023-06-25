@@ -66,7 +66,8 @@ class ExtendedMap<KeyType, ValueType> implements MapEx<KeyType, ValueType> {
 	@Override
 	public boolean containsKey(final KeyType key) {
 		if (store.containsKey(key)) return true;
-		else                        return delegate.containsKey(key);
+		
+		return delegate.containsKey(key);
 	}
 
 	@Override
@@ -79,7 +80,8 @@ class ExtendedMap<KeyType, ValueType> implements MapEx<KeyType, ValueType> {
 	@Override
 	public Optional<ValueType> get(final KeyType key) {
 		if (store.containsKey(key)) return store.get(key);
-		else                        return delegate.get(key);
+		
+		return delegate.get(key);
 	}
 
 	@Override
@@ -111,7 +113,8 @@ class ExtendedMap<KeyType, ValueType> implements MapEx<KeyType, ValueType> {
 			throw new ObjectFrozen("Can't remove key " + key + " from frozen map");
 		
 		if (!store.containsKey(key)) return delegate.remove(key);
-		else                         return store.remove(key);
+		
+		return store.remove(key);
 	}
 
 	@Override
@@ -159,9 +162,9 @@ class ExtendedMap<KeyType, ValueType> implements MapEx<KeyType, ValueType> {
 		if (thawEnabled) {
 			isFrozen = false;
 			return true;
-		} else {
-			return false;
 		}
+		
+		return false;
 	}
 
 	@Override

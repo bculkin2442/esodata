@@ -17,6 +17,13 @@
  */
 package bjc.typeclasses;
 
+/**
+ * Marker type for containers
+ * @author bjcul
+ *
+ * @param <T> The value type
+ * @param <C> The self type
+ */
 public interface Container<T, C extends Container<?, C>> {
 	// Marker
 }

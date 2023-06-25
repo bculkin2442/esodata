@@ -132,9 +132,9 @@ public class TapeLibrary<ElementType> implements TapeView<ElementType>
 						(ignored) -> new SingleTape<>());
 			
 			return true;
-		} else {
-			return false;
 		}
+		
+		return false;
 	}
 	
 	/**

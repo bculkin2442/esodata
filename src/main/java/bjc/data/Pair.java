@@ -268,6 +268,15 @@ public interface Pair<LeftType, RightType> extends Bifunctor<LeftType, RightType
 		return new SimplePair<>(left, right);
 	}
 	
+	/**
+	 * Swap the left & right sides of this pair
+	 * 
+	 * @return The pair with the left and right types swapped
+	 */
+	public default Pair<RightType, LeftType> swap() {
+		return merge((l, r) -> Pair.pair(r, l));
+	}
+	
 	@Override
 	default void formatTo(Formatter formatter, int flags, int width, int precision) {
 		if ((flags & FormattableFlags.ALTERNATE) != 0) {

@@ -76,7 +76,7 @@ public class Lenses {
 	public static <Part1, Part2> LensX<Holder<Part1>, Holder<Part2>, Part1, Part2> holder() {
 		return immutable((hld) -> hld.getValue(), (hld, val) -> hld.map((vl) -> val));
 	}
-	
+
 	/**
 	 * Create a lens for updating tagged pairs.
 	 * 
@@ -92,7 +92,13 @@ public class Lenses {
 	public static <A, B, T> LensX<Pair<T, A>, Pair<T, B>, A, B> tagged() {
 		return immutable((par) -> par.getRight(), (par, val) -> par.mapRight((vl) -> val));
 	}
-	
+
+	// Not entirely sure what I was thinking when I wrote this. Pretty sure this
+	// would need W1 to be a monoid to make much sense
+	// public static <W1, P1, P2> Lens<W1, Pair<P1, P2>> both(Lens<W1, P1> lhs,
+	// Lens<W1, P2> rhs) {
+	// }
+
 	/**
 	 * Creates a lens which focuses on a piece of internal state.
 	 * 
@@ -107,7 +113,7 @@ public class Lenses {
 		Holder<A> hold = Holder.of(val);
 		return immutable((whole) -> hold.getValue(), (whole, vl) -> hold.map((arg) -> vl));
 	}
-	
+
 	/**
 	 * Creates a lens which focuses on a piece of mutable internal state.
 	 * 
@@ -120,6 +126,17 @@ public class Lenses {
 	public static <A> MutableLens<?, A> stateM(A val) {
 		Holder<A> hold = Holder.of(val);
 		return mutable((whole) -> hold.getValue(), (whole, vl) -> hold.replace(vl));
+	}
+
+	/**
+	 * Create a lens that focuses on the sign of an integer
+	 * 
+	 * @return A lens that focuses on the sign of an integer
+	 */
+	public static Lens<Integer, Boolean> sign() {
+		LensX<Integer, Integer, Boolean,
+				Boolean> lensX = immutable((num) -> num >= 0, (num, sgn) -> sgn ? Math.abs(num) : -Math.abs(num));
+		return (Lens<Integer, Boolean>) lensX;
 	}
 }
 

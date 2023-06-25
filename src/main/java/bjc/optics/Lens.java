@@ -17,8 +17,9 @@
  */
 package bjc.optics;
 
-import java.util.function.Function;
-import java.util.function.UnaryOperator;
+import static bjc.optics.Lenses.immutable;
+
+import java.util.function.*;
 
 import bjc.typeclasses.BiContainer;
 
@@ -28,21 +29,22 @@ import bjc.typeclasses.BiContainer;
  * @author bjcul
  *
  * @param <Whole> The item this lens can focus on
- * @param <Part> The field this lens focuses on
+ * @param <Part>  The field this lens focuses on
  */
-public interface Lens<Whole, Part> extends LensX<Whole, Whole, Part, Part>, BiContainer<Whole, Part, Lens<Whole, Part>> {
+public interface Lens<Whole, Part>
+		extends LensX<Whole, Whole, Part, Part>, BiContainer<Whole, Part, Lens<Whole, Part>> {
 	/**
 	 * Modify a given whole using an operation
 	 * 
 	 * @param source The whole to modify.
-	 * @param mod The operation to use for modifying a part
+	 * @param mod    The operation to use for modifying a part
 	 * 
 	 * @return A modified whole
 	 */
 	default Whole modify(Whole source, UnaryOperator<Part> mod) {
 		return set(source, mod.apply(get(source)));
 	}
-	
+
 	/**
 	 * Create a function which sets the part of a given whole.
 	 * 
@@ -53,16 +55,36 @@ public interface Lens<Whole, Part> extends LensX<Whole, Whole, Part, Part>, BiCo
 	default Function<Whole, Whole> setting(Part part) {
 		return (whole) -> set(whole, part);
 	}
-	
+
 	/**
 	 * Lift a function that modifies parts to one that modifies wholes.
 	 * 
 	 * @param f The function which operates on parts
 	 * 
-	 * @return A corresponding function which applies the given modification to a part.
+	 * @return A corresponding function which applies the given modification to a
+	 *         part.
 	 */
 	default Function<Whole, Whole> lift(UnaryOperator<Part> f) {
 		// modify will be more efficient for some lenses
 		return (whole) -> modify(whole, f);
+	}
+
+	/**
+	 * Compose two type-variant lenses together.
+	 * 
+	 * @param <V1>  The first type the second lens focuses on
+	 * @param <V2>  The second type the second lens focuses on.
+	 * 
+	 * @param other The second lens to use.
+	 * 
+	 * @return A lens composed from this one and the given one.
+	 */
+	default <V1> Lens<Whole, V1> compose(Lens<Part, V1> other) {
+		LensX<Whole, Whole, V1, V1> lensX = immutable((whole) -> other.get(get(whole)),
+				(whole, part) -> update(whole, (val2) -> other.set(val2, part)));
+		// Note: if lensX is inlined, then the setter function for the lens has to be
+		// externalized, otherwise type-inference goes BOOM and everything fails.
+		// Should ask on stack overflow why that is
+		return (Lens<Whole, V1>) lensX;
 	}
 }

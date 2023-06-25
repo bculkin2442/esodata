@@ -87,10 +87,7 @@ public class Lazy<ContainedType> implements Holder<ContainedType> {
 		}
 		
 
-		final Supplier<ContainedType> supplier = () -> {
-			if (valueMaterialized) return heldValue;
-			else                   return valueSupplier.get();
-		};
+		final Supplier<ContainedType> supplier = () -> valueMaterialized ? heldValue : valueSupplier.get();
 
 		return new BoundLazy<>(() -> new Lazy<>(supplier, pendingActions), binder);
 	}
@@ -128,18 +125,18 @@ public class Lazy<ContainedType> implements Holder<ContainedType> {
 		if (valueMaterialized) {
 			if (actions.isEmpty()) {
 				return String.format("value[v='%s']", heldValue);
-			} else {
-				return String.format("value[v='%s'] (has %d pending transforms)",
-						heldValue, actions.getSize());
 			}
+			
+			return String.format("value[v='%s'] (has %d pending transforms)",
+					heldValue, actions.getSize());
 		}
 
 		if (actions.isEmpty()) {
 			return"(unmaterialized)";
-		} else {
-			return String.format("(unmaterialized; has %d pending transforms",
-					actions.getSize());
 		}
+		
+		return String.format("(unmaterialized; has %d pending transforms",
+				actions.getSize());
 	}
 
 	@Override

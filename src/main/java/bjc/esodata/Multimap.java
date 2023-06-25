@@ -97,6 +97,11 @@ public interface Multimap<KeyType, ValueType> {
 	 */
 	boolean contains(KeyType key, ValueType value);
 
+	/**
+	 * Retrieve an iterator over the values in this map
+	 * 
+	 * @return An iterator over the values in this map
+	 */
 	Iterator<Pair<KeyType, ValueType>> iterator();
 
 }

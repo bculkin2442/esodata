@@ -17,6 +17,14 @@
  */
 package bjc.typeclasses;
 
+/**
+ * Marker interface for BiContainers
+ * @author bjcul
+ *
+ * @param <L> The left value type
+ * @param <R> The right value type
+ * @param <C> The self type
+ */
 public interface BiContainer<L, R, C extends BiContainer<?, ?, C>> {
 	// marker
 }

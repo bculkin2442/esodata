@@ -123,9 +123,9 @@ final class TransformedValueMap<OldKey, OldValue, NewValue>
 		if (thawEnabled) {
 			isFrozen = false;
 			return true;
-		} else {
-			return false;
 		}
+		
+		return false;
 	}
 
 	@Override

@@ -83,10 +83,24 @@ public interface TriFunction<In1, In2, In3, Out> {
 		return (x, y) -> apply(x, y, z);
 	}
 
+	/**
+	 * Partially apply the second argument.
+	 * 
+	 * @param y The value for the second argument
+	 * 
+	 * @return The function w/ the second argument partially applied
+	 */
 	public default BiFunction<In1, In3, Out> partialMiddle(In2 y) {
 		return (x, z) -> apply(x, y, z);
 	}
 
+	/**
+	 * Partially apply the first argument.
+	 * 
+	 * @param x The value for the first argument
+	 * 
+	 * @return The function w/ the first argument partially applied
+	 */
 	public default BiFunction<In2, In3, Out> partialFirst(In1 x) {
 		return (y, z) -> apply(x, y, z);
 	}

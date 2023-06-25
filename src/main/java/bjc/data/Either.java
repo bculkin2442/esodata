@@ -185,6 +185,14 @@ public class Either<LeftType, RightType> {
 		return rightVal;
 	}
 
+	/**
+	 * Change the type of the right-side of this either.
+	 * 
+	 * Works only for left Eithers.
+	 * 
+	 * @param <T> The new type for the right side
+	 * @return The either with the new type.
+	 */
 	@SuppressWarnings("unchecked")
 	public <T> Either<LeftType, T> newRight() {
 		if (isLeft) return (Either<LeftType, T>) this;
@@ -192,6 +200,14 @@ public class Either<LeftType, RightType> {
 		throw new NoSuchElementException("Can't replace right type on right Either");
 	}
 	
+	/**
+	 * Change the type of the left-side of this either.
+	 * 
+	 * Works only for right Eithers.
+	 * 
+	 * @param <T> The new type for the left side
+	 * @return The either with the new type.
+	 */
 	@SuppressWarnings("unchecked")
 	public <T> Either<T, RightType> newLeft() {
 		if (isLeft) 
@@ -199,6 +215,14 @@ public class Either<LeftType, RightType> {
 		return (Either<T, RightType>) this;
 	}
 	
+	/**
+	 * Collapse an Either with the same type on both sides.
+	 * 
+	 * @param <T> The type of the either
+	 * @param eth The either to collapse
+	 * 
+	 * @return The collapsed either
+	 */
 	public static <T> T collapse(Either<T, T> eth) {
 		return eth.extract(ID.id(), ID.id());
 	}

@@ -28,4 +28,6 @@ module esodata {
 	exports bjc.funcdata.bst;
 	exports bjc.funcdata.theory;
 	exports bjc.funcdata;
+	exports bjc.typeclasses;
+	exports bjc.optics;
 }

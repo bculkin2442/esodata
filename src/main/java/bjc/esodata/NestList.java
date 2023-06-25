@@ -345,10 +345,10 @@ public class NestList<Element> extends AbstractList<Either<Element, NestList<Ele
 											subst.addItem(sublist);
 										}
 								}));
-					} else {
-						state.addItem(list);
-						return state;
 					}
+					
+					state.addItem(list);
+					return state;
 		});
 	}
 	// List methods and other things.

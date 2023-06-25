@@ -19,13 +19,29 @@ package bjc.typeclasses;
 
 import java.util.List;
 
+/**
+ * A list wrapped in a container
+ * @author bjcul
+ *
+ * @param <T> The type contained
+ */
 public class ListC<T> implements Container<T, ListC<?>> {
 	private List<T> contained;
 	
+	/**
+	 * Create a new contained list
+	 * 
+	 * @param contained The contained list
+	 */
 	public ListC(List<T> contained) {
 		this.contained = contained;
 	}
 	
+	/**
+	 * Retrieve the contained list
+	 * 
+	 * @return The contained list
+	 */
 	public List<T> list() {
 		return contained;
 	}

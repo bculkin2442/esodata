@@ -19,12 +19,23 @@ package bjc.esodata;
 
 import java.util.*;
 
+/**
+ * Implements a keyed list.
+ * 
+ * @author bjcul
+ *
+ * @param <Key> The type of the key
+ * @param <Val> The type of the value
+ */
 public class KeyedList<Key, Val> implements Iterable<Val> {
 	private List<Val> backing;
 	private Map<Key, Integer> indices;
 
 	private int currIdx = 0;
 
+	/**
+	 * Create a new keyed list
+	 */
 	public KeyedList() {
 		backing = new ArrayList<>();
 		indices = new HashMap<>();
